@@ -18,20 +18,20 @@ app.listen(process.env.PORT || 3000, (err) => {
 })
 
 // Route for POST request for postUserCredentials
-app.post('/postUserCredentials', (req, res) => {
+app.post('/loginWithUserCredentials', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
+})
 
-    // Password hashing code using Bcrypt node dependency
+app.post('/createNewUser', (req, res) => {
+    // CREATING AN ACCOUNT: Hash the user's password to store into database
     const saltRounds = 10;
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(`Your password is: ${hash}`);
+            console.log(`Your password is: ${hash}`); // for debugging only
         }
     });
-    
-    res.send();
 })
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
