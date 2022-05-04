@@ -7,12 +7,3 @@
 	--coral: #e46565;
     --gold: #e7ab29;
 }
-
-nav{
-    background-color: var(--forest) ;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-}
-
