@@ -6,7 +6,7 @@ function postUserCredentials() {
     
 
     $.ajax({
-        url: "http://localhost:3000/postUserCredentials",
+        url: "http://localhost:3000/loginWithUserCredentials",
         type: "POST",
         data: {
             "email": $('#email-input').val(),

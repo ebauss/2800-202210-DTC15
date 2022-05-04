@@ -20,6 +20,17 @@ app.listen(process.env.PORT || 3000, (err) => {
 // Route for POST request for postUserCredentials
 app.post('/loginWithUserCredentials', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
+
+    // Hash the inputted password and check if it matches with password from db. HARDCODED PASSWORD: password
+    bcrypt.compare(req.body.password, '$2b$10$YTZ2K3QsVDmotIHV4sMAROPTsBgHu96ZmhYJJAGXzHahgrU8EUwx.', (err, result) => {
+        if (err) {
+            console.log(err);
+        } else if (result) {
+            console.log(`Your password is valid!`); // for debugging only
+        } else {
+            console.log('Your password was rejected!');
+        }
+    })
 })
 
 app.post('/createNewUser', (req, res) => {
