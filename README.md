@@ -29,3 +29,4 @@ Content of the project folder:
 ```
 
 ## Citation:
+The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco

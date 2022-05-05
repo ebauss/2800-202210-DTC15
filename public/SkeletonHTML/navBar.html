@@ -1,47 +1,33 @@
-<style>
-    img {
-        width: 50px;
-    }
+<header>
+    <nav class="navBar">
+        <div class="navBar-container">
+            <div class="logo-container">
+                <a href="../index.html" class="nav-branding">
+                    <img src="../../public/Image_Files/Logo_only.png" alt="Sustainably" height="50">
 
-    .hamburger {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        width: 23px;
-    }
-
-    navBar {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto;
-    }
-
-    .dropdown, .navBar-container {
-        display: inline;
-    }
-</style>
-
-<nav class="navBar">
-    <div class="navBar-container">
-        <div class="logo-container">
-            <a href="../index.html">
-                <img src="../../public/Image_Files/Logo only.png" alt="Sustainably">
-                
-                <b> Sustainably </b>
-            </a>
+                    Sustainably
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="dropdown">
-        <button class="hamburger" type="button" id="dropdownMenu"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><button class="dropdown-item" type="button"><a href="../../html/moodtracker/index.html" style="color:inherit; text-decoration: none;">Mood Tracker</a></button></li>
-            <li><button class="dropdown-item" type="button"><a href="../../html/meditation/index.html" style="color:inherit; text-decoration: none;">Meditation</a></button></li>
-            <li><button class="dropdown-item" type="button"><a href="../../html/forum/index.html" style="color:inherit; text-decoration: none;">Forum</a></button></li>
-        </ul>
-    </div>
+        <div class="dropdown">
+            <ul class="nav-menu">
+                <li class="nav-items">
+                    <a href="" class="nav-link"> About Us </a>
+                </li>
+                <li class="nav-items">
+                    <a href="" class="nav-link"> Profile </a>
+                </li>
+                <li class="nav-items">
+                    <a href="" class="nav-link"> Login/SignUp </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</header>
 
-</nav>
+<script src="../../public/JS_Files/navBar.js"></script>
