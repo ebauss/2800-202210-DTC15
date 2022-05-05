@@ -23,7 +23,7 @@ header {
     background-color: #2f9379;
 }
 
-a {
+a, .brand {
     color: #F6baa8;
     text-decoration: none;
 }
@@ -114,19 +114,19 @@ a {
 }
 
 /* Footer CSS */
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #2f9379;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
+    footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #2f9379;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
 
-a {
-    text-decoration: none;
-    color: aliceblue;
-    padding: 10px;
-}
+    a {
+        text-decoration: none;
+        color: aliceblue;
+        padding: 10px;
+    }
