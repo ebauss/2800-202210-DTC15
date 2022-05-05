@@ -103,9 +103,8 @@ a, .brand {
     }
 
     .nav-items {
-        margin: 5px 0;
+        margin: 10px 0;
         font-size: larger;
-
     }
 
     .nav-menu.active {

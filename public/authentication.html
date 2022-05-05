@@ -11,15 +11,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!------------------------------------------>
-    <!-- Bootstrap Library CSS JS CDN go here -->
-    <!------------------------------------------>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
     <!-------------------------------------------------------->
@@ -62,27 +53,21 @@
         <main>
             <div class="content-authentication">
                 <div class="form-header-container">
-                    <h3 class="form-header"> Let's Sign In </h3>
+                    <h3 class="form-header" id="authentication-header"> Let's Sign In </h3>
                 </div>
-                <form action="">
-                    <div class="form-main-content">
+                <form method="post">
+                    <div id="form-main-content">
                         <div class="input-container">
-                            <input class="user_input" type="email" name="email-input" id="email-input" autocomplete="username" required>
+                            <input class="user_input" type="text" name="email" id="email" autocomplete="email"
+                                value="" required>
                             <span></span>
-                            <label for="email-input"> Email </label>
+                            <label for="email" class="input-labels" id="email-label"> Email </label>
                         </div>
-                        <div class="input-container">
-                            <input class="user_input" type="password" name="password-input" id="password-input" required>
-                            <span></span>
-                            <label for="password-input"> Password </label>
-                        </div>
-
                     </div>
-                    <div class="form-action-container">
+                    <div id="form-action-container">
                         <div class="form-action">
                             <input type="button" value="Next" id="authenticate-user">
                         </div>
-
                     </div>
                 </form>
             </div>
@@ -94,8 +79,9 @@
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-    <script src="JS_Files/skeleton.js"></script>
-    <script src="JS_Files/login.js"></script>
+    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/reactive_auth.js"> </script>
+
 </body>
 
 </html>
