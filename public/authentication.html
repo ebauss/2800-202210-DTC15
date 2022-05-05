@@ -18,7 +18,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -33,9 +33,9 @@
     <!--------------------------->
     <!--   CSS Files go here   -->
     <!--------------------------->
-    
-    <link rel="stylesheet" href="../public/CSS_Files/style.css"> 
 
+    <link rel="stylesheet" href="../public/CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/authentication.css">
 </head>
 
 <body>
@@ -44,10 +44,43 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
+    <header>
+        <nav class="navBar">
+            <div class="navBar-container">
+                <div class="logo-container">
+                    <a href="index.html" class="nav-branding">
+                        <img src="../../public/Image_Files/Logo_only.png" alt="Sustainably" height="50">
+                        Sustainably
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- the body of your page goes here -->
-    <!-- stuff -->
+    <main>
+        <div class="content-authentication">
+            <div class="form-header-container">
+                <h3 class="form-header"> Let's Sign In </h3>
+            </div>
+            <form action="">
+                <div class="form-main-content">
+                    <div class="input-container">
+                        <input class="user_input" type="email" name="email" id="email" autocomplete="username" value="" required>
+                        <span></span>
+                        <label for="email"> Email </label>
+                    </div>
+
+                </div>
+                <div class="form-action-container">
+                    <div class="form-action">
+                        <input type="submit" value="Next">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </main>
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
