@@ -17,7 +17,7 @@ function postUserCredentials() {
 }
 
 function setup() {
-    $('#submit-credentials').click(postUserCredentials);
+    $('#authenticate-user').click(postUserCredentials);
 }
 
 $(document).ready(setup);
