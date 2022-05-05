@@ -3,8 +3,6 @@ function processLogin(data) {
 }
 
 function postUserCredentials() {
-    
-
     $.ajax({
         url: "http://localhost:3000/loginWithUserCredentials",
         type: "POST",

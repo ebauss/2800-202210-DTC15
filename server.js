@@ -33,12 +33,11 @@ app.listen(process.env.PORT || 3000, (err) => {
 app.post('/loginWithUserCredentials', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
 
-    connection.query(`SELECT password FROM users WHERE email = ${req.body.email}`, (err, results, fields) => {
+    connection.query(`SELECT password FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
             console.log(results);
-            console.log(fields);
         }
     });
 
