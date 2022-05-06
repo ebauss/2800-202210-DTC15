@@ -11,7 +11,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'fUt4b4$4kur4',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -59,22 +59,20 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
             console.log(`Expect: ${expectedHashedPassword}`);
 
             // Hash the inputted password and check if it matches with password from db
-            bcrypt.compare(req.body.password, expectedHashedPassword, bcryptLoginComparison)
+            bcrypt.compare(req.body.password, expectedHashedPassword, (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else if (result) {
+                    console.log("You entered the correct password")
+                    res.send(true);
+                } else {
+                    console.log("You entered an incorrect password")
+                    res.send(false);
+                }
+            })
         }
     });
 })
-
-function bcryptLoginComparison(err, result) {
-    if (err) {
-        console.log(err);
-    } else if (result) {
-        console.log("You entered the correct password")
-        res.send(true);
-    } else {
-        console.log("You entered an incorrect password")
-        res.send(false);
-    }
-}
 
 app.post('/createNewUser', (req, res) => {
     // CREATING AN ACCOUNT: Hash the user's password to store into database
