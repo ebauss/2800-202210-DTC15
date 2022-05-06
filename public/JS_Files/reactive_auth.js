@@ -37,11 +37,45 @@ function isPasswordCorrect() {
     });
 }
 
+function addNewUserToDatabase() {
+    console.log("Signup button pressed");
+    $.ajax(
+        {
+            url: "http://localhost:3000/createNewUser",
+            type: "POST",
+            data: {
+                "email": $('#email').val(),
+                "password": $('#new-password').val(),
+                "confirm_password": $('#confirm-password').val(),
+                "first_name": $('#first-name').val(),
+                "last_name": $('#last-name').val(),
+                "age": $('#email').val(),
+                "country": $('#country').val(),
+            },
+            success: processSignup
+        }
+    )
+}
+
 function processLogin(data) {
     if (data == true) {
         window.alert("You have successfully logged in");
     } else {
         window.alert("You entered the wrong password");
+    }
+}
+
+function processSignup(data) {
+    switch (data) {
+        case "success":
+            alert("You have been added to the database.");
+            break;
+        case "unmatching password":
+            alert("The passwords do not match!");
+            break;
+        case "blank":
+            alert("All fields are required!");
+            break;
     }
 }
 
@@ -89,21 +123,21 @@ function user_signUp() {
 
     // Adds anew field called "confirm_password"
     confirm_password = `<div class="input-container">
-    <input class="user_input" type="password" name="confirm_password" id="confirm_password" autocomplete="new-password" required>
+    <input class="user_input" type="password" name="confirm_password" id="confirm-password" autocomplete="new-password" required>
     <span></span>
     <label for="confirm_password" class="input-labels" id="confirmpassword-label"> Confirm Password </label>
     </div>`
 
     // Adds anew field called "first_name"
     first_name = `<div class="input-container">
-        <input class="user_input" type="text" name="first_name" id="first_name" autocomplete="name" required>
+        <input class="user_input" type="text" name="first_name" id="first-name" autocomplete="name" required>
         <span></span>
         <label for="first_name" class="input-labels" id="first_name-label"> First Name </label>
     </div>`
 
     // Adds anew field called "last_name"
     last_name = `<div class="input-container">
-        <input class="user_input" type="text" name="last_name" id="last_name" autocomplete="family-name" required>
+        <input class="user_input" type="text" name="last_name" id="last-name" autocomplete="family-name" required>
         <span></span>
         <label for="last_name" class="input-labels" id="last_name-label"> Last Name </label>
     </div>`
@@ -120,7 +154,7 @@ function user_signUp() {
     $("#form-action-container").empty()
 
     sign_up = `<div class="form-action">
-    <input type="button" value="Sign Up" id="authenticate-signUp">
+    <input type="button" value="Sign Up" id="authenticate-signup">
     </div>`
 
     // Adds a new button in case user forgets their password
@@ -137,6 +171,7 @@ function GoIndex() {
 function setup() {
     $('#authenticate-user').click(isEmailInDB);
     $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
+    $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
 }
 
 $(document).ready(setup)

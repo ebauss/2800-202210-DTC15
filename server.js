@@ -82,11 +82,32 @@ app.post('/createNewUser', (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
         if (err) {
             console.log(err);
-        } else {
+        } 
+        else
+        {
             console.log(`Your password is: ${hash}`); // for debugging only
+
+            if (req.body.password != req.body.confirm_password) {
+                res.send("unmatching password");
+            }
+            else {
+                addNewUserToDatabase(req, hash);
+                res.send("success");
+            }
         }
     });
 })
+
+function addNewUserToDatabase(req, hashedPassword) {
+    connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
+    VALUES
+    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', 0, 0, FALSE);`,
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
