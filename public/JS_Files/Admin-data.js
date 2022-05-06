@@ -40,8 +40,9 @@ function populate_table(data) {
         newcell.querySelector(".cell-dropdown-icon").setAttribute("id", i)
 
         document.getElementById("table-body").append(newcell);
-        i++
+        i++;
     });
+    dropdown();
 }
 
 function dropdown() {
@@ -60,7 +61,6 @@ function dropdown() {
 
 function setup() {
     requestUserData();
-    dropdown();
 }
 
 $(document).ready(setup)
