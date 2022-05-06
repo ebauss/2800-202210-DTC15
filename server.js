@@ -11,7 +11,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -72,6 +72,18 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
             })
         }
     });
+})
+
+app.get('/requestUserData', (req, res) => {
+    // Retrieves all the users' data and sends it as a JSON object
+
+    connection.query('SELECT * FROM users', (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(results);
+        }
+    })
 })
 
 app.post('/createNewUser', (req, res) => {
