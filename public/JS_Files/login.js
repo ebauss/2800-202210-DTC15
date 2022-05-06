@@ -7,8 +7,8 @@ function postUserCredentials() {
         url: "http://localhost:3000/loginWithUserCredentials",
         type: "POST",
         data: {
-            "email": $('#email-input').val(),
-            "password": $('#password-input').val()
+            "email": $('#email').val(),
+            "password": $('#password').val()
         },
         success: processLogin
     })

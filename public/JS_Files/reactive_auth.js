@@ -1,3 +1,21 @@
+// Check if user email exists in MySQL database.
+function checkUserExists() {
+    console.log("Button pressed");
+
+    $.ajax({
+        url: "http://localhost:3000/checkUserExists",
+        type: "POST",
+        data: {
+            "email": $('#email-input').val()
+        },
+        success: processEmail
+    })
+}
+
+function processEmail(data) {
+    console.log('processed email')
+} 
+
 // Show this if user existed
 function user_signIn() {
     // Changes the Header into "Sign In"
@@ -5,8 +23,7 @@ function user_signIn() {
 
     // Adds a new field called "Password"
     password = `<div class="input-container">
-    <input class="user_input" type="password" name="password" id="password" autocomplete="password"
-        value="" required>
+    <input class="user_input" type="password" name="password" id="password" autocomplete="password" equired>
     <span></span>
     <label for="password" class="input-labels" id="password-label"> Password </label>
 </div>`
@@ -94,7 +111,8 @@ function GoIndex() {
 }
 
 function setup() {
-    $("#authenticate-user").on("click", user_signIn)
+    $('#authenticate-user').click(checkUserExists);
+    // $("#authenticate-user").on("click", checkUserExists);
     $("$authenticate-signIn").on("click", GoIndex)
 }
 

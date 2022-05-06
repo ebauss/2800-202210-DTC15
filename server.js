@@ -29,6 +29,21 @@ app.listen(process.env.PORT || 3000, (err) => {
     }
 })
 
+// Route for POST request for checkUserExists
+app.post('/checkUserExists', (req, res) => {
+    console.log(`Your email is: ${req.body.email}`);
+
+    connection.query(`SELECT email FROM users WHERE email = '${req.body.email}'`, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(results)
+            // Return true if there is a result; else return false
+            
+        }
+    });
+});
+
 // Route for POST request for postUserCredentials
 app.post('/loginWithUserCredentials', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
