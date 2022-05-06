@@ -1,32 +1,3 @@
-dummy_data = [
-    {
-        "user_id": 0,
-        "password": 23131232132132,
-        "firstname": "Jake",
-        "lastname": "Hell",
-        "email": "HellJake@Glassballoon.py",
-        "country": "Canada",
-        "age": 0,
-        "profile_icon": "htpps/",
-        "reward_points": 200,
-        "compass_id": "2312321",
-        "is_admin": true
-    },
-    {
-        "user_id": 0,
-        "password": 23131232132132,
-        "firstname": "Jake",
-        "lastname": "Hell",
-        "email": "HellJake@Glassballoon.py",
-        "country": "Canada",
-        "age": 0,
-        "profile_icon": "htpps/",
-        "reward_points": 200,
-        "compass_id": "2312321",
-        "is_admin": true
-    }
-]
-
 function populate_table(data) {
     var i = 0
     let tableTemplate = document.getElementById("table-template")

@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+table{
+    font-family: Calibri
+}
+
 main{
     margin: 10px;
 }
