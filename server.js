@@ -90,6 +90,9 @@ app.post('/createNewUser', (req, res) => {
             if (req.body.password != req.body.confirm_password) {
                 res.send("unmatching password");
             }
+            else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
+                res.send("blank");
+            }
             else {
                 addNewUserToDatabase(req, hash);
                 res.send("success");
