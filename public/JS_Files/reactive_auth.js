@@ -26,19 +26,23 @@ function processUserResult(data) {
 
 function isPasswordCorrect() {
     console.log("Sign in button pressed")
-    // $.ajax({
-    //     url: "http://localhost:3000/checkIfPasswordCorrect",
-    //     type: "POST",
-    //     data: {
-    //         "email": $('#email').val(),
-    //         "password": $('#password').val()
-    //     },
-    //     success: processLogin
-    // });
+    $.ajax({
+        url: "http://localhost:3000/checkIfPasswordCorrect",
+        type: "POST",
+        data: {
+            "email": $('#email').val(),
+            "password": $('#password').val()
+        },
+        success: processLogin
+    });
 }
 
 function processLogin(data) {
-    window.alert("You have successfully logged in");
+    if (data == true) {
+        window.alert("You have successfully logged in");
+    } else {
+        window.alert("You entered the wrong password");
+    }
 }
 
 // Show this if user exists
@@ -132,7 +136,7 @@ function GoIndex() {
 
 function setup() {
     $('#authenticate-user').click(isEmailInDB);
-    $("#authenticate-signIn").on("click", isPasswordCorrect);
+    $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
 }
 
 $(document).ready(setup)

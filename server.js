@@ -47,26 +47,29 @@ app.post('/checkEmailExists', (req, res) => {
 // Route for POST request for postUserCredentials
 app.post('/checkIfPasswordCorrect', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
-    let userPlaintextPassword = "";
+    let userHashedPassword = "";
 
     connection.query(`SELECT password FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
             console.log(results);
+            userHashedPassword += results[0].password;
         }
     });
 
     // Hash the inputted password and check if it matches with password from db. HARDCODED PASSWORD: password
-    // bcrypt.compare(req.body.password, '$2b$10$YTZ2K3QsVDmotIHV4sMAROPTsBgHu96ZmhYJJAGXzHahgrU8EUwx.', (err, result) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else if (result) {
-    //         console.log(`Your password is valid!`); // for debugging only
-    //     } else {
-    //         console.log('Your password was rejected!');
-    //     }
-    // })
+    bcrypt.compare(req.body.password, userHashedPassword, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else if (result) {
+            console.log("You entered the correct password")
+            res.send(true);
+        } else {
+            console.log("You entered an incorrect password")
+            res.send(false);
+        }
+    })
 })
 
 app.post('/createNewUser', (req, res) => {
