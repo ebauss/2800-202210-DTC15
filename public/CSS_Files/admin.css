@@ -34,9 +34,10 @@ table{
     width: 100%;
 }
 
-th{
+th, td{
     padding-top: 5px;
     padding-bottom: 5px;
+    text-align: center;
 }
 
 .main-content{
