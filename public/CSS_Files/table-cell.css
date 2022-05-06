@@ -1,0 +1,55 @@
+.cell-menu{
+    display: block;
+    position: absolute;
+    transition: 0.3s;
+    width: 95%;
+    left: -100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    z-index: 999;
+}
+
+.cell-dropdown-icon{
+    display: block;
+    cursor: pointer;
+}
+
+.cell-bar{
+    display: block;
+    width: 15px;
+    height: 2px;
+    margin: 5px auto;
+    background-color: black;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.cell-bar:nth-child(1){
+    transform: translateX(3.5px) translateY(3px) rotate(-60deg);
+}
+
+.cell-bar:nth-child(2){
+    transform: translateX(-3px) translateY(-3.5px) rotate(60deg);
+}
+
+.cell-dropdown-icon.active .cell-bar:nth-child(1){
+    transform: translateY(3px) rotate(-45deg);
+}
+
+.cell-dropdown-icon.active .cell-bar:nth-child(2){
+    transform: translateY(-4px) rotate(45deg);
+}
+
+.cell-menu.active{
+    left: 0;
+    margin-left: 10px;
+    padding: 15px;
+    background-color:rgb(222,184,135);
+}
+
+.cell-items{
+    border-bottom: 1px solid;
+    border-width: 100%;
+}
