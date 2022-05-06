@@ -30,23 +30,24 @@ app.listen(process.env.PORT || 3000, (err) => {
 })
 
 // Route for POST request for checkUserExists
-app.post('/checkUserExists', (req, res) => {
+app.post('/checkEmailExists', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
 
-    connection.query(`SELECT email FROM users WHERE email = '${req.body.email}'`, (err, results, fields) => {
+    connection.query(`SELECT email FROM users WHERE email IN ('${req.body.email}');`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
             console.log(results)
             // Return true if there is a result; else return false
-            
+            res.send(results);
         }
     });
 });
 
 // Route for POST request for postUserCredentials
-app.post('/loginWithUserCredentials', (req, res) => {
+app.post('/checkIfPasswordCorrect', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
+    let userPlaintextPassword = "";
 
     connection.query(`SELECT password FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
@@ -57,15 +58,15 @@ app.post('/loginWithUserCredentials', (req, res) => {
     });
 
     // Hash the inputted password and check if it matches with password from db. HARDCODED PASSWORD: password
-    bcrypt.compare(req.body.password, '$2b$10$YTZ2K3QsVDmotIHV4sMAROPTsBgHu96ZmhYJJAGXzHahgrU8EUwx.', (err, result) => {
-        if (err) {
-            console.log(err);
-        } else if (result) {
-            console.log(`Your password is valid!`); // for debugging only
-        } else {
-            console.log('Your password was rejected!');
-        }
-    })
+    // bcrypt.compare(req.body.password, '$2b$10$YTZ2K3QsVDmotIHV4sMAROPTsBgHu96ZmhYJJAGXzHahgrU8EUwx.', (err, result) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else if (result) {
+    //         console.log(`Your password is valid!`); // for debugging only
+    //     } else {
+    //         console.log('Your password was rejected!');
+    //     }
+    // })
 })
 
 app.post('/createNewUser', (req, res) => {
