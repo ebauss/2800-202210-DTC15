@@ -11,7 +11,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -47,29 +47,34 @@ app.post('/checkEmailExists', (req, res) => {
 // Route for POST request for postUserCredentials
 app.post('/checkIfPasswordCorrect', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
-    let userHashedPassword = "";
+
+    let expectedHashedPassword = "";
 
     connection.query(`SELECT password FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(results);
-            userHashedPassword += results[0].password;
+            console.log(`Encrypting: ${req.body.password}`);
+            expectedHashedPassword = results[0].password;
+            console.log(`Expect: ${expectedHashedPassword}`);
+            console.log(`Pasted: $2b$10$Z4BTn.vf3YbYSBDo7f2ZDehY6F9x51ynCAME6DseROYDbBF9bmF1y`)
+
+            // Hash the inputted password and check if it matches with password from db
+            bcrypt.compare(req.body.password, expectedHashedPassword, (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else if (result) {
+                    console.log("You entered the correct password")
+                    res.send(true);
+                } else {
+                    console.log("You entered an incorrect password")
+                    res.send(false);
+                }
+            })
         }
     });
 
-    // Hash the inputted password and check if it matches with password from db. HARDCODED PASSWORD: password
-    bcrypt.compare(req.body.password, userHashedPassword, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else if (result) {
-            console.log("You entered the correct password")
-            res.send(true);
-        } else {
-            console.log("You entered an incorrect password")
-            res.send(false);
-        }
-    })
+
 })
 
 app.post('/createNewUser', (req, res) => {
