@@ -59,7 +59,7 @@ function addNewUserToDatabase() {
 
 function processLogin(data) {
     if (data == true) {
-        window.alert("You have successfully logged in");
+        window.location.href = "../admin.html";
     } else {
         window.alert("You entered the wrong password");
     }
