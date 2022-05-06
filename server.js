@@ -57,25 +57,24 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
             console.log(`Encrypting: ${req.body.password}`);
             expectedHashedPassword = results[0].password;
             console.log(`Expect: ${expectedHashedPassword}`);
-            console.log(`Pasted: $2b$10$Z4BTn.vf3YbYSBDo7f2ZDehY6F9x51ynCAME6DseROYDbBF9bmF1y`)
 
             // Hash the inputted password and check if it matches with password from db
-            bcrypt.compare(req.body.password, expectedHashedPassword, (err, result) => {
-                if (err) {
-                    console.log(err);
-                } else if (result) {
-                    console.log("You entered the correct password")
-                    res.send(true);
-                } else {
-                    console.log("You entered an incorrect password")
-                    res.send(false);
-                }
-            })
+            bcrypt.compare(req.body.password, expectedHashedPassword, bcryptLoginComparison)
         }
     });
-
-
 })
+
+function bcryptLoginComparison(err, result) {
+    if (err) {
+        console.log(err);
+    } else if (result) {
+        console.log("You entered the correct password")
+        res.send(true);
+    } else {
+        console.log("You entered an incorrect password")
+        res.send(false);
+    }
+}
 
 app.post('/createNewUser', (req, res) => {
     // CREATING AN ACCOUNT: Hash the user's password to store into database
