@@ -29,7 +29,7 @@ function populate_table(data) {
         newcell.querySelector(".user-id").innerHTML = `${userID}`
         newcell.querySelector(".user-first-name").innerHTML = `${fName}`
         newcell.querySelector(".user-last-name").innerHTML = `${lName}`
-        newcell.querySelector(".user-password").innerHTML = `Password: ${password}`
+        // newcell.querySelector(".user-password").innerHTML = `Password: ${password}`
         newcell.querySelector(".user-email").innerHTML = `Email: ${email}`
         newcell.querySelector(".user-country").innerHTML = `Country: ${country}`
         newcell.querySelector(".user-points").innerHTML = `Reward-Points: ${points}`
