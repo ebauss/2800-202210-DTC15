@@ -3,21 +3,19 @@ function processLogin(data) {
 }
 
 function postUserCredentials() {
-    
-
     $.ajax({
         url: "http://localhost:3000/loginWithUserCredentials",
         type: "POST",
         data: {
-            "email": $('#email-input').val(),
-            "password": $('#password-input').val()
+            "email": $('#email').val(),
+            "password": $('#password').val()
         },
         success: processLogin
     })
 }
 
 function setup() {
-    $('#submit-credentials').click(postUserCredentials);
+    $('#authenticate-user').click(postUserCredentials);
 }
 
 $(document).ready(setup);
