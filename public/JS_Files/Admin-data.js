@@ -1,11 +1,22 @@
+function requestUserData() {
+    console.log("User data requested");
+    $.ajax(
+        {
+            url: "http://localhost:3000/requestUserData",
+            type: "GET",
+            success: populate_table
+        }
+    )
+}
+
 function populate_table(data) {
     var i = 0
     let tableTemplate = document.getElementById("table-template")
     data.forEach(element => {
         userID = element.user_id;
         password = element.password;
-        fName = element.firstname;
-        lName = element.lastname;
+        fName = element.first_name;
+        lName = element.last_name;
         email = element.email;
         country = element.country;
         age = element.age;
@@ -48,8 +59,8 @@ function dropdown() {
 }
 
 function setup() {
-    populate_table(dummy_data)
-    dropdown()
+    requestUserData();
+    dropdown();
 }
 
 $(document).ready(setup)
