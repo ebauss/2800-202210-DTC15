@@ -101,7 +101,7 @@ app.post('/createNewUser', (req, res) => {
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
     VALUES
-    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', 0, 0, FALSE);`,
+    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, FALSE);`,
     (err, results, fields) => {
         if (err) {
             console.log(err);

@@ -49,8 +49,8 @@ function addNewUserToDatabase() {
                 "confirm_password": $('#confirm-password').val(),
                 "first_name": $('#first-name').val(),
                 "last_name": $('#last-name').val(),
-                "age": $('#email').val(),
-                "country": $('#country').val(),
+                "age": $('#age').val(),
+                "country": $('#country').val()
             },
             success: processSignup
         }
@@ -142,6 +142,13 @@ function user_signUp() {
         <label for="last_name" class="input-labels" id="last_name-label"> Last Name </label>
     </div>`
 
+    // Adds a new field called "age"
+    age = `<div class="input-container">
+        <input class="user_input" type="text" name="age" id="age" autocomplete="age" required>
+        <span></span>
+        <label for="age" class="input-labels" id="last_name-label"> Age </label>
+    </div>`
+
     // Adds anew field called "country"
     country = `<div class="input-container">
         <input class="user_input" type="text" name="country" id="country" autocomplete="country" required>
@@ -149,7 +156,7 @@ function user_signUp() {
         <label for="country" class="input-labels" id="country-label"> Country </label>
     </div>`
 
-    $("#form-main-content").append(new_password, confirm_password, first_name, last_name, country)
+    $("#form-main-content").append(new_password, confirm_password, first_name, last_name, age, country)
 
     $("#form-action-container").empty()
 
