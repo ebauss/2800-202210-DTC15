@@ -1,23 +1,37 @@
 dummy_data = [
     {
-     "user_id": 0,
-     "password": 23131232132132,
-     "firstname": "Jake",
-     "lastname": "Hell",
-     "email": "HellJake@Glassballoon.py",
-     "country": "Canada",
-     "age": 0,
-     "profile_icon": "htpps/",
-     "reward_points": 200,
-     "compass_id": "2312321",
-     "is_admin": true
+        "user_id": 0,
+        "password": 23131232132132,
+        "firstname": "Jake",
+        "lastname": "Hell",
+        "email": "HellJake@Glassballoon.py",
+        "country": "Canada",
+        "age": 0,
+        "profile_icon": "htpps/",
+        "reward_points": 200,
+        "compass_id": "2312321",
+        "is_admin": true
+    },
+    {
+        "user_id": 0,
+        "password": 23131232132132,
+        "firstname": "Jake",
+        "lastname": "Hell",
+        "email": "HellJake@Glassballoon.py",
+        "country": "Canada",
+        "age": 0,
+        "profile_icon": "htpps/",
+        "reward_points": 200,
+        "compass_id": "2312321",
+        "is_admin": true
     }
 ]
 
-function populate_table(data){
+function populate_table(data) {
+    var i = 0
     let tableTemplate = document.getElementById("table-template")
     data.forEach(element => {
-        userID = element.user_id; 
+        userID = element.user_id;
         password = element.password;
         fName = element.firstname;
         lName = element.lastname;
@@ -33,21 +47,38 @@ function populate_table(data){
         newcell.querySelector(".user-id").innerHTML = `${userID}`
         newcell.querySelector(".user-first-name").innerHTML = `${fName}`
         newcell.querySelector(".user-last-name").innerHTML = `${lName}`
-        newcell.querySelector(".user-password").innerHTML = `${password}`
-        newcell.querySelector(".user-email").innerHTML = `${email}`
-        newcell.querySelector(".user-country").innerHTML = `${country}`
-        newcell.querySelector(".user-points").innerHTML = `${points}`
-        newcell.querySelector(".user-age").innerHTML = `${age}`
-        newcell.querySelector(".user-profile-icon").innerHTML = `${profile_icon}`
-        newcell.querySelector(".user-compass-id").innerHTML = `${compass_id}`
-        newcell.querySelector(".user-admin").innerHTML = `${is_admin}`
+        newcell.querySelector(".user-password").innerHTML = `Password: ${password}`
+        newcell.querySelector(".user-email").innerHTML = `Email: ${email}`
+        newcell.querySelector(".user-country").innerHTML = `Country: ${country}`
+        newcell.querySelector(".user-points").innerHTML = `Reward-Points: ${points}`
+        newcell.querySelector(".user-age").innerHTML = `Age: ${age}`
+        newcell.querySelector(".user-profile-icon").innerHTML = `Profile Icon: ${profile_icon}`
+        newcell.querySelector(".user-compass-id").innerHTML = `CompassID: ${compass_id}`
+        newcell.querySelector(".user-admin").innerHTML = `Admin: ${is_admin}`
+        newcell.querySelector(".cell-dropdown-icon").setAttribute("id", i)
 
         document.getElementById("table-body").append(newcell);
+        i++
     });
 }
 
-function setup(){
+function dropdown() {
+    // Cell-DropDownMenu Functions
+    var new_selected_dropdown;
+    const dropdown_icon = document.querySelectorAll(".cell-dropdown-icon"); //
+    const cellMenu = document.querySelectorAll(".cell-menu");
+    
+
+    dropdown_icon.forEach(dropdown => dropdown.addEventListener("click", () => {
+        new_selected_dropdown = parseInt(dropdown.getAttribute("id"))
+        dropdown_icon[new_selected_dropdown].classList.toggle("active")
+        cellMenu[new_selected_dropdown].classList.toggle("active")
+    }))
+}
+
+function setup() {
     populate_table(dummy_data)
+    dropdown()
 }
 
 $(document).ready(setup)
