@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+    <link rel="stylesheet" href="../public/CSS_Files/style.css">
+    <link rel="stylesheet" href="../public/CSS_Files/admin.css">
+    <link rel="stylesheet" href="CSS_Files/table-cell.css">
+
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+    <main>
+
+        <template id="table-template">
+            <tr>
+                <td class="user-id">User ID </td>
+                <td class="user-first-name">User First Name</td>
+                <td class="user-last-name">User Last Name</td>
+                <td>
+                    <div class="cell-dropdown-icon"> <span class="cell-bar"></span> <span class="cell-bar"></span></div>
+                </td>
+                <div class="cell-dropdown">
+                    <ul class="cell-menu">
+                        <li class="cell-items user-email"> User Email </li>
+                        <li class="cell-items user-password"> User Password </li>
+                        <li class="cell-items user-country"> User Country </li>
+                        <li class="cell-items user-points"> User Reward Points </li>
+                        <li class="cell-items user-age"> User Age </li>
+                        <li class="cell-items user-profile-icon"> User Profile Icon </li>
+                        <li class="cell-items user-compass-id"> User Compass ID </li>
+                        <li class="cell-items user-admin"> User Admin </li>
+                    </ul>
+                </div>
+            </tr>
+        </template>
+
+        <div class="main-content">
+            <section class="table-header">
+                <div class="table-section">
+                    <span class="button-container"><button type="button" id="user-data"> Users </button></span>
+                    <span class="button-container"><button type="button" id="rewards-data"> Rewards </button></span>
+                    <span class="button-container"><button type="button" id="user-rewards-data"> User Rewards
+                        </button></span>
+                    <span class="button-container"><button type="button" id="receipts-data"> Receipts </button></span>
+                </div>
+            </section>
+            <section class="table-content">
+                <form class="table-search"> <input type="search" name="search" id="search" placeholder="Search"
+                        value=""> </form>
+                <div class="main-table">
+                    <table border="1">
+                        <tbody id="table-body">
+                            <tr>
+                                <th width="150px"> UserID </th>
+                                <th> First Name </th>
+                                <th> Last Name </th>
+                                <th width="30px"> </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/Admin-data.js"> </script>
+
+</body>
+
+</html>
