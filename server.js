@@ -111,7 +111,7 @@ app.post('/createNewUser', (req, res) => {
     });
 });
 
-app.get('/passhasher', (req, res) => {
+app.post('/passhasher', (req, res) => {
     const saltRounds = 10;
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
         if (err) {
@@ -121,6 +121,8 @@ app.get('/passhasher', (req, res) => {
             console.log(`Actual: ${req.body.password}`);
             console.log(`Hashed: ${hash}`)
         }
+
+        res.send(hash);
     })
 });
 
