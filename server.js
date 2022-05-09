@@ -11,7 +11,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -109,7 +109,20 @@ app.post('/createNewUser', (req, res) => {
             }
         }
     });
-})
+});
+
+app.get('/passhasher', (req, res) => {
+    const saltRounds = 10;
+    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(`Actual: ${req.body.password}`);
+            console.log(`Hashed: ${hash}`)
+        }
+    })
+});
 
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
