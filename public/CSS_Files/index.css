@@ -1,0 +1,22 @@
+button{
+    background-color: var(--coral);
+    text-align: center;
+    border-radius: 15px;
+}
+
+img{
+    width: 50%;
+}
+
+.heroText{
+    width: 50%;
+    justify-content: center;
+  
+}
+main{
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+}
