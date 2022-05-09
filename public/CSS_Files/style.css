@@ -77,6 +77,24 @@ a, .brand {
     background-color: white;
 }
 
+/* Footer CSS */
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2f9379;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px;
+}
+
 @media(max-width: 768px) {
     .hamburger {
         display: block;
@@ -115,21 +133,3 @@ a, .brand {
         left: 0
     }
 }
-
-/* Footer CSS */
-    footer {
-        position: sticky;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #2f9379;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: aliceblue;
-        padding: 10px;
-    }
