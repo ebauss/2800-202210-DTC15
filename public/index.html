@@ -25,6 +25,7 @@
     <!--   CSS Files go here   -->
     <!--------------------------->
     <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/index.css">
 
 </head>
 
@@ -33,14 +34,55 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
 
-    <!-- the body of your page goes here -->
-    <!-- stuff -->
-    <main>
-        <a href="./authentication.html">Login Here!</a>
-    </main>
+    <header>
+        <nav class="navBar">
+            <div class="navBar-container">
+                <div class="logo-container">
+                    <a href="../../public/main.html" class="nav-branding">
+                        <img src="../../public/Image_Files/Logo_only.png" alt="Sustainably" height="30">
+                        <span class="brand"> Sustainably </span>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <ul class="nav-menu">
+                    <li class="nav-items">
+                        <a href="../../public/aboutUs.html" class="nav-link"> About Us </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="../../public/authentication.html" class="nav-link"> Login </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+        
+    </header>
+
+     <!-- the body of your page goes here -->
+        <!-- stuff -->
+        <main>
+            <div class="heroImg">
+                <img src="./Image_Files/Index_Design.png">
+            </div>
+            
+            <div class="heroText">
+                <br>
+                <h1> this is the Index Page</h1>
+                <br>
+                <h3> more information about the application</h3>
+                <br>
+                <button>
+                    <h2><a href="./authentication.html">Start Here!</a></h2></button>
+            </div>
+
+        </main>
+
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -49,7 +91,7 @@
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./JS_Files/skeleton.js"> </script>
-    
+
 </body>
 
 </html>
