@@ -45,6 +45,7 @@ a, .brand {
     justify-content: space-between;
     align-items: center;
     gap: 60px;
+    z-index: 100;
 }
 
 .nav-branding {
@@ -75,6 +76,24 @@ a, .brand {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: white;
+}
+
+/* Footer CSS */
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2f9379;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px;
 }
 
 @media(max-width: 768px) {
