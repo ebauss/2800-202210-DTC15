@@ -29,4 +29,8 @@ Content of the project folder:
 ```
 
 ## Citation:
-The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
+* The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
+* The template.html is from COMP 1800 with these adaptations made 
+    * Removing the bootstrap import link
+    * Changing the meta name and the scripts
+    * Removing the firebase links and imports

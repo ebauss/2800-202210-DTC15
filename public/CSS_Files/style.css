@@ -118,7 +118,7 @@ a, .brand {
 
 /* Footer CSS */
     footer {
-        position: absolute;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;
@@ -126,6 +126,7 @@ a, .brand {
         color: white;
         text-align: center;
         padding: 10px;
+
     }
 
     a {
