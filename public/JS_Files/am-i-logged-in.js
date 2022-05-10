@@ -1,6 +1,9 @@
 function updateStatus(data) {
     if (data.loggedIn) {
-        $('#status').html(`You are logged in as ${data.username}`)
+        $('#status').html(`You are logged in as ${data.uid}`)
+    }
+    else {
+        $('#status').html('You are not logged in')
     }
 }
 
