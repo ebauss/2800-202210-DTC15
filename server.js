@@ -19,7 +19,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -138,6 +138,12 @@ app.get('/loginStatus', (req, res) => {
         uid: req.session.uid
     })
 });
+
+app.get('/checkProfile', (req, res) => {
+    connection.query(`SELECT * FROM users WHERE uid = ${req.session.uid}`, (err, results, fields) => {
+        res.send(results)
+    })
+})
 
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
