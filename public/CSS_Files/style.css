@@ -45,6 +45,7 @@ a, .brand {
     justify-content: space-between;
     align-items: center;
     gap: 60px;
+    z-index: 100;
 }
 
 .nav-branding {
