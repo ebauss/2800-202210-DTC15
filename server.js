@@ -19,7 +19,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'fUt4b4$4kur4',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -78,7 +78,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                 } else {
                     console.log("You entered an incorrect password");
                     req.session.authenticated = false;
-                    req.session.uid = "";
+                    req.session.uid = undefined;
                     res.send(false);
                 }
             })
@@ -121,6 +121,13 @@ app.post('/createNewUser', (req, res) => {
             }
         }
     });
+})
+
+app.get('/logout', (req, res) => {
+    req.session.authenticated = false;
+    req.session.uid = undefined;
+
+    res.send(true);
 })
 
 app.get('/loginStatus', (req, res) => {
