@@ -100,8 +100,6 @@ a {
     width: 300px;
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
-    top:calc(100vh - 100px - 20px);
-    position: fixed;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
