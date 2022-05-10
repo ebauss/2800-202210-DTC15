@@ -1,10 +1,10 @@
 /* color scheme for application */
 
 :root {
-	--cyan: #72c4a6;
-	--forest: #2f9379;
-	--pink: #F6baa8;
-	--coral: #e46565;
+    --cyan: #72c4a6;
+    --forest: #2f9379;
+    --pink: #F6baa8;
+    --coral: #e46565;
     --gold: #e7ab29;
 }
 
@@ -15,7 +15,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: Calibri,
 }
 
@@ -27,7 +27,8 @@ header {
     background-color: #2f9379;
 }
 
-a, .brand {
+a,
+.brand {
     color: #F6baa8;
     text-decoration: none;
 }
@@ -96,6 +97,36 @@ a {
     padding: 10px;
 }
 
+<<<<<<< HEAD
+=======
+.floatingBar{
+    box-sizing: border-box;
+    width: 300px;
+    background-color: rgba(222,184,135, 0.4);
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 100px;
+}
+
+.floatingBar img {
+    height: 50px;
+}
+
+.floatingBar button {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    border: none;
+    margin: 2px;
+}
+
+
+>>>>>>> Joushua_floatingBar
 @media(max-width: 768px) {
     .hamburger {
         display: block;
@@ -133,8 +164,8 @@ a {
     .nav-menu.active {
         left: 0
     }
-}
 
+<<<<<<< HEAD
 /* Footer CSS */
     footer {
         position: absolute;
@@ -153,3 +184,9 @@ a {
         color: aliceblue;
         padding: 10px;
     }
+=======
+    .floatingBar img {
+        height: 8vh;
+    }
+}
+>>>>>>> Joushua_floatingBar
