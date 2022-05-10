@@ -1,10 +1,10 @@
 /* color scheme for application */
 
 :root {
-	--cyan: #72c4a6;
-	--forest: #2f9379;
-	--pink: #F6baa8;
-	--coral: #e46565;
+    --cyan: #72c4a6;
+    --forest: #2f9379;
+    --pink: #F6baa8;
+    --coral: #e46565;
     --gold: #e7ab29;
 }
 
@@ -15,7 +15,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: Calibri,
 }
 
@@ -27,7 +27,8 @@ header {
     background-color: #2f9379;
 }
 
-a, .brand {
+a,
+.brand {
     color: #F6baa8;
     text-decoration: none;
 }
@@ -117,19 +118,47 @@ a, .brand {
 }
 
 /* Footer CSS */
-    footer {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #2f9379;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2f9379;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
 
-    a {
-        text-decoration: none;
-        color: aliceblue;
-        padding: 10px;
-    }
+a {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 500px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    color: #e46565;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+    ;
+}
