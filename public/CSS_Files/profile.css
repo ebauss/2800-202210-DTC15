@@ -2,11 +2,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #body {
     display: grid;
-    grid-template-rows: repeat(1fr, 3);
+    grid-template-rows: 1fr 10fr 0.1fr;
     gap: 1%;
 }
 
@@ -14,13 +15,12 @@
 main {
     display: grid;
     grid-template-columns: 50fr 50fr;
-    grid-template-rows: 2fr 5fr 13fr 15fr;
+    grid-template-rows: 2fr 5fr 13fr 25em;
     grid-template-areas: 
     "profile-header profile-header"
     "profile-pic rewards"
     "info info"
-    "noti noti"
-    ". .";
+    "noti noti";
     justify-content: center;
     row-gap: 3%;
     margin: 10px;
@@ -39,8 +39,7 @@ label[for="user-profile"]{
     grid-area: profile-pic;
     display: grid;
     grid-template-areas:
-        "picture"
-        "data";
+        "picture";
     width: 100%;
     justify-content: space-around;
 }
@@ -50,18 +49,13 @@ label[for="user-profile"]{
     height: 10em;
     width: 10em;
     display: grid;
-    grid-template-rows: 75fr 25fr;
+    grid-template-rows: 100fr;
     grid-template-areas:
-        "header-content"
-        "pic-content";
+        "header-content";
     justify-content: center;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid grey;
-}
-
-.user-data-container {
-    grid-area: data;
 }
 
 span{
@@ -74,7 +68,6 @@ label[for="rewards"]{
 }
 
 .profile-pic-container img {
-    grid-area: pic-content;
     grid-area: header-content;
     height: 10em;
 }
@@ -84,16 +77,17 @@ label[for="rewards"]{
 }
 
 #upload-pic-btn {
-    grid-area: header-content pic-content;
+    grid-area: header-content;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
     color: wheat;
     line-height: 30px;
     font-family: sans-serif;
     font-size: 15px;
     text-align: center;
     cursor: pointer;
+    padding-top: 40%;
     visibility: hidden;
 }
 
@@ -133,7 +127,7 @@ label[for="rewards"]{
     margin: 0px 20px;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
     grid-template-areas: 
     "name name"
     "email email"
@@ -229,6 +223,7 @@ label[for="rewards"]{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 100%;
 }
 
 label[for="notification"]{
@@ -240,7 +235,7 @@ label[for="notification"]{
 div.notification-box{
     background-color: antiquewhite;
     width: 100%;
-    height: 50%;
+    height: 100%;
     overflow: scroll;
 }
 
