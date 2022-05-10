@@ -97,8 +97,6 @@ a {
     padding: 10px;
 }
 
-<<<<<<< HEAD
-=======
 .floatingBar{
     box-sizing: border-box;
     width: 300px;
@@ -126,7 +124,6 @@ a {
 }
 
 
->>>>>>> Joushua_floatingBar
 @media(max-width: 768px) {
     .hamburger {
         display: block;
