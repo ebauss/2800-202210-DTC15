@@ -1,3 +1,15 @@
+.nav-branding{
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start
+}
+
+.Text-Container{
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
+}
+
 button{
     background-color: var(--coral);
     text-align: center;
@@ -5,18 +17,35 @@ button{
 }
 
 img{
+    width: 100%;
+}
+.heroImg {
     width: 50%;
+    justify-content: center;
+  
 }
 
 .heroText{
     width: 50%;
     justify-content: center;
-  
 }
+
 main{
+    width: 100%;
     display: flex;
-    flex-basis: 100%;
     flex-direction: row-reverse;
     justify-content: space-between;
+   
+}
 
+@media(max-width: 768px) {
+    main{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    
+    
 }
