@@ -1,0 +1,51 @@
+body, main{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1, h2{
+    font-weight: 800;
+}
+a{
+    color:black;
+}
+    
+.Section-Header{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;   
+}
+
+.Section-Content{ /* container*/
+    display: flex;
+    justify-content: center;
+}
+
+.Card-Container{  /* slider*/
+    display: flex;
+    flex-grow: 1;
+    width: 90%;
+    overflow: scroll;
+}
+
+.Card-Information{ /* img*/
+    flex: 0 0 25%;
+    max-width: 25%;
+    aspect-ratio: 7 / 10;
+    background-color: aquamarine;
+    border: 0.2px solid black;
+    border-radius: 25%;
+    box-shadow: 0 1px 3px rgba(100,100,100, 0.3) ;
+    margin:5px;
+    position: relative;
+
+}
+
+.Card-Title{
+    margin:10%;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+    
+    
+}
+
