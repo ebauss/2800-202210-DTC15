@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-body{
-    
-}
-
 #body {
     display: grid;
     grid-template-rows: repeat(1fr, 3);
