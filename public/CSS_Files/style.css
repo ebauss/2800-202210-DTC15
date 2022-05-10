@@ -81,7 +81,6 @@ a,
 
 /* Footer CSS */
 footer {
-    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -98,18 +97,20 @@ a {
 }
 
 .floatingBar{
-    box-sizing: border-box;
     width: 300px;
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
-    position: sticky;
-    bottom: 0;
-    left: 0;
+    top:calc(100vh - 100px - 20px);
+    position: fixed;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     padding: 10px 15px;
     border-radius: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
 
 .floatingBar img {
