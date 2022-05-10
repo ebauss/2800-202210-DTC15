@@ -3,9 +3,17 @@ const express = require('express');
 const bodyparser = require("body-parser");
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
+var session = require('express-session');
 
 // Initiate express
 const app = express();
+
+// Use the session middleware
+app.use(session({
+    secret: "hey shikikan",
+    saveUninitialized: true,
+    resave: true
+}));
 
 // Connect client to database
 const connection = mysql.createConnection({
@@ -50,7 +58,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
 
     let expectedHashedPassword = "";
 
-    connection.query(`SELECT password FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
+    connection.query(`SELECT password, user_id FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
@@ -63,10 +71,14 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                 if (err) {
                     console.log(err);
                 } else if (result) {
-                    console.log("You entered the correct password")
+                    console.log("You entered the correct password");
+                    req.session.authenticated = true;
+                    req.session.uid = results[0].user_id;
                     res.send(true);
                 } else {
-                    console.log("You entered an incorrect password")
+                    console.log("You entered an incorrect password");
+                    req.session.authenticated = false;
+                    req.session.uid = undefined;
                     res.send(false);
                 }
             })
@@ -110,6 +122,22 @@ app.post('/createNewUser', (req, res) => {
         }
     });
 })
+
+app.get('/logout', (req, res) => {
+    req.session.authenticated = false;
+    req.session.uid = undefined;
+
+    res.send(true);
+})
+
+app.get('/loginStatus', (req, res) => {
+    // send a status if user is logged in
+    console.log(`Logged in: ${req.session.uid}`);
+    res.send({
+        loggedIn: req.session.authenticated,
+        uid: req.session.uid
+    })
+});
 
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
