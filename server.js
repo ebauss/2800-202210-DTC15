@@ -3,9 +3,17 @@ const express = require('express');
 const bodyparser = require("body-parser");
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
+var session = require('express-session');
 
 // Initiate express
 const app = express();
+
+// Use the session middleware
+app.use(session({
+    secret: "hey shikikan",
+    saveUninitialized: true,
+    resave: true
+}));
 
 // Connect client to database
 const connection = mysql.createConnection({
