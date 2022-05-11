@@ -86,9 +86,8 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
     });
 })
 
+// Retrieves all the users' data for admin.html and sends it as a JSON object
 app.get('/requestUserData', (req, res) => {
-    // Retrieves all the users' data and sends it as a JSON object
-
     connection.query('SELECT * FROM users', (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -98,6 +97,7 @@ app.get('/requestUserData', (req, res) => {
     })
 })
 
+// Adds a new user to database in authentication.html
 app.post('/createNewUser', (req, res) => {
     // CREATING AN ACCOUNT: Hash the user's password to store into database
     const saltRounds = 10;
@@ -123,6 +123,7 @@ app.post('/createNewUser', (req, res) => {
     });
 })
 
+// ends the user's session
 app.get('/logout', (req, res) => {
     req.session.authenticated = false;
     req.session.uid = undefined;
@@ -130,8 +131,8 @@ app.get('/logout', (req, res) => {
     res.send(true);
 })
 
+// DEBUGGING: check whether user is signed in
 app.get('/loginStatus', (req, res) => {
-    // send a status if user is logged in
     console.log(`Logged in: ${req.session.uid}`);
     res.send({
         loggedIn: req.session.authenticated,
@@ -139,6 +140,7 @@ app.get('/loginStatus', (req, res) => {
     })
 });
 
+// sends all fields for a particular user for profile.html
 app.get('/checkProfile', (req, res) => {
     connection.query(`SELECT * FROM users WHERE user_id = ${req.session.uid}`, (err, results, fields) => {
         if (err) {
@@ -150,6 +152,12 @@ app.get('/checkProfile', (req, res) => {
     })
 })
 
+// updates a user's profile for profile.html
+app.post('/updateProfile', (req, res) => {
+
+})
+
+// creates a new profile for profile.html
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
     VALUES
