@@ -1,3 +1,5 @@
+// DEPRECATED!
+
 function processLogin(data) {
     alert('Your login was successful and totally secure!');
 }
