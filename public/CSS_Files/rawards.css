@@ -17,10 +17,15 @@ label[for="greetings"]{
    justify-content: center;
 }
 
+.sort-dropdown{
+    padding: 5px;
+    border-radius: 10px;
+}
 .section-header{
     display: flex;
     align-items: baseline;
-    justify-content: space-between;   
+    justify-content: space-between; 
+    margin:10px  
 }
 
     
@@ -52,6 +57,8 @@ label[for="greetings"]{
 }
 
 .image-container{
+    display: flex;
+    justify-content: flex-end;
     grid-area:image-container;
 }
 .image-container > img{
@@ -71,8 +78,16 @@ label[for="greetings"]{
 
 .cost{
     grid-area: cost;
-    padding: 10px 0 10px 0;
+    padding: 10px;
     font-weight:bold;
+}
+
+button{
+    padding: 5px;
+    margin: 5px;
+    font-size: medium;
+    background-color: var(--pink);
+    border-radius: 15px;
 }
 
 @media(max-width: 768px) {
@@ -80,7 +95,7 @@ label[for="greetings"]{
 
         grid-template-areas:
         'rewards-title rewards-title image-container'
-        'cost cost cost'
+        'cost cost image-container'
         'rewards-info rewards-info   rewards-info '
         'rewards-info rewards-info  rewards-info';
         
