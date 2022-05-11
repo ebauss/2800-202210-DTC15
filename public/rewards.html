@@ -46,7 +46,7 @@
     -->
     <main>
         <br>
-        <label for="greetings">My Rewards</label>
+        <label for="greetings">Rewards</label>
         <br>
         <section>
 
@@ -56,10 +56,14 @@
                     <h2>My Points <span>32,000</span></h2>
                 </div>
 
-                <button class="sort-button">Sort</button>
-
+                <select name="sort-dropdown"  class="sort-dropdown">
+                    <option value="default">Recommended</option>
+                    <!-- <option value="popularity">Popularity</option> -->
+                    <option value="desending">Highest Points</option>
+                    <option value="asending">Lowest Points</option>
+                </select>   
             </div>
-            <hr>
+            <hr> 
             <!-- Container-->
             <div class="section-content" id="rewards">
             <!--                 
