@@ -1,0 +1,163 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0ch;
+}
+
+main{
+    display: grid;
+    min-height: 50vh;
+    grid-template-columns: 5fr 90fr 5fr;
+    grid-template-rows: 75fr 20em;
+    grid-template-areas: 
+    ". graph ."
+    ". submit .";
+    /* background-color: aqua; */
+}
+
+.display-rewards-section{
+    display: grid;
+    grid-area: graph;
+    grid-template-columns: 100fr;
+    grid-template-rows: 5fr 10fr 80fr 5fr;
+    grid-template-areas: 
+    "."
+    "header"
+    "graph-body"
+    ".";
+    justify-content: center;
+    row-gap: 10px;
+}
+
+#display-month{
+    grid-area: header;
+    font-size: xxx-large;
+}
+
+#display-graph{
+    grid-area: graph-body;
+    display: grid;
+    grid-template-columns: 50fr 50fr;
+    /* On phone make it 35fr 65fr */
+    grid-template-rows: repeat(25fr);
+    grid-template-areas:
+    "graph-container ." 
+    "graph-container goal-points"
+    "graph-container current-points"
+    "graph-container .";
+    justify-content: space-around;
+    row-gap: 50px;
+    align-items: center;
+    align-content: space-around;
+}
+
+.doughnut-rewards-chart-container{
+    grid-area: graph-container;
+    height: 100%;
+    border-right: 1px solid brown ;
+}
+
+h1{
+    text-align: center;
+}
+
+canvas{
+    height: 100%;
+}
+
+.display-goal-points-container{
+    grid-area: goal-points;
+}
+
+.display-current-points-container{
+    grid-area: current-points;
+}
+
+.points-container h3{
+    margin-top: 10px;
+    border: 1px solid silver;
+    width: 100px;
+    padding: 5px;
+    font-size: x-large;
+    background-color: rgba(210,180,140, 0.8);
+    text-align: center;
+}
+
+.points-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submission-rewards-section{
+    grid-area: submit;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 25fr 50fr 25fr;
+    grid-template-columns: 25fr 50fr 25fr;
+    grid-template-areas: 
+    ". . ."
+    ". form ."
+    ". . .";
+    justify-content: center;
+    background-color: rgb(220,220,220);
+    gap: 10px;
+}
+
+#form-link-container{
+    grid-area: form;
+}
+
+.submission-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submission-container label, img{
+    display: block;
+}
+
+.submission-container label{
+    display: block;
+    font-size: medium;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 500px) {
+    main {
+        grid-template-columns: 100fr;
+        width: 100%;
+    }
+    
+    canvas{
+        height: auto;
+        width: auto;
+    }
+
+    #display-graph{
+        grid-template-rows: 15fr 5fr 5fr;
+        grid-template-columns: 100fr;
+        grid-template-areas: 
+        "graph-container"
+        "goal-points"
+        "current-points";
+    }
+    .display-current-points-container{
+        grid-area: current-points;
+    }
+
+    .display-goal-points-container{
+        grid-area: goal-points;
+    }
+
+    .doughnut-rewards-chart-container{
+        border-right: none;
+        border-bottom: 1px solid brown;
+    }
+}

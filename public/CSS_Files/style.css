@@ -1,5 +1,10 @@
 /* color scheme for application */
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 :root {
     --cyan: #72c4a6;
     --forest: #2f9379;
@@ -52,6 +57,11 @@ a,
 .nav-branding {
     font-size: 1.5rem;
     font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link {
@@ -81,6 +91,7 @@ a,
 
 /* Footer CSS */
 footer {
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -88,6 +99,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    overflow: hidden;
 }
 
 a {
