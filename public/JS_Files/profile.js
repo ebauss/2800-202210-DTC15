@@ -8,17 +8,17 @@ const saveBtn = document.querySelector("#save-btn");
 const inputs = document.querySelectorAll(".info")
 
 picDiv.addEventListener("touchstart", () => {
-    picBtn.style.visibility = "visible"
-})
+    picBtn.style.visibility = "visible";
+});
 
 picDiv.addEventListener("touchend", () => {
     setTimeout(() => {
-        picBtn.style.visibility = "hidden"
-    }, 3000)
-})
+        picBtn.style.visibility = "hidden";
+    }, 3000);
+});
 
 file.addEventListener("change", (e) => {
-    console.log(e.target.files)
+    console.log(e.target.files);
     const choosedFile = e.target.files[0];
 
     if (choosedFile) {
@@ -28,16 +28,16 @@ file.addEventListener("change", (e) => {
         })
         reader.readAsDataURL(choosedFile);
     }
-})
+});
 
 editBtn.addEventListener("click", () => {
     inputs.forEach(input => {
-        input.disabled = false
-        input.style.background = "white"
+        input.disabled = false;
+        input.style.background = "white";
     })
-    editBtn.style.display = "none"
-    saveBtn.style.display = "block"
-})
+    editBtn.style.display = "none";
+    saveBtn.style.display = "block";
+});
 
 saveBtn.addEventListener("click", () => {
     inputs.forEach(value => {
@@ -50,11 +50,38 @@ saveBtn.addEventListener("click", () => {
     })
 
     // But after
-    editBtn.style.display = "block"
-    saveBtn.style.display = "none"
+    editBtn.style.display = "block";
+    saveBtn.style.display = "none";
 
-    console.log(isValidAgeInput());
+    if (isValidAgeInput && isValidCompassIdInput && isValidEmail) {
+        $.ajax({
+            url: "http://localhost:3000/updateProfile",
+            type: "POST",
+            data: {
+                userName: $('#display-name').val(),
+                userEmail: $('#display-email').val(),
+                userAge: $('#display-age').val(),
+                userCountry: $('#display-country').val(),
+                userCompassId: $('#display-compass').val() 
+            },
+            success: displayProfile
+        });
+    } else {
+        alert('You have inputted your fields wrong. Try again.');
+    }
 })
+
+function isValidEmail() {
+    let userEmail = $('#display-email').val();
+
+    return (userEmail.includes('@'));
+}
+
+function isValidCompassIdInput() {
+    let userCompassId = $('#display-compass').val();
+
+    return !(isNaN(userCompassId) || userCompassId.length != 20);
+}
 
 function isValidAgeInput() {
     let userAge = $('#display-age').val();
