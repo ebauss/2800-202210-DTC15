@@ -41,7 +41,7 @@ editBtn.addEventListener("click", () => {
 
 saveBtn.addEventListener("click", () => {
     inputs.forEach(value => {
-        // take data (Love you!)
+        // take data
 
         // Disable input
         value.disabled = true
@@ -52,7 +52,15 @@ saveBtn.addEventListener("click", () => {
     // But after
     editBtn.style.display = "block"
     saveBtn.style.display = "none"
+
+    console.log(isValidAgeInput());
 })
+
+function isValidAgeInput() {
+    let userAge = $('#display-age').val();
+
+    return !(userAge == '' || isNaN(userAge));
+}
 
 function displayProfile(data) {
     // rewards, name, email, compassID, country, age
@@ -65,7 +73,19 @@ function displayProfile(data) {
     $('#display-compass').val(data[0].compass_id); // MASK ALL EXCEPT LAST 4 NUMBERS
 }
 
-function makeRequest() {
+function updateProfile(data) {
+    console.log('Profile has been updated');
+}
+
+function makeReadRequest() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: displayProfile
+    })
+}
+
+function makeWriteRequest() {
     $.ajax({
         url: "http://localhost:3000/checkProfile",
         type: "GET",
@@ -74,7 +94,7 @@ function makeRequest() {
 }
 
 function setup() {
-    makeRequest();
+    makeReadRequest();
 }
 
 $(document).ready(setup);
