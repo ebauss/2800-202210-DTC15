@@ -102,7 +102,6 @@ canvas{
     ". form ."
     ". . .";
     justify-content: center;
-    background-color: rgb(220,220,220);
     gap: 10px;
 }
 
@@ -117,17 +116,27 @@ canvas{
     align-content: center;
     flex-direction: column;
     gap: 10px;
+    
 }
 
-.submission-container label, img{
+.submission-container span{
     display: block;
+    background-color: rgb(220,220,220);
+    border-radius: 50%;
+    padding: 20px;
 }
+
+
 
 .submission-container label{
     display: block;
     font-size: medium;
     color: rgba(0, 0, 0, 0.5);
 }
+
+/* #subtitle-form{
+    width: 100%;
+} */
 
 @media only screen and (max-width: 500px) {
     main {
@@ -160,4 +169,10 @@ canvas{
         border-right: none;
         border-bottom: 1px solid brown;
     }
+
+    #subtitle-form{
+    width: 100%;
+    font-size: small;
+    text-align: center;
+} 
 }

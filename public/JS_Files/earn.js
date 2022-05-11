@@ -1,8 +1,8 @@
 // Mock Data
-current = 75
+current = 100
 
 // goal -= current
-goal = 25
+goal = 0
 
 function createChart(current_points, goal_points) {
     new Chart("doughnut-rewards-chart", {
