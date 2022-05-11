@@ -40,25 +40,38 @@ editBtn.addEventListener("click", () => {
 });
 
 saveBtn.addEventListener("click", () => {
-    inputs.forEach(value => {
-        // take data
-
-        // Disable input
-        value.disabled = true
-        //change background
-        value.style.background = "rgba(220,220,220)"
-    })
-
-    // But after
-    editBtn.style.display = "block";
-    saveBtn.style.display = "none";
+    console.log("Age: ", isValidAgeInput(), "Compass ID:", isValidCompassIdInput(), "Email:", isValidEmail())
 
 
-    if (isValidAgeInput && isValidCompassIdInput && isValidEmail) {
+    // validate user's input
+    if (isValidAgeInput() && isValidCompassIdInput() && isValidEmail()) {
         makeWriteRequest();
+
+        inputs.forEach(value => {
+            // Disable input
+            value.disabled = true
+            //change background
+            value.style.background = "rgba(220,220,220)"
+        })
+
+        // Hide save button and show edit button
+        editBtn.style.display = "block";
+        saveBtn.style.display = "none";
     }
     else {
-        alert("You have invalid fields! Oh no!"); // FRONTEND TEAM: replace this with an animation
+        alertMessage = ""
+
+        if (!isValidEmail()) {
+            alertMessage += "Your email must contain the @ character.\n";
+        }
+        if (!isValidCompassIdInput()) {
+            alertMessage += "Your Compass ID must be 20 digits or empty.\n";
+        }
+        if (!isValidAgeInput()) {
+            alertMessage += "Your age must be a number between 0-255.\n";
+        }
+
+        alert(alertMessage);
     }
 })
 
@@ -71,13 +84,14 @@ function isValidEmail() {
 function isValidCompassIdInput() {
     let userCompassId = $('#display-compass').val();
 
-    return !(isNaN(userCompassId) || userCompassId.length != 20);
+    // compass ID must be 20 numerical characters or empty string
+    return ((!isNaN(userCompassId) && userCompassId.length == 20) || userCompassId == '');
 }
 
 function isValidAgeInput() {
     let userAge = $('#display-age').val();
 
-    return !(userAge == '' || isNaN(userAge));
+    return !(userAge == '' || isNaN(userAge) || userAge < 0 || userAge > 255);
 }
 
 function displayProfile(data) {
