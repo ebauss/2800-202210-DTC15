@@ -3,6 +3,7 @@
 function processRequest(data) {
     if (data) {
         alert("You are now Tsubasa Kazanari");
+        window.location.href="./profile.html";
     }
 }
 
