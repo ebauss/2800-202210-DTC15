@@ -1,3 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
 .nav-branding{
     display: flex;
     flex-direction: row;
@@ -20,21 +28,25 @@ img{
     width: 100%;
 }
 .heroImg {
-    width: 50%;
+    width: fit-content;
+    height: fit-content;
     justify-content: center;
-  
 }
 
 .heroText{
-    width: 50%;
+    width: 100%;
     justify-content: center;
+    text-align-last: center;
 }
 
 main{
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
    
 }
 
@@ -44,6 +56,8 @@ main{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        padding: 50px;
     }
 
     

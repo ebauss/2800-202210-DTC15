@@ -11,11 +11,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-<<<<<<< HEAD
-    password: 'My$3qu@l',
-=======
     password: 'JDCYelwe@0115',
->>>>>>> Joushua_floatingBar
     database: 'sustainably',
     multipleStatements: false
 })

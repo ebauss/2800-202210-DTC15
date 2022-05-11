@@ -1,5 +1,10 @@
 /* color scheme for application */
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 :root {
     --cyan: #72c4a6;
     --forest: #2f9379;
@@ -39,6 +44,7 @@ a,
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
+    width: 100%;
 }
 
 .nav-menu {
@@ -52,6 +58,11 @@ a,
 .nav-branding {
     font-size: 1.5rem;
     font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link {
@@ -89,6 +100,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    overflow: hidden;
 }
 
 a {
@@ -98,18 +110,19 @@ a {
 }
 
 .floatingBar{
-    box-sizing: border-box;
     width: 300px;
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
-    position: sticky;
-    bottom: 0;
-    left: 0;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     padding: 10px 15px;
     border-radius: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    position: fixed;
 }
 
 .floatingBar img {
@@ -124,7 +137,7 @@ a {
 }
 
 
-@media(max-width: 768px) {
+@media screen and (max-width: 768px) {
     .hamburger {
         display: block;
     }

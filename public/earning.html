@@ -16,6 +16,9 @@
     <!-------------------------------------------------------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- This is for the chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
@@ -25,7 +28,8 @@
     <!--   CSS Files go here   -->
     <!--------------------------->
 
-    <link rel="stylesheet" href="../public/CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/earn.css">
 
 </head>
 
@@ -39,6 +43,33 @@
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
+    <main>
+        <section class="display-rewards-section">
+            <h1 id="display-month"></h1>
+            <div id="display-graph">
+                <span class="doughnut-rewards-chart-container"><canvas id="doughnut-rewards-chart"></canvas></span>
+                <span class="display-current-points-container points-container">
+                    <h2>My Total Points</h2>
+                    <h3 id="display-current-points"> 0000 </h3>
+                </span>
+                <span class="display-goal-points-container points-container">
+                    <h2>My Goal Points</h2>
+                    <h3 id="display-goal-points"> 1000 </h3>
+                </span>
+            </div>
+            <div id="display-day-points"> </div>
+        </section>
+        <section class="submission-rewards-section">
+            <a href="rewards-form.html" id="form-link-container">
+                <span class="submission-container">
+                    <span>
+                    <img src="./Image_Files/receipt.png" id="receipt"></span>
+                    <label for="receipt" id="subtitle-form">Earn points by submitting your receipt here</label>
+                </span>
+                </div>
+            </a>
+        </section>
+    </main>
 
     <!-- our own floating bar goes here-->
     <nav id="floatingBarPlaceholder"></nav>
