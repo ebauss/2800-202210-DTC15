@@ -58,13 +58,14 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
 
     let expectedHashedPassword = "";
 
-    connection.query(`SELECT password, user_id FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
+    connection.query(`SELECT password, user_id, is_admin FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
             console.log(`Encrypting: ${req.body.password}`);
             expectedHashedPassword = results[0].password;
             console.log(`Expect: ${expectedHashedPassword}`);
+            isUserAdmin = results[0].is_admin;
 
             // Hash the inputted password and check if it matches with password from db
             bcrypt.compare(req.body.password, expectedHashedPassword, (err, result) => {
@@ -74,12 +75,18 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                     console.log("You entered the correct password");
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
-                    res.send(true);
+                    res.send({
+                        isPasswordCorrect: true,
+                        isAdmin: isUserAdmin
+                    });
                 } else {
                     console.log("You entered an incorrect password");
                     req.session.authenticated = false;
                     req.session.uid = undefined;
-                    res.send(false);
+                    res.send({
+                        isPasswordCorrect: false,
+                        isAdmin: false
+                    });
                 }
             })
         }

@@ -58,8 +58,10 @@ function addNewUserToDatabase() {
 }
 
 function processLogin(data) {
-    if (data == true) {
+    if (data.isPasswordCorrect && data.isAdmin) {
         window.location.href = "../admin.html";
+    } else if (data.isPasswordCorrect) {
+        window.location.href = "../main.html";
     } else {
         window.alert("You entered the wrong password");
     }
