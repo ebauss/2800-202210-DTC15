@@ -53,3 +53,28 @@ saveBtn.addEventListener("click", () => {
     editBtn.style.display = "block"
     saveBtn.style.display = "none"
 })
+
+function displayProfile(data) {
+    // rewards, name, email, compassID, country, age
+    console.log(data);
+    $('#display-rewards').html(data[0].reward_points);
+    $('#display-name').val(`${data[0].first_name} ${data[0].last_name}`);
+    $('#display-email').val(data[0].email);
+    $('#display-age').val(data[0].age);
+    $('#display-country').val(data[0].country);
+    $('#display-compass').val(data[0].compass_id); // MASK ALL EXCEPT LAST 4 NUMBERS
+}
+
+function makeRequest() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: displayProfile
+    })
+}
+
+function setup() {
+    makeRequest();
+}
+
+$(document).ready(setup);
