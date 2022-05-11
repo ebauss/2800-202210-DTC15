@@ -118,6 +118,14 @@ function makeReadRequest() {
 }
 
 function makeWriteRequest() {
+    if ($('#display-compass').val() == "") {
+        compassIdToInsert = null;
+    }
+    else {
+        compassIdToInsert = $('#display-compass').val();
+    }
+
+
     $.ajax({
         url: "http://localhost:3000/updateProfile",
         type: "POST",
@@ -126,9 +134,9 @@ function makeWriteRequest() {
             userEmail: $('#display-email').val(),
             userAge: $('#display-age').val(),
             userCountry: $('#display-country').val(),
-            userCompassId: $('#display-compass').val()
+            userCompassId: compassIdToInsert
         },
-        success: displayProfile
+        success: updateProfile
     });
 }
 

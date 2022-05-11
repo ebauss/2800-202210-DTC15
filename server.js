@@ -161,7 +161,13 @@ app.get('/checkProfile', (req, res) => {
 
 // updates a user's profile for profile.html
 app.post('/updateProfile', (req, res) => {
-
+    connection.query(`UPDATE users SET email = '${req.body.userEmail}', age = ${req.body.userAge}, country = '${req.body.userCountry}', compass_id = '${req.body.userCompassId}' WHERE user_id = ${req.session.uid};`, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(results);
+        }
+    })
 })
 
 // creates a new profile for profile.html
