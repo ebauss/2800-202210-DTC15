@@ -140,8 +140,13 @@ app.get('/loginStatus', (req, res) => {
 });
 
 app.get('/checkProfile', (req, res) => {
-    connection.query(`SELECT * FROM users WHERE uid = ${req.session.uid}`, (err, results, fields) => {
-        res.send(results)
+    connection.query(`SELECT * FROM users WHERE user_id = ${req.session.uid}`, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results)
+        }
     })
 })
 
