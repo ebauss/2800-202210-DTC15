@@ -53,21 +53,12 @@ saveBtn.addEventListener("click", () => {
     editBtn.style.display = "block";
     saveBtn.style.display = "none";
 
+
     if (isValidAgeInput && isValidCompassIdInput && isValidEmail) {
-        $.ajax({
-            url: "http://localhost:3000/updateProfile",
-            type: "POST",
-            data: {
-                userName: $('#display-name').val(),
-                userEmail: $('#display-email').val(),
-                userAge: $('#display-age').val(),
-                userCountry: $('#display-country').val(),
-                userCompassId: $('#display-compass').val() 
-            },
-            success: displayProfile
-        });
-    } else {
-        alert('You have inputted your fields wrong. Try again.');
+        makeWriteRequest();
+    }
+    else {
+        alert("You have invalid fields! Oh no!"); // FRONTEND TEAM: replace this with an animation
     }
 })
 
@@ -114,14 +105,22 @@ function makeReadRequest() {
 
 function makeWriteRequest() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: "http://localhost:3000/updateProfile",
+        type: "POST",
+        data: {
+            userName: $('#display-name').val(),
+            userEmail: $('#display-email').val(),
+            userAge: $('#display-age').val(),
+            userCountry: $('#display-country').val(),
+            userCompassId: $('#display-compass').val()
+        },
         success: displayProfile
-    })
+    });
 }
 
 function setup() {
     makeReadRequest();
+
 }
 
 $(document).ready(setup);
