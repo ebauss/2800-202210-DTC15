@@ -1,8 +1,6 @@
-// Mock Data
-current = 100
-
-// goal -= current
-goal = 0
+// Global variables
+var monthlyTotalPoints = 1000
+var monthlyGoalPoints = 1500
 
 // Function that checks if receipt is successfully submitted
 
@@ -17,14 +15,15 @@ $("#closing-btn").on("click", () => {
     popup.classList.remove("open-popup")
 })
 
-function createChart(current_points, goal_points) {
+// This function creates the chart.
+function createChart(currentPoints, goalPoints) {
     new Chart("doughnut-rewards-chart", {
         type: "doughnut",
         data: {
             labels: ["Your Current Points", "Goal Points"],
             datasets: [{
                 backgroundColor: ["#228B22", "#DCDCDC"],
-                data: [current_points, goal_points]
+                data: [currentPoints, goalPoints]
             }]
         },
         options: {
@@ -44,11 +43,28 @@ function currentMonth(){
         document.getElementById("display-month").innerHTML = month
 }
 
-
-
-function setup(){
-    currentMonth()
-    createChart(current, goal)
+function getUserRewardsInfo() {
+    $.ajax({
+        url: "http://localhost:3000/getUserPoints",
+        type: "GET",
+        success: processUserRewardsInfo
+    })
 }
 
-$(document).ready(setup)
+function processUserRewardsInfo(data) {
+    console.log(data);
+
+    monthlyTotalPoints = data[0].monthly_total_points;
+    monthlyGoalPoints = data[0].monthly_goal_points;
+    createChart(monthlyTotalPoints, monthlyGoalPoints);
+
+    $('#display-current-points').html(monthlyTotalPoints);
+    $('#display-goal-points').html(monthlyGoalPoints);
+}
+
+function setup(){
+    currentMonth();
+    getUserRewardsInfo();
+}
+
+$(document).ready(setup);
