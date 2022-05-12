@@ -21,7 +21,7 @@ html {
 }
 
 body {
-    font-family: Calibri,
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 li {
@@ -92,11 +92,7 @@ a,
 
 /* Footer CSS */
 footer {
-<<<<<<< HEAD
-    position: static;
-=======
     /* position: absolute; */
->>>>>>> Joushua_Form
     left: 0;
     bottom: 0;
     width: 100%;
