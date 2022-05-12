@@ -71,7 +71,7 @@ function processSignup(data) {
     switch (data) {
         case "success":
             alert("You have been added to the database.");
-            window.location.href = './main.html';
+            loginSignedUpUser();
             break;
         case "unmatching password":
             alert("The passwords do not match!");
@@ -80,6 +80,18 @@ function processSignup(data) {
             alert("All fields are required!");
             break;
     }
+}
+
+function loginSignedUpUser() {
+    $.ajax({
+        url: "http://localhost:3000/checkIfPasswordCorrect",
+        type: "POST",
+        data: {
+            "email": $('#email').val(),
+            "password": $('#new-password').val()
+        },
+        success: processLogin
+    });
 }
 
 // Show this if user exists
