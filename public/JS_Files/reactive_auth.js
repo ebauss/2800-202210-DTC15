@@ -71,6 +71,7 @@ function processSignup(data) {
     switch (data) {
         case "success":
             alert("You have been added to the database.");
+            window.location.href = './main.html';
             break;
         case "unmatching password":
             alert("The passwords do not match!");
