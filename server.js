@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'fUt4b4$4kur4',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -64,6 +64,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
             console.log(err);
         } else {
             console.log(`Encrypting: ${req.body.password}`);
+            console.log(results);
             expectedHashedPassword = results[0].password;
             console.log(`Expect: ${expectedHashedPassword}`);
             isUserAdmin = results[0].is_admin;
@@ -180,9 +181,9 @@ app.post('/updateProfile', (req, res) => {
 
 // creates a new profile for profile.html
 function addNewUserToDatabase(req, hashedPassword) {
-    connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
+    connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, monthly_total_points, monthly_goal_points, is_admin) 
     VALUES
-    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, FALSE);`,
+    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, 0, 10000, FALSE);`,
     (err, results, fields) => {
         if (err) {
             console.log(err);
