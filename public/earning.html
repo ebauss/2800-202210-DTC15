@@ -60,16 +60,22 @@
             <div id="display-day-points"> </div>
         </section>
         <section class="submission-rewards-section">
-            <a href="rewards-form.html" id="form-link-container">
-                <span class="submission-container">
-                    <span>
-                    <img src="./Image_Files/receipt.png" id="receipt"></span>
-                    <label for="receipt" id="subtitle-form">Earn points by submitting your receipt here</label>
-                </span>
-                </div>
-            </a>
+            <span class="submission-container">
+                <input type="file" id="receipt-btn">
+                <label for="receipt-btn" id="img-btn"><span><img for="receipt-btn" src="./Image_Files/submit.png"
+                            id="receipt"></span></label>
+                <span class="subtitle-form">Submit your receipt here to earn points</span>
+            </span>
         </section>
     </main>
+
+    <div class="popup" id="popup">
+        <img src="./Image_Files/tree.png" alt="Success">
+        <h2> Nature is please with Simplicity </h2>
+        <h3> - Isaac Newton </h3>
+        <p> Your receipt has been successfully submitted </p>
+        <button type="button" id="closing-btn"> OK </button>
+    </div>
 
     <!-- our own floating bar goes here-->
     <nav id="floatingBarPlaceholder"></nav>

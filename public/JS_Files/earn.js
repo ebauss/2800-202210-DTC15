@@ -4,6 +4,19 @@ current = 100
 // goal -= current
 goal = 0
 
+// Function that checks if receipt is successfully submitted
+
+let popup = document.getElementById("popup")
+$("#receipt-btn").on("change", (event) => {
+    receipt = event.target.files;
+    
+    popup.classList.add("open-popup")
+})
+
+$("#closing-btn").on("click", () => {
+    popup.classList.remove("open-popup")
+})
+
 function createChart(current_points, goal_points) {
     new Chart("doughnut-rewards-chart", {
         type: "doughnut",
@@ -30,6 +43,8 @@ function currentMonth(){
 
         document.getElementById("display-month").innerHTML = month
 }
+
+
 
 function setup(){
     currentMonth()

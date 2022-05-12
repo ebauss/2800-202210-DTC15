@@ -92,7 +92,11 @@ a,
 
 /* Footer CSS */
 footer {
+<<<<<<< HEAD
     position: static;
+=======
+    /* position: absolute; */
+>>>>>>> Joushua_Form
     left: 0;
     bottom: 0;
     width: 100%;
@@ -100,7 +104,6 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
-    overflow: hidden;
 }
 
 a {
@@ -176,6 +179,6 @@ a {
     }
 
     .floatingBar img {
-        height: 8vh;
+        height: 5vh;
     }
 }
