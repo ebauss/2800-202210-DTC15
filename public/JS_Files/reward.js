@@ -29,14 +29,37 @@ rewards = [
 
 ]
 
+function processRewards(data) {
+    console.log(data);
 
+    data.forEach((reward) => {
+        let cardTag =
+            `<br>
+        <div class="rewards-container" id="?">      
+        <div class="image-container">
+        <img src="${reward.photo}">
+        </div>
+        <div class="rewards-title">
+        <h2>${reward.company} - $${reward.value}</h2>
+        </div>
+        <div class="rewards-info">
+        <p>${reward.description}</p>
+        </div>
+        <div class="cost">
+        ${reward.points_cost} points
+        <button class="redeem-points">Redeem</button>
+        </div>
+        </div>`
 
-cardTag = ""
+        $("#rewards").append(cardTag);
+    })
+}
 
-function LoadRewards() { 
+function loadRewards() { 
     //for id = "place category " 
     //img is from database link
     // cost is out points, 
+
     rewards.map(data => {
         cardTag =
         `<br>
@@ -61,8 +84,17 @@ function LoadRewards() {
     })
 }
 
+function makeRequest() {
+    $.ajax({
+        url: "http://localhost:3000/requestAllRewards",
+        type: "GET",
+        success: processRewards
+    })
+}
+
 function setup() {
-    LoadRewards();    
+    makeRequest();
+    // loadRewards();    
 }
 
 $(document).ready(setup)
