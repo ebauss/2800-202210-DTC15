@@ -201,5 +201,17 @@ app.get('/requestAllRewards', (req, res) => {
     })
 })
 
+// retrieves the number of points the user holds
+app.get('/getUserPoints', (req, res) => {
+    connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ${req.session.uid}`, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
