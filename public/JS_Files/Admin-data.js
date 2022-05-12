@@ -47,6 +47,12 @@ function dropdown() {
     }))
 }
 
+if ($(window).width() <= 800){
+    $("main").load("./Admin-Skeleton/mobile-page.html")
+} else {
+    $("main").load("./Admin-Skeleton/web-page.html")
+}
+
 function setup() {
     populate_table(dummy_data)
     dropdown()
