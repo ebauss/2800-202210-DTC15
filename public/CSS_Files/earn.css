@@ -54,7 +54,7 @@ main {
 
 .doughnut-rewards-chart-container {
     grid-area: graph-container;
-    height: 100%;
+    height: 90%;
     border-right: 1px solid brown;
 }
 
