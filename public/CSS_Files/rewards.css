@@ -1,0 +1,108 @@
+body, main{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1, h2{
+    font-weight: 800;
+}
+a{
+    color:black;
+}
+
+label[for="greetings"]{
+    display: flex;
+    font-size: x-large;
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+   justify-content: center;
+}
+
+.sort-dropdown{
+    padding: 5px;
+    border-radius: 10px;
+}
+.section-header{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; 
+    margin:10px  
+}
+
+    
+.section-content{ /* container*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+/* .rewards-container{  
+   padding: 10px;
+} */
+
+.rewards-container{
+
+    background-color: var(--cyan);
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    display: grid;
+    grid-template-areas:
+    'rewards-title rewards-title image-container image-container'
+    'rewards-title rewards-title image-container image-container '
+    'rewards-info rewards-info image-container image-container'
+    'rewards-info rewards-info image-container image-container'
+    'cost cost cost cost';
+    justify-content: space-around;
+}
+
+.image-container{
+    display: flex;
+    justify-content: flex-end;
+    grid-area:image-container;
+}
+.image-container > img{
+    width:fit-content;
+    height:fit-content;
+
+}
+
+.rewards-title{
+    grid-area: rewards-title;
+    padding: 10px
+}
+
+.rewards-info{
+    grid-area: rewards-info
+}
+
+.cost{
+    grid-area: cost;
+    padding: 10px;
+    font-weight:bold;
+}
+
+button{
+    padding: 5px;
+    margin: 5px;
+    font-size: medium;
+    background-color: var(--pink);
+    border-radius: 15px;
+}
+
+@media(max-width: 768px) {
+    .rewards-container{
+
+        grid-template-areas:
+        'rewards-title rewards-title image-container'
+        'cost cost image-container'
+        'rewards-info rewards-info   rewards-info '
+        'rewards-info rewards-info  rewards-info';
+        
+    }
+
+    .image-container > img{
+        width:150px;
+        height:150px;
+    }
+}

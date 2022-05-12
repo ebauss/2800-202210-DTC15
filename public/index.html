@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-------------------------------------------------------->
-    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------- External Links goes here ---------------->
     <!-------------------------------------------------------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -25,6 +25,7 @@
     <!--   CSS Files go here   -->
     <!--------------------------->
     <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/index.css">
 
 </head>
 
@@ -33,12 +34,55 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
 
-    <!-- the body of your page goes here -->
-    <!-- stuff -->
+    <header>
+        <nav class="navBar">
+            <div class="navBar-container">
+                <div class="logo-container">
+                    <a href="./main.html" class="nav-branding">
+                        <img src="./Image_Files/Logo_only.png" alt="Sustainably" height="50">
+    
+                        <span class="brand"> Sustainably </span>
+                    </a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <ul class="nav-menu">
+                    <li class="nav-items">
+                        <a href="./main.html" class="nav-link"> Home </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="./aboutUs.html" class="nav-link"> About Us </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="./authentication.html" class="nav-link"> Login</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+     <!-- the body of your page goes here -->
+        <!-- stuff -->
+    <main>
+        <div class="heroImg">
+            <img src="./Image_Files/Index_Design.png">
+        </div>
+        <div class="heroText">
+            <h1> Save more on groceries and sustainable products</h1>
+            <h4> Submit your reward and earnd points towards discounts and merchandize. </h4>
+            <br>
+            <button>
+                <h2><a href="./authentication.html">Start Here!</a></h2>
+            </button>
+        </div>
+    </main>
+    <br>
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
@@ -46,7 +90,9 @@
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./JS_Files/skeleton.js"> </script>
-    
+    <script src="./JS_Files/navBar.js"></script>
+
+
 </body>
 
 </html>

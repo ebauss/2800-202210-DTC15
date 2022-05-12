@@ -1,0 +1,240 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0ch;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+main {
+    display: grid;
+    min-height: 50vh;
+    grid-template-columns: 5fr 90fr 5fr;
+    grid-template-rows: 75fr 20em;
+    grid-template-areas:
+        ". graph ."
+        ". submit .";
+    /* background-color: aqua; */
+}
+
+.display-rewards-section {
+    display: grid;
+    grid-area: graph;
+    grid-template-columns: 100fr;
+    grid-template-rows: 5fr 10fr 80fr 5fr;
+    grid-template-areas:
+        "."
+        "header"
+        "graph-body"
+        ".";
+    justify-content: center;
+    row-gap: 10px;
+}
+
+#display-month {
+    grid-area: header;
+    font-size: xxx-large;
+}
+
+#display-graph {
+    grid-area: graph-body;
+    display: grid;
+    grid-template-columns: 50fr 50fr;
+    /* On phone make it 35fr 65fr */
+    grid-template-rows: repeat(25fr);
+    grid-template-areas:
+        "graph-container ."
+        "graph-container goal-points"
+        "graph-container current-points"
+        "graph-container .";
+    justify-content: space-around;
+    row-gap: 50px;
+    align-items: center;
+    align-content: space-around;
+}
+
+.doughnut-rewards-chart-container {
+    grid-area: graph-container;
+    height: 100%;
+    border-right: 1px solid brown;
+}
+
+h1 {
+    text-align: center;
+}
+
+canvas {
+    height: 100%;
+}
+
+.display-goal-points-container {
+    grid-area: goal-points;
+}
+
+.display-current-points-container {
+    grid-area: current-points;
+}
+
+.points-container h3 {
+    margin-top: 10px;
+    border: 1px solid silver;
+    width: 100px;
+    padding: 5px;
+    font-size: x-large;
+    background-color: rgba(210, 180, 140, 0.8);
+    text-align: center;
+}
+
+.points-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submission-rewards-section {
+    grid-area: submit;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 25fr 50fr 25fr;
+    grid-template-columns: 25fr 50fr 25fr;
+    grid-template-areas:
+        ". . ."
+        ". form ."
+        ". . .";
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.0);
+    margin-bottom: 20px;
+}
+
+.submission-container {
+    grid-area: form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subtitle-form {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#img-btn {
+    display: block;
+    background-color: rgb(220, 220, 220);
+    border-radius: 50%;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#receipt-btn {
+    display: none;
+}
+
+.popup {
+    width: 400px;
+    background-color: burlywood;
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup img {
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: powderblue;
+}
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.popup h3 {
+    font-weight: 500;
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: rgba(176, 224, 230, 9);
+    color: black;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+@media only screen and (max-width: 500px) {
+    main {
+        grid-template-columns: 100fr;
+        width: 100%;
+    }
+
+    canvas {
+        height: auto;
+        width: auto;
+    }
+
+    #display-graph {
+        grid-template-rows: 15fr 5fr 5fr;
+        grid-template-columns: 100fr;
+        grid-template-areas:
+            "graph-container"
+            "goal-points"
+            "current-points";
+    }
+
+    .display-current-points-container {
+        grid-area: current-points;
+    }
+
+    .display-goal-points-container {
+        grid-area: goal-points;
+    }
+
+    .doughnut-rewards-chart-container {
+        border-right: none;
+        border-bottom: 1px solid brown;
+        padding-bottom: 20px;
+    }
+
+    .submission-rewards-section {
+        border-top: 1px solid brown;
+    }
+
+    .subtitle-form {
+        width: 100%;
+        font-size: small;
+        text-align: center;
+    }
+
+    #img-btn img {
+        height: 8vh;
+    }
+}

@@ -34,3 +34,7 @@ Content of the project folder:
     * Removing the bootstrap import link
     * Changing the meta name and the scripts
     * Removing the firebase links and imports
+    
+The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
+The icons used in the floatingbar are all from 8icons
+    https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
