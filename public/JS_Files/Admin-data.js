@@ -1,7 +1,10 @@
-if ($(window).width() <= 1100){
-    $(".main-table").load("./Admin-Skeleton/mobile-page.html")
-} else {
-    $(".main-table").load("./Admin-Skeleton/web-page.html")
+function showTable() {
+    $("#main-table").empty()
+    if ($(window).width() <= 1100) {
+        $("#main-table").load("./Admin-Skeleton/mobile-page.html")
+    } else {
+        $("#main-table").load("./Admin-Skeleton/web-page.html")
+    }
 }
 
 $("button").on("click", (event) => {
@@ -13,7 +16,7 @@ $("button").on("click", (event) => {
     key = event.target.id.split("-")[0]
 
     document.querySelectorAll(".content-table").forEach(table => {
-        if (table.id.split("-")[0] == key){
+        if (table.id.split("-")[0] == key) {
             document.getElementById(table.id).style.display = "table"
         } else {
             document.getElementById(table.id).style.display = "none"
@@ -21,7 +24,12 @@ $("button").on("click", (event) => {
     })
 })
 
-function setup(){
+$(window).resize(() => {
+    showTable()
+})
+
+function setup() {
+    showTable()
 }
 
 $(document).ready(setup)

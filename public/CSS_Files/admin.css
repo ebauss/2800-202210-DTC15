@@ -83,7 +83,7 @@ th, td{
     justify-content: flex-end;
 }
 
-.main-table{
+#main-table{
     grid-area: content;
 }
 
