@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -131,20 +131,7 @@ app.post('/createNewUser', (req, res) => {
                 res.send("blank");
             }
             else {
-                // creates a new profile in the database
-                connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
-                VALUES
-                ('${hash}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, FALSE);`,
-                    (err, results, fields) => {
-                        if (err) {
-                            console.log(err);
-                        }
-                        else {
-                            userID = getUserID(req);
-                            req.session.authenticated = true;
-                            req.session.uid = userID;
-                        }
-                    })
+                addNewUserToDatabase(req, hash);
                 res.send("success");
             }
         }
@@ -191,18 +178,14 @@ app.post('/updateProfile', (req, res) => {
     })
 })
 
-// logs the user in after signing up
-function getUserID(req) {
-    console.log(req.body.email);
-
-    connection.query(`SELECT user_id FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
+// creates a new profile for profile.html
+function addNewUserToDatabase(req, hashedPassword) {
+    connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, is_admin) 
+    VALUES
+    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, FALSE);`,
+    (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
-            console.log(results);
-            console.log("The UID is " + results[0].user_id);
-            return results[0].user_id;
         }
     })
 }
