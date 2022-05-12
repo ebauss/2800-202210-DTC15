@@ -29,10 +29,14 @@ input[type="search"] {
 
 button{
     font-weight: 600;
+    background-color: rgba(220,220,220, 0.3);
+    border: 2px solid #e7ab29;
     border-bottom: none;
-    background-color: antiquewhite;
-    border-width: 1px;
     padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    height: 3vh;
+    width: 100%;
 }
 
 table{
@@ -45,27 +49,49 @@ th, td{
     text-align: center;
 }
 
+.table-header{
+    display: grid;
+    grid-template-columns: 25fr 25fr 25fr 25fr;
+    gap: 2px;
+}
+
 .main-content{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-.table-content{
-    display: grid;
-    grid-template-areas: 
-    ". header"
-    "content content";
+.table-content-section{
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 5px;
+}
+
+.activated-button{
+    background-color: #e7ab29;
+    transition: 0.3s ease-in;
+}
+
+.deactivated-button{
+    display: none;
 }
 
 .table-search{
-    grid-area: header;
     margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .main-table{
     grid-area: content;
+}
+
+@media screen and (max-width: 1000px) {
+    .table-header{
+        height: 8vh;
+    }
+    button{
+        height: 6vh;
+    }
 }

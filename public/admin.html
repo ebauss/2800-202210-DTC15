@@ -26,7 +26,6 @@
     <!--------------------------->
     <link rel="stylesheet" href="./CSS_Files/style.css">
     <link rel="stylesheet" href="./CSS_Files/admin.css">
-    <link rel="stylesheet" href="./CSS_Files/table-cell.css">
 
 </head>
 
@@ -41,6 +40,21 @@
     <!-- the body of your page goes here -->
     <!-- stuff -->
     <main>
+        <div class="main-content">
+            <section class="table-header">
+                    <span class="button-container"><button class="activated-button" type="button" id="user-data"> Users </button></span>
+                    <span class="button-container"><button type="button" id="receipt-data"> Receipts </button></span>
+                    <span class="button-container"><button type="button" id="reward-data"> Rewards </button></span>
+                    <span class="button-container"><button type="button" id="user-rewards-data"> User Rewards
+                        </button></span>
+            </section>
+            <section class="table-content-section">
+                <form class="table-search"> <input type="search" name="search" id="search" placeholder="Search"
+                        value=""> </form>
+                <div class="main-table">
+                </div>
+            </section>
+        </div>
     </main>
 
 
