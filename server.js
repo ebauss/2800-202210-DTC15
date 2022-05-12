@@ -190,5 +190,16 @@ function addNewUserToDatabase(req, hashedPassword) {
     })
 }
 
+// Retrieves all the rewards for rewards.html and sends it as a JSON object
+app.get('/requestAllRewards', (req, res) => {
+    connection.query('SELECT * FROM rewards', (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(results);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
