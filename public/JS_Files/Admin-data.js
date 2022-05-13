@@ -47,13 +47,13 @@ function populate_table(data, mobile = false) {
     }
     data.forEach(element => {
         userID = element.user_id;``
-        fName = element.firstName;
-        lName = element.lastname;
+        fName = element.first_name;
+        lName = element.last_name;
         email = element.email;
         country = element.country;
         age = element.age;
         profile_icon = element.profile_icon;
-        points = element.points;
+        points = element.reward_points;
         compass_id = element.compass_id;
         is_admin = element.is_admin;
 
