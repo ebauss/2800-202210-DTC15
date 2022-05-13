@@ -1,0 +1,244 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#body {
+    display: grid;
+    grid-template-rows: 1fr 10fr 0.1fr;
+    gap: 1%;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: 50fr 50fr;
+    grid-template-rows: 2fr 5fr 13fr 25em;
+    grid-template-areas: 
+    "profile-header profile-header"
+    "profile-pic rewards"
+    "info info"
+    "noti noti";
+    justify-content: center;
+    row-gap: 3%;
+    margin: 10px;
+}
+
+label[for="user-profile"]{
+    grid-area: profile-header;
+    font-size: x-large;
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.user-editable-data {
+    grid-area: profile-pic;
+    display: grid;
+    grid-template-areas:
+        "picture";
+    width: 100%;
+    justify-content: space-around;
+}
+
+.profile-pic-container {
+    grid-area: picture;
+    height: 10em;
+    width: 10em;
+    display: grid;
+    grid-template-rows: 100fr;
+    grid-template-areas:
+        "header-content";
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+span{
+    grid-area: header-content;
+}
+
+label[for="rewards"]{
+    font-size: large;
+    font-weight: 600;
+}
+
+.profile-pic-container img {
+    grid-area: header-content;
+    height: 10em;
+}
+
+#pic-file {
+    display: none;
+}
+
+#upload-pic-btn {
+    grid-area: header-content;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: wheat;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 40%;
+    visibility: hidden;
+}
+
+.rewards-container{
+    margin-right: 10px;
+    grid-area: rewards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0px;
+}
+
+#display-rewards{
+    /* background-color: rgba(220,220,220); */
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#rewards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.user-profile{
+    grid-area: info;
+    height: 100%;
+    margin: 0px 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
+    grid-template-areas: 
+    "name name"
+    "email email"
+    "compass compass"
+    "country age"
+    ". btn";
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: center;
+}
+
+#name{
+    grid-area: name;
+    width: 100%;
+}
+
+#email{
+    grid-area: email;
+    width: 100%;
+}
+
+#compass{
+    grid-area: compass;
+    width: 100%;
+}
+
+#country{
+    grid-area: country;
+    width: 100%;
+}
+
+#age{
+    grid-area: age;
+    width: 100%;
+}
+
+.button-container{
+    grid-area: btn;
+    width: 100%;
+}
+
+.info-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+}
+
+.info-container label{
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.info{
+    width: 90%;
+    height: 2em;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background: rgba(220,220,220);
+    padding-left: 10px;
+    font-size: large;
+}
+
+.button-container{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.info-btn{
+    padding: 10px 15px;
+    font-size: medium;
+    border-radius: 10px;
+}
+
+#edit-btn{
+    color: white;
+    background-color:rgb(119,136,153);
+    border: none;
+}
+
+#save-btn{
+    background-color: #e46565;
+    color: wheat;
+    border: none;
+    display: none;
+}
+
+.notification-container{
+    grid-area: noti;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+
+label[for="notification"]{
+    font-size: xx-large;
+    padding: 5px 10px;
+    font-weight: 800;
+}
+
+div.notification-box{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+@media(max-width: 400px) {
+    
+}

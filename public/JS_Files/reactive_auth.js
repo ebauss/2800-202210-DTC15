@@ -58,8 +58,10 @@ function addNewUserToDatabase() {
 }
 
 function processLogin(data) {
-    if (data == true) {
+    if (data.isPasswordCorrect && data.isAdmin) {
         window.location.href = "../admin.html";
+    } else if (data.isPasswordCorrect) {
+        window.location.href = "../main.html";
     } else {
         window.alert("You entered the wrong password");
     }
@@ -69,6 +71,7 @@ function processSignup(data) {
     switch (data) {
         case "success":
             alert("You have been added to the database.");
+            loginSignedUpUser();
             break;
         case "unmatching password":
             alert("The passwords do not match!");
@@ -77,6 +80,18 @@ function processSignup(data) {
             alert("All fields are required!");
             break;
     }
+}
+
+function loginSignedUpUser() {
+    $.ajax({
+        url: "http://localhost:3000/checkIfPasswordCorrect",
+        type: "POST",
+        data: {
+            "email": $('#email').val(),
+            "password": $('#new-password').val()
+        },
+        success: processLogin
+    });
 }
 
 // Show this if user exists

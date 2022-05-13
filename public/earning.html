@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-------------------------------------------------------->
+    <!-------------- External Links goes here ---------------->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- This is for the chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+
+    <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/earn.css">
+
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+    <main>
+        <section class="display-rewards-section">
+            <h1 id="display-month"></h1>
+            <div id="display-graph">
+                <span class="doughnut-rewards-chart-container"><canvas id="doughnut-rewards-chart"></canvas></span>
+                <span class="display-current-points-container points-container">
+                    <h2>My Total Points</h2>
+                    <h3 id="display-current-points"> 0000 </h3>
+                </span>
+                <span class="display-goal-points-container points-container">
+                    <h2>My Goal Points</h2>
+                    <h3 id="display-goal-points"> 1000 </h3>
+                </span>
+            </div>
+            <div id="display-day-points"> </div>
+        </section>
+        <section class="submission-rewards-section">
+            <span class="submission-container">
+                <input type="file" id="receipt-btn">
+                <label for="receipt-btn" id="img-btn"><span><img for="receipt-btn" src="./Image_Files/submit.png"
+                            id="receipt"></span></label>
+                <span class="subtitle-form">Submit your receipt here to earn points</span>
+            </span>
+        </section>
+    </main>
+
+    <div class="popup" id="popup">
+        <img src="./Image_Files/tree.png" alt="Success">
+        <h2> Nature is please with Simplicity </h2>
+        <h3> - Isaac Newton </h3>
+        <p> Your receipt has been successfully submitted </p>
+        <button type="button" id="closing-btn"> OK </button>
+    </div>
+
+    <!-- our own floating bar goes here-->
+    <nav id="floatingBarPlaceholder"></nav>
+
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/earn.js"> </script>
+
+</body>
+
+</html>
