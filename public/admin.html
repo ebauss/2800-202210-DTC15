@@ -26,7 +26,8 @@
     <!--------------------------->
     <link rel="stylesheet" href="./CSS_Files/style.css">
     <link rel="stylesheet" href="./CSS_Files/admin.css">
-    <link rel="stylesheet" href="./CSS_Files/table-cell.css">
+    <link rel="stylesheet" href="../CSS_Files/web-page.css">
+    <link rel="stylesheet" href="../CSS_Files/mobile-page.css">
 
 </head>
 
@@ -38,57 +39,197 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
+    <!------------------------>
+    <!-- Web-Page Templates -->
+    <!------------------------>
+
+    <!-- Table-row template for users -->
+    <template id="table-template-users">
+        <tr>
+            <td class="user-id">User ID </td>
+            <td class="user-first-name">User First Name</td>
+            <td class="user-last-name">User Last Name</td>
+            <td class="user-email">User Email</td>
+            <td class="user-country">User Country</td>
+            <td class="user-reward-points">User Reward Points</td>
+            <td class="user-age">User Age</td>
+            <td class="user-profile-icon">User Profile Icon</td>
+            <td class="user-compass-id">User Compass ID</td>
+            <td class="user-admin">User Admin</td>
+            <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
+        </tr>
+    </template>
+
+    <!-- Table-row template for receipts -->
+    <template id="table-template-receipt">
+        <tr>
+            <td class="receipt-number"> Number </td>
+            <td class="receipt-user-id"> User ID </td>
+            <td class="receipt-id"> Receipt ID </td>
+            <td class="receipt-image-file"> Receipt Image </td>
+            <td class="receipt-status"> Receipt Status </td>
+            <td class="receipt-admin"> Receipt Admin </td>
+            <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
+        </tr>
+    </template>
+
+    <!--------------------------->
+    <!-- Mobile-page Templates -->
+    <!--------------------------->
+
+    <!-- Collapsible template for users -->
+    <template id="collapsible-template-users">
+        <button type="button" class="collapsible-data collapsible-data-user">
+            <h4 class="data-label"> User ID: </h4> <span class="user-id"> User ID
+            </span>
+        </button>
+        <div class="collapsible-body user-info">
+            <span></span>
+            <div class="data-container">
+                <h4 class="data-label"> First Name: </h4>
+                <span class="user-first-name"> User First Name</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Last Name: </h4>
+                <span class="user-last-name">User Last Name</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Email: </h4>
+                <span class="user-email">User Email</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Country: </h4>
+                <span class="user-country">User Country</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Reward Points </h4>
+                <span class="user-reward-points">User Reward Points</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Age: </h4>
+                <span class="user-age">User Age</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Compass ID: </h4>
+                <span class="user-compass-id">User Compass ID</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Admin: </h4>
+                <span class="user-admin">User Admin</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Profile: </h4>
+                <span class="user-profile-icon">User Profile Icon</span>
+            </div>
+            <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
+        </div>
+    </template>
+
+    <!-- Collapsible tempalte for receipts data -->
+    <template id="collapsible-template-receipts">
+        <button type="button" class="collapsible-data collapsible-data-receipts">
+            <h4 class="data-label"> User ID: </h4> <span class="receipt-user-id"> User ID
+            </span>
+        </button>
+        <div class="collapsible-body receipt-info">
+            <span></span>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt ID: </h4>
+                <span class="receipt-id"> Receipt ID </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Image: </h4>
+                <span class="receipt-image-file"> Receipt Image </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Staus: </h4>
+                <span class="receipt-status"> Receipt Status </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Admin: </h4>
+                <span class="receipt-admin"> Receipt Admin </span>
+            </div>
+
+            <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
+        </div>
+    </template>
+
     <!-- the body of your page goes here -->
     <!-- stuff -->
     <main>
-
-        <template id="table-template">
-            <tr>
-                <td class="user-id">User ID </td>
-                <td class="user-first-name">User First Name</td>
-                <td class="user-last-name">User Last Name</td>
-                <td>
-                    <div class="cell-dropdown-icon"> <span class="cell-bar"></span> <span class="cell-bar"></span></div>
-                </td>
-                <div class="cell-dropdown">
-                    <ul class="cell-menu">
-                        <li class="cell-items user-email"> User Email </li>
-                        <!-- <li class="cell-items user-password"> User Password </li> -->
-                        <li class="cell-items user-country"> User Country </li>
-                        <li class="cell-items user-points"> User Reward Points </li>
-                        <li class="cell-items user-age"> User Age </li>
-                        <li class="cell-items user-profile-icon"> User Profile Icon </li>
-                        <li class="cell-items user-compass-id"> User Compass ID </li>
-                        <li class="cell-items user-admin"> User Admin </li>
-                    </ul>
-                </div>
-            </tr>
-        </template>
-
         <div class="main-content">
             <section class="table-header">
-                <div class="table-section">
-                    <span class="button-container"><button type="button" id="user-data"> Users </button></span>
-                    <span class="button-container"><button type="button" id="rewards-data"> Rewards </button></span>
-                    <span class="button-container"><button type="button" id="user-rewards-data"> User Rewards
-                        </button></span>
-                    <span class="button-container"><button type="button" id="receipts-data"> Receipts </button></span>
-                </div>
+                <span class="button-container"><button class="header-btn activated-button" type="button" id="user-data">
+                        Users </button></span>
+                <span class="button-container"><button class="header-btn" type="button" id="receipt-data"> Receipts
+                    </button></span>
+                <span class="button-container"><button class="header-btn" type="button" id="reward-data"> Rewards
+                    </button></span>
+                <span class="button-container"><button class="header-btn" type="button" id="user-rewards-data"> User
+                        Rewards
+                    </button></span>
             </section>
-            <section class="table-content">
+            <section class="table-content-section">
                 <form class="table-search"> <input type="search" name="search" id="search" placeholder="Search"
                         value=""> </form>
-                <div class="main-table">
-                    <table border="1">
-                        <tbody id="table-body">
-                            <tr>
-                                <th width="150px"> UserID </th>
-                                <th> First Name </th>
-                                <th> Last Name </th>
-                                <th width="30px"> </th>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div id="main-table">
+
+                    <!------------------------------>
+                    <!-- HTML tables for Web-Page -->
+                    <!------------------------------>
+
+                    <!-- HTML table for users -->
+                    <div class="web-page">
+                        <table class="content-table" id="user-table">
+                            <thead>
+                                <tr>
+                                    <th> User ID </th>
+                                    <th> First Name </th>
+                                    <th> Last Name </th>
+                                    <th> Email </th>
+                                    <th> Country </th>
+                                    <th> Reward Points </th>
+                                    <th> Age </th>
+                                    <th> Profile Icon </th>
+                                    <th> Compass ID </th>
+                                    <th> Admin </th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- HTML table for receipts -->
+                    <div class="web-page">
+                        <table class="content-table" id="receipt-table">
+                            <thead>
+                                <tr>
+                                    <th> Number </th>
+                                    <th> User ID </th>
+                                    <th> Receipt ID </th>
+                                    <th> Receipt Image </th>
+                                    <th> Status </th>
+                                    <th> Admin </th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="receipts-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!---------------------------------------------->
+                    <!-- HTML Tables/Collapsibles for Mobile-Page -->
+                    <!---------------------------------------------->
+
+                    <!-- HTML container for users -->
+                    <div class="mobile-page" id="user-collapsible-body">
+                    </div>
+
+                    <!-- HTML container for receipts -->
+                    <div class="mobile-page" id="receipt-collapsible-body">
+                    </div>
                 </div>
             </section>
         </div>
