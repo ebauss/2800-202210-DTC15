@@ -18,10 +18,11 @@ app.use(session({
 
 // Connect client to database
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
-    database: 'sustainably',
+    host: 'x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'wnaxoodaw136f3ln	',
+    password: 'l9a9drrzski0utvl',
+    port: '3306',
+    database: 'ztqdakl3na8kx6b2',
     multipleStatements: false
 })
 

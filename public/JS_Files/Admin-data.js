@@ -2,7 +2,7 @@ function requestUserData() {
     console.log("User data requested");
     $.ajax(
         {
-            url: "http://localhost:3000/requestUserData",
+            url: "https://sustainably-2800-202210-dtc15.herokuapp.com/requestUserData",
             type: "GET",
             success: populate_table
         }
@@ -115,7 +115,7 @@ function processDeleteUser(data) {
 
 function deleteUser() {
     $.ajax({
-        url: 'http://localhost:3000/deleteUser',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/deleteUser',
         type: "POST",
         data: {
             userIdToDelete: $(this).attr("id")

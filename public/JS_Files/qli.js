@@ -9,7 +9,7 @@ function processRequest(data) {
 
 function makeRequest() {
     $.ajax({
-        url: "http://localhost:3000/quickLogin",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/quickLogin",
         type: "GET",
         success: processRequest
     })

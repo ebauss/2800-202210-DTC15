@@ -30,7 +30,7 @@ function processUserPoints(data) {
 
 function makeRewardsListRequest() {
     $.ajax({
-        url: "http://localhost:3000/requestAllRewards",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/requestAllRewards",
         type: "GET",
         success: processRewardsList
     })
@@ -38,7 +38,7 @@ function makeRewardsListRequest() {
 
 function makeUserPointsRequest() {
     $.ajax({
-        url: "http://localhost:3000/getUserPoints",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/getUserPoints",
         type: "GET",
         success: processUserPoints
     })

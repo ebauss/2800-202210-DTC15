@@ -111,7 +111,7 @@ function updateProfile(data) {
 
 function makeReadRequest() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile",
         type: "GET",
         success: displayProfile
     })
@@ -127,7 +127,7 @@ function makeWriteRequest() {
 
 
     $.ajax({
-        url: "http://localhost:3000/updateProfile",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/updateProfile",
         type: "POST",
         data: {
             userName: $('#display-name').val(),

@@ -17,7 +17,7 @@ function processLogout(data) {
 
 function makeLogoutRequest() {
     $.ajax({
-        url: "http://localhost:3000/logout",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/logout",
         type: "GET",
         success: processLogout
     })
@@ -25,7 +25,7 @@ function makeLogoutRequest() {
 
 function makeRequest() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus",
         type: "GET",
         success: updateStatus
     })

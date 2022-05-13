@@ -6,7 +6,7 @@ function processLogin(data) {
 
 function postUserCredentials() {
     $.ajax({
-        url: "http://localhost:3000/loginWithUserCredentials",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/loginWithUserCredentials",
         type: "POST",
         data: {
             "email": $('#email').val(),

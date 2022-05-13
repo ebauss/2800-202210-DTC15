@@ -14,7 +14,7 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
 
 function isUserLoggedIn() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus",
         type: "GET",
         success: updateNavbar
     })
@@ -32,7 +32,7 @@ function updateNavbar(data) {
 
 async function logoutUser() {
     await $.ajax({
-        url: "http://localhost:3000/logout",
+        url: "https://sustainably-2800-202210-dtc15.herokuapp.com/logout",
         type: "GET",
         success: processLogout
     })
