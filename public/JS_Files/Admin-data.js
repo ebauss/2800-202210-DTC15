@@ -59,6 +59,21 @@ function populate_table(data, mobile = false) {
 
         let newcell = tableTemplate.content.cloneNode(true);
 
+        if (profile_icon == null) {
+            profile_icon = "Not provided";
+        }
+
+        if (is_admin) {
+            is_admin = "Yes";
+        }
+        else {
+            is_admin = "No";
+        }
+
+        if (!compass_id) {
+            compass_id = "Not provided";
+        }
+
         newcell.querySelector(".user-id").innerHTML = `${userID}`
         newcell.querySelector(".user-first-name").innerHTML = `${fName}`
         newcell.querySelector(".user-last-name").innerHTML = ` ${lName}`
