@@ -42,14 +42,10 @@
     <!-- stuff -->
     <main>
 
-
-
-
         <br>
         <h1 class="Greetings">Welcome, This is the Landing page</h1>
         <br>
         <section>
-
             <div class="section-header">
                 <h2>Tips & Walkthrough</h2>
                 <p href="">More >></p>
@@ -59,23 +55,40 @@
             <div class="section-content">
                 <!--Slider-->
                 <div class="card-container" id="walkthroughts">
-                    <div class="card-information" id="?" )>
-                        <img src="${data.photo}">
+                    <!--GET THIS DATA -->
+                    <!-- <div class="card-information" id="?" )>
+                        <img src="https://picsum.photos/200/300">
                         <div class="card-title">
-                            <!--open-btn-->
-                            <h2>${data.title}</h2>
+                            <button data-modal-target=".popup">
+                                <h2>${data.title}</h2>
+                            </button>
                         </div>
                     </div>
-
-                    <!-- orginally here -->
-
-
-
+                    <div class="popup">
+                        <div class="popup-header">
+                            <div class="popup-title">Title</div>
+                            <button data-close-button class="close-button">
+                                X
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="popup-body">
+                            <img src="https://picsum.photos/200/300">
+                            <br>
+                            <h2>Same title</h2>
+                            <small>author</small>
+                            <hr>
+                            <div class="article">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nulla dolore,
+                                magnam illo eligendi dicta, suscipit hic labore aspernatur quod ex? Placeat sapiente
+                                inventore
+                            </div
+                        </div>
+                    </div> -->
                 </div>
-
-
             </div>
             <br>
+
             <div class="section-header">
                 <h2>Test your Knowledge</h2>
                 <p href="">More >></p>
@@ -85,16 +98,10 @@
             <div class="section-content">
                 <!--Slider-->
                 <div class="card-container" id="game">
-
                 </div>
-                
             </div>
             <br>
-            </div>
 
-            </div>
-
-            <br>
             <div class="section-header">
                 <h2>What's Happening Now</h2>
                 <p href="">More >></p>
@@ -102,14 +109,15 @@
             <hr>
             <!-- Container-->
             <div class="section-content">
-
                 <!--Slider-->
                 <div class="card-container" id="news">
                 </div>
             </div>
             <br>
+
             </div>
         </section>
+        <div class="popup-overlay" id="popup-overlay"></div>
     </main>
 
     <!-- our own floating bar goes here-->
