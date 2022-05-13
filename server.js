@@ -214,9 +214,13 @@ app.get('/getUserPoints', (req, res) => {
 })
 
 app.post('/deleteUser', (req, res) => {
-    console.log(req.body.userIdToDelete);
-
-    res.send(req.body.userIdToDelete);
+    connection.query(`DELETE FROM users WHERE user_id = ${req.body.userIdToDelete};`, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(req.body.userIdToDelete);
+        }
+    })
 })
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
