@@ -115,16 +115,16 @@ function user_populate_table(data, mobile = false) {
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (mobile) {
-            newcell.querySelector(".user-id").innerHTML = `UserID: ${userID}`
-            newcell.querySelector(".user-first-name").innerHTML = `<h4> First Name </h4> ${fName}`
-            newcell.querySelector(".user-last-name").innerHTML = `<h4> Last Name </h4> ${lName}`
-            newcell.querySelector(".user-email").innerHTML = `<h4> Email </h4> ${email}`
-            newcell.querySelector(".user-country").innerHTML = `<h4> Country </h4> ${country}`
-            newcell.querySelector(".user-reward-points").innerHTML = `<h4> Points </h4> ${points}`
-            newcell.querySelector(".user-age").innerHTML = `<h4> Age </h4> ${age}`
-            newcell.querySelector(".user-profile-icon").innerHTML = `<h4> Profile </h4> ${profile_icon}`
-            newcell.querySelector(".user-compass-id").innerHTML = `<h4> Compass ID </h4> ${compass_id}`
-            newcell.querySelector(".user-admin").innerHTML = `<h4> Admin </h4> ${is_admin}`
+            newcell.querySelector(".user-id").innerHTML = `${userID}`
+            newcell.querySelector(".user-first-name").innerHTML = `${fName}`
+            newcell.querySelector(".user-last-name").innerHTML = ` ${lName}`
+            newcell.querySelector(".user-email").innerHTML = `${email}`
+            newcell.querySelector(".user-country").innerHTML = `${country}`
+            newcell.querySelector(".user-reward-points").innerHTML = `${points}`
+            newcell.querySelector(".user-age").innerHTML = `${age}`
+            newcell.querySelector(".user-profile-icon").innerHTML = `${profile_icon}`
+            newcell.querySelector(".user-compass-id").innerHTML = `${compass_id}`
+            newcell.querySelector(".user-admin").innerHTML = `${is_admin}`
             newcell.querySelector(".user-delete").setAttribute("id", userID)
         } else {
             newcell.querySelector(".user-id").innerHTML = `${userID}`
@@ -154,7 +154,7 @@ function user_populate_table(data, mobile = false) {
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                 } else {
-                    content.style.maxHeight = "40vh";
+                    content.style.maxHeight = "90vh";
                 }
             })
         })
@@ -178,11 +178,11 @@ function receipts_populate_table(data, mobile = false) {
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (mobile) {
-            newcell.querySelector(".receipt-user-id").innerHTML = `<h4> User ID: </h4> ${receiptUser}`
-            newcell.querySelector(".receipt-id").innerHTML = `<h4> Receipt ID: </h4> ${receipt}`
-            newcell.querySelector(".receipt-image-file").innerHTML = `<h4> Receipt File </h4> ${imageFile}`
-            newcell.querySelector(".receipt-status").innerHTML = `<h4> Receipt Status: </h4> ${receiptStatus}`
-            newcell.querySelector(".receipt-admin").innerHTML = `<h4> Admin: </h4> ${receiptAdmin}`
+            newcell.querySelector(".receipt-user-id").innerHTML = `${receiptUser}`
+            newcell.querySelector(".receipt-id").innerHTML = `${receipt}`
+            newcell.querySelector(".receipt-image-file").innerHTML = `${imageFile}`
+            newcell.querySelector(".receipt-status").innerHTML = `${receiptStatus}`
+            newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
             newcell.querySelector(".user-delete").setAttribute("id", receipt)
         } else {
             newcell.querySelector(".receipt-number").innerHTML = i

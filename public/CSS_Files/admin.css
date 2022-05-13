@@ -90,10 +90,6 @@ td {
     margin-top: 0px;
 }
 
-.mobile-page {
-    display: none;
-}
-
 .delete-btn {
     border: 2px solid rgba(255, 0, 0, 0.5);
     background-color: white;
@@ -139,14 +135,31 @@ td {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
-    height: 30vh;
+    background-color: rgba(240,255,240, 0.8);
     margin-bottom: 10px;
     border-radius: 10px;
     transition: max-height 0.2s ease-out;
+    height: 70vh;
 }
 
+.collapsible-body-receipts {
+    height: 30vh;
+}
+
+.data-container{
+    padding: 5px 10px;
+    border-bottom: 2px solid silver;
+}
+
+/* .data-container:nth-child(even){
+    background-color: rgba(220, 220, 220, 0.3);
+} */
+
 #receipt-collapsible-body{
+    display: none;
+}
+
+.mobile-page {
     display: none;
 }
 
@@ -175,21 +188,31 @@ td {
     }
     .collapsible-body{
         display: grid;
-        grid-template-columns: 20fr 20fr 20fr;
+        grid-template-columns: 100fr;
+        grid-auto-rows: 1fr;
         align-items: baseline;
         align-content: space-between;
         justify-content: flex-start;
+        gap: 10px;
+        padding: 0px 20px;
     }
 
-    .collapsible-body span {
+    .data-label {
+        display: inline;
+        font-weight: 500;
+    }
+    .user-delete{
+        display: flex;
+        justify-content: flex-end;
+        padding: 0px 10px 20px 0px;
+    }
+
+    /* .collapsible-body span {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        align-content: space-around;
         row-gap: 10px;
-    }
+        
+    } */
     .user-id{
         height: 100%;
         font-size: large;

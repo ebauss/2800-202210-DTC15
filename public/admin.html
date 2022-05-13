@@ -79,28 +79,76 @@
 
     <!-- Collapsible template for users -->
     <template id="collapsible-template-users">
-        <button type="button" class="collapsible-data collapsible-data-user"> <span class="user-id"> User ID </span></button>
+        <button type="button" class="collapsible-data collapsible-data-user">
+            <h4 class="data-label"> User ID: </h4> <span class="user-id"> User ID
+            </span>
+        </button>
         <div class="collapsible-body user-info">
-            <span class="user-first-name"> User First Name</span>
-            <span class="user-last-name">User Last Name</span>
-            <span class="user-email">User Email</span>
-            <span class="user-country">User Country</span>
-            <span class="user-reward-points">User Reward Points</span>
-            <span class="user-age">User Age</span>
-            <span class="user-profile-icon">User Profile Icon</span>
-            <span class="user-compass-id">User Compass ID</span>
-            <span class="user-admin">User Admin</span>
+            <span></span>
+            <div class="data-container">
+                <h4 class="data-label"> First Name: </h4>
+                <span class="user-first-name"> User First Name</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Last Name: </h4>
+                <span class="user-last-name">User Last Name</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Email: </h4>
+                <span class="user-email">User Email</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Country: </h4>
+                <span class="user-country">User Country</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Reward Points </h4>
+                <span class="user-reward-points">User Reward Points</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Age: </h4>
+                <span class="user-age">User Age</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Compass ID: </h4>
+                <span class="user-compass-id">User Compass ID</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Admin: </h4>
+                <span class="user-admin">User Admin</span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Profile: </h4>
+                <span class="user-profile-icon">User Profile Icon</span>
+            </div>
             <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
         </div>
     </template>
 
     <template id="collapsible-template-receipts">
-        <button type="button" class="collapsible-data collapsible-data-receipts"> <span class="receipt-user-id"> User ID </span></button>
+        <button type="button" class="collapsible-data collapsible-data-receipts">
+            <h4 class="data-label"> User ID: </h4> <span class="receipt-user-id"> User ID
+            </span>
+        </button>
         <div class="collapsible-body receipt-info">
-            <span class="receipt-id"> Receipt ID </span>
-            <span class="receipt-image-file"> Receipt Image </span>
-            <span class="receipt-status"> Receipt Status </span>
-            <span class="receipt-admin"> Receipt Admin </span>
+            <span></span>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt ID: </h4>
+                <span class="receipt-id"> Receipt ID </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Image: </h4>
+                <span class="receipt-image-file"> Receipt Image </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Staus: </h4>
+                <span class="receipt-status"> Receipt Status </span>
+            </div>
+            <div class="data-container">
+                <h4 class="data-label"> Receipt Admin: </h4>
+                <span class="receipt-admin"> Receipt Admin </span>
+            </div>
+
             <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
         </div>
     </template>
@@ -144,7 +192,7 @@
                                     <th> Profile Icon </th>
                                     <th> Compass ID </th>
                                     <th> Admin </th>
-                                    <th>  </th>
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody id="user-table-body">
@@ -162,7 +210,7 @@
                                     <th> Receipt Image </th>
                                     <th> Status </th>
                                     <th> Admin </th>
-                                    <th>  </th>
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody id="receipts-table-body">
@@ -173,7 +221,7 @@
                     <!---------------------------------------------->
                     <!-- HTML Tables/Collapsibles for Mobile-Page -->
                     <!---------------------------------------------->
-                    
+
                     <!-- HTML container for users -->
                     <div class="mobile-page" id="user-collapsible-body">
                     </div>
