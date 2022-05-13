@@ -1,50 +1,151 @@
-body, main{
+body,
+main {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-h1, h2{
     font-weight: 800;
 }
-a{
-    color:black;
-}
-    
-.Section-Header{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;   
+
+a {
+    color: black;
 }
 
-.Section-Content{ /* container*/
+.section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.section-content {
+    /* container*/
     display: flex;
     justify-content: center;
 }
 
-.Card-Container{  /* slider*/
+.card-container {
+    /* slider*/
     display: flex;
     flex-grow: 1;
-    width: 90%;
+    width: 100%;
     overflow: scroll;
+    scroll-behavior: smooth;
+
 }
 
-.Card-Information{ /* img*/
-    flex: 0 0 25%;
-    max-width: 25%;
-    aspect-ratio: 7 / 10;
-    background-color: aquamarine;
-    border: 0.2px solid black;
-    border-radius: 25%;
-    box-shadow: 0 1px 3px rgba(100,100,100, 0.3) ;
-    margin:5px;
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(207, 202, 202, 0.4);
+    border-radius: 10px;
+}
+
+.card-information {
+    /* img & popup container*/
     position: relative;
+    text-align: center;
+    color: white;
+    max-width: 25%;
+    border: 0.2px solid black;
+    border-radius: 10%;
+    box-shadow: 0 1px 3px rgba(100, 100, 100, 0.3);
+    margin: 5px;
+    font-size: 90%;
 
+    display: flex;
+    /* height: 100vh; */
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.Card-Title{
-    margin:10%;
+.card-information>img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+}
+
+.card-title { /* open btn */
+    margin: 5%;
     position: absolute;
     bottom: 0;
     cursor: pointer;
     overflow-wrap: anywhere;
+    background-color: rgb(255, 255, 255, 0.5);
+    font-size: 60%;
+    text-align: left;
+    width: 90%;
+    text-overflow: ellipsis;
+}
+
+.popup{
+    position: fixed;
+    top:50%;
+    left:50%;
+    /* ^ screen */
+    transform: translate(-50%, -50%) scale(0); /*container*/
+    transition: 0.5s ease-in-out;
+    border: 1px solid black;
+    z-index: 10;
+    background-color: #fff;
+    width: 500px;
+    max-width: 80%;
+   
+}
+
+.popup.active{
+    transform: translate(-50%, -50%) scale(1); /*container*/
+}
+
+.popup-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.popup-header .title{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.popup-body{
+    padding: 10px 15px;
+}
+
+.popup-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     
-    
+    transition: 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.popup-overlay.active{
+    opacity: 1;
+    background-color: rgb(0, 0, 0, 0.5);
+    pointer-events: all;
 }
