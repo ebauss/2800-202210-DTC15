@@ -108,6 +108,22 @@ function populate_table(data, mobile = false) {
     }
 }
 
+function processDeleteUser(data) {
+    alert(`User ${data} has been deleted.`);
+    location.reload();
+}
+
+function deleteUser() {
+    $.ajax({
+        url: 'http://localhost:3000/deleteUser',
+        type: "POST",
+        data: {
+            userIdToDelete: $(this).attr("id")
+        },
+        success: processDeleteUser
+    })
+}
+
 // Function that populates the receipt table
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
@@ -166,6 +182,7 @@ function receipts_populate_table(data, mobile = false) {
 
 function setup() {
     requestUserData();
+    $('body').on('click', '.user-delete', deleteUser);
 }
 
 $(document).ready(setup)

@@ -25,7 +25,6 @@ const connection = mysql.createConnection({
     multipleStatements: false
 })
 
-
 // Parse through the body of the post request
 app.use(bodyparser.urlencoded({
     extended: true
@@ -212,6 +211,12 @@ app.get('/getUserPoints', (req, res) => {
             res.send(results);
         }
     })
+})
+
+app.post('/deleteUser', (req, res) => {
+    console.log(req.body.userIdToDelete);
+
+    res.send(req.body.userIdToDelete);
 })
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
