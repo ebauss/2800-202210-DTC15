@@ -122,10 +122,10 @@ function user_signIn() {
 </div>`
 
     // Adds a new button in case user forgets their password
-    forget_pass = `<div class="pass-miscellaneous"> Forget Password? </div>`
+    cancel = `<div class="pass-miscellaneous" id="cancel-to-email"> Cancel </div>`
 
     // Shows the sign_in and forget_pass to the login page
-    $("#form-action-container").append(sign_in, forget_pass)
+    $("#form-action-container").append(sign_in, cancel)
 }
 
 // If user is a new user
@@ -184,7 +184,7 @@ function user_signUp() {
     </div>`
 
     // Adds a new button in case user forgets their password
-    cancel = `<div class="pass-miscellaneous"> Cancel </div>`
+    cancel = `<div class="pass-miscellaneous" id="cancel-to-email"> Cancel </div>`
 
     // Shows the sign_up and cancel buttons to the login page
     $("#form-action-container").append(sign_up, cancel)
@@ -194,10 +194,33 @@ function GoIndex() {
     console.log("forwarding to index")
 }
 
+function cancelToEmail() {
+    $('#form-main-content').empty();
+
+    $('#form-main-content').append(
+        `<div class="input-container">
+            <input class="user_input" type="text" name="email" id="email" autocomplete="email" required>
+            <span></span>
+            <label for="email" class="input-labels" id="email-label"> Email </label>
+        </div>`
+    );
+
+    $('#cancel-to-email').remove();
+
+    $('#form-action-container').empty();
+
+    $('#form-action-container').append(
+        `<div class="form-action">
+            <input type="button" value="Next" id="authenticate-user">
+        </div>`
+    )
+}
+
 function setup() {
-    $('#authenticate-user').click(isEmailInDB);
+    $('body').on("click", '#authenticate-user', isEmailInDB);
     $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
     $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
+    $('body').on("click", "#cancel-to-email", cancelToEmail)
 }
 
 $(document).ready(setup)
