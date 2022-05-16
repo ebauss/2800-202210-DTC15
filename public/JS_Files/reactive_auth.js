@@ -96,6 +96,10 @@ function loginSignedUpUser() {
 
 // Show this if user exists
 function user_signIn() {
+    // Disables email field
+    $('#email').prop('disabled', true);
+    $('#email-label').hide();
+
     // Changes the Header into "Sign In"
     $("#authentication-header").html("Sign In")
 
