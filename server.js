@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -41,7 +41,7 @@ app.listen(process.env.PORT || 3000, (err) => {
 app.post('/checkEmailExists', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
 
-    connection.query(`SELECT email FROM users WHERE email IN ('${req.body.email}');`, (err, results, fields) => {
+    connection.query(`SELECT email FROM users WHERE email IN (?);`, [req.body.email], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
@@ -58,7 +58,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
 
     let expectedHashedPassword = "";
 
-    connection.query(`SELECT password, user_id, is_admin FROM users WHERE email = '${req.body.email}';`, (err, results, fields) => {
+    connection.query(`SELECT password, user_id, is_admin FROM users WHERE email = ?;`, [req.body.email], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
@@ -157,7 +157,7 @@ app.get('/loginStatus', (req, res) => {
 
 // sends all fields for a particular user for profile.html
 app.get('/checkProfile', (req, res) => {
-    connection.query(`SELECT * FROM users WHERE user_id = ${req.session.uid}`, (err, results, fields) => {
+    connection.query(`SELECT * FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
@@ -169,7 +169,7 @@ app.get('/checkProfile', (req, res) => {
 
 // updates a user's profile for profile.html
 app.post('/updateProfile', (req, res) => {
-    connection.query(`UPDATE users SET email = '${req.body.userEmail}', age = ${req.body.userAge}, country = '${req.body.userCountry}', compass_id = '${req.body.userCompassId}' WHERE user_id = ${req.session.uid};`, (err, results, fields) => {
+    connection.query(`UPDATE users SET email = ?, age = ?, country = ?, compass_id = ? WHERE user_id = ?;`, [req.body.userEmail, req.body.userAge, req.body.useCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
@@ -182,7 +182,7 @@ app.post('/updateProfile', (req, res) => {
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, monthly_total_points, monthly_goal_points, is_admin) 
     VALUES
-    ('${hashedPassword}', '${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.country}', ${req.body.age}, 0, 0, 10000, FALSE);`,
+    (?, ?, ?, ?, ?, ?, 0, 0, 10000, FALSE);`, [hashedPassword, req.body.first_name, req.body.last_name, req.body.email, req.body.country, req.body.age],
     (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -203,7 +203,7 @@ app.get('/requestAllRewards', (req, res) => {
 
 // retrieves the number of points the user holds
 app.get('/getUserPoints', (req, res) => {
-    connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ${req.session.uid}`, (err, results, fields) => {
+    connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
@@ -214,7 +214,7 @@ app.get('/getUserPoints', (req, res) => {
 })
 
 app.post('/deleteUser', (req, res) => {
-    connection.query(`DELETE FROM users WHERE user_id = ${req.body.userIdToDelete};`, (err, results, fields) => {
+    connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
