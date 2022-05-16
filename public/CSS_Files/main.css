@@ -82,3 +82,17 @@ a {
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+/* ----- for scrolling function--- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: rgba(106, 143, 111, 0.293);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.065);
+}
