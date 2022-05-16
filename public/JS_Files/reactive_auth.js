@@ -132,6 +132,10 @@ function user_signUp() {
     // Changes the Header into "Sign Up"
     $("#authentication-header").html("Sign Up")
 
+    // lock email field for user sign up
+    $("#email").prop("disabled", true);
+    $("#email-label").hide();
+
     // Adds a new field called "new_password"
     new_password = `<div class="input-container">
     <input class="user_input" type="password" name="new--password" id="new-password" autocomplete="new-password" required>
