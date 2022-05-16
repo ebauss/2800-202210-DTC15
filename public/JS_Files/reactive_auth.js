@@ -70,7 +70,7 @@ function processLogin(data) {
 function processSignup(data) {
     switch (data) {
         case "success":
-            alert("You have been added to the database.");
+            alert("You have been signed up.");
             loginSignedUpUser();
             break;
         case "unmatching password":
@@ -78,6 +78,9 @@ function processSignup(data) {
             break;
         case "blank":
             alert("All fields are required!");
+            break;
+        case "age is not a number":
+            alert("You must enter a nuber for age");
             break;
     }
 }
@@ -128,6 +131,10 @@ function user_signIn() {
 function user_signUp() {
     // Changes the Header into "Sign Up"
     $("#authentication-header").html("Sign Up")
+
+    // lock email field for user sign up
+    $("#email").prop("disabled", true);
+    $("#email-label").hide();
 
     // Adds a new field called "new_password"
     new_password = `<div class="input-container">
