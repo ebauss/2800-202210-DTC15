@@ -180,8 +180,29 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
-function setup() {
-    requestUserData();
+// redirects the user to main if they are not logged in or not an admin
+function redirectToMain(data) {
+    if (data[0] == undefined || !data[0].is_admin) {
+        alert("You do not have permission to access this page.");
+        window.location.href = './authentication.html';
+    }
+    else {
+        // populates user data in table
+        requestUserData();
+    }
+}
+
+// sends request to server to get user's details
+function verifyAdmin() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: redirectToMain
+    })
+}
+
+async function setup() {
+    verifyAdmin();
     $('body').on('click', '.user-delete', deleteUser);
 }
 
