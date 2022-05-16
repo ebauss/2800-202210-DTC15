@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -98,14 +98,14 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
 app.get('/quickLogin', (req, res) => {
     req.session.authenticated = true;
     req.session.uid = 2;
-    res.send(true);
+    res.send('tsubasa');
 });
 
 // DEBUGGING: for quickly logging in as admin
 app.get('/quickLoginAdmin', (req, res) => {
     req.session.authenticated = true;
     req.session.uid = 1;
-    res.send(true);
+    res.send('ac130');
 })
 
 // Retrieves all the users' data for admin.html and sends it as a JSON object
