@@ -186,6 +186,10 @@ function redirectToMain(data) {
         alert("You do not have permission to access this page.");
         window.location.href = './authentication.html';
     }
+    else {
+        // populates user data in table
+        requestUserData();
+    }
 }
 
 // sends request to server to get user's details
@@ -197,9 +201,8 @@ function verifyAdmin() {
     })
 }
 
-function setup() {
+async function setup() {
     verifyAdmin();
-    requestUserData();
     $('body').on('click', '.user-delete', deleteUser);
 }
 

@@ -160,7 +160,6 @@ function verifyLogin() {
 function setup() {
     verifyLogin();
     makeReadRequest();
-
 }
 
 $(document).ready(setup);
