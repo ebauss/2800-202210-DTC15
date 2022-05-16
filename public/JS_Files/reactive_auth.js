@@ -195,11 +195,13 @@ function GoIndex() {
 }
 
 function cancelToEmail() {
+    enteredEmail = $('#email').val();
+
     $('#form-main-content').empty();
 
     $('#form-main-content').append(
         `<div class="input-container">
-            <input class="user_input" type="text" name="email" id="email" autocomplete="email" required>
+            <input class="user_input" type="text" name="email" id="email" autocomplete="email" value="${enteredEmail}" required>
             <span></span>
             <label for="email" class="input-labels" id="email-label"> Email </label>
         </div>`
