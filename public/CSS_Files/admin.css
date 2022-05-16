@@ -92,10 +92,11 @@ td {
     color: none;
     padding: 10px 10px 5px 10px;
     text-align: justify;
+    font-size: medium;
     cursor: pointer;
     color: dimgray;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px grey;
+    box-shadow: 5px 5px 5px grey;
 
 }
 
@@ -109,53 +110,38 @@ td {
     background-color: none;
 }
 
-.collapsible-data {
-    background-color: rgb(139, 69, 19);
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    border-radius: 10px;
-}
-
-.active,
-.collapsible-data:hover {
-    background-color: rgb(139, 69, 19);
-}
-
-.collapsible-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: rgba(240,255,240, 0.8);
-    margin-bottom: 10px;
-    border-radius: 10px;
-    transition: max-height 0.2s ease-out;
-    height: 70vh;
-}
-
-.collapsible-body-receipts {
-    height: 30vh;
-}
-
 .data-container{
     padding: 5px 10px;
     border-bottom: 2px solid silver;
 }
 
-/* .data-container:nth-child(even){
-    background-color: rgba(220, 220, 220, 0.3);
-} */
+.verify-btn{
+    border: 3px solid rgba(50, 205, 50, 9);
+    background-color: white;
+    color: none;
+    padding: 10px 10px 5px 10px;
+    text-align: justify;
+    cursor: pointer;
+    font-size: medium;
+    color: dimgray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.verify-btn:hover{
+    background: rgba(50, 205, 50, 9);
+    color: white;
+    font-weight: 700;
+}
 
 #receipt-collapsible-body{
     display: none;
 }
 
-.mobile-page {
+.mobile-page,
+.collapsible-body,
+.collapsible-data,
+.collapsible-body-receipts {
     display: none;
 }
 
@@ -168,7 +154,10 @@ td {
         height: 6vh;
     }
 
-    .mobile-page {
+    .mobile-page,
+    .collapsible-body,
+    .collapsible-data,
+    .collapsible-body-receipts {
         display: block;
     }
 
@@ -197,20 +186,49 @@ td {
         display: inline;
         font-weight: 500;
     }
-    .user-delete{
+
+    .btn-receipt-container{
         display: flex;
         justify-content: flex-end;
         padding: 0px 10px 20px 0px;
+        gap: 10px;
     }
 
-    /* .collapsible-body span {
-        display: flex;
-        flex-wrap: wrap;
-        row-gap: 10px;
-        
-    } */
     .user-id{
         height: 100%;
         font-size: large;
+    }
+
+    .collapsible-data {
+        background-color: rgb(139, 69, 19);
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+    
+    .active-collapsible,
+    .collapsible-data:hover {
+        background-color: rgb(139, 69, 19);
+    }
+    
+    .collapsible-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: rgba(240,255,240, 0.8);
+        margin-bottom: 10px;
+        border-radius: 10px;
+        transition: max-height 0.2s ease-out;
+        height: 70vh;
+    }
+    
+    .collapsible-body-receipts {
+        height: 20vh;
     }
 }

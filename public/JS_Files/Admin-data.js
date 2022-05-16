@@ -1,10 +1,30 @@
+dummy_receipts = [
+    {
+        "date": "2022-03-30 24:11:22",
+        "UserID": "Jake@gmail.com",
+        "receiptId": "sdadsadasdasdaweweq",
+        "admin": null,
+        "receiptImg": "https://i.redd.it/go8r4r6opqe11.jpg",
+    },
+    {
+        "date": "2022-03-30 24:11:22",
+        "UserID": "Jake@gmail.com",
+        "receiptId": "sdadsadasdasdawewsdaseq",
+        "admin": "Joushua",
+        "receiptImg": "https://i.redd.it/go8r4r6opqe11.jpg",
+    },
+]
+
 function requestUserData() {
     console.log("User data requested");
     $.ajax(
         {
             url: "http://localhost:3000/requestUserData",
             type: "GET",
-            success: populate_table
+            success: (data) => {
+                populate_table(data)
+                populate_table(data, true)
+            }
         }
     )
 }
@@ -46,7 +66,7 @@ function populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-users")
     }
     data.forEach(element => {
-        userID = element.user_id;``
+        userID = element.user_id; ``
         fName = element.first_name;
         lName = element.last_name;
         email = element.email;
@@ -133,47 +153,37 @@ function receipts_populate_table(data, mobile = false) {
     }
     i = 1
     data.forEach(info => {
-        receiptUser = info.user_id
-        receipt = info.receipt_id
-        imageFile = info.image_file
-        receiptStatus = info.status
+        date = info.date.slice(0, 10)
+        email = info.UserID
+        receiptId = info.receiptId
         receiptAdmin = info.admin
         let newcell = tableTemplate.content.cloneNode(true);
 
-        if (mobile) {
-            newcell.querySelector(".receipt-user-id").innerHTML = `${receiptUser}`
-            newcell.querySelector(".receipt-id").innerHTML = `${receipt}`
-            newcell.querySelector(".receipt-image-file").innerHTML = `${imageFile}`
-            newcell.querySelector(".receipt-status").innerHTML = `${receiptStatus}`
-            newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
-            newcell.querySelector(".user-delete").setAttribute("id", receipt)
-        } else {
-            newcell.querySelector(".receipt-number").innerHTML = i
-            newcell.querySelector(".receipt-user-id").innerHTML = `${receiptUser}`
-            newcell.querySelector(".receipt-id").innerHTML = `${receipt}`
-            newcell.querySelector(".receipt-image-file").innerHTML = `${imageFile}`
-            newcell.querySelector(".receipt-status").innerHTML = `${receiptStatus}`
-            newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
-            newcell.querySelector(".user-delete").setAttribute("id", receipt)
+        if (receiptAdmin === null) {
+            receiptAdmin = "Not Provided"
         }
+
+        newcell.querySelector(".receipt-date").innerHTML = `${date}`
+        newcell.querySelector(".receipt-user-email").innerHTML = `${email}`
+        newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
+        newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`)
 
         if (mobile) {
             document.getElementById("receipt-collapsible-body").append(newcell)
         } else {
             document.getElementById("receipts-table-body").append(newcell);
-            i++
         }
     })
     if (mobile) {
         allCollapsible = document.querySelectorAll(".collapsible-data-receipts")
         allCollapsible.forEach(collapsible => {
             collapsible.addEventListener("click", (event) => {
-                event.target.classList.toggle("active");
+                event.target.classList.toggle("active-collapsible");
                 content = event.target.nextElementSibling;
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                 } else {
-                    content.style.maxHeight = "40vh";
+                    content.style.maxHeight = "30vh";
                 }
             })
         })
@@ -181,7 +191,9 @@ function receipts_populate_table(data, mobile = false) {
 }
 
 function setup() {
-    requestUserData();
+    // requestUserData();
+    receipts_populate_table(dummy_receipts)
+    receipts_populate_table(dummy_receipts, true)
     $('body').on('click', '.user-delete', deleteUser);
 }
 
