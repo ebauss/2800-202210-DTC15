@@ -99,6 +99,13 @@ app.get('/quickLogin', (req, res) => {
     req.session.authenticated = true;
     req.session.uid = 2;
     res.send(true);
+});
+
+// DEBUGGING: for quickly logging in as admin
+app.get('/quickLoginAdmin', (req, res) => {
+    req.session.authenticated = true;
+    req.session.uid = 1;
+    res.send(true);
 })
 
 // Retrieves all the users' data for admin.html and sends it as a JSON object
