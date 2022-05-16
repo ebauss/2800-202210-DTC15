@@ -70,7 +70,7 @@ function processLogin(data) {
 function processSignup(data) {
     switch (data) {
         case "success":
-            alert("You have been added to the database.");
+            alert("You have been signed up.");
             loginSignedUpUser();
             break;
         case "unmatching password":
@@ -78,6 +78,9 @@ function processSignup(data) {
             break;
         case "blank":
             alert("All fields are required!");
+            break;
+        case "age is not a number":
+            alert("You must enter a nuber for age");
             break;
     }
 }
