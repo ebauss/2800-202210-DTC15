@@ -4,7 +4,7 @@ main {
     font-weight: 800;
 }
 
-h1{
+h1 {
     margin: 10px;
 }
 
@@ -21,7 +21,7 @@ a {
 
 .section-content {
     /* container*/
-   
+
     display: flex;
     justify-content: center;
 }
@@ -33,7 +33,8 @@ a {
     overflow: scroll;
     scroll-behavior: smooth;
     width: 100%;
-    margin: 20px 0px;;
+    margin: 20px 0px;
+    height: 30%;
 }
 
 .card-information {
@@ -61,26 +62,29 @@ a {
 }
 
 
-.card-context { /* open btn */
+.card-context {
+    /* open btn */
     margin: 5%;
     position: absolute;
     bottom: 0;
     cursor: pointer;
-    overflow-wrap: break-word;
     background-color: rgb(255, 255, 255, 0.5);
     font-size: 60%;
-    text-align: left;
-    width: 90%;
-    text-overflow: ellipsis;
-} 
+    
+    width: 80%;
+}
 
-.card-context>button{
+.card-context>button {
     cursor: pointer;
     border: none;
     outline: none;
     background: none;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: bold;
+    text-align: left;
+    overflow-wrap: break-word;
+    margin-top: 1em; 
+    margin-right: 1em;
 }
 
 /* ----- for scrolling function--- */
@@ -90,9 +94,19 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-background: rgba(106, 143, 111, 0.293);
+    background: rgba(106, 143, 111, 0.293);
 }
 
 ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.065);
+}
+
+@media screen and (max-width: 550px) {
+
+    .card-information {
+        aspect-ratio: 8/10;
+        width: 66%;
+        height: 33%;
+    }
+
 }
