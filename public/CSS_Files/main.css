@@ -4,6 +4,14 @@ main {
     font-weight: 800;
 }
 
+hr{
+    border: 0.5px solid rgba(119, 85, 23, 0.596);
+}
+
+h1 {
+    margin: 10px;
+}
+
 a {
     color: black;
 }
@@ -12,6 +20,7 @@ a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    margin: 10px;
 }
 
 .section-content {
@@ -22,130 +31,92 @@ a {
 
 .card-container {
     /* slider*/
+
     display: flex;
-    flex-grow: 1;
-    width: 100%;
     overflow: scroll;
     scroll-behavior: smooth;
-
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: none;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #fff;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(207, 202, 202, 0.4);
-    border-radius: 10px;
+    width: 100%;
+    margin: 20px 0px;
+    height: 30%;
 }
 
 .card-information {
     /* img & popup container*/
+
+    flex: 0 0 25%;
+    width: 25%;
+    aspect-ratio: 16/9;
+    /* padding: 3px; */
+    margin-bottom: 15px;
     position: relative;
     text-align: center;
     color: white;
     max-width: 25%;
-    border: 0.2px solid black;
-    border-radius: 10%;
+    /* border: 0.2px solid black; */
+    /* border-radius: 10%; */
     box-shadow: 0 1px 3px rgba(100, 100, 100, 0.3);
-    margin: 5px;
+    margin: .3em;
+    margin-bottom: 2em;
     font-size: 90%;
 
-    display: flex;
-    /* height: 100vh; */
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* margin is for the slider at the bottom */
+    /* aspect- ratio gives the div portion sizing */
+
+    text-align: center;
+    color: black;
+    font-size: 90%;
 }
 
 .card-information>img {
     width: 100%;
     height: 100%;
-    border-radius: 10%;
+    border-radius: 3px;
 }
 
-.card-title { /* open btn */
-    margin: 5%;
-    position: absolute;
+
+.card-context {
+    /* open btn */
+    padding: 0.5em;
+    position: absolute ;
     bottom: 0;
     cursor: pointer;
-    overflow-wrap: anywhere;
     background-color: rgb(255, 255, 255, 0.5);
     font-size: 60%;
-    text-align: left;
-    width: 90%;
-    text-overflow: ellipsis;
+    width: 80%;
 }
 
-.popup{
-    position: fixed;
-    top:50%;
-    left:50%;
-    /* ^ screen */
-    transform: translate(-50%, -50%) scale(0); /*container*/
-    transition: 0.5s ease-in-out;
-    border: 1px solid black;
-    z-index: 10;
-    background-color: #fff;
-    width: 500px;
-    max-width: 80%;
-   
-}
-
-.popup.active{
-    transform: translate(-50%, -50%) scale(1); /*container*/
-}
-
-.popup-header{
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-}
-
-.popup-header .title{
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-button{
+.card-context>button {
     cursor: pointer;
     border: none;
     outline: none;
     background: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    overflow-wrap: break-word;
+    margin-top: 1em; 
+    margin-right: 1em;
 }
 
-.popup-body{
-    padding: 10px 15px;
+/* ----- for scrolling function--- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.popup-overlay{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    
-    transition: 0.5s ease-in-out;
-    pointer-events: none;
+::-webkit-scrollbar-thumb {
+    background: rgba(106, 143, 111, 0.293);
 }
 
-.popup-overlay.active{
-    opacity: 1;
-    background-color: rgb(0, 0, 0, 0.5);
-    pointer-events: all;
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.065);
+}
+
+@media screen and (max-width: 550px) {
+
+    .card-information {
+        aspect-ratio: 8/10;
+        width: 66%;
+    }
+
 }

@@ -74,17 +74,17 @@ function populate_table(data, mobile = false) {
             compass_id = "Not provided";
         }
 
-        newcell.querySelector(".user-id").innerHTML = `${userID}`
-        newcell.querySelector(".user-first-name").innerHTML = `${fName}`
-        newcell.querySelector(".user-last-name").innerHTML = ` ${lName}`
-        newcell.querySelector(".user-email").innerHTML = `${email}`
-        newcell.querySelector(".user-country").innerHTML = `${country}`
-        newcell.querySelector(".user-reward-points").innerHTML = `${points}`
-        newcell.querySelector(".user-age").innerHTML = `${age}`
-        newcell.querySelector(".user-profile-icon").innerHTML = `${profile_icon}`
-        newcell.querySelector(".user-compass-id").innerHTML = `${compass_id}`
-        newcell.querySelector(".user-admin").innerHTML = `${is_admin}`
-        newcell.querySelector(".user-delete").setAttribute("id", userID)
+        // newcell.querySelector(".user-id").innerHTML = `${userID}`
+        newcell.querySelector(".user-first-name").innerHTML = fName;
+        newcell.querySelector(".user-last-name").innerHTML = lName;
+        newcell.querySelector(".user-email").innerHTML = `#${userID} - ${email}`;
+        newcell.querySelector(".user-country").innerHTML = country;
+        newcell.querySelector(".user-reward-points").innerHTML = points;
+        newcell.querySelector(".user-age").innerHTML = age;
+        newcell.querySelector(".user-profile-icon").innerHTML = profile_icon;
+        newcell.querySelector(".user-compass-id").innerHTML = compass_id;
+        newcell.querySelector(".user-admin").innerHTML = is_admin;
+        newcell.querySelector(".user-delete").setAttribute("id", userID);
 
         if (mobile) {
             document.getElementById("user-collapsible-body").append(newcell)
@@ -180,8 +180,29 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
-function setup() {
-    requestUserData();
+// redirects the user to main if they are not logged in or not an admin
+function redirectToMain(data) {
+    if (data[0] == undefined || !data[0].is_admin) {
+        alert("You do not have permission to access this page.");
+        window.location.href = './authentication.html';
+    }
+    else {
+        // populates user data in table
+        requestUserData();
+    }
+}
+
+// sends request to server to get user's details
+function verifyAdmin() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: redirectToMain
+    })
+}
+
+async function setup() {
+    verifyAdmin();
     $('body').on('click', '.user-delete', deleteUser);
 }
 

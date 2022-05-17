@@ -140,9 +140,26 @@ function makeWriteRequest() {
     });
 }
 
-function setup() {
-    makeReadRequest();
+// redirects the user to authentication.html if user is not logged in
+function redirectToLogin(data) {
+    if (!data.loggedIn) {
+        alert("You are logged out. Please login to access this page.");
+        window.location.href = './authentication.html';
+    }
+}
 
+// sends request to server to check if user is logged in
+function verifyLogin() {
+    $.ajax({
+        url: "http://localhost:3000/loginStatus",
+        type: "GET",
+        success: redirectToLogin
+    })
+}
+
+function setup() {
+    verifyLogin();
+    makeReadRequest();
 }
 
 $(document).ready(setup);

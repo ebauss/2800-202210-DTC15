@@ -56,15 +56,43 @@ function processUserRewardsInfo(data) {
 
     monthlyTotalPoints = data[0].monthly_total_points;
     monthlyGoalPoints = data[0].monthly_goal_points;
-    createChart(monthlyTotalPoints, monthlyGoalPoints);
+
+    let currentPoints = monthlyTotalPoints;
+    let totalPoints = monthlyGoalPoints - monthlyTotalPoints;
+
+    if (totalPoints < 0) {
+        totalPoints = 0
+    };
+
+    createChart(currentPoints, totalPoints);
 
     $('#display-current-points').html(monthlyTotalPoints);
     $('#display-goal-points').html(monthlyGoalPoints);
 }
 
+// redirects the user to authentication.html if user is not logged in
+function redirectToLogin(data) {
+    if (!data.loggedIn) {
+        alert("You are logged out. Please login to access this page.");
+        window.location.href = './authentication.html';
+    }
+    else {
+        currentMonth();
+        getUserRewardsInfo();
+    }
+}
+
+// sends request to server to check if user is logged in
+function verifyLogin() {
+    $.ajax({
+        url: "http://localhost:3000/loginStatus",
+        type: "GET",
+        success: redirectToLogin
+    })
+}
+
 function setup(){
-    currentMonth();
-    getUserRewardsInfo();
+    verifyLogin();
 }
 
 $(document).ready(setup);
