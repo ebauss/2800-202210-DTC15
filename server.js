@@ -265,7 +265,7 @@ app.get('/checkProfile/id/:user_id', (req,res) => {
             console.log(err);
         } 
         else {
-            res.send(results[0]);
+            res.send(results[0].email);
         }
     })
 })

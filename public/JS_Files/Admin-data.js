@@ -149,13 +149,11 @@ function getUserEmailByUserId(data) {
         url: `http://localhost:3000/checkProfile/id/${data}`,
         type: 'GET',
         success: (data) => {
-            receipts_populate_table(data);
-            receipts_populate_table(data, true);
         }
     })
 }
 
-// Function that populates the receipt table
+// Function that populates the receipt table. This function only runs once. Once it is run, it populates all the receipt data into the table.
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-receipts")
@@ -206,15 +204,24 @@ function receipts_populate_table(data, mobile = false) {
 }
 
 function requestReceiptData() {
+    let dataArray = []; // this object will contain data from the receipts table and the users table.
+
     $.ajax({
         url: "http://localhost:3000/requestReceiptData",
         type: "GET",
         success: (data) => {
-            console.log(data);
-            for (let i = 0; i < data.length; i++) {
-                getUserEmailByUserId(data[i].owner_id);
-            }
-            
+            data.forEach(receipt => {
+                $.ajax({
+                    url: `http://localhost:3000/checkProfile/id/${receipt.owner_id}`,
+                    type: 'GET',
+                    success: (data) => {
+                        receipt['email'] = data;
+                        dataArray.push(receipt);
+                    }
+                })
+            })
+            receipts_populate_table(data);
+            receipts_populate_table(data, true);
         }
     })
 }
