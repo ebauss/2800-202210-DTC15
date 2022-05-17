@@ -1,0 +1,179 @@
+main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-container{
+    display: grid;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 5px;
+}
+
+.card-body{
+
+    cursor: pointer;
+    margin: 5px 0px;
+    width:100%;
+    display: grid;
+    grid-template-areas:
+    'card-type . . .card-status' 
+    '. card-title card-title card-title .'
+    '. card-points card-points card-points .'
+    'card-code . . . card-date';
+}
+
+/* depending on the populated cards the card-type will had diffrent backrounds */
+.card-type{
+    grid-area: card-type;
+    padding: 1px;
+}
+
+.card-type.rewards{
+    background-color: rgba(250, 128, 114, 0.5);
+}
+
+.card-type.earnings{
+    background-color: rgba(153, 70, 232, 0.5);
+
+}
+
+
+/* status will have different text color depending in different stages*/
+.card-status{
+    grid-area:card-status;
+    text-align: end;
+}
+
+.card-status.start{
+    color: green ;
+}
+
+.card-status.end{
+    color:crimson;
+}
+
+.card-points{
+    grid-area: card-points;
+    text-align: center;
+}
+
+.card-title{
+    grid-area:card-title;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+.card-date{
+    grid-area:card-date;
+}
+.card-code{
+    grid-area: card-code;
+} 
+ 
+/* -------- for the over lay ------- */
+/* overlay is to dim the background and prevent clicking other cards */
+#overlay{
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+
+    /* transition creates the action for overlay entrance */
+}
+
+#overlay.dim{
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+
+    /* when a class dim is added to id overlay, the overlay will cover the entire page */
+    /* z-index covers the cards and floating bar prevents accidental clicking */
+}
+
+
+
+/* ---------for the popup---------- */
+.popup-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: aliceblue;
+    width: 500px;
+    max-width: 80%;
+
+    /* transform scale 0 is to hide the popup and wait for event*/
+    /* translate positions popup to center screen */
+    /* z-index ensure popup is on top of overlay */
+    /* transition creates the action for popup entrance */
+}
+
+.popup-container.active{
+    transform: translate(-50%, -50%) scale(1);
+
+    /* when a class active is added to class popup-container, the popup will show at the center of the page */
+}
+
+.popup-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-btn{
+    cursor: pointer;
+}
+
+.popup-body{
+    padding: 10px 15px;
+    margin: 5px 0px;
+    width:100%;
+    display: grid;
+    row-gap: 0.5em;
+    column-gap: 1em;
+    grid-template-columns: 25fr 75fr;
+    grid-template-areas:
+    'img info'
+    'footer footer';
+
+}
+
+.popup-img{
+    grid-area: img;
+    
+}
+
+.popup-information{
+    grid-area: info;
+}
+
+.popup-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-area: footer;
+}
+
+span{
+    display: flex;
+    justify-content: space-between;
+}
+.popup-tile{
+    grid-area: popup-tile;
+    font-weight: bold;
+    font-size: 2rem;
+}
