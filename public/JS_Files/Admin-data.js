@@ -190,6 +190,20 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
+function requestReceiptData() {
+    $.ajax({
+        url: "http://localhost:3000/requestReceiptData",
+        type: "GET",
+        success: (data) => {
+            // spaghetti code calling two of the same function???
+            console.log(data);
+
+            receipts_populate_table(data);
+            receipts_populate_table(data, true);
+        }
+    })
+}
+
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
