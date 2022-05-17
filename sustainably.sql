@@ -77,7 +77,9 @@ CREATE TABLE receipts (
 );
 
 INSERT INTO receipts (admin_id, notes, picture, owner_id, reward_points) VALUES
-(NULL, NULL, 'https://picsum.photos/id/237/200', 1, 60000),
-(2, 'Good to go, whoo', 'https://picsum.photos/id/237/200', 3, 4190000);
+(NULL, NULL, 'https://picsum.photos/id/237/200', 2, 60000),
+(1, 'Good to go, whoo', 'https://picsum.photos/id/237/200', 2, 419000);
 
 SELECT * FROM receipts;
+
+DROP TABLE receipts

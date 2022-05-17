@@ -166,10 +166,9 @@ function receipts_populate_table(data, mobile = false) {
     data.forEach(info => {
         
         // date = info.date.slice(0, 10);
-        email = getUserEmailByUserId(info.owner_id);
-        console.log(email);
-        receiptId = info.receiptId;
-        receiptAdmin = info.admin;
+        email = info.email;
+        receiptId = info.receipt_id;
+        receiptAdmin = info.admin_id;
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (receiptAdmin === null) {
@@ -203,14 +202,15 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
-function requestReceiptData() {
+async function requestReceiptData() {
     let dataArray = []; // this object will contain data from the receipts table and the users table.
 
-    $.ajax({
+    await $.ajax({
         url: "http://localhost:3000/requestReceiptData",
         type: "GET",
         success: (data) => {
             data.forEach(receipt => {
+                console.log("owner_id" + receipt.owner_id)
                 $.ajax({
                     url: `http://localhost:3000/checkProfile/id/${receipt.owner_id}`,
                     type: 'GET',
@@ -220,10 +220,13 @@ function requestReceiptData() {
                     }
                 })
             })
-            receipts_populate_table(data);
-            receipts_populate_table(data, true);
         }
     })
+
+    console.log(dataArray);
+
+    // receipts_populate_table(dataArray);
+    // receipts_populate_table(dataArray, true);
 }
 
 // redirects the user to main if they are not logged in or not an admin
