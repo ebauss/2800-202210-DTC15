@@ -1,0 +1,156 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+main{
+    margin: 6em;
+    background-color: bisque;
+    padding: 10px;
+    box-shadow: 0px 5px 10px gray;
+}
+
+#form{
+    display: grid;
+    grid-template-columns: 50fr 50fr;
+    grid-template-rows: 10fr 60fr;
+    grid-template-areas: 
+    "info-header img-header"
+    "information img";
+    column-gap: 3em;
+    padding: 10px;
+}
+
+.img-container{
+    grid-area: img;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.info-header{
+    grid-area: info-header;
+    text-align: center;
+}
+
+.img-header{
+    grid-area: img-header;
+    text-align: center;
+}
+
+#uneditable-data{
+    grid-area: information;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 3em;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: baseline;
+    align-content: space-around;
+    column-gap: 2em;
+}
+
+input {
+    height: 3vh;
+    padding: 3px;
+    border: 2px solid rgb(128,128,128);
+    border-radius: 5px;
+    font-size: medium;
+}
+
+#message{
+    margin-top: 10px;
+    width: 100%;
+    height: 4em;
+    resize: none;
+    padding: 10px;
+    border: 2px solid rgb(128,128,128);
+    border-radius: 5px;
+    font-size: large;
+}
+
+h2{
+    border-bottom: 2px solid rgb(128,128,128);
+
+}
+
+label {
+    font-size: medium;
+    font-weight: 900;
+}
+
+.btn-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button{
+    padding: 1.5% 25%;
+    font-size: medium;
+    border-radius: 10px;
+    background-color: rgb(72,209,204);
+    border: 1px solid rgb(119,136,153);
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+
+header{
+    padding: 10px 20px;
+}
+
+a {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: rgb(220,220,220);
+    background-color: rgb(160,82,45);
+
+}
+
+@media screen and (max-width: 650px) {
+    header {
+        margin-bottom: 10px;
+        padding-left: 1px;
+    }
+
+    a{
+        margin-bottom: 10px;
+    }
+    main {
+        margin: 0em;
+    }
+    #form{
+        grid-template-columns: 100fr;
+        grid-template-rows: 5fr 20fr 5fr 25fr;
+        grid-template-areas: 
+        "img-header"
+        "img"
+        "info-header"
+        "information";
+        align-items: center;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px 10px;
+    }
+
+    img {
+        height: 300px;
+    }
+}

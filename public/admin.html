@@ -26,8 +26,8 @@
     <!--------------------------->
     <link rel="stylesheet" href="./CSS_Files/style.css">
     <link rel="stylesheet" href="./CSS_Files/admin.css">
-    <link rel="stylesheet" href="../CSS_Files/web-page.css">
-    <link rel="stylesheet" href="../CSS_Files/mobile-page.css">
+    <link rel="stylesheet" href="./CSS_Files/web-page.css">
+    <link rel="stylesheet" href="./CSS_Files/mobile-page.css">
 
 </head>
 
@@ -63,12 +63,10 @@
     <!-- Table-row template for receipts -->
     <template id="table-template-receipt">
         <tr>
-            <td class="receipt-number"> Number </td>
-            <td class="receipt-user-id"> User ID </td>
-            <td class="receipt-id"> Receipt ID </td>
-            <td class="receipt-image-file"> Receipt Image </td>
-            <td class="receipt-status"> Receipt Status </td>
-            <td class="receipt-admin"> Receipt Admin </td>
+            <td class="receipt-date"> Date </td>
+            <td class="receipt-user-email"> Email </td>
+            <td class="receipt-admin"> Admin </td>
+            <td class="user-verify"> <a class="verify-btn"> Verify </a> </td>
             <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
         </tr>
     </template>
@@ -124,29 +122,23 @@
     <!-- Collapsible tempalte for receipts data -->
     <template id="collapsible-template-receipts">
         <button type="button" class="collapsible-data collapsible-data-receipts">
-            <h4 class="data-label"> User ID: </h4> <span class="receipt-user-id"> User ID
+            <h4 class="data-label"> Date: </h4> <span class="receipt-date"> Submission Date
             </span>
         </button>
         <div class="collapsible-body receipt-info">
             <span></span>
             <div class="data-container">
-                <h4 class="data-label"> Receipt ID: </h4>
-                <span class="receipt-id"> Receipt ID </span>
+                <h4 class="data-label"> Email: </h4>
+                <span class="receipt-user-email"> Email </span>
             </div>
             <div class="data-container">
-                <h4 class="data-label"> Receipt Image: </h4>
-                <span class="receipt-image-file"> Receipt Image </span>
+                <h4 class="data-label"> Admin: </h4>
+                <span class="receipt-admin"> Admin </span>
             </div>
-            <div class="data-container">
-                <h4 class="data-label"> Receipt Staus: </h4>
-                <span class="receipt-status"> Receipt Status </span>
+            <div class="btn-receipt-container">
+                <a class="verify-btn"> Verify </a>
+                <button type="button" class="delete-btn"> Delete </button>
             </div>
-            <div class="data-container">
-                <h4 class="data-label"> Receipt Admin: </h4>
-                <span class="receipt-admin"> Receipt Admin </span>
-            </div>
-
-            <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
         </div>
     </template>
 
@@ -157,7 +149,7 @@
             <section class="table-header">
                 <span class="button-container"><button class="header-btn activated-button" type="button" id="user-data">
                         Users </button></span>
-                <span class="button-container"><button class="header-btn" type="button" id="receipt-data"> Receipts
+                <span class="button-container"><button class="header-btn" type="button" id="receipt-data"> Receipt Verification
                     </button></span>
                 <span class="button-container"><button class="header-btn" type="button" id="reward-data"> Rewards
                     </button></span>
@@ -201,12 +193,10 @@
                         <table class="content-table" id="receipt-table">
                             <thead>
                                 <tr>
-                                    <th> Number </th>
-                                    <th> User ID </th>
-                                    <th> Receipt ID </th>
-                                    <th> Receipt Image </th>
+                                    <th> Date </th>
+                                    <th> Email </th>
                                     <th> Status </th>
-                                    <th> Admin </th>
+                                    <th> </th>
                                     <th> </th>
                                 </tr>
                             </thead>
