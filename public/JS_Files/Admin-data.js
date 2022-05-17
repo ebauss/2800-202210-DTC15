@@ -161,14 +161,15 @@ function receipts_populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-receipt")
     }
     i = 1
+
     console.log(data);
 
-    data.forEach(info => {
-        
+    data.forEach(receipt => {
+        console.log(receipt);
         // date = info.date.slice(0, 10);
-        email = info.email;
-        receiptId = info.receipt_id;
-        receiptAdmin = info.admin_id;
+        email = receipt.email;
+        receiptId = receipt.receipt_id;
+        receiptAdmin = receipt.admin_id;
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (receiptAdmin === null) {
@@ -222,18 +223,15 @@ async function requestReceiptData() {
             })
         }
     })
-
-    console.log(dataArray);
-
-    // receipts_populate_table(dataArray);
-    // receipts_populate_table(dataArray, true);
+    receipts_populate_table(dataArray);
+    receipts_populate_table(dataArray, true);
 }
 
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
         alert("You do not have permission to access this page.");
-        window.location.href = './authentication.html';
+        window.location.href = './qli.html';
     }
     else {
         // populates user data in table
