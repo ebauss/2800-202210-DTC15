@@ -259,5 +259,16 @@ app.post('/uploadReceipt', (req, res) => {
     })
 })
 
+app.get('/checkProfile/id/:user_id', (req,res) => {
+    connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } 
+        else {
+            res.send(results[0]);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));

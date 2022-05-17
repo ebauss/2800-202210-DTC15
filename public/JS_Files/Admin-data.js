@@ -144,6 +144,17 @@ function deleteUser() {
     })
 }
 
+function getUserEmailByUserId(data) {
+    $.ajax({
+        url: `http://localhost:3000/checkProfile/id/${data}`,
+        type: 'GET',
+        success: (data) => {
+            receipts_populate_table(data);
+            receipts_populate_table(data, true);
+        }
+    })
+}
+
 // Function that populates the receipt table
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
@@ -152,21 +163,25 @@ function receipts_populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-receipt")
     }
     i = 1
+    console.log(data);
+
     data.forEach(info => {
-        date = info.date.slice(0, 10)
-        email = info.UserID
-        receiptId = info.receiptId
-        receiptAdmin = info.admin
+        
+        // date = info.date.slice(0, 10);
+        email = getUserEmailByUserId(info.owner_id);
+        console.log(email);
+        receiptId = info.receiptId;
+        receiptAdmin = info.admin;
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (receiptAdmin === null) {
-            receiptAdmin = "Not Provided"
+            receiptAdmin = "Not Provided";
         }
 
-        newcell.querySelector(".receipt-date").innerHTML = `${date}`
-        newcell.querySelector(".receipt-user-email").innerHTML = `${email}`
-        newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
-        newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`)
+        // newcell.querySelector(".receipt-date").innerHTML = date;
+        newcell.querySelector(".receipt-user-email").innerHTML = email;
+        newcell.querySelector(".receipt-admin").innerHTML = receiptAdmin;
+        newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`);
 
         if (mobile) {
             document.getElementById("receipt-collapsible-body").append(newcell)
@@ -175,7 +190,7 @@ function receipts_populate_table(data, mobile = false) {
         }
     })
     if (mobile) {
-        allCollapsible = document.querySelectorAll(".collapsible-data-receipts")
+        allCollapsible = document.querySelectorAll(".collapsible-data-receipts");
         allCollapsible.forEach(collapsible => {
             collapsible.addEventListener("click", (event) => {
                 event.target.classList.toggle("active-collapsible");
@@ -195,11 +210,11 @@ function requestReceiptData() {
         url: "http://localhost:3000/requestReceiptData",
         type: "GET",
         success: (data) => {
-            // spaghetti code calling two of the same function???
             console.log(data);
-
-            receipts_populate_table(data);
-            receipts_populate_table(data, true);
+            for (let i = 0; i < data.length; i++) {
+                getUserEmailByUserId(data[i].owner_id);
+            }
+            
         }
     })
 }
@@ -227,6 +242,7 @@ function verifyAdmin() {
 
 async function setup() {
     verifyAdmin();
+    requestReceiptData();
     $('body').on('click', '.user-delete', deleteUser);
 }
 
