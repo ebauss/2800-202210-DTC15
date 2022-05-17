@@ -63,3 +63,21 @@ INSERT INTO rewards (company, description, photo, value, points_cost) VALUES
 ('BCIT', 'You might be able to pay for half your tuition', 'https://picsum.photos/id/237/200', 3500, 350000);
 
 SELECT * FROM rewards;
+
+CREATE TABLE receipts (
+	receipt_id INT unsigned NOT NULL auto_increment,
+    admin_id INT unsigned,
+    notes VARCHAR(50),
+    picture VARCHAR(500) NOT NULL,
+    owner_id INT unsigned NOT NULL,
+    reward_points INT unsigned,
+    PRIMARY KEY (receipt_id),
+    FOREIGN KEY (admin_id) REFERENCES users(user_id),
+    FOREIGN KEY (owner_id) REFERENCES users(user_id)
+);
+
+INSERT INTO receipts (admin_id, notes, picture, owner_id, reward_points) VALUES
+(NULL, NULL, 'https://picsum.photos/id/237/200', 1, 60000),
+(2, 'Good to go, whoo', 'https://picsum.photos/id/237/200', 3, 4190000);
+
+SELECT * FROM receipts;
