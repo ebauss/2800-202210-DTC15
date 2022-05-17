@@ -211,6 +211,18 @@ app.get('/requestAllRewards', (req, res) => {
     })
 })
 
+// gets a list of all receipts
+app.get('/requestReceiptData', (req, res) => {
+    connection.query('SELECT * FROM receipts', (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+});
+
 // retrieves the number of points the user holds
 app.get('/getUserPoints', (req, res) => {
     connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
@@ -223,6 +235,7 @@ app.get('/getUserPoints', (req, res) => {
     })
 })
 
+// deletes a user from database
 app.post('/deleteUser', (req, res) => {
     connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
@@ -233,6 +246,7 @@ app.post('/deleteUser', (req, res) => {
     })
 })
 
+// uploads receipt image, owner, and value to database
 app.post('/uploadReceipt', (req, res) => {
     connection.query(`INSERT INTO receipts (picture, owner_id, reward_points) VALUES (?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value],
     (err, results, fields) => {
