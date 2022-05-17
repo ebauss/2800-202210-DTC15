@@ -1,6 +1,11 @@
 body, main{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+hr{
+    border: 0.5px solid rgba(119, 85, 23, 0.596);
+}
+
 h1, h2{
     font-weight: 800;
 }
@@ -41,19 +46,28 @@ label[for="greetings"]{
 
 .rewards-container{
 
-    background-color: var(--cyan);
-    border-radius: 20px;
+    /* border: 1px solid black; */
+    box-shadow: 0 2px 5px rgba(100, 100, 100, 0.3);
+    border-radius: 10px;
     width: 100%;
     padding: 10px;
     cursor: pointer;
     display: grid;
     grid-template-areas:
-    'rewards-title rewards-title image-container image-container'
-    'rewards-title rewards-title image-container image-container '
-    'rewards-info rewards-info image-container image-container'
-    'rewards-info rewards-info image-container image-container'
-    'cost cost cost cost';
+    '. . . image-container'
+    'rewards-title rewards-title . image-container '
+    'cost cost cost image-container'
+    'rewards-info rewards-info . image-container'
+    'rewards-info rewards-info . image-container'
+    ;
     justify-content: space-around;
+}
+
+.rewards-container:hover{
+    /* box-shadow: 0 2px 10px rgba(100, 100, 100, 1); */
+    box-shadow: 0 2px 5px rgb(131, 92, 92);
+
+
 }
 
 .image-container{
@@ -86,8 +100,14 @@ button{
     padding: 5px;
     margin: 5px;
     font-size: medium;
-    background-color: var(--pink);
-    border-radius: 15px;
+    background-color: rgba(114, 196, 166 , 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgba(114, 196, 166 , 1);
+
 }
 
 @media(max-width: 768px) {

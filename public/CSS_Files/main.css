@@ -4,7 +4,11 @@ main {
     font-weight: 800;
 }
 
-h1{
+hr{
+    border: 0.5px solid rgba(119, 85, 23, 0.596);
+}
+
+h1 {
     margin: 10px;
 }
 
@@ -21,7 +25,6 @@ a {
 
 .section-content {
     /* container*/
-   
     display: flex;
     justify-content: center;
 }
@@ -33,7 +36,8 @@ a {
     overflow: scroll;
     scroll-behavior: smooth;
     width: 100%;
-    margin: 20px 0px;;
+    margin: 20px 0px;
+    height: 30%;
 }
 
 .card-information {
@@ -42,16 +46,17 @@ a {
     flex: 0 0 25%;
     width: 25%;
     aspect-ratio: 16/9;
-    padding: 3px;
+    /* padding: 3px; */
     margin-bottom: 15px;
     position: relative;
     text-align: center;
     color: white;
     max-width: 25%;
-    border: 0.2px solid black;
-    border-radius: 10%;
+    /* border: 0.2px solid black; */
+    /* border-radius: 10%; */
     box-shadow: 0 1px 3px rgba(100, 100, 100, 0.3);
-    margin: 5px;
+    margin: .3em;
+    margin-bottom: 2em;
     font-size: 90%;
 
     /* margin is for the slider at the bottom */
@@ -69,26 +74,28 @@ a {
 }
 
 
-.card-context { /* open btn */
-    margin: 5%;
-    position: absolute;
+.card-context {
+    /* open btn */
+    padding: 0.5em;
+    position: absolute ;
     bottom: 0;
     cursor: pointer;
-    overflow-wrap: break-word;
     background-color: rgb(255, 255, 255, 0.5);
     font-size: 60%;
-    text-align: left;
-    width: 90%;
-    text-overflow: ellipsis;
-} 
+    width: 80%;
+}
 
-.card-context>button{
+.card-context>button {
     cursor: pointer;
     border: none;
     outline: none;
     background: none;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: bold;
+    text-align: left;
+    overflow-wrap: break-word;
+    margin-top: 1em; 
+    margin-right: 1em;
 }
 
 /* ----- for scrolling function--- */
@@ -98,9 +105,18 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-background: rgba(106, 143, 111, 0.293);
+    background: rgba(106, 143, 111, 0.293);
 }
 
 ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.065);
+}
+
+@media screen and (max-width: 550px) {
+
+    .card-information {
+        aspect-ratio: 8/10;
+        width: 66%;
+    }
+
 }
