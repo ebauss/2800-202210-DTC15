@@ -109,7 +109,7 @@ app.get('/quickLoginAdmin', (req, res) => {
 })
 
 // Retrieves all the users' data for admin.html and sends it as a JSON object
-app.get('/requestUserData', (req, res) => {
+app.get('/requestUserData', lockAdminPages, (req, res) => {
     connection.query('SELECT * FROM users', (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -235,3 +235,39 @@ app.post('/deleteUser', (req, res) => {
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
+
+function lockPages(req, res, next) {
+    if (!req.session.authenticated) {
+        res.redirect('/');
+    }
+    else {
+        next();
+    }
+}
+
+function lockAdminPages(req, res, next) {
+    if (req.session.authenticated) {
+        connection.query(`SELECT is_admin FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                if (results[0]) {
+                    next();
+                }
+                else {
+                    res.redirect('/');
+                }
+            }
+        })
+    }
+    else {
+        res.redirect('/testRoute');
+        console.log("You are supposed to be redirected");
+    }
+
+}
+
+app.get('/testRoute', (req, res) => {
+    res.send("Nyet");
+})

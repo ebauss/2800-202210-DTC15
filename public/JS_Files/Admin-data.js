@@ -45,53 +45,53 @@ function populate_table(data, mobile = false) {
     } else {
         var tableTemplate = document.getElementById("table-template-users")
     }
-    data.forEach(element => {
-        userID = element.user_id;``
-        fName = element.first_name;
-        lName = element.last_name;
-        email = element.email;
-        country = element.country;
-        age = element.age;
-        profile_icon = element.profile_icon;
-        points = element.reward_points;
-        compass_id = element.compass_id;
-        is_admin = element.is_admin;
+    // data.forEach(element => {
+    //     userID = element.user_id;``
+    //     fName = element.first_name;
+    //     lName = element.last_name;
+    //     email = element.email;
+    //     country = element.country;
+    //     age = element.age;
+    //     profile_icon = element.profile_icon;
+    //     points = element.reward_points;
+    //     compass_id = element.compass_id;
+    //     is_admin = element.is_admin;
 
-        let newcell = tableTemplate.content.cloneNode(true);
+    //     let newcell = tableTemplate.content.cloneNode(true);
 
-        if (profile_icon == null) {
-            profile_icon = "Not provided";
-        }
+    //     if (profile_icon == null) {
+    //         profile_icon = "Not provided";
+    //     }
 
-        if (is_admin) {
-            is_admin = "Yes";
-        }
-        else {
-            is_admin = "No";
-        }
+    //     if (is_admin) {
+    //         is_admin = "Yes";
+    //     }
+    //     else {
+    //         is_admin = "No";
+    //     }
 
-        if (!compass_id) {
-            compass_id = "Not provided";
-        }
+    //     if (!compass_id) {
+    //         compass_id = "Not provided";
+    //     }
 
-        // newcell.querySelector(".user-id").innerHTML = `${userID}`
-        newcell.querySelector(".user-first-name").innerHTML = fName;
-        newcell.querySelector(".user-last-name").innerHTML = lName;
-        newcell.querySelector(".user-email").innerHTML = `#${userID} - ${email}`;
-        newcell.querySelector(".user-country").innerHTML = country;
-        newcell.querySelector(".user-reward-points").innerHTML = points;
-        newcell.querySelector(".user-age").innerHTML = age;
-        newcell.querySelector(".user-profile-icon").innerHTML = profile_icon;
-        newcell.querySelector(".user-compass-id").innerHTML = compass_id;
-        newcell.querySelector(".user-admin").innerHTML = is_admin;
-        newcell.querySelector(".user-delete").setAttribute("id", userID);
+    //     // newcell.querySelector(".user-id").innerHTML = `${userID}`
+    //     newcell.querySelector(".user-first-name").innerHTML = fName;
+    //     newcell.querySelector(".user-last-name").innerHTML = lName;
+    //     newcell.querySelector(".user-email").innerHTML = `#${userID} - ${email}`;
+    //     newcell.querySelector(".user-country").innerHTML = country;
+    //     newcell.querySelector(".user-reward-points").innerHTML = points;
+    //     newcell.querySelector(".user-age").innerHTML = age;
+    //     newcell.querySelector(".user-profile-icon").innerHTML = profile_icon;
+    //     newcell.querySelector(".user-compass-id").innerHTML = compass_id;
+    //     newcell.querySelector(".user-admin").innerHTML = is_admin;
+    //     newcell.querySelector(".user-delete").setAttribute("id", userID);
 
-        if (mobile) {
-            document.getElementById("user-collapsible-body").append(newcell)
-        } else {
-            document.getElementById("user-table-body").append(newcell);
-        }
-    });
+    //     if (mobile) {
+    //         document.getElementById("user-collapsible-body").append(newcell)
+    //     } else {
+    //         document.getElementById("user-table-body").append(newcell);
+    //     }
+    // });
     if (mobile) {
         allCollapsible = document.querySelectorAll(".collapsible-data-user")
         allCollapsible.forEach(collapsible => {
@@ -202,7 +202,8 @@ function verifyAdmin() {
 }
 
 async function setup() {
-    verifyAdmin();
+    // verifyAdmin();
+    requestUserData();
     $('body').on('click', '.user-delete', deleteUser);
 }
 
