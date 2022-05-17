@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'JDCYelwe@0115',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -229,6 +229,18 @@ app.post('/deleteUser', (req, res) => {
             console.log(err);
         } else {
             res.send(req.body.userIdToDelete);
+        }
+    })
+})
+
+app.post('/uploadReceipt', (req, res) => {
+    connection.query(`INSERT INTO receipts (picture, owner_id, reward_points) VALUES (?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value],
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
         }
     })
 })
