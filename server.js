@@ -312,5 +312,23 @@ app.get('/checkProfile/id/:user_id', (req,res) => {
     })
 })
 
+app.post('/redeemReward', (req, res) => {
+    connection.query('INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES (?, ?, ?)',
+    [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    connection.query('UPDATE users SET reward_points = reward_points - ? WHERE user_id = ?', [req.body.cost, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
