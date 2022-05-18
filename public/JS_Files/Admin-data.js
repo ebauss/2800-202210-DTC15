@@ -176,6 +176,7 @@ function receipts_populate_table(data, mobile = false) {
         }
         else {
             receiptStatus = `Verified by ${receipt.admin_email}`;
+            newcell.querySelector(".verify-btn").innerHTML = "View";
         }
 
         newcell.querySelector(".receipt-date").innerHTML = date;
