@@ -27,6 +27,7 @@ function processSingleReceiptData(data) {
 function processVerification(data) {
     console.log(data);
     alert("Record has been updated.");
+    location.href = './admin.html';
 }
 
 function requestVerification() {
