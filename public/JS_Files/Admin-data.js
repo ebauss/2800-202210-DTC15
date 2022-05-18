@@ -166,16 +166,19 @@ function receipts_populate_table(data, mobile = false) {
         // date = info.date.slice(0, 10);
         email = receipt.email;
         receiptId = receipt.receipt_id;
-        receiptAdmin = receipt.admin_id;
+        receiptStatus = receipt.admin_email;
         let newcell = tableTemplate.content.cloneNode(true);
 
-        if (receiptAdmin === null) {
-            receiptAdmin = "Not Provided";
+        if (receiptStatus === null) {
+            receiptStatus = "Not Verified";
+        }
+        else {
+            receiptStatus = `Verified by ${receipt.admin_email}`;
         }
 
         // newcell.querySelector(".receipt-date").innerHTML = date;
         newcell.querySelector(".receipt-user-email").innerHTML = email;
-        newcell.querySelector(".receipt-admin").innerHTML = receiptAdmin;
+        newcell.querySelector(".receipt-admin").innerHTML = receiptStatus;
         newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`);
 
         if (mobile) {
