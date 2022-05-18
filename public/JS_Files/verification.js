@@ -1,3 +1,5 @@
+var userId;
+
 function getSingleReceiptData() {
     let currentUrl = parseInt(location.href.split('=')[1]);
 
@@ -12,6 +14,8 @@ function getSingleReceiptData() {
 }
 
 function processSingleReceiptData(data) {
+    userId = data[0].user_id;
+
     $('#receipt-img').attr('src', data[0].picture);
 
     if (data[0].admin_id == null) {
@@ -44,7 +48,8 @@ function requestVerification() {
             value: $('#value').val(),
             notes: $('#message').val(),
             verified_date: today.toISOString().split("T")[0],
-            receipt_id: parseInt(location.href.split('=')[1])
+            receipt_id: parseInt(location.href.split('=')[1]),
+            user_id: userId
         },
         success: processVerification
     })

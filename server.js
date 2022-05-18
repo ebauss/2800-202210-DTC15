@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'fUt4b4$4kur4',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -278,10 +278,15 @@ app.post('/verifyReceipt', (req, res) => {
         if (err) {
             console.log(err);
         }
-        else {
-            res.send(true);
+    })
+
+    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`, [req.body.value * 100, req.body.value * 100, req.body.user_id] , (err, results, fields) => {
+        if (err) {
+            console.log(err);
         }
     })
+
+    res.send(true);
 })
 
 // delete receipt from database
