@@ -183,6 +183,7 @@ function receipts_populate_table(data, mobile = false) {
         newcell.querySelector(".receipt-user-email").innerHTML = email;
         newcell.querySelector(".receipt-admin").innerHTML = receiptStatus;
         newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`);
+        newcell.querySelector(".delete-btn").setAttribute("id", receiptId);
 
         if (mobile) {
             document.getElementById("receipt-collapsible-body").append(newcell)
@@ -238,10 +239,28 @@ function verifyAdmin() {
     })
 }
 
+function processReceiptDeletion(data) {
+    if (data) {
+        alert("Receipt was deleted bitch");
+    }
+}
+
+function requestReceiptDeletion() {
+    $.ajax({
+        url: "http://localhost:3000/deleteReceipt",
+        type: "POST",
+        data: {
+            receipt_id: $(this).attr("id")
+        },
+        success: processReceiptDeletion
+    })
+}
+
 function setup() {
     verifyAdmin();
     requestReceiptData();
     $('body').on('click', '.user-delete', deleteUser);
+    $('body').on('click', '.delete-btn', requestReceiptDeletion)
 }
 
 $(document).ready(setup)

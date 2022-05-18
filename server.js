@@ -134,9 +134,9 @@ app.post('/createNewUser', (req, res) => {
             if (req.body.password != req.body.confirm_password) {
                 res.send("unmatching password");
             }
-            else if (isNAN(req.body.age)) {
-                res.send("age is not a number")
-            }
+            // else if (isNAN(req.body.age)) {
+            //     res.send("age is not a number")
+            // }
             else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
                 res.send("blank");
             }
@@ -278,6 +278,18 @@ app.post('/verifyReceipt', (req, res) => {
     connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
     [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
     (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+// delete receipt from database
+app.post('/deleteReceipt', (req, res) => {
+    connection.query(`DELETE FROM receipts WHERE receipt_id = ?`, [req.body.receipt_id], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
