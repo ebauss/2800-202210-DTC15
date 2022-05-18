@@ -19,7 +19,7 @@ function processSingleReceiptData(data) {
         $('#admin').html(data[0].admin_email);
     }
     $('#user-email').html(data[0].email);
-    $('#points').val(data[0].reward_points);
+    $('#value').val(data[0].reward_points / 100);
 
     $('#message').val(data[0].notes);
 
