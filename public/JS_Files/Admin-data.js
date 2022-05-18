@@ -241,7 +241,7 @@ function verifyAdmin() {
 
 function processReceiptDeletion(data) {
     if (data) {
-        alert("Receipt was deleted bitch");
+        alert("Receipt was deleted.");
     }
 }
 
