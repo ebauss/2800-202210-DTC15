@@ -262,7 +262,7 @@ app.post('/deleteUser', (req, res) => {
 
 // uploads receipt image, owner, and value to database
 app.post('/uploadReceipt', (req, res) => {
-    connection.query(`INSERT INTO receipts (picture, owner_id, reward_points) VALUES (?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value],
+    connection.query(`INSERT INTO receipts (picture, owner_id, reward_points, verified_date) VALUES (?, ?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value, req.body.date],
     (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -275,8 +275,8 @@ app.post('/uploadReceipt', (req, res) => {
 
 // sets receipt in database as verified by an admin
 app.post('/verifyReceipt', (req, res) => {
-    connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ?`,
-    [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date],
+    connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
+    [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
     (err, results, fields) => {
         if (err) {
             console.log(err);

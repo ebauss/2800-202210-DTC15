@@ -81,6 +81,8 @@ function uploadComplete(data) {
 function uploadReceipt() {
     console.log("Should be uploading");
 
+    today = new Date();
+
     rewardPoints = parseInt($('#receipt-total').val()) * 100;
 
     $.ajax({
@@ -88,7 +90,8 @@ function uploadReceipt() {
         type: "POST",
         data: {
             receipt: "https://picsum.photos/id/237/200",
-            value: rewardPoints
+            value: rewardPoints,
+            date: today.toISOString().split("T")[0]
         },
         success: uploadComplete
     })

@@ -66,7 +66,7 @@ function populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-users")
     }
     data.forEach(element => {
-        userID = element.user_id; ``
+        userID = element.user_id;
         fName = element.first_name;
         lName = element.last_name;
         email = element.email;

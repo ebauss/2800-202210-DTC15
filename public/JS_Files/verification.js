@@ -26,7 +26,7 @@ function processSingleReceiptData(data) {
 
 function processVerification(data) {
     console.log(data);
-    alert("Record has been updated motherfucker");
+    alert("Record has been updated.");
 }
 
 function requestVerification() {
@@ -36,9 +36,10 @@ function requestVerification() {
         url: "http://localhost:3000/verifyReceipt",
         type: "POST",
         data: {
-            value: $('#value').val(data[0].reward_points / 100),
-            notes: $('#message').val(data[0].notes),
-            verified_date: today.toISOString()
+            value: $('#value').val(),
+            notes: $('#message').val(),
+            verified_date: today.toISOString().split("T")[0],
+            receipt_id: parseInt(location.href.split('=')[1])
         },
         success: processVerification
     })
