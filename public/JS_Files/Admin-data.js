@@ -94,10 +94,10 @@ function populate_table(data, mobile = false) {
             compass_id = "Not provided";
         }
 
-        // newcell.querySelector(".user-id").innerHTML = `${userID}`
+        newcell.querySelector(".user-id").innerHTML = userID;
         newcell.querySelector(".user-first-name").innerHTML = fName;
         newcell.querySelector(".user-last-name").innerHTML = lName;
-        newcell.querySelector(".user-email").innerHTML = `#${userID} - ${email}`;
+        newcell.querySelector(".user-email").innerHTML = email;
         newcell.querySelector(".user-country").innerHTML = country;
         newcell.querySelector(".user-reward-points").innerHTML = points;
         newcell.querySelector(".user-age").innerHTML = age;
