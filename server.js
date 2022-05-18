@@ -211,9 +211,9 @@ app.get('/requestAllRewards', (req, res) => {
     })
 })
 
-// gets a list of all receipts and joins it with the matching user record
+// gets a list of all receipts and joins it with the matching user id and email
 app.get('/requestReceiptData', (req, res) => {
-    connection.query('SELECT * FROM receipts LEFT JOIN users ON receipts.owner_id = users.user_id; ', (err, results, fields) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id;', (err, results, fields) => {
         if (err) {
             console.log(err);
         }
