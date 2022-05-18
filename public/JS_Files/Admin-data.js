@@ -1,17 +1,17 @@
-dummy_receipts = [
+dummy_rewards = [
     {
-        "date": "2022-03-30 24:11:22",
-        "UserID": "Jake@gmail.com",
-        "receiptId": "sdadsadasdasdaweweq",
-        "admin": null,
-        "receiptImg": "https://i.redd.it/go8r4r6opqe11.jpg",
+        "company": "Lexie Company",
+        "description": "Sexy Lexie on the market",
+        "value": 10000,
+        "points": 200,
+        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
     },
     {
-        "date": "2022-03-30 24:11:22",
-        "UserID": "Jake@gmail.com",
-        "receiptId": "sdadsadasdasdawewsdaseq",
-        "admin": "Joushua",
-        "receiptImg": "https://i.redd.it/go8r4r6opqe11.jpg",
+        "company": "Lexie Company",
+        "description": "Sexy Lexie on the market",
+        "value": 10000,
+        "points": 200,
+        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
     },
 ]
 
@@ -44,7 +44,12 @@ headerBtns.forEach((btn) => {
                     document.getElementById(clickedBtnKey + "-table").style.display = "table"
                 } else {
                     document.getElementById(clickedBtnKey + "-collapsible-body").style.display = "block"
+                } 
+
+                if (clickedBtnKey == "rewards"){
+                    document.getElementById("new-rewards").style.display = "block"
                 }
+                
             } else {
                 otherBtnKey = otherBtn.id.split("-")[0]
                 otherBtn.classList.remove("activated-button")
@@ -53,6 +58,7 @@ headerBtns.forEach((btn) => {
                 } else {
                     document.getElementById(otherBtnKey + "-collapsible-body").style.display = "none"
                 }
+                document.getElementById("new-rewards").style.display = "none"
             }
         })
     })
@@ -144,7 +150,53 @@ function deleteUser() {
     })
 }
 
-// Function that populates the receipt table
+// Function that populates the receipt table/collapsible-body
+function rewards_populate_table(data, mobile = false) {
+    if (mobile) {
+        var tableTemplate = document.getElementById("collapsible-template-rewards")
+    } else {
+        var tableTemplate = document.getElementById("table-template-rewards")
+    }
+    data.forEach(info => {
+        company = info.company
+        description = info.description
+        value = info.value
+        points = info.points
+        picUrl = info.picture
+        let newcell = tableTemplate.content.cloneNode(true);
+
+        if (picUrl === null) {
+            picUrl = "Not Provided"
+        }
+
+        newcell.querySelector(".rewards-company").innerHTML = `${company}`
+        newcell.querySelector(".rewards-description").innerHTML = `${description}`
+        newcell.querySelector(".rewards-value").innerHTML = `${value}`
+        newcell.querySelector(".rewards-points-cost").innerHTML = `${points}`
+
+        if (mobile) {
+            document.getElementById("rewards-collapsible-body").append(newcell)
+        } else {
+            document.getElementById("rewards-table-body").append(newcell);
+        }
+    })
+    if (mobile) {
+        allCollapsible = document.querySelectorAll(".collapsible-data-rewards")
+        allCollapsible.forEach(collapsible => {
+            collapsible.addEventListener("click", (event) => {
+                event.target.classList.toggle("active-collapsible");
+                content = event.target.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = "50vh";
+                }
+            })
+        })
+    }
+}
+
+// Function that populates the rewards table/collapsible-body
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-receipts")
@@ -213,6 +265,8 @@ function verifyAdmin() {
 
 async function setup() {
     verifyAdmin();
+    rewards_populate_table(dummy_rewards)
+    rewards_populate_table(dummy_rewards, true)
     $('body').on('click', '.user-delete', deleteUser);
 }
 
