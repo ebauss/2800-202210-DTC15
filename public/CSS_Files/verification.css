@@ -81,6 +81,11 @@ input {
     font-size: large;
 }
 
+#pic{
+    padding: 100px;
+    background-color: aqua;
+}
+
 h2{
     border-bottom: 2px solid rgb(128,128,128);
 

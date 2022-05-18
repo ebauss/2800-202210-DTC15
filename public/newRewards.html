@@ -23,7 +23,7 @@
     <!--------------------------->
     <!--   CSS Files go here   -->
     <!--------------------------->
-    <link rel="stylesheet" href="./CSS_Files/style.css"> 
+    <link rel="stylesheet" href="CSS_Files/newRewards.css">
 
 </head>
 
@@ -32,15 +32,50 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <header> <h1>Add Details</h1> </header>
+    <header>
+        <a href="admin.html"> Back </a>
+    </header>
     <main>
-
+        <h1 class="details-header">Add Details</h1>
+        <section class="details-container">
+            <div class="details-body">
+                <span class="container">
+                    <label for="company"> Company </label>
+                    <input type="text" name="company" id="company" required>
+                </span>
+                <span class="container">
+                    <label for="value"> Value </label>
+                    <input type="text" name="value" id="value" required>
+                </span>
+                <span class="container">
+                    <label for="points"> Points Cost </label>
+                    <input type="text" name="points" id="points" required>
+                </span>
+                <span class="container description">
+                    <label for="message"> Description </label>
+                    <textarea type="text" name="description" id="description" value="Tell us about your product"
+                        required> </textarea>
+                </span>
+            </div>
+            <span class="btn-container">
+                <button type="button" onclick="newReward()"> Submit </button>
+            </span>
+        </section>
+        <h1 class="photo-header">Insert Photo Here</h1>
+        <div class="product-img-container">
+            <div class="img-body">
+                <span class="img-container" id="display-img-container"><img src="./Image_Files/submit.png" id="pic" width="100px"></span>
+                <input type="file" id="pic-file" accept="image/*">
+                <span></span>
+            </div>
+            <span class="img-container" id="new-img-btn"><img src="./Image_Files/submit.png" id="new-pic" width="50px"></span>
+        </div>
     </main>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/newRewards.js"> </script>
 
 </body>
 
