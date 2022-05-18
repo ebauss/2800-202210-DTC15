@@ -48,6 +48,9 @@ function processRedeemRequest(data) {
     if (data) {
         alert("You have redeemed the reward successfully.");
     }
+    else {
+        alert("You do not have enough points!");
+    }
 }
 
 function makeRedeemRequest() {

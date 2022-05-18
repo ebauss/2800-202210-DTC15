@@ -312,20 +312,35 @@ app.get('/checkProfile/id/:user_id', (req,res) => {
     })
 })
 
+// redeem a reward: subtract from user's points and add reward to user's inventory
 app.post('/redeemReward', (req, res) => {
-    connection.query('INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES (?, ?, ?)',
-    [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
+    // gets the number of points the user owns
+    connection.query('SELECT reward_points FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
         if (err) {
-            console.log(err);
+            console.log(err)
         }
-    })
-
-    connection.query('UPDATE users SET reward_points = reward_points - ? WHERE user_id = ?', [req.body.cost, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
+        else if (results[0].reward_points < req.body.cost) {
+            // failed redemption if user's reward points are insufficient
+            res.send(false);
         }
         else {
-            res.send(true);
+            // add reward to user's inventory
+            connection.query('INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES (?, ?, ?)',
+            [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+
+            // subtract points from user's total reward points
+            connection.query('UPDATE users SET reward_points = reward_points - ? WHERE user_id = ?', [req.body.cost, req.session.uid], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.send(true);
+                }
+            })            
         }
     })
 })
