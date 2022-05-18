@@ -13,11 +13,15 @@ function getSingleReceiptData() {
 
 function processSingleReceiptData(data) {
     $('#receipt-img').attr('src', data[0].picture);
+
     if (data[0].admin_id == null) {
         $('#admin').html('Not verified yet.')
     } else {
         $('#admin').html(data[0].admin_email);
+        $('#verify').prop('disabled', true);
+        $('#verify').html('Already verified');
     }
+
     $('#user-email').html(data[0].email);
     $('#value').val(data[0].reward_points / 100);
 
