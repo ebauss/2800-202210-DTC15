@@ -64,21 +64,24 @@ INSERT INTO rewards (company, description, photo, value, points_cost) VALUES
 
 SELECT * FROM rewards;
 
+DROP TABLE receipts;
+
 CREATE TABLE receipts (
-	receipt_id INT unsigned NOT NULL auto_increment,
+    receipt_id INT unsigned NOT NULL auto_increment,
     admin_id INT unsigned,
     notes VARCHAR(50),
     picture VARCHAR(500) NOT NULL,
     owner_id INT unsigned NOT NULL,
     reward_points INT unsigned,
+    verified_date DATETIME,
     PRIMARY KEY (receipt_id),
     FOREIGN KEY (admin_id) REFERENCES users(user_id),
     FOREIGN KEY (owner_id) REFERENCES users(user_id)
 );
 
-INSERT INTO receipts (admin_id, notes, picture, owner_id, reward_points) VALUES
-(NULL, NULL, 'https://picsum.photos/id/237/200', 2, 60000),
-(1, 'Good to go, whoo', 'https://picsum.photos/id/237/200', 2, 419000);
+INSERT INTO receipts (admin_id, notes, picture, owner_id, reward_points, verified_date) VALUES
+(NULL, NULL, 'https://picsum.photos/id/237/200', 2, 60000, '2022-05-25'),
+(1, 'Good to go, whoo', 'https://picsum.photos/id/237/200', 2, 419000, '1991-06-23');
 
 SELECT * FROM receipts;
 

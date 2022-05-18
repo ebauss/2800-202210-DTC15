@@ -162,8 +162,10 @@ function receipts_populate_table(data, mobile = false) {
     }
     i = 1
 
+    console.log(data)
+
     data.forEach((receipt) => {
-        // date = info.date.slice(0, 10);
+        date = receipt.verified_date.split("T")[0];
         email = receipt.email;
         receiptId = receipt.receipt_id;
         receiptStatus = receipt.admin_email;
@@ -176,7 +178,7 @@ function receipts_populate_table(data, mobile = false) {
             receiptStatus = `Verified by ${receipt.admin_email}`;
         }
 
-        // newcell.querySelector(".receipt-date").innerHTML = date;
+        newcell.querySelector(".receipt-date").innerHTML = date;
         newcell.querySelector(".receipt-user-email").innerHTML = email;
         newcell.querySelector(".receipt-admin").innerHTML = receiptStatus;
         newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`);
