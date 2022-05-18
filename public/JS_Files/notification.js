@@ -6,8 +6,8 @@ const overlay = document.getElementById('overlay')
 // this functions take the event show and adds a class active to popup-container showing the popup
 // this functions take the event show and adds a class dim that blocks other events in window
 function openPopup(show) {
-   show.classList.add('active')
-   overlay.classList.add('dim')
+    show.classList.add('active')
+    overlay.classList.add('dim')
 }
 
 // this functions take the event die and removes the class active to popup-container hiding the popup
@@ -18,8 +18,8 @@ function closePopup(hide) {
 }
 
 // when the card-body is click it will take its popup-container and display it on window
-openButtons.forEach(button =>{
-    button.addEventListener('click',() =>{
+openButtons.forEach(button => {
+    button.addEventListener('click', () => {
         show = button.nextElementSibling
         // console.log(show)
         openPopup(show)
@@ -27,8 +27,8 @@ openButtons.forEach(button =>{
 })
 
 // when the close button in popup is click it will take its popup-container and hide it from the window
-closeButtons.forEach(button =>{
-    button.addEventListener('click',() =>{
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
         hide = button.parentElement.parentElement
         console.log(hide)
         closePopup(hide)
@@ -36,7 +36,7 @@ closeButtons.forEach(button =>{
 })
 
 // when overlay outside the popup is click it will take its popup-container and hide it from the window
-overlay.addEventListener('click',() =>{
+overlay.addEventListener('click', () => {
     hide = document.getElementsByClassName('active')[0]
     console.log(hide)
     closePopup(hide)
@@ -44,30 +44,36 @@ overlay.addEventListener('click',() =>{
 
 
 // ---------- toggle section between buttons ----------- //
-const rewardsSection=document.getElementById('user-rewards')
-const earningsSection=document.getElementById('user-earnings')
-const rewardsButton=document.getElementById('rewards-btn')
-const earningsButton=document.getElementById('earnings-btn')
+const rewardsSection = document.getElementById('user-rewards-container')
+const earningsSection = document.getElementById('user-earnings-container')
+const rewardsButton = document.getElementById('rewards-btn')
+const earningsButton = document.getElementById('earnings-btn')
 
 
-rewardsButton.addEventListener('click', () =>{
-    if (earningsSection.style.display != 'none'){
+rewardsButton.addEventListener('click', () => {
+    if (earningsSection.style.display != 'none') {
         earningsSection.style.display = 'none'
+        earningsButton.style.background = "white"
         rewardsSection.style.display = 'block';
+        rewardsButton.style.background = "gainsboro"
         // alert(true)
-    }else{
+    } else {
         // alert(false)
         rewardsSection.style.display = 'block';
+        rewardsButton.style.background = "white"
     }
 })
 
-earningsButton.addEventListener('click', () =>{
-    if (rewardsSection.style.display != 'none'){
+earningsButton.addEventListener('click', () => {
+    if (rewardsSection.style.display != 'none') {
         rewardsSection.style.display = 'none'
+        rewardsButton.style.background = "white"
         earningsSection.style.display = 'block';
+        earningsButton.style.background = "gainsboro"
         // alert(true)
-    }else{
+    } else {
         // alert(false)
         earningsSection.style.display = 'block';
+        earningsButton.style.background = "white"
     }
 })

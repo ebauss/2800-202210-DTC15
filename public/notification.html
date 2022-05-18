@@ -40,23 +40,18 @@
     <main>
         <div class="hero">
             <h2>Hello, User</h2>
+        </div>
 
-            <div class="controls">
-                <span>
-                    <span>
-                        <button id="earnings-btn">Earnings</button>
-                        <button id="rewards-btn">Rewards</button>
-                    </span>
-
-                    <!-- <div> filter dropdown</div> -->
-                </span>
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button id="earnings-btn" class="toggle-btn" type="button">Earnings</button>
+                <button id="rewards-btn" class="toggle-btn" type="button">Rewards</button>
             </div>
-
-
         </div>
 
 
-        <section id="user-rewards">
+        <section id="user-rewards-container">
             <div class="card-container">
                 <div class="card-body" type="button">
                     <div class="card-status start">Claimed</div>
@@ -132,7 +127,7 @@
             </div>
         </section>
 
-        <section id="user-earnings">
+        <section id="user-earnings-container">
             <div class="card-container">
                 <div class="card-body" type="button">
                     <div class="card-status start">Approved</div>
