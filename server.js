@@ -224,6 +224,19 @@ app.get('/requestReceiptData', (req, res) => {
     })
 });
 
+// gets a receipt and joins it with the matching userid and email, admin id and email.
+app.post('/requestSingleReceiptData', (req, res) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;', req.body.receipt_id,
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+});
+
 // retrieves the number of points the user holds
 app.get('/getUserPoints', (req, res) => {
     connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {

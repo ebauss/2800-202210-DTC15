@@ -85,4 +85,6 @@ INSERT INTO receipts (admin_id, notes, picture, owner_id, reward_points, verifie
 
 SELECT * FROM receipts;
 
-DROP TABLE receipts
+DROP TABLE receipts;
+
+SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id;
