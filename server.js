@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'K}{=2-D^Pwp5bgr&',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -211,9 +211,9 @@ app.get('/requestAllRewards', (req, res) => {
     })
 })
 
-// gets a list of all receipts
+// gets a list of all receipts and joins it with the matching user record
 app.get('/requestReceiptData', (req, res) => {
-    connection.query('SELECT * FROM receipts', (err, results, fields) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN users ON receipts.owner_id = users.user_id; ', (err, results, fields) => {
         if (err) {
             console.log(err);
         }

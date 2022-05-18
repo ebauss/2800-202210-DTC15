@@ -162,10 +162,7 @@ function receipts_populate_table(data, mobile = false) {
     }
     i = 1
 
-    console.log(data);
-
-    data.forEach(receipt => {
-        console.log(receipt);
+    data.forEach((receipt) => {
         // date = info.date.slice(0, 10);
         email = receipt.email;
         receiptId = receipt.receipt_id;
@@ -203,28 +200,15 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
-async function requestReceiptData() {
-    let dataArray = []; // this object will contain data from the receipts table and the users table.
-
-    await $.ajax({
+function requestReceiptData() {
+    $.ajax({
         url: "http://localhost:3000/requestReceiptData",
         type: "GET",
         success: (data) => {
-            data.forEach(receipt => {
-                console.log("owner_id" + receipt.owner_id)
-                $.ajax({
-                    url: `http://localhost:3000/checkProfile/id/${receipt.owner_id}`,
-                    type: 'GET',
-                    success: (data) => {
-                        receipt['email'] = data;
-                        dataArray.push(receipt);
-                    }
-                })
-            })
+            receipts_populate_table(data);
+            receipts_populate_table(data, true);
         }
     })
-    receipts_populate_table(dataArray);
-    receipts_populate_table(dataArray, true);
 }
 
 // redirects the user to main if they are not logged in or not an admin
@@ -248,7 +232,7 @@ function verifyAdmin() {
     })
 }
 
-async function setup() {
+function setup() {
     verifyAdmin();
     requestReceiptData();
     $('body').on('click', '.user-delete', deleteUser);
