@@ -38,75 +38,170 @@
     <!-- the body of your page goes here -->
     <!-- stuff -->
     <main>
-        <div class="card-container">
-            <div class="card-body">
-                <div class="card-type ">Rewards</div>
-                <div class="card-status">Done</div>
-                <div class="card-points">1 000 points</div>
-                <div class="card-title">Rewards Title</div>
-                <div class="card-date">99/99/9999</div>
-                <div class="card-code">1</div>
-            </div>
-            <div class="popup-container active">
-                <div class="popup-header">
-                    <div class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px"></div>
-                </div>
-                <div class="popup-body">
-                    <div class="popup-img"><img src="./Image_Files/tree.png" width="150px"></div>
-                    <div class="popup-information">
-                        <div class="popup-title">Rewards Title</div>
-                        <div class="popup-company">J.A.N.E. Group</div>
-                        <div class="popup-points">1 000 points</div>
-                        <div class="popup-type">Rewards</div>
-                        <div class="popup-status">Done</div>
-                    </div>
-                    <div class="popup-footer">
-                        <div class="popup-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                            quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?
-                        </div>
-                        <span>
-                        <div class="popup-code">1</div>
-                        <div class="popup-date">00/00/0000</div>
+        <div class="hero">
+            <h2>Hello, User</h2>
+
+            <div class="controls">
+                <span>
+                    <span>
+                        <button id="earnings-btn">Earnings</button>
+                        <button id="rewards-btn">Rewards</button>
                     </span>
+
+                    <!-- <div> filter dropdown</div> -->
+                </span>
+            </div>
+
+
+        </div>
+
+
+        <section id="user-rewards">
+            <div class="card-container">
+                <div class="card-body" type="button">
+                    <div class="card-status start">Claimed</div>
+                    <div class="card-points">1 000 points</div>
+                    <div class="card-title ">Rewards Title I</div>
+                    <small class="card-date">99/99/9999</small>
+                    <small class="card-code">1</small>
+                </div>
+
+                <div class="popup-container">
+                    <div class="popup-header">
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
+                        </div>
+                    </div>
+                    <div class="popup-body rewards">
+                        <div class="card-img"><img src="./Image_Files/tree.png" width="150px"></div>
+                        <div class="popup-information">
+                            <div class="card-title">Rewards Title I</div>
+                            <div class="card-company">J.A.N.E. Group</div>
+                            <div class="card-points">1 000 points</div>
+                            <div class="card-status start">Claimed</div>
+                        </div>
+                        <div class="popup-footer">
+                            <div class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nostrum
+                                quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus
+                                molestiae?
+                            </div>
+                            <span>
+                                <small class="card-code">1</small>
+                                <small class="card-date">99/99/9999</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-container">
+                <div type="button" class="card-body">
+                    <div class="card-status end">Expired</div>
+                    <div class="card-points">1 000 points</div>
+                    <div class="card-title">Rewards Title II</div>
+                    <small class="card-date">99/99/9999</small>
+                    <small class="card-code">1</small>
+                </div>
+
+                <div class="popup-container">
+                    <div class="popup-header">
+                        <div class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px"></div>
+                    </div>
+                    <div class="popup-body rewards">
+                        <div type="button" class="card-img"><img src="./Image_Files/tree.png" width="150px"></div>
+                        <div class="popup-information">
+                            <div class="card-title">Rewards Title II</div>
+                            <div class="card-company">J.A.N.E. Group</div>
+                            <div class="card-points">1 000 points</div>
+                            <div class="card-status end">Expired</div>
+                        </div>
+                        <div class="popup-footer">
+                            <div class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nostrum
+                                quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus
+                                molestiae?
+                            </div>
+                            <span>
+                                <small class="card-code">1</small>
+                                <small class="card-date">99/99/9999</small>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- <div class="card-container">
-            <div class="card-body">
-                <div class="card-type earnings">Earnings</div>
-                <div class="card-status">Done</div>
-                <div class="card-points">1 000 points</div> 
-                <div class="card-title">Rewards Title</div>
-                <div class="card-date">99/99/9999</div>
-                <div class="card-code">1</div>
-            </div>
-        </div>
+        <section id="user-earnings">
+            <div class="card-container">
+                <div class="card-body" type="button">
+                    <div class="card-status start">Claimed</div>
+                    <div class="card-points">1 000 points</div>
+                    <div class="card-title ">Earning Reciept Title I</div>
+                    <small class="card-date">99/99/9999</small>
+                    <small class="card-code">1</small>
+                </div>
 
-        <div class="card-container">
-            <div class="card-body">
-                <div class="card-type rewards">Rewards</div>
-                <div class="card-status start">Processed</div>
-                <div class="card-title">Rewards Title</div>
-                <div class="card-points">1 000 points</div> 
-                <div class="card-date">99/99/9999</div>
-                <div class="card-code">1</div>
-                
-            </div>
-        </div>
+                <div class="popup-container">
+                    <div class="popup-header">
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
+                        </div>
+                    </div>
+                    <div class="popup-body">
+                        <div class="popup-information rewards">
+                            <div class="card-title ">Earning Reciept Title I</div>
+                            <div class="popup-company">J.A.N.E. Group</div>
+                            <div class="card-points">1 000 points</div>
+                            <div class="card-status start">Claimed</div>
+                        </div>
+                        <div class="popup-footer">
+                            <div class="card-description">This Reciept was approved by Admin 04134
+                            </div>
+                            <span>
+                                <small class="card-code">1</small>
+                                <small class="card-date">Expire date: Jan-09-99</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="card-container">
-            <div type="button" class="card-body">
-                <div class="card-type ">Rewards</div>
-                <div class="card-status end">Done</div>
-                <div class="card-points">1 000 points</div> 
-                <div class="card-title">Rewards Title</div>
-                <div class="card-date">99/99/9999</div>
-                <div class="card-code">1</div>
-                
             </div>
-        </div> -->
+
+            <div class="card-container">
+                <div type="button" class="card-body">
+                    <div class="card-status end">Expired</div>
+                    <div class="card-points">1 000 points</div>
+                    <div class="card-title ">Earning Reciept Title II</div>
+                    <small class="card-date">99/99/9999</small>
+                    <small class="card-code">1</small>
+                </div>
+
+                <div class="popup-container ">
+                    <div class="popup-header">
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
+                        </div>
+                    </div>
+                    <div class="popup-body earnings">
+                        <div class="popup-information">
+                            <div class="card-title ">Earning Reciept Title I</div>
+                            <div class="card-company">J.A.N.E. Group</div>
+                            <div class="card-points">1 000 points</div>
+                            <div class="card-status start">Claimed</div>
+                        </div>
+                        <div class="popup-footer">
+                            <div class="card-description">This Reciept was approved by Admin 04134
+                            </div>
+                            <span>
+                                <small class="card-code">1</small>
+                                <small class="card-date">Expire date: Jan-09-99</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </section>
 
         <div id="overlay"></div>
     </main>
