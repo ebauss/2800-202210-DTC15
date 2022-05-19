@@ -29,3 +29,31 @@ file.addEventListener("change", (e) => {
         reader.readAsDataURL(choosedFile);
     }
 });
+
+function processCreation(data) {
+    if (data) {
+        alert("Successfully created new reward.");
+        location.href='./admin.html';
+    }
+}
+
+function requestCreation() {
+    $.ajax({
+        url: 'http://localhost:3000/createReward',
+        type: 'POST',
+        data: {
+            company: $('#company').val(),
+            description: $('#description').val(),
+            photo: 'https://picsum.photos/id/237/200',
+            value: parseInt($('#value').val()),
+            cost: parseInt($('#points').val())
+        },
+        success: processCreation
+    })
+}
+
+function setup() {
+    $('#submit').click(requestCreation);
+}
+
+$(document).ready(setup);
