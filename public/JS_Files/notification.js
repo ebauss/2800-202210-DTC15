@@ -208,6 +208,18 @@ earningsButton.addEventListener('click', () => {
     }
 })
 
+function displayUsername(data) {
+    $('.hero > h2').html(`Welcome, ${data[0].first_name}!`);
+}
+
+function requestUsername() {
+    $.ajax({
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
+        success: displayUsername
+    })
+}
+
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
@@ -215,8 +227,9 @@ function redirectToLogin(data) {
         window.location.href = './authentication.html';
     }
     else {
-        poopulate_rewards(dummy_rewards)
-        poopulate_earnings(dummy_earnings)        
+        poopulate_rewards(dummy_rewards);
+        poopulate_earnings(dummy_earnings);
+        requestUsername();
     }
 }
 
