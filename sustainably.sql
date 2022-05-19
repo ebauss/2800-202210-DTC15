@@ -88,3 +88,15 @@ SELECT * FROM receipts;
 DROP TABLE receipts;
 
 SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id;
+
+CREATE TABLE users_rewards (
+	user_id INT unsigned NOT NULL,
+    reward_id INT unsigned NOT NULL,
+    redeemed_date DATETIME
+);
+
+INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES
+(2, 1, '2022-02-28'),
+(4, 3, '2022-03-01');
+
+SELECT * FROM users_rewards;
