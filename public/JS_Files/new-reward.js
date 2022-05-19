@@ -52,7 +52,25 @@ function requestCreation() {
     })
 }
 
+// redirects the user to main if they are not logged in or not an admin
+function redirectToMain(data) {
+    if (data[0] == undefined || !data[0].is_admin) {
+        alert("You do not have permission to access this page.");
+        window.location.href = './main.html';
+    }
+}
+
+// sends request to server to get user's details
+function verifyAdmin() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: redirectToMain
+    })
+}
+
 function setup() {
+    verifyAdmin();
     $('#submit').click(requestCreation);
 }
 

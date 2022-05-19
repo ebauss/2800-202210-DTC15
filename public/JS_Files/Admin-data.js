@@ -259,7 +259,7 @@ function requestReceiptData() {
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
         alert("You do not have permission to access this page.");
-        window.location.href = './qli.html';
+        window.location.href = './main.html';
     }
     else {
         // populates user data in table
