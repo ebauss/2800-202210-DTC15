@@ -60,9 +60,9 @@ function poopulate_rewards(rewards) {
     // ------ Grabs all values for every reward -------//
     rewards.forEach(reward => {
         rewardStatus = "Unknown";
-        rewardsPoints = reward.points_cost;
+        rewardsPoints = reward.points_cost.toLocaleString('en-CA');
         rewardsTitle = reward.company;
-        rewardsDate = reward.redeemed_date;
+        rewardsDate = reward.redeemed_date.split("T")[0];
         rewardsId = reward.description;
         rewardsCompany = reward.company;
         rewardsImage = reward.photo;
