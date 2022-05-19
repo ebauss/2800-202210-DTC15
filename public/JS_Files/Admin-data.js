@@ -150,7 +150,7 @@ function deleteUser() {
     })
 }
 
-// Function that populates the receipt table/collapsible-body
+// Function that populates the reward table/collapsible-body
 function rewards_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-rewards")
@@ -161,18 +161,18 @@ function rewards_populate_table(data, mobile = false) {
         company = info.company
         description = info.description
         value = info.value
-        points = info.points
-        picUrl = info.picture
+        points = info.points_cost
+        picUrl = info.photo
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (picUrl === null) {
             picUrl = "Not Provided"
         }
 
-        newcell.querySelector(".rewards-company").innerHTML = `${company}`
-        newcell.querySelector(".rewards-description").innerHTML = `${description}`
-        newcell.querySelector(".rewards-value").innerHTML = `${value}`
-        newcell.querySelector(".rewards-points-cost").innerHTML = `${points}`
+        newcell.querySelector(".rewards-company").innerHTML = company
+        newcell.querySelector(".rewards-description").innerHTML = description
+        newcell.querySelector(".rewards-value").innerHTML = value
+        newcell.querySelector(".rewards-points-cost").innerHTML = points
 
         if (mobile) {
             document.getElementById("rewards-collapsible-body").append(newcell)
@@ -309,9 +309,21 @@ function requestReceiptDeletion() {
     })
 }
 
+function requestRewards() {
+    $.ajax({
+        url: 'http://localhost:3000/requestAllRewards',
+        type: 'GET',
+        success: (data) => {
+            rewards_populate_table(data);
+            // rewards_populate_table(data, false);
+        }
+    })
+}
+
 function setup() {
     verifyAdmin();
     requestReceiptData();
+    requestRewards();
     $('body').on('click', '.user-delete', deleteUser);
     $('body').on('click', '.delete-btn', requestReceiptDeletion)
 }
