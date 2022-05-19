@@ -345,5 +345,18 @@ app.post('/redeemReward', (req, res) => {
     })
 })
 
+// create a new reward as an admin
+app.post('/createReward', (req, res) => {
+    connection.query('INSERT INTO rewards (company, description, photo, value, points_cost) VALUES (?, ?, ?, ?, ?)',
+    [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
