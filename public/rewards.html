@@ -66,40 +66,41 @@
             <hr> 
             <!-- Container-->
             <div class="section-content" id="rewards">
-            <!--                 
-                <br>
-                <div class="card-container" id="">
+                
+                <!-- <br>
+                <div class="rewards-container" id="${reward.reward_id}">      
                     <div class="image-container">
-                        <img class="photo-ad" src="https://picsum.photos/200/200">
+                        <img src="https://picsum.photos/200/200" >
                     </div>
-                    <div class="card-title">
-                        <h2>${walkthrough[0].title}</h2>
+                    <div class="rewards-title">
+                        <h2>${reward.company} - $${reward.value}</h2>
                     </div>
-                    <div class="cardInfo">
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id error fugit molestiae odio ipsam porro similique
-                        </p>
+                    <div class="rewards-info">
+                        <p>${reward.description}</p>
                     </div>
-                    <div class="cost"> $ 1000</div>
-                </div>
-                    
+                    <div class="cost">
+                        ${reward.points_cost} points
+                        <button class="redeem-points" id="${reward.points_cost}">Redeem</button>
+                    </div>
+                </div>    
+
                 <br>
-                <div class="cardInformation" id="">
-                    <div class="imageContainer">
-                        <img class="photoAd"src="https://picsum.photos/200/200">
+                <div class="rewards-container" id="${reward.reward_id}">      
+                    <div class="image-container">
+                        <img src="https://picsum.photos/200/200">
                     </div>
-                    <div class="cardTitle">
-                        <h2>${walkthrough[0].title}</h2>
+                    <div class="rewards-title">
+                        <h2>${reward.company} - $${reward.value}</h2>
                     </div>
-                    <div class="cardInfo">
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id error fugit molestiae odio ipsam porro similique
-                        </p>
+                    <div class="rewards-info">
+                        <p>${reward.description}</p>
                     </div>
-                    <div class="cost"> $ 1000</div>
-                </div> -->
-
-
+                    <div class="cost">
+                        ${reward.points_cost} points
+                        <button class="redeem-points" id="${reward.points_cost}">Redeem</button>
+                    </div>
+                </div>     -->
+                
             </div>
             <br>
         </section>

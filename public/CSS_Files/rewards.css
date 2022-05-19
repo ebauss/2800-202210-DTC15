@@ -37,7 +37,7 @@ label[for="greetings"]{
   
 .section-content{ /* container*/
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     justify-content: center; 
     padding: 1em;
 }
@@ -56,7 +56,7 @@ label[for="greetings"]{
     cursor: pointer;
     display: grid;
     grid-template-areas:
-    '. .  image-container'
+    'rewards-title rewards-title  image-container'
     'rewards-title rewards-title  image-container '
     'cost cost  image-container'
     'rewards-info rewards-info  image-container'
