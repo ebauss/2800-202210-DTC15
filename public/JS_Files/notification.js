@@ -50,7 +50,7 @@ dummy_earnings = [
 // ------- All Functions for populating the card ------- //
 
 // ------- A function that populates the rewards container -------- //
-function poopulate_rewards(rewards) {
+function populate_rewards(rewards) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById("rewards-template")
@@ -79,27 +79,37 @@ function poopulate_rewards(rewards) {
         newMail.querySelector(".rewards-id-popup").innerHTML = rewardsId;
         newMail.querySelector(".rewards-img").setAttribute("src", rewardsImage)
 
-        if (rewardStatus == "Claimed" || rewardStatus == "Expired") {
-            newMail.querySelector(".rewards-status").classList.add("end")
-        }
-
         document.getElementById("user-rewards-container").append(newMail)
     })
 }
 
 // ------- A function that populates the rewards container -------- //
-function poopulate_earnings(earnings) {
+function populate_earnings(earnings) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById("earnings-template")
 
     // ------ Grabs all values for every rewards mail -------//
-    earnings.forEach(mail => {
-        earningsStatus = mail.status;
-        earningsPoints = mail.points;
-        earningsDate = mail.date;
-        earningsId = mail.earningsID;
-        earningsDescription = mail.description;
+    earnings.forEach(receipt => {
+        console.log(receipt);
+
+        if (receipt.admin_id == null) {
+            earningsStatus = "Pending";
+        }
+        else {
+            earningsStatus = "Verified";
+        }
+        
+        earningsPoints = receipt.reward_points.toLocaleString('en-CA');
+
+        if (receipt.verified_date == null) {
+            earningsDate = ""
+        }
+        else {
+            earningsDate = receipt.verified_date.split("T")[0];        
+        }
+
+        earningsId = receipt.notes;
 
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
@@ -220,7 +230,16 @@ function requestOwnedRewards() {
     $.ajax({
         url: 'http://localhost:3000/getUserRewards',
         type: 'GET',
-        success: poopulate_rewards
+        success: populate_rewards
+    })
+}
+
+// requests an object with all receipts user has posted
+function requestOwnedReceipts() {
+    $.ajax({
+        url: 'http://localhost:3000/getReceiptData',
+        type: 'GET',
+        success: populate_earnings
     })
 }
 
@@ -232,7 +251,7 @@ function redirectToLogin(data) {
     }
     else {
         requestOwnedRewards();
-        poopulate_earnings(dummy_earnings);
+        requestOwnedReceipts();
         requestUsername();
     }
 }
