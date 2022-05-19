@@ -55,16 +55,17 @@ function poopulate_rewards(rewards) {
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById("rewards-template")
 
-    // ------ Grabs all values for every rewards mail -------//
-    rewards.forEach(mail => {
-        rewardStatus = mail.status;
-        rewardsPoints = mail.points;
-        rewardsTitle = mail.title;
-        rewardsDate = mail.date;
-        rewardsId = mail.rewardsID;
-        rewardsCompany = mail.company;
-        rewardsDescription = mail.description;
-        rewardsImage = mail.img;
+    console.log(rewards);
+
+    // ------ Grabs all values for every reward -------//
+    rewards.forEach(reward => {
+        rewardStatus = "Unknown";
+        rewardsPoints = reward.points_cost;
+        rewardsTitle = reward.company;
+        rewardsDate = reward.redeemed_date;
+        rewardsId = reward.description;
+        rewardsCompany = reward.company;
+        rewardsImage = reward.photo;
 
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
@@ -79,8 +80,6 @@ function poopulate_rewards(rewards) {
         newMail.querySelector(".rewards-title-popup").innerHTML = rewardsTitle;
         newMail.querySelector(".rewards-date-popup").innerHTML = rewardsDate;
         newMail.querySelector(".rewards-id-popup").innerHTML = rewardsId;
-        newMail.querySelector(".rewards-company").innerHTML = rewardsCompany;
-        newMail.querySelector(".rewards-description").innerHTML = rewardsDescription;
         newMail.querySelector(".rewards-img").setAttribute("src", rewardsImage)
 
         if (rewardStatus == "Claimed" || rewardStatus == "Expired") {
@@ -116,7 +115,6 @@ function poopulate_earnings(earnings) {
         newMail.querySelector(".earnings-points-popup").innerHTML = earningsPoints;
         newMail.querySelector(".earnings-date-popup").innerHTML = earningsDate;
         newMail.querySelector(".earnings-id-popup").innerHTML = earningsId;
-        newMail.querySelector(".earnings-description").innerHTML = earningsDescription;
 
         if (earningsStatus == "Declined") {
             newMail.querySelector(".rewards-status").classList.add("end")
@@ -220,6 +218,15 @@ function requestUsername() {
     })
 }
 
+// requests an object with all rewards the user has redeemed
+function requestOwnedRewards() {
+    $.ajax({
+        url: 'http://localhost:3000/getUserRewards',
+        type: 'GET',
+        success: poopulate_rewards
+    })
+}
+
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
@@ -227,7 +234,7 @@ function redirectToLogin(data) {
         window.location.href = './authentication.html';
     }
     else {
-        poopulate_rewards(dummy_rewards);
+        requestOwnedRewards();
         poopulate_earnings(dummy_earnings);
         requestUsername();
     }
