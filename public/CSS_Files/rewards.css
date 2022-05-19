@@ -9,6 +9,7 @@ hr{
 h1, h2{
     font-weight: 800;
 }
+
 a{
     color:black;
 }
@@ -26,18 +27,19 @@ label[for="greetings"]{
     padding: 5px;
     border-radius: 10px;
 }
+
 .section-header{
     display: flex;
     align-items: baseline;
     justify-content: space-between; 
     margin:10px  
 }
-
-    
+  
 .section-content{ /* container*/
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center; 
+    padding: 1em;
 }
 
 /* .rewards-container{  
@@ -49,25 +51,22 @@ label[for="greetings"]{
     /* border: 1px solid black; */
     box-shadow: 0 2px 5px rgba(100, 100, 100, 0.3);
     border-radius: 10px;
-    width: 100%;
+    width: 95%;
     padding: 10px;
     cursor: pointer;
     display: grid;
     grid-template-areas:
-    '. . . image-container'
-    'rewards-title rewards-title . image-container '
-    'cost cost cost image-container'
-    'rewards-info rewards-info . image-container'
-    'rewards-info rewards-info . image-container'
-    ;
-    justify-content: space-around;
+    '. .  image-container'
+    'rewards-title rewards-title  image-container '
+    'cost cost  image-container'
+    'rewards-info rewards-info  image-container'
+    'rewards-info rewards-info  image-container';
+    /* justify-content: space-around; */
 }
 
 .rewards-container:hover{
     /* box-shadow: 0 2px 10px rgba(100, 100, 100, 1); */
     box-shadow: 0 2px 5px rgb(131, 92, 92);
-
-
 }
 
 .image-container{
@@ -75,6 +74,7 @@ label[for="greetings"]{
     justify-content: flex-end;
     grid-area:image-container;
 }
+
 .image-container > img{
     width:fit-content;
     height:fit-content;
@@ -94,6 +94,11 @@ label[for="greetings"]{
     grid-area: cost;
     padding: 10px;
     font-weight:bold;
+    font-size: 0.8em;
+}
+
+.cost > button{
+    grid-area: button;
 }
 
 button{
@@ -116,13 +121,14 @@ button:hover{
         grid-template-areas:
         'rewards-title rewards-title image-container'
         'cost cost image-container'
+        'button button image-container'
         'rewards-info rewards-info   rewards-info '
         'rewards-info rewards-info  rewards-info';
         
     }
 
     .image-container > img{
-        width:150px;
-        height:150px;
+        aspect-ratio: 4/6;
+        height: 100%;
     }
 }

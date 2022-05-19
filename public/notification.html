@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-------------------------------------------------------->
+    <!-------------- External Links goes here ---------------->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+    <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="./CSS_Files/notification.css">
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+    <main>
+        <div class="hero">
+            <h2>Hello, User</h2>
+        </div>
+
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button id="earnings-btn" class="toggle-btn" type="button">Earnings</button>
+                <button id="rewards-btn" class="toggle-btn" type="button">Rewards</button>
+            </div>
+        </div>
+
+        <!------------------------------->
+        <!-- HTML Template for Rewards -->
+        <!------------------------------->
+
+        <template id="rewards-template">
+
+            <div class="rewards-container card-container">
+
+                <!------- HTML Layout for the Rewards cards ------->
+
+                <div class="card-body rewards-body" type="button">
+                    <div class="rewards-status card-status start"> Status </div>
+                    <div class="rewards-points card-points"> Points </div>
+                    <div class="rewards-title card-title"> Title </div>
+                    <div class="rewards-date card-date"> Date </div>
+                    <div class="rewards-id card-id"> ID </div>
+                </div>
+
+                <!------- HTML Layout for the Rewards Popup ------->
+
+                <div class="popup-container">
+                    <div class="popup-header">
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
+                        </div>
+                    </div>
+                    <div class="popup-body">
+                        <div class="card-img"><img class="pop-up-img rewards-img" width="150px"></div>
+                        <div class="popup-information">
+                            <div class="rewards-title-popup card-title"> Card Title </div>
+                            <div class="rewards-company card-company"> Card Company </div>
+                            <div class="rewards-points-popup card-points"> Points </div>
+                            <div class="rewards-status-popup card-status start"> Status </div>
+                        </div>
+                        <div class="popup-more-info">
+                            <div class="rewards-description card-description"> Description </div>
+                            <span class="popup-footer">
+                                <div class="rewards-id-popup card-id"> ID </div>
+                                <div class="rewards-date-popup card-date"> Card Date </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </template>
+
+        <!-------------------------------->
+        <!-- HTML Template for Earnings -->
+        <!-------------------------------->
+
+        <template id="earnings-template">
+
+            <div class="earnings-container card-container">
+
+                <!------- HTML Layout for the Rewards cards ------->
+
+                <div class="card-body earnings-body" type="button">
+                    <div class="earnings-status card-status start"> Status </div>
+                    <div class="earnings-points card-points"> Points </div>
+                    <div class="earnings-date card-date"> Date </div>
+                    <div class="earnings-id card-id"> ID </div>
+                </div>
+
+                <!------- HTML Layout for the Rewards Popup ------->
+
+                <div class="popup-container">
+                    <div class="popup-header">
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
+                        </div>
+                    </div>
+                    <div class="popup-body">
+                        <div class="card-img"><img class="pop-up-img rewards-img" width="150px"></div>
+                        <div class="popup-information">
+                            <div class="earnings-status-popup card-status start"> Status </div>
+                            <div class="earnings-points-popup card-points"> Points </div>
+                        </div>
+                        <div class="popup-more-info">
+                            <div class="earnings-description card-description"> Description </div>
+                            <span class="popup-footer">
+                                <div class="earnings-id-popup card-id"> ID </div>
+                                <div class="earnings-date-popup card-date"> Card Date </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </template>
+
+        <!-------------------------------->
+        <!-- HTML Template for Earnings -->
+        <!-------------------------------->
+
+        <!---- Rewards Cards Container where the rewards card will be contained ---->
+        <div class="container-box">
+            <section id="user-rewards-container">
+            </section>
+
+            <!---- Earnings Cards Container where the earnings card will be contained ---->
+            <section id="user-earnings-container">
+
+            </section>
+        </div>
+
+        <div id="overlay"></div>
+    </main>
+
+    <!-- our own floating bar goes here-->
+    <nav id="floatingBarPlaceholder"></nav>
+
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/notification.js"> </script>
+</body>

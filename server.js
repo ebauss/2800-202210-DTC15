@@ -20,7 +20,11 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
+<<<<<<< HEAD
     password: 'K}{=2-D^Pwp5bgr&',
+=======
+    password: 'JDCYelwe@0115',
+>>>>>>> JL_Notification
     database: 'sustainably',
     multipleStatements: false
 })
