@@ -30,8 +30,26 @@ dummy_rewards = [
     },
 ]
 
+dummy_earnings = [
+    {
+        "status": "Approved",
+        "points": "1000",
+        "date": "03 / 30 / 2002",
+        "earningsID": "adwarttfsa123121",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
+    },
+    {
+        "status": "Pending",
+        "points": null,
+        "date": "03 / 30 / 2022",
+        "earningsID": "adwarttfsa123121",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
+    },
+]
+
 // ------- All Functions for populating the card ------- //
 
+// ------- A function that populates the rewards container -------- //
 function poopulate_rewards(rewards) {
 
     // ------ Takes the template from the HTML file ------ //
@@ -39,14 +57,14 @@ function poopulate_rewards(rewards) {
 
     // ------ Grabs all values for every rewards mail -------//
     rewards.forEach(mail => {
-        rewardStatus = mail.status,
-        rewardsPoints = mail.points,
-        rewardsTitle = mail.title,
-        rewardsDate = mail.date,
-        rewardsId = mail.rewardsID,
-        rewardsCompany = mail.company,
-        rewardsDescription = mail.description
-        rewardsImage = mail.img
+        rewardStatus = mail.status;
+        rewardsPoints = mail.points;
+        rewardsTitle = mail.title;
+        rewardsDate = mail.date;
+        rewardsId = mail.rewardsID;
+        rewardsCompany = mail.company;
+        rewardsDescription = mail.description;
+        rewardsImage = mail.img;
 
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
@@ -65,14 +83,50 @@ function poopulate_rewards(rewards) {
         newMail.querySelector(".rewards-description").innerHTML = rewardsDescription;
         newMail.querySelector(".rewards-img").setAttribute("src", rewardsImage)
 
-        if (rewardStatus == "Claimed" || rewardStatus == "Expired"){
+        if (rewardStatus == "Claimed" || rewardStatus == "Expired") {
             newMail.querySelector(".rewards-status").classList.add("end")
         }
 
-            document.getElementById("user-rewards-container").append(newMail)
+        document.getElementById("user-rewards-container").append(newMail)
+    })
+}
+
+// ------- A function that populates the rewards container -------- //
+function poopulate_earnings(earnings) {
+
+    // ------ Takes the template from the HTML file ------ //
+    const earningsTemplate = document.getElementById("earnings-template")
+
+    // ------ Grabs all values for every rewards mail -------//
+    earnings.forEach(mail => {
+        earningsStatus = mail.status;
+        earningsPoints = mail.points;
+        earningsDate = mail.date;
+        earningsId = mail.earningsID;
+        earningsDescription = mail.description;
+
+        // ------- creates a card ------- //
+        let newMail = earningsTemplate.content.cloneNode(true);
+
+        newMail.querySelector(".earnings-status").innerHTML = earningsStatus;
+        newMail.querySelector(".earnings-points").innerHTML = earningsPoints;
+        newMail.querySelector(".earnings-date").innerHTML = earningsDate;
+        newMail.querySelector(".earnings-id").innerHTML = earningsId;
+        newMail.querySelector(".earnings-status-popup").innerHTML = earningsStatus;
+        newMail.querySelector(".earnings-points-popup").innerHTML = earningsPoints;
+        newMail.querySelector(".earnings-date-popup").innerHTML = earningsDate;
+        newMail.querySelector(".earnings-id-popup").innerHTML = earningsId;
+        newMail.querySelector(".earnings-description").innerHTML = earningsDescription;
+
+        if (earningsStatus == "Declined") {
+            newMail.querySelector(".rewards-status").classList.add("end")
+        }
+
+        document.getElementById("user-earnings-container").append(newMail)
     })
     addListeners()
 }
+
 
 // ------- All functions for popup cards ------- //
 
