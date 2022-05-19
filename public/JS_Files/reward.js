@@ -9,13 +9,13 @@ function processRewardsList(data) {
                 <img src="${reward.photo}">
             </div>
             <div class="rewards-title">
-                <h2>${reward.company} - $${reward.value}</h2>
+                <h2>${reward.company} - $${reward.value.toLocaleString('en-CA')}</h2>
             </div>
             <div class="rewards-info">
                 <p>${reward.description}</p>
             </div>
             <div class="cost">
-                ${reward.points_cost} points
+                ${reward.points_cost.toLocaleString('en-CA')} points
                 <button class="redeem-points" id="${reward.points_cost}">Redeem</button>
             </div>
         </div>`
@@ -25,7 +25,7 @@ function processRewardsList(data) {
 }
 
 function processUserPoints(data) {
-    $('#total-points').html(data[0].reward_points);
+    $('#total-points').html(data[0].reward_points.toLocaleString('en-CA'));
 }
 
 function makeRewardsListRequest() {
