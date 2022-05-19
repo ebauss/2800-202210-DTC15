@@ -53,6 +53,7 @@ label[for="greetings"]{
     border-radius: 10px;
     width: 95%;
     padding: .5em;
+    margin: .5em;
     cursor: pointer;
     display: grid;
     grid-template-areas:
@@ -116,7 +117,6 @@ button:hover{
 
 @media(max-width: 768px) {
     .rewards-container{
-        gap: .2em;
         justify-content: center;
         grid-template-areas:
         'image-container image-container'
