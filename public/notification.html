@@ -50,83 +50,103 @@
             </div>
         </div>
 
+        <!------------------------------->
+        <!-- HTML Template for Rewards -->
+        <!------------------------------->
 
-        <section id="user-rewards-container">
-            <div class="card-container">
-                <div class="card-body" type="button">
-                    <div class="card-status start">Claimed</div>
-                    <div class="card-points">1 000 points</div>
-                    <div class="card-title ">Rewards Title I</div>
-                    <small class="card-date">99/99/9999</small>
-                    <small class="card-code">1</small>
+        <template id="rewards-template">
+            
+            <div class="rewards-container card-container">
+
+                <!------- HTML Layout for the Rewards cards ------->
+
+                <div class="card-body rewards-body" type="button">
+                    <div class="rewards-status card-status start"> Status </div>
+                    <div class="rewards-points card-points"> Points </div>
+                    <div class="rewards-title card-title"> Title </div>
+                    <div class="rewards-date card-date"> Date </div>
+                    <div class="rewards-id card-id"> ID </div>
                 </div>
+
+                <!------- HTML Layout for the Rewards Popup ------->
 
                 <div class="popup-container">
                     <div class="popup-header">
                         <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
                         </div>
                     </div>
-                    <div class="popup-body rewards">
-                        <div class="card-img"><img src="./Image_Files/tree.png" width="150px"></div>
+                    <div class="popup-body">
+                        <div class="card-img"><img class="pop-up-img rewards-img" width="150px"></div>
                         <div class="popup-information">
-                            <div class="card-title">Rewards Title I</div>
-                            <div class="card-company">J.A.N.E. Group</div>
-                            <div class="card-points">1 000 points</div>
-                            <div class="card-status start">Claimed</div>
+                            <div class="rewards-title-popup card-title"> Card Title </div>
+                            <div class="rewards-company card-company"> Card Company </div>
+                            <div class="rewards-points-popup card-points"> Points </div>
+                            <div class="rewards-status-popup card-status start"> Status </div>
                         </div>
-                        <div class="popup-footer">
-                            <div class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum
-                                quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus
-                                molestiae?
-                            </div>
-                            <span>
-                                <small class="card-code">1</small>
-                                <small class="card-date">99/99/9999</small>
+                        <div class="popup-more-info">
+                            <div class="rewards-description card-description"> Description </div>
+                            <span class="popup-footer">
+                                <div class="rewards-id-popup card-id"> ID </div>
+                                <div class="rewards-date-popup card-date"> Card Date </div>
                             </span>
                         </div>
                     </div>
                 </div>
+        </template>
 
-            </div>
+        <!-------------------------------->
+        <!-- HTML Template for Earnings -->
+        <!-------------------------------->
 
-            <div class="card-container">
-                <div type="button" class="card-body">
-                    <div class="card-status end">Expired</div>
-                    <div class="card-points">1 000 points</div>
-                    <div class="card-title">Rewards Title II</div>
-                    <small class="card-date">99/99/9999</small>
-                    <small class="card-code">1</small>
+        <template id="earnings-template">
+            
+            <div class="earnings-container card-container">
+
+                <!------- HTML Layout for the Rewards cards ------->
+
+                <div class="card-body earnings-body" type="button">
+                    <div class="rewards-status card-status start"> Status </div>
+                    <div class="rewards-points card-points"> Points </div>
+                    <div class="rewards-title card-title"> Title </div>
+                    <div class="rewards-date card-date"> Date </div>
+                    <div class="rewards-id card-id"> ID </div>
                 </div>
+
+                <!------- HTML Layout for the Rewards Popup ------->
 
                 <div class="popup-container">
                     <div class="popup-header">
-                        <div class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px"></div>
-                    </div>
-                    <div class="popup-body rewards">
-                        <div type="button" class="card-img"><img src="./Image_Files/tree.png" width="150px"></div>
-                        <div class="popup-information">
-                            <div class="card-title">Rewards Title II</div>
-                            <div class="card-company">J.A.N.E. Group</div>
-                            <div class="card-points">1 000 points</div>
-                            <div class="card-status end">Expired</div>
+                        <div type="button" class="close-btn"><img src="./Image_Files/icons8-close-50.png" width="15px">
                         </div>
-                        <div class="popup-footer">
-                            <div class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum
-                                quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus
-                                molestiae?
-                            </div>
-                            <span>
-                                <small class="card-code">1</small>
-                                <small class="card-date">99/99/9999</small>
+                    </div>
+                    <div class="popup-body">
+                        <div class="card-img"><img class="pop-up-img rewards-img" width="150px"></div>
+                        <div class="popup-information">
+                            <div class="rewards-title-popup card-title"> Card Title </div>
+                            <div class="rewards-company card-company"> Card Company </div>
+                            <div class="rewards-points-popup card-points"> Points </div>
+                            <div class="rewards-status-popup card-status start"> Status </div>
+                        </div>
+                        <div class="popup-more-info">
+                            <div class="rewards-description card-description"> Description </div>
+                            <span class="popup-footer">
+                                <div class="rewards-id-popup card-id"> ID </div>
+                                <div class="rewards-date-popup card-date"> Card Date </div>
                             </span>
                         </div>
                     </div>
                 </div>
-            </div>
+        </template>
+
+        <!-------------------------------->
+        <!-- HTML Template for Earnings -->
+        <!-------------------------------->
+
+        <!---- Rewards Cards Container where the rewards card will be contained ---->
+        <section id="user-rewards-container">
         </section>
 
+        <!---- Earnings Cards Container where the earnings card will be contained ---->
         <section id="user-earnings-container">
             <div class="card-container">
                 <div class="card-body" type="button">
@@ -144,7 +164,7 @@
                     </div>
                     <div class="popup-body earnings">
                         <div class="popup-information">
-                            <div class="card-title">Earning Reciept Title II</div>
+                            <div class="card-title">Earning Reciept Title I</div>
                             <div class="card-company">J.A.N.E. Group</div>
                             <div class="card-points">1 000 points</div>
                             <div class="card-status start">Approved</div>
