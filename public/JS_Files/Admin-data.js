@@ -93,7 +93,7 @@ function populate_table(data, mobile = false) {
         newcell.querySelector(".user-profile-icon").innerHTML = profile_icon;
         newcell.querySelector(".user-compass-id").innerHTML = compass_id;
         newcell.querySelector(".user-admin").innerHTML = is_admin;
-        newcell.querySelector(".user-delete").setAttribute("id", userID);
+        newcell.querySelector(".user-delete-btn").setAttribute("id", userID);
 
         if (mobile) {
             document.getElementById("user-collapsible-body").append(newcell)
@@ -122,7 +122,7 @@ function processDeleteUser(data) {
     location.reload();
 }
 
-function deleteUser() {
+function requestUserDeletion() {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
         type: "POST",
@@ -152,10 +152,11 @@ function rewards_populate_table(data, mobile = false) {
             picUrl = "Not Provided"
         }
 
-        newcell.querySelector(".rewards-company").innerHTML = company
-        newcell.querySelector(".rewards-description").innerHTML = description
-        newcell.querySelector(".rewards-value").innerHTML = value
-        newcell.querySelector(".rewards-points-cost").innerHTML = points
+        newcell.querySelector(".rewards-company").innerHTML = company;
+        newcell.querySelector(".rewards-description").innerHTML = description;
+        newcell.querySelector(".rewards-value").innerHTML = value;
+        newcell.querySelector(".rewards-points-cost").innerHTML = points;
+        newcell.querySelector('.reward-delete-btn').id = info.reward_id;
 
         if (mobile) {
             document.getElementById("rewards-collapsible-body").append(newcell)
@@ -307,8 +308,9 @@ function setup() {
     verifyAdmin();
     requestReceiptData();
     requestRewards();
-    $('body').on('click', '.user-delete', deleteUser);
-    $('body').on('click', '.delete-btn', requestReceiptDeletion)
+    $('body').on('click', '.user-delete-btn', requestUserDeletion);
+    $('body').on('click', '.receipt-delete-btn', requestReceiptDeletion);
+
 }
 
 $(document).ready(setup)
