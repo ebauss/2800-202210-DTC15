@@ -235,6 +235,14 @@ function setup() {
             isEmailInDB();
         }
     })
+
+    $('body').on('keypress', '#password', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            isPasswordCorrect();
+        }
+    })
 }
 
 $(document).ready(setup)
