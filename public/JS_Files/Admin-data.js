@@ -246,7 +246,7 @@ function receipts_populate_table(data, mobile = false) {
 
 function requestReceiptData() {
     $.ajax({
-        url: "http://localhost:3000/requestReceiptData",
+        url: "http://localhost:3000/getReceiptData",
         type: "GET",
         success: (data) => {
             receipts_populate_table(data);

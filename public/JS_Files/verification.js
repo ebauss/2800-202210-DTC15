@@ -4,7 +4,7 @@ function getSingleReceiptData() {
     let currentUrl = parseInt(location.href.split('=')[1]);
 
     $.ajax({
-        url: `http://localhost:3000/requestSingleReceiptData`,
+        url: `http://localhost:3000/getSingleReceiptData`,
         type: 'POST',
         data: {
             receipt_id: currentUrl,
