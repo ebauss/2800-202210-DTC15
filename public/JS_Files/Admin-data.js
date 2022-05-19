@@ -1,20 +1,3 @@
-dummy_rewards = [
-    {
-        "company": "Lexie Company",
-        "description": "Sexy Lexie on the market",
-        "value": 10000,
-        "points": 200,
-        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
-    },
-    {
-        "company": "Lexie Company",
-        "description": "Sexy Lexie on the market",
-        "value": 10000,
-        "points": 200,
-        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
-    },
-]
-
 function requestUserData() {
     console.log("User data requested");
     $.ajax(
@@ -315,7 +298,7 @@ function requestRewards() {
         type: 'GET',
         success: (data) => {
             rewards_populate_table(data);
-            // rewards_populate_table(data, false);
+            rewards_populate_table(data, true);
         }
     })
 }
