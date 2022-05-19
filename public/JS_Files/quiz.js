@@ -26,9 +26,11 @@ function isCorrect(playerAnswer) {
     }
 
 
-    $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = "rgba(44, 169, 226, 0.568))";
+    $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = "rgba(219, 219, 219, 0.568)";
     quizNumber += 1;
     sendApiRequest()
+
+    background-color: ;  
 
 
 }
