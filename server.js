@@ -370,5 +370,17 @@ app.post('/createReward', (req, res) => {
     })
 })
 
+app.get('/getUserRewards', (req, res) => {
+    connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ?;',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
