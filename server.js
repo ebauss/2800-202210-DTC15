@@ -301,6 +301,18 @@ app.post('/deleteReceipt', (req, res) => {
     })
 })
 
+// delete reward from database
+app.post('/deleteReward', (req, res) => {
+    connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 app.get('/checkProfile/id/:user_id', (req,res) => {
     connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
         if (err) {

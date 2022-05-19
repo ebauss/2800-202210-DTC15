@@ -304,13 +304,30 @@ function requestRewards() {
     })
 }
 
+function requestRewardDeletion() {
+    $.ajax({
+        url: "http://localhost:3000/deleteReward",
+        type: "POST",
+        data: {
+            reward_id: $(this).attr("id")
+        },
+        success: processRewardDeletion
+    })
+}
+
+function processRewardDeletion(data) {
+    if (data) {
+        alert("Reward was deleted.");
+    }
+}
+
 function setup() {
     verifyAdmin();
     requestReceiptData();
     requestRewards();
     $('body').on('click', '.user-delete-btn', requestUserDeletion);
     $('body').on('click', '.receipt-delete-btn', requestReceiptDeletion);
-
+    $('body').on('click', '.reward-delete-btn', requestRewardDeletion);
 }
 
 $(document).ready(setup)
