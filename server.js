@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'fUt4b4$4kur4',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -301,6 +301,18 @@ app.post('/deleteReceipt', (req, res) => {
     })
 })
 
+// delete reward from database
+app.post('/deleteReward', (req, res) => {
+    connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 app.get('/checkProfile/id/:user_id', (req,res) => {
     connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
         if (err) {
@@ -341,6 +353,19 @@ app.post('/redeemReward', (req, res) => {
                     res.send(true);
                 }
             })            
+        }
+    })
+})
+
+// create a new reward as an admin
+app.post('/createReward', (req, res) => {
+    connection.query('INSERT INTO rewards (company, description, photo, value, points_cost) VALUES (?, ?, ?, ?, ?)',
+    [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
         }
     })
 })
