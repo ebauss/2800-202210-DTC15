@@ -39,22 +39,20 @@ function isPasswordCorrect() {
 
 function addNewUserToDatabase() {
     console.log("Signup button pressed");
-    $.ajax(
-        {
-            url: "http://localhost:3000/createNewUser",
-            type: "POST",
-            data: {
-                "email": $('#email').val(),
-                "password": $('#new-password').val(),
-                "confirm_password": $('#confirm-password').val(),
-                "first_name": $('#first-name').val(),
-                "last_name": $('#last-name').val(),
-                "age": $('#age').val(),
-                "country": $('#country').val()
-            },
-            success: processSignup
-        }
-    )
+    $.ajax({
+        url: "http://localhost:3000/createNewUser",
+        type: "POST",
+        data: {
+            "email": $('#email').val(),
+            "password": $('#new-password').val(),
+            "confirm_password": $('#confirm-password').val(),
+            "first_name": $('#first-name').val(),
+            "last_name": $('#last-name').val(),
+            "age": $('#age').val(),
+            "country": $('#country').val()
+        },
+        success: processSignup
+    })
 }
 
 function processLogin(data) {
@@ -229,7 +227,38 @@ function setup() {
     $('body').on("click", '#authenticate-user', isEmailInDB);
     $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
     $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
-    $('body').on("click", "#cancel-to-email", cancelToEmail)
+    $('body').on("click", "#cancel-to-email", cancelToEmail);
+    $('#email').keypress((event) => {
+        // keypress works if the cursor is on the #email textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            isEmailInDB();
+        }
+    })
+
+    $('body').on('keypress', '#password', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            isPasswordCorrect();
+        }
+    })
+
+    $('body').on('keypress', '#password', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            isPasswordCorrect();
+        }
+    })
+
+    $('body').on('keypress', '#country', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            addNewUserToDatabase();
+        }
+    })
 }
 
 $(document).ready(setup)
