@@ -59,7 +59,6 @@ function poopulate_rewards(rewards) {
 
     // ------ Grabs all values for every reward -------//
     rewards.forEach(reward => {
-        rewardStatus = "Unknown";
         rewardsPoints = reward.points_cost.toLocaleString('en-CA');
         rewardsTitle = reward.company;
         rewardsDate = reward.redeemed_date.split("T")[0];
@@ -70,12 +69,10 @@ function poopulate_rewards(rewards) {
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
 
-        newMail.querySelector(".rewards-status").innerHTML = rewardStatus;
         newMail.querySelector(".rewards-points").innerHTML = rewardsPoints;
         newMail.querySelector(".rewards-title").innerHTML = rewardsTitle;
         newMail.querySelector(".rewards-date").innerHTML = rewardsDate;
         newMail.querySelector(".rewards-id").innerHTML = rewardsId;
-        newMail.querySelector(".rewards-status-popup").innerHTML = rewardStatus;
         newMail.querySelector(".rewards-points-popup").innerHTML = rewardsPoints;
         newMail.querySelector(".rewards-title-popup").innerHTML = rewardsTitle;
         newMail.querySelector(".rewards-date-popup").innerHTML = rewardsDate;
