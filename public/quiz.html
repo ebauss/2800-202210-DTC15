@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-------------------------------------------------------->
+    <!-------------- External Links goes here ---------------->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+    <link rel="stylesheet" href="./CSS_Files/style.css"> 
+    <link rel="stylesheet" href="./CSS_Files/quiz.css"> 
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+    <main>
+        <!-- https://static.independent.co.uk/2021/04/20/15/round%20up%20of%20sustainable%20brands.jpg?quality=75&width=990&auto=webp&crop=982:726,smart -->
+        <img src="./Image_Files/round up of sustainable brands.avif">
+        
+        <section class="quiz-menu" id="quiz-menu">
+            <div class="quiz-header">
+                <h3 class="quiz-title">Title Name of the game</h3>
+                <div class="close" id="close-quiz"><img src="./Image_Files/icons8-close-50.png"></div> 
+            </div>
+            
+
+            <div class="quiz-content">
+                <div><h2 class="quiz-title">Title Name of the game</h2></div>
+
+            <div>Previous Score:<div class="user-score"></div> </div>
+            <div>Best Score:
+                <div class="best-score">3000</div></div>
+
+                <button type=button class="start-btn" id="start-btn">Start</button>
+            </div>
+
+        </section>
+
+        <section class="quiz-container" id="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-title">Title Name of the game</div>
+
+                <div class="close" id="close-quiz"><img src="./Image_Files/icons8-close-50.png"></div> 
+            </div>
+
+            <div class="quiz-content">
+                <div class="quiz-number"></div>
+                <div class="quiz-question"></div>
+                <button type=button class="answer">A. <span class="answer1"></span></button>
+                <button type=button  class="answer">B. <span class="answer2"></span></button>
+                <button type=button class="answer">C. <span class="answer3"></span></button>
+                <button type=button class="answer">D. <span class="answer4"></span></button>
+            </div>
+
+            <div class="quiz-footer">
+                <div class="user-score">90</div> 
+                <div class="best-score">3000</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="JS_Files/skeleton.js"> </script>
+    <script src="JS_Files/quiz.js"> </script>
+
+</body>
+
+</html>
