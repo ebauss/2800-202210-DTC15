@@ -243,6 +243,22 @@ function setup() {
             isPasswordCorrect();
         }
     })
+
+    $('body').on('keypress', '#password', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            isPasswordCorrect();
+        }
+    })
+
+    $('body').on('keypress', '#country', (event) => {
+        // keypress works if the cursor is on the #password textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            addNewUserToDatabase();
+        }
+    })
 }
 
 $(document).ready(setup)
