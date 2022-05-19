@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'JDCYelwe@0115',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -134,9 +134,6 @@ app.post('/createNewUser', (req, res) => {
             if (req.body.password != req.body.confirm_password) {
                 res.send("unmatching password");
             }
-            else if (isNAN(req.body.age)) {
-                res.send("age is not a number")
-            }
             else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
                 res.send("blank");
             }
@@ -211,6 +208,32 @@ app.get('/requestAllRewards', (req, res) => {
     })
 })
 
+// gets a list of all receipts and joins it with the matching user id and email, admin id and email
+app.get('/requestReceiptData', (req, res) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id;',
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+});
+
+// gets a receipt and joins it with the matching userid and email, admin id and email.
+app.post('/requestSingleReceiptData', (req, res) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;', req.body.receipt_id,
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
+        }
+    })
+});
+
 // retrieves the number of points the user holds
 app.get('/getUserPoints', (req, res) => {
     connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
@@ -223,12 +246,101 @@ app.get('/getUserPoints', (req, res) => {
     })
 })
 
+// deletes a user from database
 app.post('/deleteUser', (req, res) => {
     connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
             res.send(req.body.userIdToDelete);
+        }
+    })
+})
+
+// uploads receipt image, owner, and value to database
+app.post('/uploadReceipt', (req, res) => {
+    connection.query(`INSERT INTO receipts (picture, owner_id, reward_points, verified_date) VALUES (?, ?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value, req.body.date],
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+// sets receipt in database as verified by an admin
+app.post('/verifyReceipt', (req, res) => {
+    connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
+    [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
+    (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`, [req.body.value * 100, req.body.value * 100, req.body.user_id] , (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    res.send(true);
+})
+
+// delete receipt from database
+app.post('/deleteReceipt', (req, res) => {
+    connection.query(`DELETE FROM receipts WHERE receipt_id = ?`, [req.body.receipt_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+app.get('/checkProfile/id/:user_id', (req,res) => {
+    connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } 
+        else {
+            res.send(results[0].email);
+        }
+    })
+})
+
+// redeem a reward: subtract from user's points and add reward to user's inventory
+app.post('/redeemReward', (req, res) => {
+    // gets the number of points the user owns
+    connection.query('SELECT reward_points FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err)
+        }
+        else if (results[0].reward_points < req.body.cost) {
+            // failed redemption if user's reward points are insufficient
+            res.send(false);
+        }
+        else {
+            // add reward to user's inventory
+            connection.query('INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES (?, ?, ?)',
+            [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+
+            // subtract points from user's total reward points
+            connection.query('UPDATE users SET reward_points = reward_points - ? WHERE user_id = ?', [req.body.cost, req.session.uid], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.send(true);
+                }
+            })            
         }
     })
 })

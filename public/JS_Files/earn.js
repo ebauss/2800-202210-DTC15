@@ -70,6 +70,33 @@ function processUserRewardsInfo(data) {
     $('#display-goal-points').html(monthlyGoalPoints);
 }
 
+
+function uploadComplete(data) {
+    if (data) {
+        alert("Upload complete");
+    }
+}
+
+// sends a request to server for uploading a receipt
+function uploadReceipt() {
+    console.log("Should be uploading");
+
+    today = new Date();
+
+    rewardPoints = parseInt($('#receipt-total').val()) * 100;
+
+    $.ajax({
+        url: "http://localhost:3000/uploadReceipt",
+        type: "POST",
+        data: {
+            receipt: "https://picsum.photos/id/237/200",
+            value: rewardPoints,
+            date: today.toISOString().split("T")[0]
+        },
+        success: uploadComplete
+    })
+}
+
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
@@ -93,6 +120,7 @@ function verifyLogin() {
 
 function setup(){
     verifyLogin();
+    $('#closing-btn').click(uploadReceipt);
 }
 
 $(document).ready(setup);

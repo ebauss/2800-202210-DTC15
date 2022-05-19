@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="./CSS_Files/style.css">
     <link rel="stylesheet" href="./CSS_Files/admin.css">
     <link rel="stylesheet" href="./CSS_Files/web-page.css">
-    <link rel="stylesheet" href="./CSS_Files/mobile-page.css">
 
 </head>
 
@@ -95,6 +94,10 @@
         <div class="collapsible-body user-info">
             <span></span>
             <div class="data-container">
+                <h4 class="data-label"> User Number: </h4>
+                <span class="user-id"> User Number</span>
+            </div>
+            <div class="data-container">
                 <h4 class="data-label"> First Name: </h4>
                 <span class="user-first-name"> User First Name</span>
             </div>
@@ -130,7 +133,7 @@
         </div>
     </template>
 
-    <!-- Collapsible tempalte for receipts data -->
+    <!-- Collapsible template for receipts data -->
     <template id="collapsible-template-receipts">
         <button type="button" class="collapsible-data collapsible-data-receipts">
             <h4 class="data-label"> Date: </h4> <span class="receipt-date"> Submission Date
@@ -189,8 +192,16 @@
                 <span class="button-container"><button class="header-btn" type="button" id="receipt-data"> Receipt
                         Verification
                     </button></span>
+<<<<<<< HEAD
                 <span class="button-container"><button class="header-btn" type="button" id="rewards-data" onclick="showadd()"> Rewards
                     </button></span>
+=======
+                <!-- <span class="button-container"><button class="header-btn" type="button" id="reward-data"> Rewards
+                    </button></span>
+                <span class="button-container"><button class="header-btn" type="button" id="user-rewards-data"> User
+                        Rewards
+                    </button></span> -->
+>>>>>>> 55374f57e399f2438cd7e52dcaca912149bd996a
             </section>
             <section class="table-content-section">
                 <form class="table-search"> <input type="search" name="search" id="search" placeholder="Search"
@@ -208,7 +219,7 @@
                         <table class="content-table" id="user-table">
                             <thead>
                                 <tr>
-                                    <th> User ID </th>
+                                    <th> No. </th>
                                     <th> First Name </th>
                                     <th> Last Name </th>
                                     <th> Email </th>

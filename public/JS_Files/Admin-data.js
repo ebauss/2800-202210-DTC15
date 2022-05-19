@@ -72,7 +72,7 @@ function populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-users")
     }
     data.forEach(element => {
-        userID = element.user_id; ``
+        userID = element.user_id;
         fName = element.first_name;
         lName = element.last_name;
         email = element.email;
@@ -100,10 +100,10 @@ function populate_table(data, mobile = false) {
             compass_id = "Not provided";
         }
 
-        // newcell.querySelector(".user-id").innerHTML = `${userID}`
+        newcell.querySelector(".user-id").innerHTML = userID;
         newcell.querySelector(".user-first-name").innerHTML = fName;
         newcell.querySelector(".user-last-name").innerHTML = lName;
-        newcell.querySelector(".user-email").innerHTML = `#${userID} - ${email}`;
+        newcell.querySelector(".user-email").innerHTML = email;
         newcell.querySelector(".user-country").innerHTML = country;
         newcell.querySelector(".user-reward-points").innerHTML = points;
         newcell.querySelector(".user-age").innerHTML = age;
@@ -150,6 +150,7 @@ function deleteUser() {
     })
 }
 
+<<<<<<< HEAD
 // Function that populates the receipt table/collapsible-body
 function rewards_populate_table(data, mobile = false) {
     if (mobile) {
@@ -197,6 +198,18 @@ function rewards_populate_table(data, mobile = false) {
 }
 
 // Function that populates the rewards table/collapsible-body
+=======
+function getUserEmailByUserId(data) {
+    $.ajax({
+        url: `http://localhost:3000/checkProfile/id/${data}`,
+        type: 'GET',
+        success: (data) => {
+        }
+    })
+}
+
+// Function that populates the receipt table. This function only runs once. Once it is run, it populates all the receipt data into the table.
+>>>>>>> 55374f57e399f2438cd7e52dcaca912149bd996a
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-receipts")
@@ -204,21 +217,29 @@ function receipts_populate_table(data, mobile = false) {
         var tableTemplate = document.getElementById("table-template-receipt")
     }
     i = 1
-    data.forEach(info => {
-        date = info.date.slice(0, 10)
-        email = info.UserID
-        receiptId = info.receiptId
-        receiptAdmin = info.admin
+
+    console.log(data)
+
+    data.forEach((receipt) => {
+        date = receipt.verified_date.split("T")[0];
+        email = receipt.email;
+        receiptId = receipt.receipt_id;
+        receiptStatus = receipt.admin_email;
         let newcell = tableTemplate.content.cloneNode(true);
 
-        if (receiptAdmin === null) {
-            receiptAdmin = "Not Provided"
+        if (receiptStatus === null) {
+            receiptStatus = "Not Verified";
+        }
+        else {
+            receiptStatus = `Verified by ${receipt.admin_email}`;
+            newcell.querySelector(".verify-btn").innerHTML = "View";
         }
 
-        newcell.querySelector(".receipt-date").innerHTML = `${date}`
-        newcell.querySelector(".receipt-user-email").innerHTML = `${email}`
-        newcell.querySelector(".receipt-admin").innerHTML = `${receiptAdmin}`
-        newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`)
+        newcell.querySelector(".receipt-date").innerHTML = date;
+        newcell.querySelector(".receipt-user-email").innerHTML = email;
+        newcell.querySelector(".receipt-admin").innerHTML = receiptStatus;
+        newcell.querySelector(".verify-btn").setAttribute("href", `./verification.html?receiptid=${receiptId}`);
+        newcell.querySelector(".delete-btn").setAttribute("id", receiptId);
 
         if (mobile) {
             document.getElementById("receipt-collapsible-body").append(newcell)
@@ -227,7 +248,7 @@ function receipts_populate_table(data, mobile = false) {
         }
     })
     if (mobile) {
-        allCollapsible = document.querySelectorAll(".collapsible-data-receipts")
+        allCollapsible = document.querySelectorAll(".collapsible-data-receipts");
         allCollapsible.forEach(collapsible => {
             collapsible.addEventListener("click", (event) => {
                 event.target.classList.toggle("active-collapsible");
@@ -242,11 +263,22 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
+function requestReceiptData() {
+    $.ajax({
+        url: "http://localhost:3000/requestReceiptData",
+        type: "GET",
+        success: (data) => {
+            receipts_populate_table(data);
+            receipts_populate_table(data, true);
+        }
+    })
+}
+
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
         alert("You do not have permission to access this page.");
-        window.location.href = './authentication.html';
+        window.location.href = './qli.html';
     }
     else {
         // populates user data in table
@@ -263,11 +295,33 @@ function verifyAdmin() {
     })
 }
 
-async function setup() {
+function processReceiptDeletion(data) {
+    if (data) {
+        alert("Receipt was deleted.");
+    }
+}
+
+function requestReceiptDeletion() {
+    $.ajax({
+        url: "http://localhost:3000/deleteReceipt",
+        type: "POST",
+        data: {
+            receipt_id: $(this).attr("id")
+        },
+        success: processReceiptDeletion
+    })
+}
+
+function setup() {
     verifyAdmin();
+<<<<<<< HEAD
     rewards_populate_table(dummy_rewards)
     rewards_populate_table(dummy_rewards, true)
+=======
+    requestReceiptData();
+>>>>>>> 55374f57e399f2438cd7e52dcaca912149bd996a
     $('body').on('click', '.user-delete', deleteUser);
+    $('body').on('click', '.delete-btn', requestReceiptDeletion)
 }
 
 $(document).ready(setup)

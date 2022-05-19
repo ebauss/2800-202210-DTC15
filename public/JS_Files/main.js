@@ -157,10 +157,24 @@ function LoadNews() {
     })
 }
 
+function displayUsername(data) {
+    $('.Greetings').html(`Welcome, ${data[0].first_name}!`);
+}
+
+function requestUsername() {
+    $.ajax({
+        url: "http://localhost:3000/checkProfile",
+        type: "GET",
+        success: displayUsername
+    })
+}
+
 function setup() {
     LoadArticles();
     LoadGames();
     LoadNews();
+
+    requestUsername();
 }
 
 $(document).ready(setup)
