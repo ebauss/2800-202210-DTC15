@@ -1,20 +1,3 @@
-dummy_rewards = [
-    {
-        "company": "Lexie Company",
-        "description": "Sexy Lexie on the market",
-        "value": 10000,
-        "points": 200,
-        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
-    },
-    {
-        "company": "Lexie Company",
-        "description": "Sexy Lexie on the market",
-        "value": 10000,
-        "points": 200,
-        "picture": "https://i.redd.it/go8r4r6opqe11.jpg",
-    },
-]
-
 function requestUserData() {
     console.log("User data requested");
     $.ajax(
@@ -110,7 +93,7 @@ function populate_table(data, mobile = false) {
         newcell.querySelector(".user-profile-icon").innerHTML = profile_icon;
         newcell.querySelector(".user-compass-id").innerHTML = compass_id;
         newcell.querySelector(".user-admin").innerHTML = is_admin;
-        newcell.querySelector(".user-delete").setAttribute("id", userID);
+        newcell.querySelector(".user-delete-btn").setAttribute("id", userID);
 
         if (mobile) {
             document.getElementById("user-collapsible-body").append(newcell)
@@ -139,7 +122,7 @@ function processDeleteUser(data) {
     location.reload();
 }
 
-function deleteUser() {
+function requestUserDeletion() {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
         type: "POST",
@@ -150,7 +133,7 @@ function deleteUser() {
     })
 }
 
-// Function that populates the receipt table/collapsible-body
+// Function that populates the reward table/collapsible-body
 function rewards_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-rewards")
@@ -161,18 +144,19 @@ function rewards_populate_table(data, mobile = false) {
         company = info.company
         description = info.description
         value = info.value
-        points = info.points
-        picUrl = info.picture
+        points = info.points_cost
+        picUrl = info.photo
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (picUrl === null) {
             picUrl = "Not Provided"
         }
 
-        newcell.querySelector(".rewards-company").innerHTML = `${company}`
-        newcell.querySelector(".rewards-description").innerHTML = `${description}`
-        newcell.querySelector(".rewards-value").innerHTML = `${value}`
-        newcell.querySelector(".rewards-points-cost").innerHTML = `${points}`
+        newcell.querySelector(".rewards-company").innerHTML = company;
+        newcell.querySelector(".rewards-description").innerHTML = description;
+        newcell.querySelector(".rewards-value").innerHTML = value;
+        newcell.querySelector(".rewards-points-cost").innerHTML = points;
+        newcell.querySelector('.reward-delete-btn').id = info.reward_id;
 
         if (mobile) {
             document.getElementById("rewards-collapsible-body").append(newcell)
@@ -309,11 +293,41 @@ function requestReceiptDeletion() {
     })
 }
 
+function requestRewards() {
+    $.ajax({
+        url: 'http://localhost:3000/requestAllRewards',
+        type: 'GET',
+        success: (data) => {
+            rewards_populate_table(data);
+            rewards_populate_table(data, true);
+        }
+    })
+}
+
+function requestRewardDeletion() {
+    $.ajax({
+        url: "http://localhost:3000/deleteReward",
+        type: "POST",
+        data: {
+            reward_id: $(this).attr("id")
+        },
+        success: processRewardDeletion
+    })
+}
+
+function processRewardDeletion(data) {
+    if (data) {
+        alert("Reward was deleted.");
+    }
+}
+
 function setup() {
     verifyAdmin();
     requestReceiptData();
-    $('body').on('click', '.user-delete', deleteUser);
-    $('body').on('click', '.delete-btn', requestReceiptDeletion)
+    requestRewards();
+    $('body').on('click', '.user-delete-btn', requestUserDeletion);
+    $('body').on('click', '.receipt-delete-btn', requestReceiptDeletion);
+    $('body').on('click', '.reward-delete-btn', requestRewardDeletion);
 }
 
 $(document).ready(setup)

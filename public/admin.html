@@ -55,7 +55,7 @@
             <td class="user-profile-icon">User Profile Icon</td>
             <td class="user-compass-id">User Compass ID</td>
             <td class="user-admin">User Admin</td>
-            <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
+            <td class="user-delete"><button type="button" class="user-delete-btn delete-btn"> Delete </button></td>
         </tr>
     </template>
 
@@ -66,7 +66,7 @@
             <td class="receipt-user-email"> Email </td>
             <td class="receipt-admin"> Admin </td>
             <td class="user-verify"> <a class="verify-btn"> Verify </a> </td>
-            <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
+            <td class="user-delete"><button type="button" class="receipt-delete-btn delete-btn"> Delete </button></td>
         </tr>
     </template>
 
@@ -77,7 +77,7 @@
             <td class="rewards-description"> Description </td>
             <td class="rewards-value"> Value </td>
             <td class="rewards-points-cost"> Points Cost </td>
-            <td class="user-delete"><button type="button" class="delete-btn"> Delete </button></td>
+            <td class="user-delete"><button type="button" class="reward-delete-btn delete-btn"> Delete </button></td>
         </tr>
     </template>
 
@@ -129,7 +129,7 @@
                 <h4 class="data-label"> Profile: </h4>
                 <span class="user-profile-icon">User Profile Icon</span>
             </div>
-            <span class="user-delete"><button type="button" class="delete-btn"> Delete </button></span>
+            <span class="user-delete"><button type="button" class="user-delete-btn delete-btn"> Delete </button></span>
         </div>
     </template>
 
@@ -151,7 +151,7 @@
             </div>
             <div class="btn-receipt-container">
                 <a class="verify-btn"> Verify </a>
-                <button type="button" class="delete-btn"> Delete </button>
+                <button type="button" class="receipt-delete-btn delete-btn"> Delete </button>
             </div>
         </div>
     </template>
@@ -177,7 +177,7 @@
                 <span class="rewards-points-cost"> Points Cost </span>
             </div>
             <div class="btn-receipt-container">
-                <button type="button" class="delete-btn"> Delete </button>
+                <button type="button" class="reward-delete-btn delete-btn"> Delete </button>
             </div>
         </div>
     </template>
@@ -192,13 +192,13 @@
                 <span class="button-container"><button class="header-btn" type="button" id="receipt-data"> Receipt
                         Verification
                     </button></span>
-                <span class="button-container"><button class="header-btn" type="button" id="rewards-data" onclick="showadd()"> Rewards
+                <span class="button-container"><button class="header-btn" type="button" id="rewards-data"> Rewards
                     </button></span>
             </section>
             <section class="table-content-section">
                 <form class="table-search"> <input type="search" name="search" id="search" placeholder="Search"
                         value="">
-                    <a href="newRewards.html" id="new-rewards"> Add Reward </a>
+                    <a href="new-reward.html" id="new-rewards"> Add Reward </a>
                 </form>
                 <div id="main-table">
 
