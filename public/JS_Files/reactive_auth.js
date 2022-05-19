@@ -228,7 +228,8 @@ function setup() {
     $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
     $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
     $('body').on("click", "#cancel-to-email", cancelToEmail);
-    $('#email').keypress((event) => {
+
+    $('body').on('keypress', '#email', (event) => {
         // keypress works if the cursor is on the #email textbox.
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
