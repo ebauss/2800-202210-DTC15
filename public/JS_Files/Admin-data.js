@@ -150,7 +150,6 @@ function deleteUser() {
     })
 }
 
-<<<<<<< HEAD
 // Function that populates the receipt table/collapsible-body
 function rewards_populate_table(data, mobile = false) {
     if (mobile) {
@@ -198,7 +197,6 @@ function rewards_populate_table(data, mobile = false) {
 }
 
 // Function that populates the rewards table/collapsible-body
-=======
 function getUserEmailByUserId(data) {
     $.ajax({
         url: `http://localhost:3000/checkProfile/id/${data}`,
@@ -209,7 +207,6 @@ function getUserEmailByUserId(data) {
 }
 
 // Function that populates the receipt table. This function only runs once. Once it is run, it populates all the receipt data into the table.
->>>>>>> 55374f57e399f2438cd7e52dcaca912149bd996a
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-receipts")
@@ -314,12 +311,7 @@ function requestReceiptDeletion() {
 
 function setup() {
     verifyAdmin();
-<<<<<<< HEAD
-    rewards_populate_table(dummy_rewards)
-    rewards_populate_table(dummy_rewards, true)
-=======
     requestReceiptData();
->>>>>>> 55374f57e399f2438cd7e52dcaca912149bd996a
     $('body').on('click', '.user-delete', deleteUser);
     $('body').on('click', '.delete-btn', requestReceiptDeletion)
 }
