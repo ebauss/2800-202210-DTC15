@@ -132,6 +132,8 @@ function createChart(currentPoints, goalPoints) {
     })
 }
 
+createChart(monthlyTotalPoints, monthlyGoalPoints)
+
 //populates the goal and current points container
 function processUserRewardsInfo(data) {
     console.log(data);

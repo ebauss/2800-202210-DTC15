@@ -92,7 +92,7 @@ a,
 
 /* Footer CSS */
 footer {
-    /* position: absolute; */
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -176,5 +176,9 @@ a {
 
     .floating-bar img {
         height: 5vh;
+    }
+    footer {
+        margin-top: 10px;
+        position: relative;
     }
 }
