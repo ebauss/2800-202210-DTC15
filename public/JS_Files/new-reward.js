@@ -44,6 +44,12 @@ function requestCreation() {
         return;
     }
 
+    // reject if company or description are blank
+    if ($('#company').val() == "" || $('#description').val() == "") {
+        alert("You must provide the company name and description.");
+        return;
+    }
+
     $.ajax({
         url: 'http://localhost:3000/createReward',
         type: 'POST',
