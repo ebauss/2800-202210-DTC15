@@ -209,7 +209,7 @@ app.get('/requestAllRewards', (req, res) => {
 })
 
 // gets a list of all receipts and joins it with the matching user id and email, admin id and email
-app.get('/requestReceiptData', (req, res) => {
+app.get('/getReceiptData', (req, res) => {
     connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id;',
     (err, results, fields) => {
         if (err) {
@@ -222,7 +222,7 @@ app.get('/requestReceiptData', (req, res) => {
 });
 
 // gets a receipt and joins it with the matching userid and email, admin id and email.
-app.post('/requestSingleReceiptData', (req, res) => {
+app.post('/getSingleReceiptData', (req, res) => {
     connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;', req.body.receipt_id,
     (err, results, fields) => {
         if (err) {
@@ -301,6 +301,18 @@ app.post('/deleteReceipt', (req, res) => {
     })
 })
 
+// delete reward from database
+app.post('/deleteReward', (req, res) => {
+    connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 app.get('/checkProfile/id/:user_id', (req,res) => {
     connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
         if (err) {
@@ -341,6 +353,31 @@ app.post('/redeemReward', (req, res) => {
                     res.send(true);
                 }
             })            
+        }
+    })
+})
+
+// create a new reward as an admin
+app.post('/createReward', (req, res) => {
+    connection.query('INSERT INTO rewards (company, description, photo, value, points_cost) VALUES (?, ?, ?, ?, ?)',
+    [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+app.get('/getUserRewards', (req, res) => {
+    connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ?;',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results);
         }
     })
 })

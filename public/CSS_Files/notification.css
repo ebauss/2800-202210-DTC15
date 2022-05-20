@@ -206,6 +206,7 @@ section#user-earnings-container{
 
 .popup-container.active{
     transform: translate(-50%, -50%) scale(1);
+    padding: 1em;
 
     /* when a class active is added to class popup-container, the popup will show at the center of the page */
 }

@@ -9,13 +9,13 @@ function processRewardsList(data) {
                 <img src="${reward.photo}">
             </div>
             <div class="rewards-title">
-                <h2>${reward.company} - $${reward.value}</h2>
+                <h2>${reward.company} - $${reward.value.toLocaleString('en-CA')}</h2>
             </div>
             <div class="rewards-info">
                 <p>${reward.description}</p>
             </div>
             <div class="cost">
-                ${reward.points_cost} points
+                ${reward.points_cost.toLocaleString('en-CA')} points
                 <button class="redeem-points" id="${reward.points_cost}">Redeem</button>
             </div>
         </div>`
@@ -25,7 +25,7 @@ function processRewardsList(data) {
 }
 
 function processUserPoints(data) {
-    $('#total-points').html(data[0].reward_points);
+    $('#total-points').html(data[0].reward_points.toLocaleString('en-CA'));
 }
 
 function makeRewardsListRequest() {
@@ -68,10 +68,29 @@ function makeRedeemRequest() {
     })
 }
 
+// redirects the user to authentication.html if user is not logged in
+function redirectToLogin(data) {
+    if (!data.loggedIn) {
+        alert("You are logged out. Please login to access this page.");
+        window.location.href = './authentication.html';
+    }
+    else {
+        makeRewardsListRequest();
+        makeUserPointsRequest();        
+    }
+}
+
+// sends request to server to check if user is logged in
+function verifyLogin() {
+    $.ajax({
+        url: "http://localhost:3000/loginStatus",
+        type: "GET",
+        success: redirectToLogin
+    })
+}
+
 function setup() {
-    makeRewardsListRequest();
-    makeUserPointsRequest();
-    
+    verifyLogin();
     $('body').on('click', '.redeem-points', makeRedeemRequest)
 }
 
