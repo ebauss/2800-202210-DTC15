@@ -5,7 +5,7 @@ function getSingleReceiptData() {
     let currentUrl = parseInt(location.href.split('=')[1]);
 
     $.ajax({
-        url: `http://localhost:3000/getSingleReceiptData`,
+        url: `https://sustainably-2800-202210-dtc15.herokuapp.com/getSingleReceiptData`,
         type: 'POST',
         data: {
             receipt_id: currentUrl,
@@ -56,7 +56,7 @@ function requestVerification() {
     }
 
     $.ajax({
-        url: 'http://localhost:3000/verifyReceipt',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/verifyReceipt',
         type: 'POST',
         data: {
             value: parseInt($('#value').val()),
@@ -83,7 +83,7 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: redirectToMain
     })

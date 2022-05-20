@@ -54,7 +54,7 @@ function makeRewardsListRequest() {
     }
 
     $.ajax({
-        url: 'http://localhost:3000/requestAllRewards',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/requestAllRewards',
         type: 'POST',
         data: {
             criteria: criteriaInput,
@@ -67,7 +67,7 @@ function makeRewardsListRequest() {
 // request server for the signed-in user's current points
 function makeUserPointsRequest() {
     $.ajax({
-        url: 'http://localhost:3000/getUserPoints',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserPoints',
         type: 'GET',
         success: processUserPoints
     })
@@ -89,7 +89,7 @@ function makeRedeemRequest() {
     today = new Date();
 
     $.ajax({
-        url: 'http://localhost:3000/redeemReward',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/redeemReward',
         type: 'POST',
         data: {
             reward_id: parseInt($(this).parent().parent().attr('id')),
@@ -115,7 +115,7 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: 'http://localhost:3000/loginStatus',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus',
         type: 'GET',
         success: redirectToLogin
     })

@@ -53,7 +53,7 @@ function requestCreation() {
     }
 
     $.ajax({
-        url: 'http://localhost:3000/createReward',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/createReward',
         type: 'POST',
         data: {
             company: $('#company').val(),
@@ -77,7 +77,7 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: redirectToMain
     })

@@ -9,7 +9,7 @@ var monthlyGoalPoints = 1500
 // requests user's monthly goal and actual points
 function getUserRewardsInfo() {
     $.ajax({
-        url: 'http://localhost:3000/getUserPoints',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserPoints',
         type: 'GET',
         success: processUserRewardsInfo
     })
@@ -29,7 +29,7 @@ function uploadReceipt() {
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
     $.ajax({
-        url: 'http://localhost:3000/uploadReceipt',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/uploadReceipt',
         type: 'POST',
         data: {
             receipt: 'https://picsum.photos/id/237/200',
@@ -56,7 +56,7 @@ function saveMonthlyGoal() {
     }
 
     $.ajax({
-        url: 'http://localhost:3000/updateGoal',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/updateGoal',
         type: 'POST',
         data: {
             goal: parseInt($('#display-goal-points').val())
@@ -80,7 +80,7 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: 'http://localhost:3000/loginStatus',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus',
         type: 'GET',
         success: redirectToLogin
     })

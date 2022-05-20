@@ -3,7 +3,7 @@ function isEmailInDB() {
     console.log('Button pressed');
 
     $.ajax({
-        url: 'http://localhost:3000/checkEmailExists',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkEmailExists',
         type: 'POST',
         data: {
             'email': $('#email').val()
@@ -28,7 +28,7 @@ function processUserResult(data) {
 function isPasswordCorrect() {
     console.log('Sign in button pressed')
     $.ajax({
-        url: 'http://localhost:3000/checkIfPasswordCorrect',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkIfPasswordCorrect',
         type: 'POST',
         data: {
             'email': $('#email').val(),
@@ -42,7 +42,7 @@ function isPasswordCorrect() {
 function addNewUserToDatabase() {
     console.log('Signup button pressed');
     $.ajax({
-        url: 'http://localhost:3000/createNewUser',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/createNewUser',
         type: 'POST',
         data: {
             'email': $('#email').val(),
@@ -97,7 +97,7 @@ function processSignup(data) {
 // logs in the user after they sign up
 function loginSignedUpUser() {
     $.ajax({
-        url: 'http://localhost:3000/checkIfPasswordCorrect',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkIfPasswordCorrect',
         type: 'POST',
         data: {
             'email': $('#email').val(),

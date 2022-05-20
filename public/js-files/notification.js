@@ -181,7 +181,7 @@ function displayUsername(data) {
 
 function requestUsername() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: displayUsername
     })
@@ -190,7 +190,7 @@ function requestUsername() {
 // requests an object with all rewards the user has redeemed
 function requestOwnedRewards() {
     $.ajax({
-        url: 'http://localhost:3000/getUserRewards',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserRewards',
         type: 'GET',
         success: populate_rewards
     })
@@ -199,7 +199,7 @@ function requestOwnedRewards() {
 // requests an object with all receipts user has posted
 function requestOwnedReceipts() {
     $.ajax({
-        url: 'http://localhost:3000/getUserReceipts',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserReceipts',
         type: 'GET',
         success: populate_earnings
     })
@@ -221,7 +221,7 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: 'http://localhost:3000/loginStatus',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus',
         type: 'GET',
         success: redirectToLogin
     })

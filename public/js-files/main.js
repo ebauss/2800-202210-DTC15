@@ -150,7 +150,7 @@ function displayUsername(data) {
 // requests the signed-in user's details (only interested in the first name)
 function requestUsername() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: displayUsername
     })

@@ -7,7 +7,7 @@ function requestUserData() {
     console.log('User data requested');
     $.ajax(
         {
-            url: 'http://localhost:3000/requestUserData',
+            url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/requestUserData',
             type: 'GET',
             success: (data) => {
                 populate_table(data)
@@ -20,7 +20,7 @@ function requestUserData() {
 // Function that populates the rewards table/collapsible-body
 function getUserEmailByUserId(data) {
     $.ajax({
-        url: `http://localhost:3000/checkProfile/id/${data}`,
+        url: `https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile/id/${data}`,
         type: 'GET',
         success: (data) => {
         }
@@ -36,7 +36,7 @@ function processDeleteUser(data) {
 // request server to delete a specific user
 function requestUserDeletion() {
     $.ajax({
-        url: 'http://localhost:3000/deleteUser',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/deleteUser',
         type: 'POST',
         data: {
             userIdToDelete: $(this).attr('id')
@@ -47,7 +47,7 @@ function requestUserDeletion() {
 
 function requestReceiptData() {
     $.ajax({
-        url: 'http://localhost:3000/getAllReceiptData',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getAllReceiptData',
         type: 'GET',
         success: (data) => {
             receipts_populate_table(data);
@@ -71,7 +71,7 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: redirectToMain
     })
@@ -87,7 +87,7 @@ function processReceiptDeletion(data) {
 // request server to delete a specific receipt
 function requestReceiptDeletion() {
     $.ajax({
-        url: 'http://localhost:3000/deleteReceipt',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/deleteReceipt',
         type: 'POST',
         data: {
             receipt_id: $(this).attr('id')
@@ -99,7 +99,7 @@ function requestReceiptDeletion() {
 // request all rewards to populate rewards table
 function requestRewards() {
     $.ajax({
-        url: 'http://localhost:3000/requestAllRewards',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/requestAllRewards',
         type: 'POST',
         data: {
             criteria: 'company',
@@ -127,7 +127,7 @@ function requestRewardDeletion() {
     return;
 
     $.ajax({
-        url: 'http://localhost:3000/deleteReward',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/deleteReward',
         type: 'POST',
         data: {
             reward_id: $(this).attr('id')

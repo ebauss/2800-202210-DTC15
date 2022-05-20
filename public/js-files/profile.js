@@ -117,7 +117,7 @@ function updateProfile(data) {
 // request user's profile information to be displayed
 function makeReadRequest() {
     $.ajax({
-        url: 'http://localhost:3000/checkProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkProfile',
         type: 'GET',
         success: displayProfile
     })
@@ -134,7 +134,7 @@ function makeWriteRequest() {
 
 
     $.ajax({
-        url: 'http://localhost:3000/updateProfile',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/updateProfile',
         type: 'POST',
         data: {
             userFirstName: $('#display-first-name').val(),
@@ -159,7 +159,7 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: 'http://localhost:3000/loginStatus',
+        url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/loginStatus',
         type: 'GET',
         success: redirectToLogin
     })

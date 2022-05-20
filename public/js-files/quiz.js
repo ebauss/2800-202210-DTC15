@@ -61,7 +61,7 @@ function updateStats(){
     score = 0
     quizNumber = 0
     startQuiz()
-    // window.location.replace('http://localhost:3000/main.html');
+    // window.location.replace('https://sustainably-2800-202210-dtc15.herokuapp.com/main.html');
 }
 
 function startQuiz (){
