@@ -2,78 +2,15 @@
 var monthlyTotalPoints = 1000
 var monthlyGoalPoints = 1500
 
-// Function that checks if receipt is successfully submitted
-let popup = document.getElementById("popup")
-$("#receipt-btn").on("change", (event) => {
-    receipt = event.target.files;
-    
-    popup.classList.add("open-popup")
-})
-
-$("#closing-btn").on("click", () => {
-    popup.classList.remove("open-popup")
-})
-
-// This function creates the chart.
-function createChart(currentPoints, goalPoints) {
-    new Chart("doughnut-rewards-chart", {
-        type: "doughnut",
-        data: {
-            labels: ["Your Current Points", "Goal Points"],
-            datasets: [{
-                backgroundColor: ["#228B22", "#DCDCDC"],
-                data: [currentPoints, goalPoints]
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "My Current Points"
-            }
-        }
-    })
-}
-
-
-function currentMonth(){
-    const month = new Date().toLocaleString("default", {
-        month: "long"})
-
-        document.getElementById("display-month").innerHTML = month
-}
-
+// --------------------------------------------------------------- //
+// ------ All functions and codes that interacts with MYSQL ------ //
+// --------------------------------------------------------------- //
 function getUserRewardsInfo() {
     $.ajax({
         url: "http://localhost:3000/getUserPoints",
         type: "GET",
         success: processUserRewardsInfo
     })
-}
-
-function processUserRewardsInfo(data) {
-    console.log(data);
-
-    monthlyTotalPoints = data[0].monthly_total_points;
-    monthlyGoalPoints = data[0].monthly_goal_points;
-
-    let currentPoints = monthlyTotalPoints;
-    let totalPoints = monthlyGoalPoints - monthlyTotalPoints;
-
-    if (totalPoints < 0) {
-        totalPoints = 0
-    };
-
-    createChart(currentPoints, totalPoints);
-
-    $('#display-current-points').html(monthlyTotalPoints);
-    $('#display-goal-points').html(monthlyGoalPoints);
-}
-
-
-function uploadComplete(data) {
-    if (data) {
-        alert("Upload complete");
-    }
 }
 
 // sends a request to server for uploading a receipt
@@ -120,6 +57,79 @@ function verifyLogin() {
         type: "GET",
         success: redirectToLogin
     })
+}
+
+// ------------------------------------------------------------- //
+// ------- All functions and codes for Earnings FrontEnd ------- //
+// ------------------------------------------------------------- //
+
+// Function that checks if receipt is successfully submitted
+// It is also a function that shows the popup
+let popup = document.getElementById("popup")
+$("#receipt-btn").on("change", (event) => {
+    receipt = event.target.files;
+    
+    popup.classList.add("open-popup")
+})
+
+$("#closing-btn").on("click", () => {
+    popup.classList.remove("open-popup")
+})
+
+// Function that gets the current month
+function currentMonth(){
+    const month = new Date().toLocaleString("default", {
+        month: "long"})
+
+        document.getElementById("display-month").innerHTML = month
+}
+
+
+// This function creates the chart.
+function createChart(currentPoints, goalPoints) {
+    new Chart("doughnut-rewards-chart", {
+        type: "doughnut",
+        data: {
+            labels: ["Your Current Points", "Goal Points"],
+            datasets: [{
+                backgroundColor: ["#228B22", "#DCDCDC"],
+                data: [currentPoints, goalPoints]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "My Current Points"
+            }
+        }
+    })
+}
+
+//populates the goal and current points container
+function processUserRewardsInfo(data) {
+    console.log(data);
+
+    monthlyTotalPoints = data[0].monthly_total_points;
+    monthlyGoalPoints = data[0].monthly_goal_points;
+
+    let currentPoints = monthlyTotalPoints;
+    let totalPoints = monthlyGoalPoints - monthlyTotalPoints;
+
+    if (totalPoints < 0) {
+        totalPoints = 0
+    };
+
+    createChart(currentPoints, totalPoints);
+
+    $('#display-current-points').html(monthlyTotalPoints);
+    $('#display-goal-points').html(monthlyGoalPoints);
+}
+
+// A function that alerts when upload is completed
+function uploadComplete(data) {
+    if (data) {
+        alert("Upload complete");
+    }
 }
 
 function setup(){

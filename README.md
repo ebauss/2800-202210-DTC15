@@ -35,8 +35,9 @@ Content of the project folder:
     * Changing the meta name and the scripts
     * Removing the firebase links and imports
     
-The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
-The icons used in the floatingbar are all from 8icons
-    https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+* The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
+* The icons used in the floatingbar are all from 8icons
+    * https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+* The functionality and design of the collapsible card on admin is from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
 * For the EasterEgg at globe.html the class -> Rainbow, all the css is from https://www.youtube.com/watch?v=BY4uU6CNtTg
 * For the Easter Egg at globe.html all classes animating the pulsing Earth - with names -> globe and pules - is all from https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
