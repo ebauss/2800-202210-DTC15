@@ -210,7 +210,7 @@ app.post('/requestAllRewards', (req, res) => {
 
 // gets a list of all receipts and joins it with the matching user id and email, admin id and email
 app.get('/getReceiptData', (req, res) => {
-    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id;',
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id ORDER BY receipts.receipt_id DESC;',
     (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -371,7 +371,7 @@ app.post('/createReward', (req, res) => {
 })
 
 app.get('/getUserRewards', (req, res) => {
-    connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ?;',
+    connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ? ORDER BY redeemed_date DESC;',
     [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
