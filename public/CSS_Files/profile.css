@@ -139,9 +139,22 @@ label[for="rewards"]{
     align-content: center;
 }
 
-#name{
-    grid-area: name;
+.name{
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    align-content: center;
+    grid-area: name;
+}
+
+#first-name{
+    grid-area: first-name;
+    width: 50%;
+}
+
+#last-name{
+    grid-area: last-name;
+    width: 50%;
 }
 
 #email{
