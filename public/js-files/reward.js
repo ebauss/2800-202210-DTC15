@@ -1,3 +1,4 @@
+// populate rewards list with cards for every reward
 function processRewardsList(data) {
     console.log(data);
 
@@ -26,22 +27,27 @@ function processRewardsList(data) {
     })
 }
 
+// show the user's total points at the top of the page
 function processUserPoints(data) {
     $('#total-points').html(data[0].reward_points.toLocaleString('en-CA'));
 }
 
+// request all rewards, sorted according to dropdown
 function makeRewardsListRequest() {
     // sort the results depending on dropdown
     switch ($('.sort-dropdown option:selected').val()) {
         case 'default':
+            // oldest rewards first
             criteriaInput = 'company';
             orderInput = 'ASC';
             break;
         case 'descending':
+            // expensive rewards first
             criteriaInput = 'points_cost';
             orderInput = 'DESC';
             break;
         case 'ascending':
+            // cheapest rewards first
             criteriaInput = 'points_cost';
             orderInput = 'ASC';
             break;
@@ -58,6 +64,7 @@ function makeRewardsListRequest() {
     })
 }
 
+// request server for the signed-in user's current points
 function makeUserPointsRequest() {
     $.ajax({
         url: "http://localhost:3000/getUserPoints",
@@ -66,15 +73,18 @@ function makeUserPointsRequest() {
     })
 }
 
+// inform user whether they successfully redeemed reward
 function processRedeemRequest(data) {
     if (data) {
         alert("You have redeemed the reward successfully.");
+        location.reload();
     }
     else {
         alert("You do not have enough points!");
     }
 }
 
+// request server to redeem a reward
 function makeRedeemRequest() {
     today = new Date();
 
