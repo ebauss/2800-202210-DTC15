@@ -165,6 +165,10 @@ td {
     display: none;
 }
 
+/* ==================== */
+/* === Media Query ==== */
+/* ==================== */
+
 @media screen and (max-width: 1150px) {
     .table-header {
         height: 8vh;
@@ -191,16 +195,6 @@ td {
         grid-template-columns: 100fr;
         row-gap: 15px;
     }
-    .collapsible-body{
-        display: grid;
-        grid-template-columns: 100fr;
-        grid-auto-rows: 1fr;
-        align-items: baseline;
-        align-content: space-between;
-        justify-content: flex-start;
-        gap: 10px;
-        padding: 0px 20px;
-    }
 
     .table-search{
         justify-content: space-between;
@@ -223,6 +217,18 @@ td {
     .user-id{
         height: 100%;
         font-size: large;
+    }
+
+    /* === Media Query CSS for Collapsible cards === */
+    .collapsible-body{
+        display: grid;
+        grid-template-columns: 100fr;
+        grid-auto-rows: 1fr;
+        align-items: baseline;
+        align-content: space-between;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 0px 20px;
     }
 
     .collapsible-data {

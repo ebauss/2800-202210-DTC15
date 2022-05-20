@@ -34,65 +34,60 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
     <!-- our own navbar goes here -->
-    <div id="body">
-        <nav id="navbarPlaceholder"></nav>
-
-        <!-- the body of your page goes here -->
-        <main>
-            <label for="user-profile">Profile</label>
-            <section class="user-editable-data left-column">
-                <div class="profile-pic-container">
-                    <img src="./images/logo-only.png" id="pic">
-                    <input type="file" id="pic-file">
-                    <span></span>
-                    <label for="pic-file" id="upload-pic-btn">Change Avatar</label>
-                </div>
-            </section>
-            <div class="rewards-container">
-                <span id="rewards">
-                    <h3 for="rewards"> Current Rewards </h3>
-                    <h1 id="display-rewards" class="rewards">123</h1>
-                </span>
+    <nav id="navbarPlaceholder"></nav>
+    <main>
+        <label for="user-profile">Profile</label>
+        <section class="user-editable-data left-column">
+            <div class="profile-pic-container">
+                <img src="./images/logo-only.png" id="pic">
+                <input type="file" id="pic-file">
+                <span></span>
+                <label for="pic-file" id="upload-pic-btn">Change Avatar</label>
             </div>
-            <section class="user-profile">
-                    <span class="info-container" id="first-name">
-                        <label for="first-name"> First Name </label>
-                        <input type="text" id="display-first-name" class="info" disabled>
-                    </span>
-                    <span class="info-container" id="last-name">
-                        <label for="last-name"> Last Name </label>
-                        <input type="text" id="display-last-name" class="info" disabled>
-                    </span>
+        </section>
+        <div class="rewards-container">
+            <span id="rewards">
+                <h3 for="rewards"> Current Rewards </h3>
+                <h1 id="display-rewards" class="rewards">123</h1>
+            </span>
+        </div>
+        <section class="user-profile">
+            <span class="info-container" id="first-name">
+                <label for="first-name"> First Name </label>
+                <input type="text" id="display-first-name" class="info" disabled>
+            </span>
+            <span class="info-container" id="last-name">
+                <label for="last-name"> Last Name </label>
+                <input type="text" id="display-last-name" class="info" disabled>
+            </span>
 
-                <span class="info-container" id="email">
-                    <label for="email"> Email Address </label>
-                    <input type="text" id="display-email" class="info" disabled>
-                </span>
-                <span class="info-container" id="compass">
-                    <label for="compass"> Compass ID </label>
-                    <input type="text" id="display-compass" class="info" disabled>
-                </span>
-                <span class="info-container" id="country">
-                    <label for="country"> Country </label>
-                    <input type="text" id="display-country" class="info" disabled>
-                </span>
-                <span class="info-container" id="age">
-                    <label for="age"> Age </label>
-                    <input type="text" id="display-age" class="info" disabled>
-                </span>
-                <span class="button-container">
-                    <button type="button" id="edit-btn" class="info-btn"> Edit </button>
-                    <button type="button" id="save-btn" class="info-btn"> Save </button>
-                </span>
-            </section>
-        </main>
+            <span class="info-container" id="email">
+                <label for="email"> Email Address </label>
+                <input type="text" id="display-email" class="info" disabled>
+            </span>
+            <span class="info-container" id="compass">
+                <label for="compass"> Compass ID </label>
+                <input type="text" id="display-compass" class="info" disabled>
+            </span>
+            <span class="info-container" id="country">
+                <label for="country"> Country </label>
+                <input type="text" id="display-country" class="info" disabled>
+            </span>
+            <span class="info-container" id="age">
+                <label for="age"> Age </label>
+                <input type="text" id="display-age" class="info" disabled>
+            </span>
+            <span class="button-container">
+                <button type="button" id="edit-btn" class="info-btn"> Edit </button>
+                <button type="button" id="save-btn" class="info-btn"> Save </button>
+            </span>
+        </section>
+    </main>
+    <!-- our own floating bar goes here-->
+    <nav id="floatingBarPlaceholder"></nav>
 
-        <!-- our own floating bar goes here-->
-        <nav id="floatingBarPlaceholder"></nav>
-
-        <!-- our own footer goes here-->
-        <nav id="footerPlaceholder"></nav>
-    </div>
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
