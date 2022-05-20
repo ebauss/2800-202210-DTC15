@@ -17,16 +17,16 @@ function processLogout(data) {
 
 function makeLogoutRequest() {
     $.ajax({
-        url: "http://localhost:3000/logout",
-        type: "GET",
+        url: 'http://localhost:3000/logout',
+        type: 'GET',
         success: processLogout
     })
 }
 
 function makeRequest() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: updateStatus
     })
 }

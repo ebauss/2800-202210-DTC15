@@ -173,9 +173,11 @@ earningsButton.addEventListener('click', () => {
     }
 })
 
+// changes the page's greeting to welcome the user by name
 function displayUsername(data) {
     $('.hero > h2').html(`Welcome, ${data[0].first_name}!`);
 }
+
 
 function requestUsername() {
     $.ajax({

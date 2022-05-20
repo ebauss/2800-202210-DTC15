@@ -1,5 +1,6 @@
 var userId;
 
+// request details of the receipt ID in the URL
 function getSingleReceiptData() {
     let currentUrl = parseInt(location.href.split('=')[1]);
 
@@ -13,6 +14,7 @@ function getSingleReceiptData() {
     })
 }
 
+// prefill form with known details of the receipt
 function processSingleReceiptData(data) {
     userId = data[0].user_id;
 
@@ -37,12 +39,14 @@ function processSingleReceiptData(data) {
     $('#message').val(data[0].notes);
 }
 
+// inform user the receipt was successfully verified
 function processVerification(data) {
     console.log(data);
-    alert("Record has been updated.");
+    alert('Record has been updated.');
     location.href = './admin.html';
 }
 
+// request server to update a receipt as verified
 function requestVerification() {
     today = new Date();
 
@@ -52,12 +56,12 @@ function requestVerification() {
     }
 
     $.ajax({
-        url: "http://localhost:3000/verifyReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/verifyReceipt',
+        type: 'POST',
         data: {
             value: parseInt($('#value').val()),
             notes: $('#message').val(),
-            verified_date: today.toISOString().split("T")[0],
+            verified_date: today.toISOString().split('T')[0],
             receipt_id: parseInt(location.href.split('=')[1]),
             user_id: userId
         },
@@ -68,7 +72,7 @@ function requestVerification() {
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
-        alert("You do not have permission to access this page.");
+        alert('You do not have permission to access this page.');
         window.location.href = './main.html';
     }
     else {
@@ -79,8 +83,8 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: redirectToMain
     })
 }
