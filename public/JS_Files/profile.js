@@ -130,7 +130,8 @@ function makeWriteRequest() {
         url: "http://localhost:3000/updateProfile",
         type: "POST",
         data: {
-            userName: $('#display-name').val(),
+            userFirstName: $('#display-first-name').val(),
+            userLastName: $('#display-last-name').val(),
             userEmail: $('#display-email').val(),
             userAge: $('#display-age').val(),
             userCountry: $('#display-country').val(),
