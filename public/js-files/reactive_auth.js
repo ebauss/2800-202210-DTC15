@@ -1,4 +1,4 @@
-// Check if user email exists in MySQL database.
+// check if user email exists in MySQL database.
 function isEmailInDB() {
     console.log("Button pressed");
 
@@ -24,6 +24,7 @@ function processUserResult(data) {
     }
 }
 
+// check with server whether password is correct, and sign in if it is
 function isPasswordCorrect() {
     console.log("Sign in button pressed")
     $.ajax({
@@ -37,6 +38,7 @@ function isPasswordCorrect() {
     });
 }
 
+// create a new user to the database
 function addNewUserToDatabase() {
     console.log("Signup button pressed");
     $.ajax({
@@ -55,34 +57,44 @@ function addNewUserToDatabase() {
     })
 }
 
+// redirect the user depending on whether they are an admin
 function processLogin(data) {
     if (data.isPasswordCorrect && data.isAdmin) {
+        // user is an admin, so redirect them to admin dashboard
         window.location.href = "../admin.html";
     } else if (data.isPasswordCorrect) {
+        // user is a customer, so redirect them to main page
         window.location.href = "../main.html";
     } else {
+        // password is incorrect
         window.alert("You entered the wrong password");
     }
 }
 
+// inform user whether their signup was successful
 function processSignup(data) {
     switch (data) {
         case "success":
+            // sign up was successful. Log in the user.
             alert("You have been signed up.");
             loginSignedUpUser();
             break;
         case "unmatching password":
+            // confirm password does not match password field
             alert("The passwords do not match!");
             break;
         case "blank":
+            // one or more fields were left blank
             alert("All fields are required!");
             break;
         case "age is not a number":
-            alert("You must enter a nuber for age");
+            // the user entered letters or illegal characters as an age
+            alert("You must enter a number for age");
             break;
     }
 }
 
+// logs in the user after they sign up
 function loginSignedUpUser() {
     $.ajax({
         url: "http://localhost:3000/checkIfPasswordCorrect",
@@ -199,11 +211,15 @@ function GoIndex() {
     console.log("forwarding to index")
 }
 
+// deletes password/signup fields and makes email field editable again
 function cancelToEmail() {
+    // save email to be filled out again
     enteredEmail = $('#email').val();
 
+    // empty all fields
     $('#form-main-content').empty();
 
+    // append the email field, prefilling with the saved email above
     $('#form-main-content').append(
         `<div class="input-container">
             <input class="user_input" type="text" name="email" id="email" autocomplete="email" value="${enteredEmail}" required>
@@ -212,10 +228,13 @@ function cancelToEmail() {
         </div>`
     );
 
+    // remove the cancel button
     $('#cancel-to-email').remove();
 
+    // remove the signup/login button
     $('#form-action-container').empty();
 
+    // append the next button
     $('#form-action-container').append(
         `<div class="form-action">
             <input type="button" value="Next" id="authenticate-user">
@@ -229,19 +248,13 @@ function setup() {
     $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
     $('body').on("click", "#cancel-to-email", cancelToEmail);
 
+    // catch a keypress event if user presses ENTER on various fields
+
     $('body').on('keypress', '#email', (event) => {
         // keypress works if the cursor is on the #email textbox.
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             isEmailInDB();
-        }
-    })
-
-    $('body').on('keypress', '#password', (event) => {
-        // keypress works if the cursor is on the #password textbox.
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13') {
-            isPasswordCorrect();
         }
     })
 
