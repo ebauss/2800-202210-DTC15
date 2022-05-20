@@ -180,16 +180,6 @@ function rewards_populate_table(data, mobile = false) {
     }
 }
 
-// Function that populates the rewards table/collapsible-body
-function getUserEmailByUserId(data) {
-    $.ajax({
-        url: `http://localhost:3000/checkProfile/id/${data}`,
-        type: 'GET',
-        success: (data) => {
-        }
-    })
-}
-
 // Function that populates the receipt table. This function only runs once. Once it is run, it populates all the receipt data into the table.
 function receipts_populate_table(data, mobile = false) {
     if (mobile) {

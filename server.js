@@ -25,19 +25,19 @@ const connection = mysql.createConnection({
     multipleStatements: false
 })
 
-// Parse through the body of the post request
+// Parse the body of the post request
 app.use(bodyparser.urlencoded({
     extended: true
 }));
 
-// Route to listen for homepage
+// Listen for homepage on port 3000 or Heroku's provided port
 app.listen(process.env.PORT || 3000, (err) => {
     if (err) {
         console.log(err);
     }
 })
 
-// Route for POST request for checkUserExists
+// check if an email exists in the database
 app.post('/checkEmailExists', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
 
@@ -52,7 +52,7 @@ app.post('/checkEmailExists', (req, res) => {
     });
 });
 
-// Route for POST request for postUserCredentials
+// check if the user's inputted password matches with db, and sign in user if it does
 app.post('/checkIfPasswordCorrect', (req, res) => {
     console.log(`Your email is: ${req.body.email}`);
 
@@ -68,7 +68,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
             console.log(`Expect: ${expectedHashedPassword}`);
             isUserAdmin = results[0].is_admin;
 
-            // Hash the inputted password and check if it matches with password from db
+            // hash the inputted password and check if it matches with password from db
             bcrypt.compare(req.body.password, expectedHashedPassword, (err, result) => {
                 if (err) {
                     console.log(err);
@@ -108,7 +108,7 @@ app.get('/quickLoginAdmin', (req, res) => {
     res.send('ac130');
 })
 
-// Retrieves all the users' data for admin.html and sends it as a JSON object
+// retrieves all the users' data for admin.html and sends it as a JSON object
 app.get('/requestUserData', (req, res) => {
     connection.query('SELECT * FROM users', (err, results, fields) => {
         if (err) {
@@ -119,7 +119,7 @@ app.get('/requestUserData', (req, res) => {
     })
 })
 
-// Adds a new user to database in authentication.html
+// adds a new user to database. Used by authentication.html
 app.post('/createNewUser', (req, res) => {
     // CREATING AN ACCOUNT: Hash the user's password to store into database
     const saltRounds = 10;
@@ -162,7 +162,7 @@ app.get('/loginStatus', (req, res) => {
     })
 });
 
-// sends all fields for a particular user for profile.html
+// sends all signed-in user's details. Used by profile.html
 app.get('/checkProfile', (req, res) => {
     connection.query(`SELECT * FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
@@ -174,7 +174,7 @@ app.get('/checkProfile', (req, res) => {
     })
 })
 
-// updates a user's profile for profile.html
+// updates signed-in user's profile. Used by profile.html
 app.post('/updateProfile', (req, res) => {
     connection.query(`UPDATE users SET first_name = ?, last_name = ?, email = ?, age = ?, country = ?, compass_id = ? WHERE user_id = ?;`,
     [req.body.userFirstName, req.body.userLastName, req.body.userEmail, req.body.userAge, req.body.userCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
@@ -186,7 +186,7 @@ app.post('/updateProfile', (req, res) => {
     })
 })
 
-// creates a new profile for profile.html
+// creates a new profile, used by createNewUser route
 function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, monthly_total_points, monthly_goal_points, is_admin) 
     VALUES
@@ -198,7 +198,7 @@ function addNewUserToDatabase(req, hashedPassword) {
     })
 }
 
-// Retrieves all the rewards for rewards.html and sends it as a JSON object
+// retrieves all rewards for rewards.html and sends it as a JSON object
 app.post('/requestAllRewards', (req, res) => {
     connection.query(`SELECT * FROM rewards ORDER BY ${req.body.criteria} ${req.body.order}`, (err, results, fields) => {
         if (err) {
@@ -209,9 +209,9 @@ app.post('/requestAllRewards', (req, res) => {
     })
 })
 
-// gets a list of all receipts and joins it with the matching user id and email, admin id and email
+// gets a list of all receipts and joins it with the matching owner id and email, admin id and email. Used by admin.html
 app.get('/getReceiptData', (req, res) => {
-    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id ORDER BY receipts.receipt_id DESC;',
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN (SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id ORDER BY receipts.receipt_id DESC;',
     (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -222,10 +222,10 @@ app.get('/getReceiptData', (req, res) => {
     })
 });
 
-// gets a receipt and joins it with the matching userid and email, admin id and email.
+// gets a single receipt and joins it with the matching owner id and email, admin id and email. Used by verification.html
 app.post('/getSingleReceiptData', (req, res) => {
-    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN(SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;', req.body.receipt_id,
-    (err, results, fields) => {
+    connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN (SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;',
+    [req.body.receipt_id], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
@@ -235,7 +235,7 @@ app.post('/getSingleReceiptData', (req, res) => {
     })
 });
 
-// retrieves the number of points the user holds
+// retrieves the number of points the user holds. Used by profile.html
 app.get('/getUserPoints', (req, res) => {
     connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
@@ -247,7 +247,7 @@ app.get('/getUserPoints', (req, res) => {
     })
 })
 
-// deletes a user from database
+// deletes a user from database. Used by admin.html
 app.post('/deleteUser', (req, res) => {
     connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
@@ -258,7 +258,7 @@ app.post('/deleteUser', (req, res) => {
     })
 })
 
-// uploads receipt image, owner, and value to database
+// uploads receipt image, owner, and value to database. Used by earning.html
 app.post('/uploadReceipt', (req, res) => {
     connection.query(`INSERT INTO receipts (picture, owner_id, reward_points, verified_date) VALUES (?, ?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value, req.body.date],
     (err, results, fields) => {
@@ -271,7 +271,7 @@ app.post('/uploadReceipt', (req, res) => {
     })
 })
 
-// sets receipt in database as verified by an admin
+// sets receipt in database as verified by an admin. Used by verification.html
 app.post('/verifyReceipt', (req, res) => {
     connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
     [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
@@ -290,7 +290,7 @@ app.post('/verifyReceipt', (req, res) => {
     res.send(true);
 })
 
-// delete receipt from database
+// delete receipt from database. Used by admin.html
 app.post('/deleteReceipt', (req, res) => {
     connection.query(`DELETE FROM receipts WHERE receipt_id = ?`, [req.body.receipt_id], (err, results, fields) => {
         if (err) {
@@ -302,7 +302,7 @@ app.post('/deleteReceipt', (req, res) => {
     })
 })
 
-// delete reward from database
+// delete reward from database. Used by admin.html
 app.post('/deleteReward', (req, res) => {
     connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
         if (err) {
@@ -314,18 +314,7 @@ app.post('/deleteReward', (req, res) => {
     })
 })
 
-app.get('/checkProfile/id/:user_id', (req,res) => {
-    connection.query('SELECT email FROM users WHERE user_id = ?', [req.params.user_id], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        } 
-        else {
-            res.send(results[0].email);
-        }
-    })
-})
-
-// redeem a reward: subtract from user's points and add reward to user's inventory
+// redeem a reward: subtract from user's points and add reward to user's inventory. Used by rewards.html
 app.post('/redeemReward', (req, res) => {
     // gets the number of points the user owns
     connection.query('SELECT reward_points FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
@@ -358,7 +347,7 @@ app.post('/redeemReward', (req, res) => {
     })
 })
 
-// create a new reward as an admin
+// create a new reward as an admin. Used by new-reward.html
 app.post('/createReward', (req, res) => {
     connection.query('INSERT INTO rewards (company, description, photo, value, points_cost) VALUES (?, ?, ?, ?, ?)',
     [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
@@ -371,6 +360,7 @@ app.post('/createReward', (req, res) => {
     })
 })
 
+// gets all rewards a user owns as well as the rewards' details. Used by notification.html
 app.get('/getUserRewards', (req, res) => {
     connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ? ORDER BY redeemed_date DESC;',
     [req.session.uid], (err, results, fields) => {
@@ -383,7 +373,7 @@ app.get('/getUserRewards', (req, res) => {
     })
 })
 
-// updates signed in user's monthly goal points
+// updates signed in user's monthly goal points. Used by profile.html
 app.post('/updateGoal', (req, res) => {
     connection.query('UPDATE users SET monthly_goal_points = ? WHERE user_id = ?', [req.body.goal, req.session.uid], (err, results, fields) => {
         if (err) {
