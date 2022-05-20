@@ -13,7 +13,7 @@ const earningsButton = document.getElementById('earnings-btn')
 function populate_rewards(rewards) {
 
     // ------ Takes the template from the HTML file ------ //
-    const earningsTemplate = document.getElementById("rewards-template")
+    const earningsTemplate = document.getElementById('rewards-template')
 
     console.log(rewards);
 
@@ -21,7 +21,7 @@ function populate_rewards(rewards) {
     rewards.forEach(reward => {
         rewardsPoints = `${reward.points_cost.toLocaleString('en-CA')} points`;
         rewardsTitle = `${reward.company} - $${reward.value}`;
-        rewardsDate = reward.redeemed_date.split("T")[0];
+        rewardsDate = reward.redeemed_date.split('T')[0];
         rewardsId = reward.description;
         rewardsCompany = reward.company;
         rewardsImage = reward.photo;
@@ -29,17 +29,17 @@ function populate_rewards(rewards) {
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
 
-        newMail.querySelector(".rewards-points").innerHTML = rewardsPoints;
-        newMail.querySelector(".rewards-title").innerHTML = rewardsTitle;
-        newMail.querySelector(".rewards-date").innerHTML = rewardsDate;
-        newMail.querySelector(".rewards-id").innerHTML = rewardsId;
-        newMail.querySelector(".rewards-points-popup").innerHTML = rewardsPoints;
-        newMail.querySelector(".rewards-title-popup").innerHTML = rewardsTitle;
-        newMail.querySelector(".rewards-date-popup").innerHTML = rewardsDate;
-        newMail.querySelector(".rewards-id-popup").innerHTML = rewardsId;
-        newMail.querySelector(".rewards-img").setAttribute("src", rewardsImage)
+        newMail.querySelector('.rewards-points').innerHTML = rewardsPoints;
+        newMail.querySelector('.rewards-title').innerHTML = rewardsTitle;
+        newMail.querySelector('.rewards-date').innerHTML = rewardsDate;
+        newMail.querySelector('.rewards-id').innerHTML = rewardsId;
+        newMail.querySelector('.rewards-points-popup').innerHTML = rewardsPoints;
+        newMail.querySelector('.rewards-title-popup').innerHTML = rewardsTitle;
+        newMail.querySelector('.rewards-date-popup').innerHTML = rewardsDate;
+        newMail.querySelector('.rewards-id-popup').innerHTML = rewardsId;
+        newMail.querySelector('.rewards-img').setAttribute('src', rewardsImage)
 
-        document.getElementById("user-rewards-container").append(newMail)
+        document.getElementById('user-rewards-container').append(newMail)
     })
 }
 
@@ -47,26 +47,26 @@ function populate_rewards(rewards) {
 function populate_earnings(earnings) {
 
     // ------ Takes the template from the HTML file ------ //
-    const earningsTemplate = document.getElementById("earnings-template")
+    const earningsTemplate = document.getElementById('earnings-template')
 
     // ------ Grabs all values for every rewards mail -------//
     earnings.forEach(receipt => {
         console.log(receipt);
 
         if (receipt.admin_id == null) {
-            earningsStatus = "Pending";
+            earningsStatus = 'Pending';
         }
         else {
-            earningsStatus = "Verified";
+            earningsStatus = 'Verified';
         }
         
         earningsPoints = `${receipt.reward_points.toLocaleString('en-CA')} points`;
 
         if (receipt.verified_date == null) {
-            earningsDate = ""
+            earningsDate = ''
         }
         else {
-            earningsDate = receipt.verified_date.split("T")[0];        
+            earningsDate = receipt.verified_date.split('T')[0];        
         }
 
         earningsId = receipt.notes;
@@ -74,20 +74,20 @@ function populate_earnings(earnings) {
         // ------- creates a card ------- //
         let newMail = earningsTemplate.content.cloneNode(true);
 
-        newMail.querySelector(".earnings-status").innerHTML = earningsStatus;
-        newMail.querySelector(".earnings-points").innerHTML = earningsPoints;
-        newMail.querySelector(".earnings-date").innerHTML = earningsDate;
-        newMail.querySelector(".earnings-id").innerHTML = earningsId;
-        newMail.querySelector(".earnings-status-popup").innerHTML = earningsStatus;
-        newMail.querySelector(".earnings-points-popup").innerHTML = earningsPoints;
-        newMail.querySelector(".earnings-date-popup").innerHTML = earningsDate;
-        newMail.querySelector(".earnings-id-popup").innerHTML = earningsId;
+        newMail.querySelector('.earnings-status').innerHTML = earningsStatus;
+        newMail.querySelector('.earnings-points').innerHTML = earningsPoints;
+        newMail.querySelector('.earnings-date').innerHTML = earningsDate;
+        newMail.querySelector('.earnings-id').innerHTML = earningsId;
+        newMail.querySelector('.earnings-status-popup').innerHTML = earningsStatus;
+        newMail.querySelector('.earnings-points-popup').innerHTML = earningsPoints;
+        newMail.querySelector('.earnings-date-popup').innerHTML = earningsDate;
+        newMail.querySelector('.earnings-id-popup').innerHTML = earningsId;
 
-        if (earningsStatus == "Declined") {
-            newMail.querySelector(".rewards-status").classList.add("end")
+        if (earningsStatus == 'Declined') {
+            newMail.querySelector('.rewards-status').classList.add('end')
         }
 
-        document.getElementById("user-earnings-container").append(newMail)
+        document.getElementById('user-earnings-container').append(newMail)
     })
     addListeners()
 }
@@ -148,28 +148,28 @@ overlay.addEventListener('click', () => {
 rewardsButton.addEventListener('click', () => {
     if (earningsSection.style.display != 'none') {
         earningsSection.style.display = 'none'
-        earningsButton.style.background = "white"
+        earningsButton.style.background = 'white'
         rewardsSection.style.display = 'block';
-        rewardsButton.style.background = "gainsboro"
+        rewardsButton.style.background = 'gainsboro'
         // alert(true)
     } else {
         // alert(false)
         rewardsSection.style.display = 'block';
-        rewardsButton.style.background = "white"
+        rewardsButton.style.background = 'white'
     }
 })
 
 earningsButton.addEventListener('click', () => {
     if (rewardsSection.style.display != 'none') {
         rewardsSection.style.display = 'none'
-        rewardsButton.style.background = "white"
+        rewardsButton.style.background = 'white'
         earningsSection.style.display = 'block';
-        earningsButton.style.background = "gainsboro"
+        earningsButton.style.background = 'gainsboro'
         // alert(true)
     } else {
         // alert(false)
         earningsSection.style.display = 'block';
-        earningsButton.style.background = "white"
+        earningsButton.style.background = 'white'
     }
 })
 
@@ -206,7 +206,7 @@ function requestOwnedReceipts() {
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
-        alert("You are logged out. Please login to access this page.");
+        alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
     }
     else {
@@ -219,8 +219,8 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: redirectToLogin
     })
 }
