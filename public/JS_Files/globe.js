@@ -32,14 +32,18 @@ function createChart() {
 
                 // Adding few sensible configurations options
                 options: {
+                    maintainAspectRatio: false,
                     scales: {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
+                                autoSkip: true,
                                 labelString: "Methane (CH₄)"
                             },
                             ticks: {
-                                beginAtZero: true
+                                backdropPadding: {
+                                    y: 4
+                                }
                             }
                         }],
                         xAxes: [{

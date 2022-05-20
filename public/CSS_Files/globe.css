@@ -7,12 +7,14 @@ body {
 main {
     margin: 2% 1%;
     display: grid;
+    gap: 5%;
 }
 
 .emission-body {
     display: grid;
     /* height: max-content; */
     row-gap: 1%;
+    width: 100%;
     justify-content: space-around;
     justify-items: center;
 }
@@ -35,6 +37,21 @@ canvas {
 
 .more-info {
     margin: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+}
+
+.card-info {
+    padding: 1% 2%;
+    margin: 1% 0px;
+    box-shadow: 5px 5px 5px gainsboro;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 #easter-egg {
@@ -324,10 +341,6 @@ canvas {
 
 
 @media screen and (max-width: 900px) {
-
-    /* .emission-body{
-        grid-template-rows: 1fr 99fr;
-    } */
     canvas {
         width: 100% !important;
         max-width: 900px;
