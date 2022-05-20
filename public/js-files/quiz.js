@@ -1,15 +1,15 @@
 
 // ------------- Progress Game ------------- //
-const scoreText = document.getElementById("user-score")
+const scoreText = document.getElementById('user-score')
 let quizChoice = document.querySelectorAll('.answer')
 var best = ''
 var last = ''
 let score = 0
 let quizNumber = 0
 var maxQuestions = 10
-var correct = ""
-document.querySelector(".last-score").innerHTML = last
-document.querySelector(".best-score").innerHTML = best
+var correct = ''
+document.querySelector('.last-score').innerHTML = last
+document.querySelector('.best-score').innerHTML = best
 
 // allows to run this application automatially on open window
 window.onload = sendApiRequest
@@ -17,21 +17,21 @@ window.onload = sendApiRequest
 
 // this checks if the player gave the right answer and add it if true
 function isCorrect(playerAnswer) {
-    console.log("made to correct")
+    console.log('made to correct')
     console.log(correct)
     if (playerAnswer == correct) {
         console.log(true)
-        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = "green";
+        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'green';
         score += 1;
 
         console.log(score)
     } else {
-        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = "red"
+        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'red'
         console.log(false)
     }
 
     setTimeout(function() {
-        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = "rgba(44, 169, 226, 0.568)";
+        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
         quizNumber += 1;
     },1500)
 
@@ -61,12 +61,12 @@ function updateStats(){
     score = 0
     quizNumber = 0
     startQuiz()
-    // window.location.replace("http://localhost:3000/main.html");
+    // window.location.replace('http://localhost:3000/main.html');
 }
 
 function startQuiz (){
-    document.querySelector(".last-score").innerHTML = last
-    document.querySelector(".best-score").innerHTML = best
+    document.querySelector('.last-score').innerHTML = last
+    document.querySelector('.best-score').innerHTML = best
 }
 
 
@@ -85,16 +85,16 @@ function useApiData(data) {
     correct = data.results[0].correct_answer
     console.log(correct)
 
-    // document.querySelector(".best-score").innerHTML = (score * 10)
-    document.querySelector(".quiz-number").innerHTML = "Question " + (quizNumber + 1)
+    // document.querySelector('.best-score').innerHTML = (score * 10)
+    document.querySelector('.quiz-number').innerHTML = 'Question ' + (quizNumber + 1)
 
-    document.querySelector(".quiz-question").innerHTML = data.results[0].question
-    document.querySelector(".answer1").innerHTML = data.results[0].correct_answer
-    document.querySelector(".answer2").innerHTML = data.results[0].incorrect_answers[0]
-    document.querySelector(".answer3").innerHTML = data.results[0].incorrect_answers[1]
-    document.querySelector(".answer4").innerHTML = data.results[0].incorrect_answers[2]
+    document.querySelector('.quiz-question').innerHTML = data.results[0].question
+    document.querySelector('.answer1').innerHTML = data.results[0].correct_answer
+    document.querySelector('.answer2').innerHTML = data.results[0].incorrect_answers[0]
+    document.querySelector('.answer3').innerHTML = data.results[0].incorrect_answers[1]
+    document.querySelector('.answer4').innerHTML = data.results[0].incorrect_answers[2]
     
-    document.querySelector(".user-score").innerHTML = score + "/" + maxQuestions
+    document.querySelector('.user-score').innerHTML = score + '/' + maxQuestions
 }
 
 
@@ -122,7 +122,7 @@ endButton.addEventListener('click', () => {
 })
 
 quizChoice.forEach(choice => {
-    choice.addEventListener("click", () => {
+    choice.addEventListener('click', () => {
         playerAnswer = choice.lastChild.innerHTML
         isCorrect(playerAnswer)
     })
@@ -131,21 +131,21 @@ quizChoice.forEach(choice => {
 function prompt (id) {
     console.log(endButton)
     if (id == endButton){
-        overlay.classList.add("dim")
+        overlay.classList.add('dim')
         popup.classList.add('active')
-        document.querySelector(".promter").innerHTML= "Are you sure you want to quit? \n Your progress will not be saved."
+        document.querySelector('.promter').innerHTML= 'Are you sure you want to quit? \n Your progress will not be saved.'
         choice()
     } else{
-        overlay.classList.add("dim")
+        overlay.classList.add('dim')
         popup.classList.add('active')
-        document.querySelector(".promter").innerHTML= "You've complted the quiz! Your score: " + score + " Do you want to play again?"
+        document.querySelector('.promter').innerHTML= "You've completed the quiz! Your score:" + score + ' Do you want to play again?'
         choice()
     }
 }
 
 function choice(){
     no.addEventListener('click', () => {
-        overlay.classList.remove("dim")
+        overlay.classList.remove('dim')
         popup.classList.remove('active')
     })
     
@@ -153,7 +153,7 @@ function choice(){
         updateStats()
         mainMenuSection.style.display = 'block';
         quizContainerSection.style.display = 'none';
-        overlay.classList.remove("dim")
+        overlay.classList.remove('dim')
         popup.classList.remove('active')
     })
 }
