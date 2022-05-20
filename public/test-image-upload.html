@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <img src="https://i.imgur.com/U7afLiO.png" id="img" height="200px">
     <br />
     <input type="file" id="file">
     <br />
@@ -30,8 +29,8 @@
                 },
                 body: formdata
             }).then(data => data.json()).then(data => {
-                img.src = data.data.link
-                url.innerText = data.data.link
+                img.src = data.data.link //This is the url of the uploaded image.
+                url.innerText = data.data.link 
             })
         })
     </script>
