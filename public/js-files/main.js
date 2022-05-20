@@ -141,7 +141,7 @@ function LoadNews() {
 }
 
 function displayUsername(data) {
-    $('.Greetings').html(`Welcome, ${data[0].first_name}!`);
+    $('.greetings').html(`Welcome, ${data[0].first_name}!`);
 }
 
 function requestUsername() {
