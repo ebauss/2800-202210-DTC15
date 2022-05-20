@@ -7,46 +7,6 @@ const earningsSection = document.getElementById('user-earnings-container')
 const rewardsButton = document.getElementById('rewards-btn')
 const earningsButton = document.getElementById('earnings-btn')
 
-dummy_rewards = [
-    {
-        "status": "Claimed",
-        "points": 1000,
-        "title": "JANE Group Coupon",
-        "date": "03 / 30 / 2002",
-        "img": "./Image_Files/JANE_logo.png",
-        "rewardsID": "adwarttfsa123121",
-        "company": "J.A.N.E. Group",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
-    },
-    {
-        "status": "New",
-        "points": 1000,
-        "title": "Global 10% discount",
-        "date": "03 / 30 / 2022",
-        "img": "./Image_Files/money.png",
-        "rewardsID": "adwarttfsa123121",
-        "company": "J.A.N.E. Group",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
-    },
-]
-
-dummy_earnings = [
-    {
-        "status": "Approved",
-        "points": "1000",
-        "date": "03 / 30 / 2002",
-        "earningsID": "adwarttfsa123121",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
-    },
-    {
-        "status": "Pending",
-        "points": null,
-        "date": "03 / 30 / 2022",
-        "earningsID": "adwarttfsa123121",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
-    },
-]
-
 // ------- All Functions for populating the card ------- //
 
 // ------- A function that populates the rewards container -------- //
@@ -59,8 +19,8 @@ function populate_rewards(rewards) {
 
     // ------ Grabs all values for every reward -------//
     rewards.forEach(reward => {
-        rewardsPoints = reward.points_cost.toLocaleString('en-CA');
-        rewardsTitle = reward.company;
+        rewardsPoints = `${reward.points_cost.toLocaleString('en-CA')} points`;
+        rewardsTitle = `${reward.company} - $${reward.value}`;
         rewardsDate = reward.redeemed_date.split("T")[0];
         rewardsId = reward.description;
         rewardsCompany = reward.company;
@@ -100,7 +60,7 @@ function populate_earnings(earnings) {
             earningsStatus = "Verified";
         }
         
-        earningsPoints = receipt.reward_points.toLocaleString('en-CA');
+        earningsPoints = `${receipt.reward_points.toLocaleString('en-CA')} points`;
 
         if (receipt.verified_date == null) {
             earningsDate = ""
