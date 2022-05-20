@@ -109,6 +109,7 @@ section#user-earnings-container{
     width:95%;
     display: grid;
     justify-content: space-around;
+    grid-template-columns: 70fr 10fr 15fr;
     grid-template-areas:
     '. . . .card-status' 
     'card-title card-title card-title card-title card-title'
