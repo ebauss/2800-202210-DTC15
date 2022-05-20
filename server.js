@@ -383,5 +383,17 @@ app.get('/getUserRewards', (req, res) => {
     })
 })
 
+// updates signed in user's monthly goal points
+app.post('/updateGoal', (req, res) => {
+    connection.query('UPDATE users SET monthly_goal_points = ? WHERE user_id = ?', [req.body.goal, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
