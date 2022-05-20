@@ -54,6 +54,27 @@ function createChart() {
         })
 }
 
+// -------- All functions for Easter Egg -------- //
+let easterEggInitiator = document.getElementById("easter-egg");
+
+
+async function easterEgg(){
+    easterEggChildren = easterEggInitiator.childNodes;
+    easterEggChildren.forEach(child => {
+        easterEggInitiator.classList.add("move-texts")
+        // child.classList.add("move-texts")
+    })
+}
+
+easterEggInitiator.addEventListener("click", (event) => {
+    element = event.currentTarget;
+    element.clicks = (element.clicks || 0) + 1;
+
+    if (element.clicks == 3){
+        easterEgg()
+    }
+})
+
 function setup() {
     createChart()
 }
