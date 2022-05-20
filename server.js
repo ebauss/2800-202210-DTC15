@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'JDCYelwe@0115',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -92,13 +92,6 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
         }
     });
 })
-
-// DEBUGGING: for quickly logging in without entering credentials
-app.get('/quickLogin', (req, res) => {
-    req.session.authenticated = true;
-    req.session.uid = 2;
-    res.send('tsubasa');
-});
 
 // DEBUGGING: for quickly logging in as admin
 app.get('/quickLoginAdmin', (req, res) => {

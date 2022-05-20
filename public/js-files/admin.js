@@ -121,6 +121,11 @@ function processRewardDeletion(data) {
 
 // request a specific reward to be deleted
 function requestRewardDeletion() {
+    // HOTFIX: deleting rewards will cause reference errors in users' inventory
+    // disabled for now.
+    alert('You cannot delete rewards at this time.');
+    return;
+
     $.ajax({
         url: 'http://localhost:3000/deleteReward',
         type: 'POST',
