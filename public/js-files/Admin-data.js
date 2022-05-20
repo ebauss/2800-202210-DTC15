@@ -1,3 +1,4 @@
+// requests all users' information to populate the users table
 function requestUserData() {
     console.log("User data requested");
     $.ajax(
@@ -117,11 +118,13 @@ function populate_table(data, mobile = false) {
     }
 }
 
+// tell user that deletion was successful
 function processDeleteUser(data) {
     alert(`User ${data} has been deleted.`);
     location.reload();
 }
 
+// request server to delete a specific user
 function requestUserDeletion() {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
@@ -234,6 +237,7 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
+// request all receipt information to populate receipts table
 function requestReceiptData() {
     $.ajax({
         url: "http://localhost:3000/getReceiptData",
@@ -266,12 +270,14 @@ function verifyAdmin() {
     })
 }
 
+// tell user receipt deletion was successful
 function processReceiptDeletion(data) {
     if (data) {
         alert("Receipt was deleted.");
     }
 }
 
+// request server to delete a specific receipt
 function requestReceiptDeletion() {
     $.ajax({
         url: "http://localhost:3000/deleteReceipt",
@@ -283,6 +289,7 @@ function requestReceiptDeletion() {
     })
 }
 
+// request all rewards to populate rewards table
 function requestRewards() {
     $.ajax({
         url: 'http://localhost:3000/requestAllRewards',
@@ -298,6 +305,14 @@ function requestRewards() {
     })
 }
 
+// tell user reward deletion was successful
+function processRewardDeletion(data) {
+    if (data) {
+        alert("Reward was deleted.");
+    }
+}
+
+// request a specific reward to be deleted
 function requestRewardDeletion() {
     $.ajax({
         url: "http://localhost:3000/deleteReward",
@@ -307,12 +322,6 @@ function requestRewardDeletion() {
         },
         success: processRewardDeletion
     })
-}
-
-function processRewardDeletion(data) {
-    if (data) {
-        alert("Reward was deleted.");
-    }
 }
 
 function setup() {
