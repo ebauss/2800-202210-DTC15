@@ -11,10 +11,10 @@ dummy_rewards = [
     {
         "status": "Claimed",
         "points": 1000,
-        "title": "JANE Group Coupon",
+        "title": "JANE Group Coupon Alexie",
         "date": "03 / 30 / 2002",
         "img": "./Image_Files/JANE_logo.png",
-        "rewardsID": "adwarttfsa123121",
+        "rewardsID": "adwarttfsa1231tfcvasdigvschbhbkhsdg;usDubkjvsd21",
         "company": "J.A.N.E. Group",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit Nostrum quibusdam commodi fugit adipisci sapiente a ab veniam exercitationem voluptatibus molestiae?",
     },
