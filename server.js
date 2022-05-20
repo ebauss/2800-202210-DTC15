@@ -176,7 +176,8 @@ app.get('/checkProfile', (req, res) => {
 
 // updates a user's profile for profile.html
 app.post('/updateProfile', (req, res) => {
-    connection.query(`UPDATE users SET email = ?, age = ?, country = ?, compass_id = ? WHERE user_id = ?;`, [req.body.userEmail, req.body.userAge, req.body.userCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
+    connection.query(`UPDATE users SET first_name = ?, last_name = ?, email = ?, age = ?, country = ?, compass_id = ? WHERE user_id = ?;`,
+    [req.body.userFirstName, req.body.userLastName, req.body.userEmail, req.body.userAge, req.body.userCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {

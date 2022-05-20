@@ -98,7 +98,8 @@ function displayProfile(data) {
     // rewards, name, email, compassID, country, age
     console.log(data);
     $('#display-rewards').html(data[0].reward_points);
-    $('#display-name').val(`${data[0].first_name} ${data[0].last_name}`);
+    $('#display-first-name').val(data[0].first_name);
+    $('#display-last-name').val(data[0].last_name);
     $('#display-email').val(data[0].email);
     $('#display-age').val(data[0].age);
     $('#display-country').val(data[0].country);
