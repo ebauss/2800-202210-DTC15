@@ -45,16 +45,17 @@
     <!-- stuff -->
     <main>
         <section class="display-rewards-section">
+            <input id="submit-btn" type="button" value="Save">
             <h1 id="display-month"></h1>
             <div id="display-graph">
                 <span class="doughnut-rewards-chart-container"><canvas id="doughnut-rewards-chart"></canvas></span>
                 <span class="display-current-points-container points-container">
                     <h2>My Total Points</h2>
-                    <h3 id="display-current-points"> 0000 </h3>
+                    <h3 class="points" id="display-current-points"> 0000 </h3>
                 </span>
                 <span class="display-goal-points-container points-container">
                     <h2>My Goal Points</h2>
-                    <h3 id="display-goal-points"> 1000 </h3>
+                    <input class="points" type="text" id="display-goal-points" onclick="getInput()" value="1000" disabled> </input>
                 </span>
             </div>
             <div id="display-day-points"> </div>

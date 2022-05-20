@@ -3,7 +3,6 @@ var monthlyTotalPoints = 1000
 var monthlyGoalPoints = 1500
 
 // Function that checks if receipt is successfully submitted
-
 let popup = document.getElementById("popup")
 $("#receipt-btn").on("change", (event) => {
     receipt = event.target.files;
