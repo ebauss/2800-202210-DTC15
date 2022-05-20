@@ -44,12 +44,62 @@ canvas {
 }
 
 .move-texts {
-    color: aqua;
     position: absolute;
-    background-color: white;
     padding: 10px 20px;
     animation: center 5s forwards;
     z-index: 2;
+}
+
+.rainbow {
+    position: absolute;
+    font-weight: 700;
+    color: transparent;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    font-size: 75px;
+    padding: 0.05em;
+    background: linear-gradient(to bottom,
+            #fd004c 16.7%,
+            #fe9000 16.7%,
+            #fe9000 33.4%,
+            #fff020 33.4%,
+            #fff020 50.1%,
+            #3edf4b 50.1%,
+            #3edf4b 66.8%,
+            #3363ff 66.8%,
+            #3363ff 83.5%,
+            #b102b7 83.5%);
+
+    -webkit-text-stroke: 0.04em #ffffff;
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1.1em;
+
+    animation: rainbow 10s linear 2;
+}
+
+.removeOurVision{
+    font-size: 75px;
+    animation: hidetext 1s linear 1;
+}
+
+@keyframes hidetext {
+    100% {
+        left: 0%;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        background-position: 0 30em;
+    }
 }
 
 @keyframes center {
@@ -57,6 +107,7 @@ canvas {
         transition: color 2s;
         font-weight: 600;
     }
+
     10% {
         opacity: 1;
     }
@@ -70,7 +121,8 @@ canvas {
         width: 0;
         height: 0;
     }
-    55%{
+
+    55% {
         background: linear-gradient(to left, red, orange);
         top: 0%;
         left: 50%;
@@ -81,28 +133,29 @@ canvas {
         background: linear-gradient(to left, orange, yellow);
         top: 50%;
         left: 50%;
-        transform:  translate(-50%, -50%) rotate(0.5turn);
+        transform: translate(-50%, -50%) rotate(0.5turn);
     }
 
     80% {
         background: linear-gradient(to left, yellow, green);
         top: 50%;
         left: 50%;
-        transform:  translate(-50%, -50%) rotate(1.5turn);
+        transform: translate(-50%, -50%) rotate(1.5turn);
     }
 
     90% {
         background: linear-gradient(to left, green, blue);
         top: 50%;
         left: 50%;
-        transform:  translate(-50%, -50%) rotate(1turn);
+        transform: translate(-50%, -50%) rotate(1turn);
     }
 
     100% {
-        font-size: 50px;
+        background-color: none;
+        color: white;
         top: 50%;
         left: 50%;
-        transform:  translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(0.1);
     }
 }
 
@@ -119,7 +172,7 @@ canvas {
     }
 }
 
-.overly{
+.overly {
     position: fixed;
     opacity: 0;
     transition: 200ms ease-in-out;
@@ -127,11 +180,11 @@ canvas {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }
 
-.overly.dim{
+.overly.dim {
     opacity: 1;
     pointer-events: all;
     z-index: 1;

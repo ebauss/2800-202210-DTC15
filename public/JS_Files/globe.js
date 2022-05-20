@@ -58,19 +58,40 @@ function createChart() {
 let easterEggInitiator = document.getElementById("easter-egg");
 let overlay = document.getElementById("overly");
 
+function hideOurVision() {
+    easterEggInitiator.classList.add("removeOurVision")
+    removeOurVision = document.querySelector(".removeOurVision")
 
+    removeOurVision.addEventListener("animationend", () => {
+        removeOurVision.style.display = "none"
+    })
 
-async function easterEgg(){
-    easterEggChildren = easterEggInitiator.childNodes;
-    easterEggChildren.forEach(child => {
-        easterEggInitiator.classList.add("move-texts")
-        overlay.classList.add("dim")
-        // child.classList.add("move-texts")
+}
+
+async function addRainbow() {
+    easterEggInitiator.classList.add("rainbow")
+    rainbowAnimation = document.querySelector(".rainbow")
+
+    rainbowAnimation.addEventListener("animationend", async () => {
+        setTimeout(hideOurVision, 500)
     })
 }
 
+async function easterEgg() {
+    overlay.classList.add("dim")
+    easterEggInitiator.classList.add("move-texts")
+
+    moveTextAnimation = document.querySelector(".move-texts")
+
+    moveTextAnimation.addEventListener("animationend", () => {
+        setTimeout(addRainbow, 500)
+    })
+}
+
+
+
 // -------- closing overlay button -------- //
-function crackTheEasterEgg(){
+function crackTheEasterEgg() {
     overlay.classList.remove('dim')
     easterEggInitiator.classList.remove("move-texts")
 }
@@ -83,7 +104,7 @@ easterEggInitiator.addEventListener("click", (event) => {
     element = event.currentTarget;
     element.clicks = (element.clicks || 0) + 1;
 
-    if (element.clicks == 3){
+    if (element.clicks == 3) {
         easterEgg()
         element.clicks = 0
     }
