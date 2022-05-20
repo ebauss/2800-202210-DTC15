@@ -1,10 +1,5 @@
 
-// ------------- constants and Variables ------------- //
-const mainMenuSection = document.getElementById('quiz-menu')
-const quizContainerSection = document.getElementById('quiz-container')
-const exitButton = document.getElementById('return-home')
-const startButton = document.getElementById('start-btn')
-const closeButton = document.getElementById('close-quiz')
+// ------------- Progress Game ------------- //
 const scoreText = document.getElementById("user-score")
 let quizChoice = document.querySelectorAll('.answer')
 var best = ''
@@ -50,28 +45,33 @@ function nextQuestion(){
     if (quizNumber < maxQuestions ){
         sendApiRequest()
     }else{
-        alert("Well Done! You've complated the quiz")
-        updateStats()
+        prompt()
     }
+   
+    
 }
 
-// udate stats and return to main
+// update stats and return to main
 function updateStats(){
     if (score > best){
-        let best = score
+        best = score
     }else{
-        let last = score
+        last = score
     }
     score = 0
-    window.location.replace("http://localhost:3000/main.html");
+    quizNumber = 0
+    startQuiz()
+    // window.location.replace("http://localhost:3000/main.html");
+}
 
+function startQuiz (){
+    document.querySelector(".last-score").innerHTML = last
+    document.querySelector(".best-score").innerHTML = best
 }
 
 
 
-
-
-// ---------the API ----------------//
+// ------------- The API ------------- //
 // fetching data from Open Trivia API.
 async function sendApiRequest() {
     let response = await fetch('https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple');
@@ -82,7 +82,6 @@ async function sendApiRequest() {
 }
 
 function useApiData(data) {
-
     correct = data.results[0].correct_answer
     console.log(correct)
 
@@ -99,15 +98,27 @@ function useApiData(data) {
 }
 
 
-// ------------- Event Listeners ------------- //
+// ------------- Exit controls ------------- //
+const mainMenuSection = document.getElementById('quiz-menu')
+const quizContainerSection = document.getElementById('quiz-container')
+
+const exitButton = document.getElementById('return-home')
+const startButton = document.getElementById('start-btn')
+const endButton = document.getElementById('end-quiz')
+
+const overlay = document.getElementById('overlay')
+const popup = document.getElementById('popup-container')
+
+const no = document.getElementById('no')
+
+
 startButton.addEventListener('click', () => {
     mainMenuSection.style.display = 'none';
     quizContainerSection.style.display = 'block'
 })
 
-closeButton.addEventListener('click', () => {
-    mainMenuSection.style.display = 'block';
-    quizContainerSection.style.display = 'none'
+endButton.addEventListener('click', () => {
+    prompt(endButton)
 })
 
 quizChoice.forEach(choice => {
@@ -116,3 +127,33 @@ quizChoice.forEach(choice => {
         isCorrect(playerAnswer)
     })
 })
+
+function prompt (id) {
+    console.log(endButton)
+    if (id == endButton){
+        overlay.classList.add("dim")
+        popup.classList.add('active')
+        document.querySelector(".promter").innerHTML= "Are you sure you want to quit? \n Your progress will not be saved."
+        choice()
+    } else{
+        overlay.classList.add("dim")
+        popup.classList.add('active')
+        document.querySelector(".promter").innerHTML= "You've complted the quiz! Your score: " + score + " Do you want to play again?"
+        choice()
+    }
+}
+
+function choice(){
+    no.addEventListener('click', () => {
+        overlay.classList.remove("dim")
+        popup.classList.remove('active')
+    })
+    
+    yes.addEventListener('click', () => {
+        updateStats()
+        mainMenuSection.style.display = 'block';
+        quizContainerSection.style.display = 'none';
+        overlay.classList.remove("dim")
+        popup.classList.remove('active')
+    })
+}
