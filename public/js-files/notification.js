@@ -199,7 +199,7 @@ function requestOwnedRewards() {
 // requests an object with all receipts user has posted
 function requestOwnedReceipts() {
     $.ajax({
-        url: 'http://localhost:3000/getReceiptData',
+        url: 'http://localhost:3000/getUserReceipts',
         type: 'GET',
         success: populate_earnings
     })

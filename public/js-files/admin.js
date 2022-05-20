@@ -47,7 +47,7 @@ function requestUserDeletion() {
 
 function requestReceiptData() {
     $.ajax({
-        url: 'http://localhost:3000/getReceiptData',
+        url: 'http://localhost:3000/getAllReceiptData',
         type: 'GET',
         success: (data) => {
             receipts_populate_table(data);
