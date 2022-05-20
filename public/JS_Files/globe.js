@@ -32,7 +32,7 @@ function createChart() {
 
                 // Adding few sensible configurations options
                 options: {
-                    maintainAspectRatio: false,
+                    // maintainAspectRatio: false,
                     scales: {
                         yAxes: [{
                             scaleLabel: {
@@ -63,9 +63,12 @@ const easterEggInitiator = document.getElementById("easter-egg");
 const overlay = document.getElementById("overly");
 const globe = document.getElementById("globe")
 const globeContainer = document.querySelector(".globe-container")
+const easterEggExit = document.getElementById("exit")
 
 function finale(){
     globeContainer.classList.remove("keep-things-hidden")
+    easterEggExit.classList.add("fade-in")
+    
 }
 
 function whiteOut() {

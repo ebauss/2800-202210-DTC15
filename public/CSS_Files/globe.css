@@ -7,7 +7,12 @@ body {
 main {
     margin: 2% 1%;
     display: grid;
-    gap: 5%;
+    gap: 1%;
+    overflow: hidden;
+}
+
+p a {
+    color: blue;
 }
 
 .emission-body {
@@ -52,6 +57,7 @@ canvas {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    background-color: rgba(144, 238, 144, 0.3);
 }
 
 #easter-egg {
@@ -96,11 +102,11 @@ canvas {
     animation: rainbow 10s linear 1;
 }
 
-.keep-things-hidden{
-    display: none;
+.keep-things-hidden {
+    opacity: 0;
 }
 
-.remove-our-vision{
+.remove-our-vision {
     font-size: 75px;
     animation: hidetext 1s forwards;
 }
@@ -124,7 +130,7 @@ canvas {
     z-index: 1;
 }
 
-.globe-container{
+.globe-container {
     height: 100%;
     width: 100%;
     background: url("../Image_Files/earth-bg.jpg");
@@ -132,7 +138,7 @@ canvas {
     animation: animate-earth-bg 50s linear infinite;
 }
 
-.globe{
+.globe {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -144,6 +150,19 @@ canvas {
     border-radius: 50%;
     box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
     animation: animate-earth 6s linear infinite;
+}
+
+#exit {
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    width: 100%;
+}
+
+.fade-in {
+    animation: fade-in-out 5s forwards alternate;
 }
 
 .globe span {
@@ -159,25 +178,36 @@ canvas {
     animation: pulse 6s linear infinite;
 }
 
-.black-out{
+.black-out {
     animation: paint-black 5s ease-out 1;
 }
 
-.white-out{
+.white-out {
     position: absolute;
     animation: paint-white 5s ease 1;
 }
 
-.globe span:nth-child(1){
+.globe span:nth-child(1) {
     animation-delay: 0s;
 }
-.globe span:nth-child(2){
+
+.globe span:nth-child(2) {
     animation-delay: 2s;
 }
-.globe span:nth-child(3){
+
+.globe span:nth-child(3) {
     animation-delay: 4s;
 }
 
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 @keyframes pulse {
     0% {
@@ -195,43 +225,50 @@ canvas {
         height: 600px;
         opacity: 0;
     }
-    
+
 }
 
 @keyframes animate-earth-bg {
-    0%{
+    0% {
         background-position: 0 0;
     }
+
     100% {
         background-position: 1600px 0;
-    }   
+    }
 }
 
 @keyframes animate-earth {
-    0%{
+    0% {
         background-position: 0 0;
     }
+
     100% {
         background-position: 719px 0;
-    }   
+    }
 }
 
 @keyframes paint-white {
     0% {
         background-color: rgba(0, 0, 0, 1);
     }
+
     25% {
         background-color: rgba(0, 0, 0, 0.8);
     }
+
     50% {
         background-color: rgba(0, 0, 0, 0.6);
     }
+
     75% {
         background-color: rgba(0, 0, 0, 0.4);
     }
+
     90% {
         background-color: rgba(0, 0, 0, 0.2);
     }
+
     100% {
         background-color: rgba(0, 0, 0, 0);
     }
@@ -241,18 +278,23 @@ canvas {
     0% {
         background-color: rgba(0, 0, 0, 0.5);
     }
+
     25% {
         background-color: rgba(0, 0, 0, 0.6);
     }
+
     50% {
         background-color: rgba(0, 0, 0, 0.7);
     }
+
     75% {
         background-color: rgba(0, 0, 0, 0.8);
     }
+
     90% {
         background-color: rgba(0, 0, 0, 0.9);
     }
+
     100% {
         background-color: rgba(0, 0, 0, 1);
     }
