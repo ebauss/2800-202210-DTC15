@@ -1,5 +1,6 @@
 var userId;
 
+// request details of the receipt ID in the URL
 function getSingleReceiptData() {
     let currentUrl = parseInt(location.href.split('=')[1]);
 
@@ -13,6 +14,7 @@ function getSingleReceiptData() {
     })
 }
 
+// prefill form with known details of the receipt
 function processSingleReceiptData(data) {
     userId = data[0].user_id;
 
@@ -37,12 +39,14 @@ function processSingleReceiptData(data) {
     $('#message').val(data[0].notes);
 }
 
+// inform user the receipt was successfully verified
 function processVerification(data) {
     console.log(data);
     alert("Record has been updated.");
     location.href = './admin.html';
 }
 
+// request server to update a receipt as verified
 function requestVerification() {
     today = new Date();
 
