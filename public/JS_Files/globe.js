@@ -55,19 +55,48 @@ function createChart() {
 }
 
 // -------- All functions for Easter Egg -------- //
-let easterEggInitiator = document.getElementById("easter-egg");
-let overlay = document.getElementById("overly");
+const easterEggInitiator = document.getElementById("easter-egg");
+const overlay = document.getElementById("overly");
+const globe = document.getElementById("globe")
+const globeContainer = document.querySelector(".globe-container")
 
+function finale(){
+    globeContainer.classList.remove("keep-things-hidden")
+}
+
+function whiteOut() {
+    overlay.classList.add("white-out")
+    globeContainer.classList.remove("keep-things-hidden")
+    whiteOutAnimation = document.querySelector(".white-out")
+    
+    whiteOutAnimation.addEventListener("animationend", () => {
+        finale()
+    })
+}
+
+function blackOut() {
+    overlay.classList.add("black-out")
+    blackOutAnimation = document.querySelector(".black-out")
+
+    blackOutAnimation.addEventListener("animationend", () => {
+        setTimeout(whiteOut, 1000)
+    })
+}
+
+// Adds the animation of shrinking the OurVision
 function hideOurVision() {
-    easterEggInitiator.classList.add("removeOurVision")
-    removeOurVision = document.querySelector(".removeOurVision")
+    easterEggInitiator.classList.add("remove-our-vision")
+    removeOurVision = document.querySelector(".remove-our-vision")
 
     removeOurVision.addEventListener("animationend", () => {
-        removeOurVision.style.display = "none"
+        // Adds the class where display will be none
+        easterEggInitiator.classList.add("keep-things-hidden")
+        setTimeout(blackOut, 500)
     })
 
 }
 
+// A function that adds the rainbow effect - FUN!
 async function addRainbow() {
     easterEggInitiator.classList.add("rainbow")
     rainbowAnimation = document.querySelector(".rainbow")
@@ -77,6 +106,7 @@ async function addRainbow() {
     })
 }
 
+// A function that adds the first animation class called move-text
 async function easterEgg() {
     overlay.classList.add("dim")
     easterEggInitiator.classList.add("move-texts")
@@ -94,12 +124,19 @@ async function easterEgg() {
 function crackTheEasterEgg() {
     overlay.classList.remove('dim')
     easterEggInitiator.classList.remove("move-texts")
+    easterEggInitiator.classList.remove("rainbow")
+    easterEggInitiator.classList.remove("remove-our-vision")
+    easterEggInitiator.classList.remove("keep-things-hidden")
+    overlay.classList.remove("black-out")
+    overlay.classList.remove("white-out")
+    globeContainer.classList.add("keep-things-hidden")
 }
 
-overlay.addEventListener("click", (event) => {
+overlay.addEventListener("click", () => {
     crackTheEasterEgg()
 })
 
+// Keeps track of the clicking of OUR VISION
 easterEggInitiator.addEventListener("click", (event) => {
     element = event.currentTarget;
     element.clicks = (element.clicks || 0) + 1;

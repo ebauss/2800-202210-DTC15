@@ -76,13 +76,171 @@ canvas {
     background-clip: text;
     line-height: 1.1em;
 
-    animation: rainbow 10s linear 2;
+    animation: rainbow 10s linear 1;
 }
 
-.removeOurVision{
-    font-size: 75px;
-    animation: hidetext 1s linear 1;
+.keep-things-hidden{
+    display: none;
 }
+
+.remove-our-vision{
+    font-size: 75px;
+    animation: hidetext 1s forwards;
+}
+
+
+.overly {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.overly.dim {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1;
+}
+
+.globe-container{
+    height: 100%;
+    width: 100%;
+    background: url("../Image_Files/earth-bg.jpg");
+    background-size: cover;
+    animation: animate-earth-bg 50s linear infinite;
+}
+
+.globe{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url("../Image_Files/earth.png");
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
+    animation: animate-earth 6s linear infinite;
+}
+
+.globe span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    animation: pulse 6s linear infinite;
+}
+
+.black-out{
+    animation: paint-black 5s ease-out 1;
+}
+
+.white-out{
+    position: absolute;
+    animation: paint-white 5s ease 1;
+}
+
+.globe span:nth-child(1){
+    animation-delay: 0s;
+}
+.globe span:nth-child(2){
+    animation-delay: 2s;
+}
+.globe span:nth-child(3){
+    animation-delay: 4s;
+}
+
+
+@keyframes pulse {
+    0% {
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+    }
+    
+}
+
+@keyframes animate-earth-bg {
+    0%{
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 1600px 0;
+    }   
+}
+
+@keyframes animate-earth {
+    0%{
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 719px 0;
+    }   
+}
+
+@keyframes paint-white {
+    0% {
+        background-color: rgba(0, 0, 0, 1);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    50% {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    75% {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    90% {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes paint-black {
+    0% {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    50% {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    75% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    90% {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 1);
+    }
+}
+
 
 @keyframes hidetext {
     100% {
@@ -150,14 +308,19 @@ canvas {
         transform: translate(-50%, -50%) rotate(1turn);
     }
 
-    100% {
+    99% {
         background-color: none;
         color: white;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) scale(0.1);
     }
+
+    100% {
+        visibility: hidden;
+    }
 }
+
 
 
 @media screen and (max-width: 900px) {
@@ -170,22 +333,4 @@ canvas {
         max-width: 900px;
         height: auto !important;
     }
-}
-
-.overly {
-    position: fixed;
-    opacity: 0;
-    transition: 200ms ease-in-out;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-}
-
-.overly.dim {
-    opacity: 1;
-    pointer-events: all;
-    z-index: 1;
 }
