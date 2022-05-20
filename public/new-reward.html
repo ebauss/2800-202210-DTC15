@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-------------------------------------------------------->
+    <!-------------- External Links goes here ---------------->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+    <link rel="stylesheet" href="css-files/new-reward.css">
+
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <header>
+        <a href="admin.html"> Back </a>
+    </header>
+    <main>
+        <h1 class="details-header">Add Details</h1>
+        <section class="details-container">
+            <div class="details-body">
+                <span class="container">
+                    <label for="company"> Company </label>
+                    <input type="text" name="company" id="company" required>
+                </span>
+                <span class="container">
+                    <label for="value"> Value </label>
+                    <input type="text" name="value" id="value" required>
+                </span>
+                <span class="container">
+                    <label for="points"> Points Cost </label>
+                    <input type="text" name="points" id="points" required>
+                </span>
+                <span class="container description">
+                    <label for="message"> Description </label>
+                    <textarea type="text" name="description" id="description" value="Tell us about your product"
+                        required> </textarea>
+                </span>
+            </div>
+            <span class="btn-container">
+                <button type="button" id="submit"> Submit </button>
+            </span>
+        </section>
+        <h1 class="photo-header">Insert Photo Here</h1>
+        <div class="product-img-container">
+            <div class="img-body">
+                <span class="img-container" id="display-img-container"><img src="./images/submit.png" id="pic" width="100px"></span>
+                <input type="file" id="pic-file" accept="image/*">
+                <span></span>
+            </div>
+            <span class="img-container" id="new-img-btn"><img src="./images/submit.png" id="new-pic" width="50px"></span>
+        </div>
+    </main>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="js-files/new-reward.js"> </script>
+
+</body>
+
+</html>

@@ -42,7 +42,7 @@ async function logoutUser() {
 
 function processLogout(data) {
     if (data) {
-        alert("You have successfully logged out!");
+        alert('You have successfully logged out!');
         window.location.href = './main.html';
     }
 }

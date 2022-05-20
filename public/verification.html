@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sustainably</title>
+    <meta name="2800 Template" content="Sustainably">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-------------------------------------------------------->
+    <!-------------- External Links goes here ---------------->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--------------------------->
+    <!--   CSS Files go here   -->
+    <!--------------------------->
+    <link rel="stylesheet" href="./css-files/verification.css">
+
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <header>
+        <a href="admin.html"> Back </a>
+    </header>
+    <!-- the body of your page goes here -->
+    <main>
+        <div id="form">
+            <h1 class="img-header">Receipt Image</h1>
+            <h1 class="info-header"> Receipt Information </h1>
+            <span class="img-container">
+                <img id="receipt-img" src="./images/tree.png" alt="user-receipt" width="300px">
+            </span>
+            <div id="uneditable-data">
+                <span class="container">
+                    <label> Verified by: </label>
+                    <h2 id="admin"></h2>
+                </span>
+                <span class="container">
+                    <label> Submitted by: </label>
+                    <h2 id="user-email"> </h2>
+                </span>
+                <span class="container">
+                    <label for="value"> Value: </label>
+                    <input type="text" name="value" id="value" value="100" required>
+                </span>
+                <span class="container message">
+                    <label for="message"> Message: </label>
+                    <textarea type="text" name="message" id="message" value="Your receipt is approved"> </textarea>
+                </span>
+                <span class="btn-container">
+                    <button type="button" id="verify"> Verify </button>
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="js-files/skeleton.js"> </script>
+    <script src="js-files/verification.js"></script>
+
+</body>
+
+</html>

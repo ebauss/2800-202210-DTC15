@@ -12,7 +12,7 @@
     align-items:flex-start
 }
 
-.Text-Container{
+.text-container{
     display: flex;
     flex-direction: row;
     align-items:flex-end;
@@ -27,13 +27,13 @@ button{
 img{
     width: 100%;
 }
-.heroImg {
+.hero-img {
     width: fit-content;
     height: fit-content;
     justify-content: center;
 }
 
-.heroText{
+.hero-text{
     width: 100%;
     justify-content: center;
     text-align-last: center;

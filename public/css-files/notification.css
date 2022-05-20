@@ -1,0 +1,278 @@
+/* main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+} */
+
+/* body {
+    background-color: black;
+} */
+
+.button-box{
+    display: flex;
+    justify-content: center;
+    max-width: 273px;
+    margin: 35px auto;
+    position: relative;
+    border-radius: 5px;
+    border: 2px solid gainsboro;
+}
+
+.toggle-btn{
+    padding: 10px 40px;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    position: relative;
+    text-align: center;
+    border: none;
+    width: 100%;
+    transition: background 0.5s;
+} 
+
+/* #btn {
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 136.5px;
+    height: 100%;
+    background: #e67e22;
+    border-radius: 35px;
+    transition: 0.5s;
+} */
+
+/* button{
+    padding: 5px;
+    margin: 5px;
+    font-size: medium;
+    background-color: rgba(114, 196, 166 , 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+} */
+
+/* button:hover{
+    background-color: rgba(114, 196, 166 , 1);
+} */
+
+.container-box{
+    display: flex;
+    justify-content: center;
+    margin: 3% 1%;
+    row-gap: 2%;
+    padding: 1%;
+    background-color: rgba(188,143,143, 0.5);
+    border-radius: 5px;
+}
+
+.hero{
+    justify-items: space-around;
+    margin:1em;
+}
+
+.controls{
+    margin: .5em;
+}
+section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+section#user-earnings-container{
+    display:none;
+}
+
+/* section#user-rewards-container{
+    display:none;
+} */
+ 
+.card-container{
+    display: grid;
+    width: 99%;
+    border: 1px solid white;
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(100, 100, 100, 0.3);
+    margin: 10px;
+    padding: 5px;
+}
+
+.card-container:hover {
+    box-shadow: 0 2px 5px rgb(131, 92, 92);
+}
+
+.card-body{
+
+    cursor: pointer;
+    /* margin: 5px 0px; */
+    width:95%;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 70fr 10fr 15fr;
+    grid-template-areas:
+    '. . . .card-status' 
+    'card-title card-title card-title card-title card-title'
+    '. card-points card-points card-points card-points'
+    'card-code . . . card-date';
+}
+
+/* status will have different text color depending in different stages*/
+.card-status{
+    grid-area:card-status;
+    text-align: end;
+}
+
+.start{
+    color: green ;
+    /* any element that has a class start will get green text */
+}
+
+.end{
+    color:crimson;
+        /* any element that has a class end will get red text */
+
+}
+
+.card-points{
+    grid-area: card-points;
+    /* text-align: center; */
+    font-size: small;
+}
+
+.card-company{
+    font-size: small;
+}
+
+.card-title{
+    grid-area:card-title;
+    text-align: left;
+    font-size: large;
+    font-weight: bold;
+}
+.card-date{
+    grid-area:card-date;
+    text-align: end;
+}
+.card-id{
+    grid-area: card-code;
+} 
+ 
+/* -------- for the over lay ------- */
+/* overlay is to dim the background and prevent clicking other cards */
+#overlay{
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+
+    /* transition creates the action for overlay entrance */
+}
+
+#overlay.dim{
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+
+    /* when a class dim is added to id overlay, the overlay will cover the entire page */
+    /* z-index covers the cards and floating bar prevents accidental clicking */
+}
+
+
+
+/* ---------for the popup---------- */
+.popup-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 11;
+    background-color: aliceblue;
+    width: 500px;
+    max-width: 80%;
+
+    /* transform scale 0 is to hide the popup and wait for event*/
+    /* translate positions popup to center screen */
+    /* z-index ensure popup is on top of overlay */
+    /* transition creates the action for popup entrance */
+}
+
+.popup-container.active{
+    transform: translate(-50%, -50%) scale(1);
+    padding: 1em;
+
+    /* when a class active is added to class popup-container, the popup will show at the center of the page */
+}
+
+.popup-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-btn{
+    cursor: pointer;
+}
+
+.popup-body.rewards{
+    padding: 10px 15px;
+    margin: 5px 0px;
+    width:100%;
+    display: grid;
+    row-gap: 0.5em;
+    column-gap: 1em;
+    grid-template-columns: 25fr 75fr;
+    grid-template-areas:
+    'img info'
+    'footer footer';
+}
+
+.popup-body.earnings{
+    padding: 10px 15px;
+    margin: 5px 0px;
+    width:100%;
+    display: grid;
+    row-gap: 0.5em;
+    column-gap: 1em;
+    grid-template-columns: 25fr 75fr;
+    grid-template-areas:
+    'info info'
+    'footer footer';
+
+}
+
+.popup-img{
+    grid-area: img;
+    
+}
+
+.popup-information{
+    grid-area: info;
+}
+
+.popup-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-area: footer;
+}
+
+span{
+    display: flex;
+    justify-content: space-between;
+    gap:0.5em;
+}
+
+@media screen and (max-width: 650px) {
+    .card-container{
+        width: 90%;
+    }
+}

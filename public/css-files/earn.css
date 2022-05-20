@@ -25,9 +25,13 @@ main {
         "."
         "header"
         "graph-body"
-        ".";
+        "btn-save";
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
     justify-content: center;
     row-gap: 10px;
+    padding-bottom: 10px;
 }
 
 #display-month {
@@ -50,6 +54,8 @@ main {
     row-gap: 50px;
     align-items: center;
     align-content: space-around;
+    width: 100%;
+    height: 100%;
 }
 
 .doughnut-rewards-chart-container {
@@ -66,30 +72,46 @@ canvas {
     height: 100%;
 }
 
-.display-goal-points-container {
-    grid-area: goal-points;
+
+#submit-btn{
+    grid-area: btn-save;
+    display: none;
+    width: max-content;
+    font-size: medium;
+    padding: 10px 15px;
+    background-color: antiquewhite;
+    border: 2px solid 	rgb(119,136,153);
+    border-radius: 5px;
 }
 
-.display-current-points-container {
-    grid-area: current-points;
-}
-
-.points-container h3 {
+.points {
     margin-top: 10px;
     border: 1px solid silver;
-    width: 100px;
+    width: clamp(100px, 300px, 500px);
+    color: black;
     padding: 5px;
     font-size: x-large;
+    font-weight: 800;
     background-color: rgba(210, 180, 140, 0.8);
     text-align: center;
+}
+
+.display-goal-points-container {
+    grid-area: goal-points;
 }
 
 .points-container {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 10px;
+    justify-items: baseline;
+    gap: 15px;
+}
+
+.display-current-points-container {
+    grid-area: current-points;
 }
 
 .submission-rewards-section {

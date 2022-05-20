@@ -7,23 +7,22 @@
 
 #body {
     display: grid;
-    grid-template-rows: 1fr 10fr 0.1fr;
     gap: 1%;
 }
 
 
 main {
+    position: static;
     display: grid;
     grid-template-columns: 50fr 50fr;
-    grid-template-rows: 2fr 5fr 13fr 25em;
     grid-template-areas: 
     "profile-header profile-header"
     "profile-pic rewards"
-    "info info"
-    "noti noti";
+    "info info";
     justify-content: center;
-    row-gap: 3%;
+    row-gap: 5%;
     margin: 10px;
+    height: 100%;
 }
 
 label[for="user-profile"]{
@@ -122,25 +121,39 @@ label[for="rewards"]{
 
 
 .user-profile{
+    margin: 0px 2%;
     grid-area: info;
     height: 100%;
-    margin: 0px 20px;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
+    row-gap: 5%;
+    column-gap: 2%;
     grid-template-areas: 
-    "name name"
+    "fname lname"
     "email email"
     "compass compass"
     "country age"
     ". btn";
     justify-content: space-around;
-    align-items: baseline;
+    align-items: center;
     align-content: center;
 }
 
-#name{
+.name{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: center;
     grid-area: name;
+}
+
+#first-name{
+    grid-area: fname;
+    width: 100%;
+}
+
+#last-name{
+    grid-area: lname;
     width: 100%;
 }
 
@@ -172,7 +185,9 @@ label[for="rewards"]{
 .info-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    column-gap: 5%;
+    width: 100%;
+    justify-content: flex-start;
     align-items: center;
     align-content: space-around;
 }
@@ -184,7 +199,7 @@ label[for="rewards"]{
 }
 
 .info{
-    width: 90%;
+    width: 100%;
     height: 2em;
     border: 1px solid gray;
     border-radius: 10px;
@@ -239,6 +254,15 @@ div.notification-box{
     overflow: scroll;
 }
 
-@media(max-width: 400px) {
-    
+@media(max-width: 700px) {
+    main {
+        row-gap: 1.5%;
+    }
+    .user-profile{
+        display: flex;
+        flex-direction: column;
+    }
+    .info-container{
+        margin-bottom: 10px;
+    }
 }
