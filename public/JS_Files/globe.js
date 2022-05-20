@@ -56,15 +56,28 @@ function createChart() {
 
 // -------- All functions for Easter Egg -------- //
 let easterEggInitiator = document.getElementById("easter-egg");
+let overlay = document.getElementById("overly");
+
 
 
 async function easterEgg(){
     easterEggChildren = easterEggInitiator.childNodes;
     easterEggChildren.forEach(child => {
         easterEggInitiator.classList.add("move-texts")
+        overlay.classList.add("dim")
         // child.classList.add("move-texts")
     })
 }
+
+// -------- closing overlay button -------- //
+function crackTheEasterEgg(){
+    overlay.classList.remove('dim')
+    easterEggInitiator.classList.remove("move-texts")
+}
+
+overlay.addEventListener("click", (event) => {
+    crackTheEasterEgg()
+})
 
 easterEggInitiator.addEventListener("click", (event) => {
     element = event.currentTarget;
@@ -72,6 +85,7 @@ easterEggInitiator.addEventListener("click", (event) => {
 
     if (element.clicks == 3){
         easterEgg()
+        element.clicks = 0
     }
 })
 
