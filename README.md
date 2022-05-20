@@ -38,3 +38,5 @@ Content of the project folder:
 The Logo_only.png is created from Canvas by one of our groupmates -> Alexie Narcissco
 The icons used in the floatingbar are all from 8icons
     https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+* For the EasterEgg at globe.html the class -> Rainbow, all the css is from https://www.youtube.com/watch?v=BY4uU6CNtTg
+* For the Easter Egg at globe.html all classes animating the pulsing Earth - with names -> globe and pules - is all from https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s

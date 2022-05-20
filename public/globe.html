@@ -16,6 +16,9 @@
     <!-------------------------------------------------------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- This is for the chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
@@ -26,6 +29,7 @@
     <!--------------------------->
 
     <link rel="stylesheet" href="./CSS_Files/style.css">
+    <link rel="stylesheet" href="CSS_Files/globe.css">
 
 </head>
 
@@ -39,6 +43,55 @@
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
+
+    <!----- A collapsible bar where users can read more about the globe feature ----->
+
+    <!-- Things to talk about: What we hope to achieve (where easter egg is). Methan and its sources and citations as well! -->
+    <main>
+        <section class="emission-body">
+            <h1> Canada's Daily Average Methane Emission Chart </h1>
+            <div class="emission-chart">
+                <canvas id="plot-chart"> </canvas>
+            </div>
+        </section>
+        <article class="more-info">
+            <div class="card-info">
+                <h1> What We <span id="easter-egg">Hope</span> </h1>
+                <p> The J.A.N.E Group is hoping for users to be aware of the methane Emission and its impact in the
+                    world.
+                    Above, we have provided a chart for users to keep track of Canada's average methane emission in the
+                    world, using
+                    data from the European Space Agency's Sentinel-5P satellite through 'emissions-api.org'. We wished
+                    to allow users
+                    choose a country, but due to time, we were not able to do such feature, still we have decided to
+                    show Canada's methane emission</p>
+            </div>
+            <div class="card-info">
+                <h1> What is Methane? </h1>
+                <p> Methane is one of the greenhouse gas (GHG), so its presence in the atmosphere affects the Earth's
+                    temperature and climate system.
+                    Methane is emitted from a variety of anthropogenic (human-influenced) and natural sources. It is the
+                    second most abundant anthropogenic GHG after carbon dioxide (CO2), accounting for about 20 percent
+                    of global emissions. Methane is more than 25 times as potent as carbon dioxide at trapping heat in
+                    the atmosphere. Over the last two centuries, methane concentrations in the atmosphere have more than
+                    doubled, largely due to human-related activities. Because methane is both a powerful greenhouse gas
+                    and short-lived compared to carbon dioxide, achieving significant reductions would have a rapid and
+                    significant effect on atmospheric warming potential. <a
+                            href="https://www.epa.gov/gmi/importance-methane#:~:text=Methane%20(CH4)%20is%20a,%2Dinfluenced)%20and%20natural%20sources"> Source </a>
+                </p>
+            </div>
+        </article>
+        <div class="overly" id="overly">
+            <div class="globe-container keep-things-hidden">
+                <h1 id="exit" class="keep-things-hidden"> Click Anywhere to Exit </h1>
+                <div class="globe" id="globe">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- our own floating bar goes here-->
     <nav id="floatingBarPlaceholder"></nav>
