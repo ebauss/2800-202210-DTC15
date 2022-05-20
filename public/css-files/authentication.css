@@ -11,18 +11,8 @@ body {
     width: 100%;
 }
 
-#body-content {
-    display: grid;
-    grid-template-rows: 10% auto auto;
-    grid-template-columns: 100%;
-    grid-template-areas:
-        "header"
-        "content"
-        "footer";
-    overflow: hidden;
-    /* display: table; */
-    height: 100%;
-    width: 100%;
+header {
+    
 }
 
 #navbarPlaceholder {
@@ -34,7 +24,6 @@ body {
 }
 
 main {
-    grid-area: content;
     display: grid;
     justify-content: space-around;
     align-content: space-around;
