@@ -62,10 +62,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(`Encrypting: ${req.body.password}`);
-            console.log(results);
             expectedHashedPassword = results[0].password;
-            console.log(`Expect: ${expectedHashedPassword}`);
             isUserAdmin = results[0].is_admin;
 
             // hash the inputted password and check if it matches with password from db
@@ -73,6 +70,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                 if (err) {
                     console.log(err);
                 } else if (result) {
+                    // password is correct. Authenticate the user
                     console.log("You entered the correct password");
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
@@ -81,6 +79,7 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                         isAdmin: isUserAdmin
                     });
                 } else {
+                    // password is incorrect. Sign out user if they are signed in for some reason
                     console.log("You entered an incorrect password");
                     req.session.authenticated = false;
                     req.session.uid = undefined;
@@ -129,15 +128,18 @@ app.post('/createNewUser', (req, res) => {
         } 
         else
         {
-            console.log(`Your password is: ${hash}`); // for debugging only
+            console.log(`Your password is: ${hash}`);
 
             if (req.body.password != req.body.confirm_password) {
+                // confirm password does not match the password field
                 res.send("unmatching password");
             }
             else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
+                // one or more required fields are blank
                 res.send("blank");
             }
             else {
+                // user creation successful. Add new user to database
                 addNewUserToDatabase(req, hash);
                 res.send("success");
             }
@@ -273,6 +275,7 @@ app.post('/uploadReceipt', (req, res) => {
 
 // sets receipt in database as verified by an admin. Used by verification.html
 app.post('/verifyReceipt', (req, res) => {
+    // fill out the receipt with the logged in user's ID, updated reward points, and notes
     connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
     [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
     (err, results, fields) => {
@@ -281,6 +284,7 @@ app.post('/verifyReceipt', (req, res) => {
         }
     })
 
+    // give the receipt's owner the specified reward points
     connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`, [req.body.value * 100, req.body.value * 100, req.body.user_id] , (err, results, fields) => {
         if (err) {
             console.log(err);
