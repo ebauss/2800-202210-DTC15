@@ -75,25 +75,28 @@ saveBtn.addEventListener("click", () => {
     }
 })
 
+// checks if email contains the @ symbol
 function isValidEmail() {
     let userEmail = $('#display-email').val();
 
     return (userEmail.includes('@'));
 }
 
+// checks if Compass ID is 20 numerical characters or empty string
 function isValidCompassIdInput() {
     let userCompassId = $('#display-compass').val();
 
-    // compass ID must be 20 numerical characters or empty string
     return ((!isNaN(userCompassId) && userCompassId.length == 20) || userCompassId == '');
 }
 
+// checks if age is numerical and between 0 and 255
 function isValidAgeInput() {
     let userAge = $('#display-age').val();
 
     return !(userAge == '' || isNaN(userAge) || userAge < 0 || userAge > 255);
 }
 
+// populates profile form with details from database
 function displayProfile(data) {
     // rewards, name, email, compassID, country, age
     console.log(data);
@@ -106,10 +109,12 @@ function displayProfile(data) {
     $('#display-compass').val(data[0].compass_id); // MASK ALL EXCEPT LAST 4 NUMBERS
 }
 
+// informs user their profile was successfully updated
 function updateProfile(data) {
     console.log('Profile has been updated');
 }
 
+// request user's profile information to be displayed
 function makeReadRequest() {
     $.ajax({
         url: "http://localhost:3000/checkProfile",
@@ -118,6 +123,7 @@ function makeReadRequest() {
     })
 }
 
+// edits user's profile with new information
 function makeWriteRequest() {
     if ($('#display-compass').val() == "") {
         compassIdToInsert = null;
