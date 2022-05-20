@@ -42,6 +42,7 @@ function currentMonth(){
         document.getElementById("display-month").innerHTML = month
 }
 
+// requests user's monthly goal and actual points
 function getUserRewardsInfo() {
     $.ajax({
         url: "http://localhost:3000/getUserPoints",
@@ -50,6 +51,7 @@ function getUserRewardsInfo() {
     })
 }
 
+// display user's monthly goal and actual points, and call function to draw chart
 function processUserRewardsInfo(data) {
     console.log(data);
 
@@ -69,7 +71,7 @@ function processUserRewardsInfo(data) {
     $('#display-goal-points').html(monthlyGoalPoints);
 }
 
-
+// tell user their receipt was successfully uploaded
 function uploadComplete(data) {
     if (data) {
         alert("Upload complete");
@@ -101,6 +103,7 @@ function uploadReceipt() {
     })
 }
 
+// tells user their monthly goal was successfully updated, and redraws chart accordingly
 function processGoalUpdate(data) {
     if (data) {
         alert('Your monthly goal has been updated.');
@@ -152,8 +155,9 @@ function setup(){
 
     // save form if user presses ENTER while setting their monthly goal
     $('body').on('keypress', '#display-goal-points', (event) => {
-        // keypress works if the cursor is on the monthly goal points textbox.
         var keycode = (event.keyCode ? event.keyCode : event.which);
+
+        // keycode 13 is the ENTER key
         if (keycode == '13') {
             saveMonthlyGoal();
         }
