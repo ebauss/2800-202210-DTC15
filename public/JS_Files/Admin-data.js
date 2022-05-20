@@ -296,7 +296,11 @@ function requestReceiptDeletion() {
 function requestRewards() {
     $.ajax({
         url: 'http://localhost:3000/requestAllRewards',
-        type: 'GET',
+        type: 'POST',
+        data: {
+            criteria: "company",
+            order: "ASC"
+        },
         success: (data) => {
             rewards_populate_table(data);
             rewards_populate_table(data, true);

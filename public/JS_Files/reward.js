@@ -1,6 +1,8 @@
 function processRewardsList(data) {
     console.log(data);
 
+    $('#rewards').empty();
+
     data.forEach((reward) => {
         let cardTag =
             `<br>
@@ -29,9 +31,29 @@ function processUserPoints(data) {
 }
 
 function makeRewardsListRequest() {
+    // sort the results depending on dropdown
+    switch ($('.sort-dropdown option:selected').val()) {
+        case 'default':
+            criteriaInput = 'company';
+            orderInput = 'ASC';
+            break;
+        case 'descending':
+            criteriaInput = 'points_cost';
+            orderInput = 'DESC';
+            break;
+        case 'ascending':
+            criteriaInput = 'points_cost';
+            orderInput = 'ASC';
+            break;
+    }
+
     $.ajax({
         url: "http://localhost:3000/requestAllRewards",
-        type: "GET",
+        type: 'POST',
+        data: {
+            criteria: criteriaInput,
+            order: orderInput
+        },
         success: processRewardsList
     })
 }
@@ -91,7 +113,9 @@ function verifyLogin() {
 
 function setup() {
     verifyLogin();
-    $('body').on('click', '.redeem-points', makeRedeemRequest)
+    $('body').on('click', '.redeem-points', makeRedeemRequest);
+
+    $('.sort-dropdown').change(makeRewardsListRequest);
 }
 
 $(document).ready(setup)
