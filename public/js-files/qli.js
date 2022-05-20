@@ -2,29 +2,29 @@
 
 function processRequest(data) {
     switch (data) {
-        case "ac130":
-            alert("AC-130 ABOVE!!");
+        case 'ac130':
+            alert('AC-130 ABOVE!!');
             window.location.href= './admin.html';
             break;
-        case "tsubasa":
-            alert("You are now Tsubasa Kazanari");
-            window.location.href="./profile.html";
+        case 'tsubasa':
+            alert('You are now Tsubasa Kazanari');
+            window.location.href='./profile.html';
             break;
     }
 }
 
 function makeRequestStandard() {
     $.ajax({
-        url: "http://localhost:3000/quickLogin",
-        type: "GET",
+        url: 'http://localhost:3000/quickLogin',
+        type: 'GET',
         success: processRequest
     })
 }
 
 function makeRequestAdmin() {
     $.ajax({
-        url: "http://localhost:3000/quickLoginAdmin",
-        type: "GET",
+        url: 'http://localhost:3000/quickLoginAdmin',
+        type: 'GET',
         success: processRequest
     })
 }

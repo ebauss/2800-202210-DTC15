@@ -148,8 +148,8 @@ function displayUsername(data) {
 // requests the signed-in user's details (only interested in the first name)
 function requestUsername() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: displayUsername
     })
 }

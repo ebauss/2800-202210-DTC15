@@ -14,8 +14,8 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
 
 function isUserLoggedIn() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: updateNavbar
     })
 }
@@ -32,8 +32,8 @@ function updateNavbar(data) {
 
 async function logoutUser() {
     await $.ajax({
-        url: "http://localhost:3000/logout",
-        type: "GET",
+        url: 'http://localhost:3000/logout',
+        type: 'GET',
         success: processLogout
     })
 
@@ -42,7 +42,7 @@ async function logoutUser() {
 
 function processLogout(data) {
     if (data) {
-        alert("You have successfully logged out!");
+        alert('You have successfully logged out!');
         window.location.href = './main.html';
     }
 }

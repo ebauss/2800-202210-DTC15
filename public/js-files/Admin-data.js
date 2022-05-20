@@ -1,10 +1,10 @@
 // requests all users' information to populate the users table
 function requestUserData() {
-    console.log("User data requested");
+    console.log('User data requested');
     $.ajax(
         {
-            url: "http://localhost:3000/requestUserData",
-            type: "GET",
+            url: 'http://localhost:3000/requestUserData',
+            type: 'GET',
             success: (data) => {
                 populate_table(data)
                 populate_table(data, true)
@@ -51,9 +51,9 @@ headerBtns.forEach((btn) => {
 // Function that populates the user's table
 function populate_table(data, mobile = false) {
     if (mobile) {
-        var tableTemplate = document.getElementById("collapsible-template-users")
+        var tableTemplate = document.getElementById('collapsible-template-users')
     } else {
-        var tableTemplate = document.getElementById("table-template-users")
+        var tableTemplate = document.getElementById('table-template-users')
     }
     data.forEach(element => {
         userID = element.user_id;
@@ -70,18 +70,18 @@ function populate_table(data, mobile = false) {
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (profile_icon == null) {
-            profile_icon = "Not provided";
+            profile_icon = 'Not provided';
         }
 
         if (is_admin) {
-            is_admin = "Yes";
+            is_admin = 'Yes';
         }
         else {
-            is_admin = "No";
+            is_admin = 'No';
         }
 
         if (!compass_id) {
-            compass_id = "Not provided";
+            compass_id = 'Not provided';
         }
 
         newcell.querySelector(".user-id").innerHTML = userID;
@@ -118,7 +118,7 @@ function populate_table(data, mobile = false) {
     }
 }
 
-// tell user that deletion was successful
+// inform user that deletion was successful
 function processDeleteUser(data) {
     alert(`User ${data} has been deleted.`);
     location.reload();
@@ -128,9 +128,9 @@ function processDeleteUser(data) {
 function requestUserDeletion() {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
-        type: "POST",
+        type: 'POST',
         data: {
-            userIdToDelete: $(this).attr("id")
+            userIdToDelete: $(this).attr('id')
         },
         success: processDeleteUser
     })
@@ -195,14 +195,14 @@ function receipts_populate_table(data, mobile = false) {
     console.log(data)
 
     data.forEach((receipt) => {
-        date = receipt.verified_date.split("T")[0];
+        date = receipt.verified_date.split('T')[0];
         email = receipt.email;
         receiptId = receipt.receipt_id;
         receiptStatus = receipt.admin_email;
         let newcell = tableTemplate.content.cloneNode(true);
 
         if (receiptStatus === null) {
-            receiptStatus = "Not Verified";
+            receiptStatus = 'Not Verified';
         }
         else {
             receiptStatus = `Verified by ${receipt.admin_email}`;
@@ -240,8 +240,8 @@ function receipts_populate_table(data, mobile = false) {
 // request all receipt information to populate receipts table
 function requestReceiptData() {
     $.ajax({
-        url: "http://localhost:3000/getReceiptData",
-        type: "GET",
+        url: 'http://localhost:3000/getReceiptData',
+        type: 'GET',
         success: (data) => {
             receipts_populate_table(data);
             receipts_populate_table(data, true);
@@ -252,7 +252,7 @@ function requestReceiptData() {
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
-        alert("You do not have permission to access this page.");
+        alert('You do not have permission to access this page.');
         window.location.href = './main.html';
     }
     else {
@@ -264,26 +264,26 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: redirectToMain
     })
 }
 
-// tell user receipt deletion was successful
+// inform user receipt deletion was successful
 function processReceiptDeletion(data) {
     if (data) {
-        alert("Receipt was deleted.");
+        alert('Receipt was deleted.');
     }
 }
 
 // request server to delete a specific receipt
 function requestReceiptDeletion() {
     $.ajax({
-        url: "http://localhost:3000/deleteReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/deleteReceipt',
+        type: 'POST',
         data: {
-            receipt_id: $(this).attr("id")
+            receipt_id: $(this).attr('id')
         },
         success: processReceiptDeletion
     })
@@ -295,8 +295,8 @@ function requestRewards() {
         url: 'http://localhost:3000/requestAllRewards',
         type: 'POST',
         data: {
-            criteria: "company",
-            order: "ASC"
+            criteria: 'company',
+            order: 'ASC'
         },
         success: (data) => {
             rewards_populate_table(data);
@@ -305,20 +305,20 @@ function requestRewards() {
     })
 }
 
-// tell user reward deletion was successful
+// inform user reward deletion was successful
 function processRewardDeletion(data) {
     if (data) {
-        alert("Reward was deleted.");
+        alert('Reward was deleted.');
     }
 }
 
 // request a specific reward to be deleted
 function requestRewardDeletion() {
     $.ajax({
-        url: "http://localhost:3000/deleteReward",
-        type: "POST",
+        url: 'http://localhost:3000/deleteReward',
+        type: 'POST',
         data: {
-            reward_id: $(this).attr("id")
+            reward_id: $(this).attr('id')
         },
         success: processRewardDeletion
     })

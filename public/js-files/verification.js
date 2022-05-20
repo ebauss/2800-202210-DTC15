@@ -42,7 +42,7 @@ function processSingleReceiptData(data) {
 // inform user the receipt was successfully verified
 function processVerification(data) {
     console.log(data);
-    alert("Record has been updated.");
+    alert('Record has been updated.');
     location.href = './admin.html';
 }
 
@@ -56,12 +56,12 @@ function requestVerification() {
     }
 
     $.ajax({
-        url: "http://localhost:3000/verifyReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/verifyReceipt',
+        type: 'POST',
         data: {
             value: parseInt($('#value').val()),
             notes: $('#message').val(),
-            verified_date: today.toISOString().split("T")[0],
+            verified_date: today.toISOString().split('T')[0],
             receipt_id: parseInt(location.href.split('=')[1]),
             user_id: userId
         },
@@ -72,7 +72,7 @@ function requestVerification() {
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
-        alert("You do not have permission to access this page.");
+        alert('You do not have permission to access this page.');
         window.location.href = './main.html';
     }
     else {
@@ -83,8 +83,8 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: redirectToMain
     })
 }

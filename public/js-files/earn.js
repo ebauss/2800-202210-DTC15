@@ -45,8 +45,8 @@ function currentMonth(){
 // requests user's monthly goal and actual points
 function getUserRewardsInfo() {
     $.ajax({
-        url: "http://localhost:3000/getUserPoints",
-        type: "GET",
+        url: 'http://localhost:3000/getUserPoints',
+        type: 'GET',
         success: processUserRewardsInfo
     })
 }
@@ -74,7 +74,7 @@ function processUserRewardsInfo(data) {
 // inform user their receipt was successfully uploaded
 function uploadComplete(data) {
     if (data) {
-        alert("Upload complete");
+        alert('Upload complete');
     }
 }
 
@@ -92,12 +92,12 @@ function uploadReceipt() {
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
     $.ajax({
-        url: "http://localhost:3000/uploadReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/uploadReceipt',
+        type: 'POST',
         data: {
-            receipt: "https://picsum.photos/id/237/200",
+            receipt: 'https://picsum.photos/id/237/200',
             value: rewardPoints,
-            date: today.toISOString().split("T")[0]
+            date: today.toISOString().split('T')[0]
         },
         success: uploadComplete
     })
@@ -131,7 +131,7 @@ function saveMonthlyGoal() {
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
-        alert("You are logged out. Please login to access this page.");
+        alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
     }
     else {
@@ -143,8 +143,8 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: redirectToLogin
     })
 }

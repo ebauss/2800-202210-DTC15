@@ -33,7 +33,7 @@ file.addEventListener("change", (e) => {
 // inform user their reward was successfully created
 function processCreation(data) {
     if (data) {
-        alert("Successfully created new reward.");
+        alert('Successfully created new reward.');
         location.href='./admin.html';
     }
 }
@@ -42,13 +42,13 @@ function processCreation(data) {
 function requestCreation() {
     // reject value or reward points if they aren't a number
     if (isNaN($('#value').val()) || isNaN(parseInt($('#points').val()))) {
-        alert("You must enter numbers for reward value and cost.");
+        alert('You must enter numbers for reward value and cost.');
         return;
     }
 
     // reject if company or description are blank
-    if ($('#company').val() == "" || $('#description').val() == "") {
-        alert("You must provide the company name and description.");
+    if ($('#company').val() == '' || $('#description').val() == '') {
+        alert('You must provide the company name and description.');
         return;
     }
 
@@ -69,7 +69,7 @@ function requestCreation() {
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
-        alert("You do not have permission to access this page.");
+        alert('You do not have permission to access this page.');
         window.location.href = './main.html';
     }
 }
@@ -77,8 +77,8 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: redirectToMain
     })
 }

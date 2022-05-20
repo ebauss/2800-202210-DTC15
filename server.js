@@ -155,7 +155,7 @@ app.get('/logout', (req, res) => {
     res.send(true);
 })
 
-// DEBUGGING: check whether user is signed in
+// check whether user is signed in. Used by header
 app.get('/loginStatus', (req, res) => {
     console.log(`Logged in: ${req.session.uid}`);
     res.send({

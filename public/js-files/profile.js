@@ -117,15 +117,15 @@ function updateProfile(data) {
 // request user's profile information to be displayed
 function makeReadRequest() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: displayProfile
     })
 }
 
 // edits user's profile with new information
 function makeWriteRequest() {
-    if ($('#display-compass').val() == "") {
+    if ($('#display-compass').val() == '') {
         compassIdToInsert = null;
     }
     else {
@@ -134,8 +134,8 @@ function makeWriteRequest() {
 
 
     $.ajax({
-        url: "http://localhost:3000/updateProfile",
-        type: "POST",
+        url: 'http://localhost:3000/updateProfile',
+        type: 'POST',
         data: {
             userFirstName: $('#display-first-name').val(),
             userLastName: $('#display-last-name').val(),
@@ -151,7 +151,7 @@ function makeWriteRequest() {
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
-        alert("You are logged out. Please login to access this page.");
+        alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
     }
 }
@@ -159,8 +159,8 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: redirectToLogin
     })
 }

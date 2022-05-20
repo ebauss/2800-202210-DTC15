@@ -1,12 +1,12 @@
 // check if user email exists in MySQL database.
 function isEmailInDB() {
-    console.log("Button pressed");
+    console.log('Button pressed');
 
     $.ajax({
-        url: "http://localhost:3000/checkEmailExists",
-        type: "POST",
+        url: 'http://localhost:3000/checkEmailExists',
+        type: 'POST',
         data: {
-            "email": $('#email').val()
+            'email': $('#email').val()
         },
         success: processUserResult
     })
@@ -26,13 +26,13 @@ function processUserResult(data) {
 
 // check with server whether password is correct, and sign in if it is
 function isPasswordCorrect() {
-    console.log("Sign in button pressed")
+    console.log('Sign in button pressed')
     $.ajax({
-        url: "http://localhost:3000/checkIfPasswordCorrect",
-        type: "POST",
+        url: 'http://localhost:3000/checkIfPasswordCorrect',
+        type: 'POST',
         data: {
-            "email": $('#email').val(),
-            "password": $('#password').val()
+            'email': $('#email').val(),
+            'password': $('#password').val()
         },
         success: processLogin
     });
@@ -40,18 +40,18 @@ function isPasswordCorrect() {
 
 // create a new user to the database
 function addNewUserToDatabase() {
-    console.log("Signup button pressed");
+    console.log('Signup button pressed');
     $.ajax({
-        url: "http://localhost:3000/createNewUser",
-        type: "POST",
+        url: 'http://localhost:3000/createNewUser',
+        type: 'POST',
         data: {
-            "email": $('#email').val(),
-            "password": $('#new-password').val(),
-            "confirm_password": $('#confirm-password').val(),
-            "first_name": $('#first-name').val(),
-            "last_name": $('#last-name').val(),
-            "age": $('#age').val(),
-            "country": $('#country').val()
+            'email': $('#email').val(),
+            'password': $('#new-password').val(),
+            'confirm_password': $('#confirm-password').val(),
+            'first_name': $('#first-name').val(),
+            'last_name': $('#last-name').val(),
+            'age': $('#age').val(),
+            'country': $('#country').val()
         },
         success: processSignup
     })
@@ -61,35 +61,35 @@ function addNewUserToDatabase() {
 function processLogin(data) {
     if (data.isPasswordCorrect && data.isAdmin) {
         // user is an admin, so redirect them to admin dashboard
-        window.location.href = "../admin.html";
+        window.location.href = '../admin.html';
     } else if (data.isPasswordCorrect) {
         // user is a customer, so redirect them to main page
-        window.location.href = "../main.html";
+        window.location.href = '../main.html';
     } else {
         // password is incorrect
-        window.alert("You entered the wrong password");
+        window.alert('You entered the wrong password');
     }
 }
 
 // inform user whether their signup was successful
 function processSignup(data) {
     switch (data) {
-        case "success":
+        case 'success':
             // sign up was successful. Log in the user.
-            alert("You have been signed up.");
+            alert('You have been signed up.');
             loginSignedUpUser();
             break;
-        case "unmatching password":
+        case 'unmatching password':
             // confirm password does not match password field
-            alert("The passwords do not match!");
+            alert('The passwords do not match!');
             break;
-        case "blank":
+        case 'blank':
             // one or more fields were left blank
-            alert("All fields are required!");
+            alert('All fields are required!');
             break;
-        case "age is not a number":
+        case 'age is not a number':
             // the user entered letters or illegal characters as an age
-            alert("You must enter a number for age");
+            alert('You must enter a number for age');
             break;
     }
 }
@@ -97,11 +97,11 @@ function processSignup(data) {
 // logs in the user after they sign up
 function loginSignedUpUser() {
     $.ajax({
-        url: "http://localhost:3000/checkIfPasswordCorrect",
-        type: "POST",
+        url: 'http://localhost:3000/checkIfPasswordCorrect',
+        type: 'POST',
         data: {
-            "email": $('#email').val(),
-            "password": $('#new-password').val()
+            'email': $('#email').val(),
+            'password': $('#new-password').val()
         },
         success: processLogin
     });
@@ -243,10 +243,10 @@ function cancelToEmail() {
 }
 
 function setup() {
-    $('body').on("click", '#authenticate-user', isEmailInDB);
-    $('body').on("click", '#authenticate-signIn', isPasswordCorrect);
-    $('body').on("click", "#authenticate-signup", addNewUserToDatabase);
-    $('body').on("click", "#cancel-to-email", cancelToEmail);
+    $('body').on('click', '#authenticate-user', isEmailInDB);
+    $('body').on('click', '#authenticate-signIn', isPasswordCorrect);
+    $('body').on('click', '#authenticate-signup', addNewUserToDatabase);
+    $('body').on('click', '#cancel-to-email', cancelToEmail);
 
     // catch a keypress event if user presses ENTER on various fields
 

@@ -23,7 +23,7 @@ function processRewardsList(data) {
             </div>
         </div>`
 
-        $("#rewards").append(cardTag);
+        $('#rewards').append(cardTag);
     })
 }
 
@@ -54,7 +54,7 @@ function makeRewardsListRequest() {
     }
 
     $.ajax({
-        url: "http://localhost:3000/requestAllRewards",
+        url: 'http://localhost:3000/requestAllRewards',
         type: 'POST',
         data: {
             criteria: criteriaInput,
@@ -67,8 +67,8 @@ function makeRewardsListRequest() {
 // request server for the signed-in user's current points
 function makeUserPointsRequest() {
     $.ajax({
-        url: "http://localhost:3000/getUserPoints",
-        type: "GET",
+        url: 'http://localhost:3000/getUserPoints',
+        type: 'GET',
         success: processUserPoints
     })
 }
@@ -76,11 +76,11 @@ function makeUserPointsRequest() {
 // inform user whether they successfully redeemed reward
 function processRedeemRequest(data) {
     if (data) {
-        alert("You have redeemed the reward successfully.");
+        alert('You have redeemed the reward successfully.');
         location.reload();
     }
     else {
-        alert("You do not have enough points!");
+        alert('You do not have enough points!');
     }
 }
 
@@ -89,12 +89,12 @@ function makeRedeemRequest() {
     today = new Date();
 
     $.ajax({
-        url: "http://localhost:3000/redeemReward",
-        type: "POST",
+        url: 'http://localhost:3000/redeemReward',
+        type: 'POST',
         data: {
-            reward_id: parseInt($(this).parent().parent().attr("id")),
-            redeemed_date: today.toISOString().split("T")[0],
-            cost: parseInt($(this).attr("id"))
+            reward_id: parseInt($(this).parent().parent().attr('id')),
+            redeemed_date: today.toISOString().split('T')[0],
+            cost: parseInt($(this).attr('id'))
         },
         success: processRedeemRequest
     })
@@ -103,7 +103,7 @@ function makeRedeemRequest() {
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
-        alert("You are logged out. Please login to access this page.");
+        alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
     }
     else {
@@ -115,8 +115,8 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: redirectToLogin
     })
 }
