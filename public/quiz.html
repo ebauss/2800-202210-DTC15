@@ -44,7 +44,7 @@
         <section class="quiz-menu" id="quiz-menu">
             <div class="quiz-header">
                 <h3 class="quiz-title">Trivia This</h3>
-                <div class="close" id="close-quiz"><img src="./Image_Files/icons8-close-50.png"></div> 
+                <a type="button" class="close" id="close-quiz" href="./main.html"><img src="./Image_Files/icons8-close-50.png"></a> 
             </div>
             
 
@@ -53,7 +53,7 @@
 
             <div>Previous Score:<div class="last-score"></div> </div>
             <div>Best Score:
-                <div class="best-score">3000</div></div>
+                <div class="best-score"></div></div>
 
                 <button type=button class="start-btn" id="start-btn">Start</button>
             </div>
@@ -64,7 +64,7 @@
             <div class="quiz-header">
                 <div class="quiz-title">Title Name of the game</div>
 
-                <div class="close" id="close-quiz"><img src="./Image_Files/icons8-close-50.png"></div> 
+                <button class="close" id="end-quiz"><img src="./Image_Files/icons8-close-50.png"></button> 
             </div>
 
             <div class="quiz-content">
@@ -81,6 +81,20 @@
                 <div class="best-score"></div>
             </div>
         </section>
+
+        <div id="overlay"></div>
+
+        <div class="popup-container" id="popup-container">
+            <div class="popup-header">
+                <div class="promter"></div>
+            </div>
+            <div class="popup-body">
+                <button id="yes">YES</button>
+                <button id="no">NO</button>
+
+               
+            </div>
+        </div>
 
     </main>
 
