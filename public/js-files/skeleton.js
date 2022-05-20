@@ -1,8 +1,8 @@
-// Showing NavBar, Footer and FooterNavBar throughout the page
+// Showing Nav-Bar, Footer and FooterNav-Bar throughout the page
 function loadSkeleton(){
-    $('#navbarPlaceholder').load("./skeletons/navbar.html");
-    $('#footerPlaceholder').load("./skeletons/footer.html");
-    $('#floatingBarPlaceholder').load("./skeletons/floating-bar.html");
+    $('#navbar-placeholder').load("./skeletons/navbar.html");
+    $('#footer-placeholder').load("./skeletons/footer.html");
+    $('#floating-bar-placeholder').load("./skeletons/floating-bar.html");
 }
 
 loadSkeleton(); 

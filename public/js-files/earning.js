@@ -5,10 +5,12 @@ var monthlyGoalPoints = 1500
 // --------------------------------------------------------------- //
 // ------ All functions and codes that interacts with MYSQL ------ //
 // --------------------------------------------------------------- //
+
+// requests user's monthly goal and actual points
 function getUserRewardsInfo() {
     $.ajax({
-        url: "http://localhost:3000/getUserPoints",
-        type: "GET",
+        url: 'http://localhost:3000/getUserPoints',
+        type: 'GET',
         success: processUserRewardsInfo
     })
 }
@@ -27,17 +29,18 @@ function uploadReceipt() {
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
     $.ajax({
-        url: "http://localhost:3000/uploadReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/uploadReceipt',
+        type: 'POST',
         data: {
-            receipt: "https://picsum.photos/id/237/200",
+            receipt: 'https://picsum.photos/id/237/200',
             value: rewardPoints,
-            date: today.toISOString().split("T")[0]
+            date: today.toISOString().split('T')[0]
         },
         success: uploadComplete
     })
 }
 
+// tells user their monthly goal was successfully updated, and redraws chart accordingly
 function processGoalUpdate(data) {
     if (data) {
         alert('Your monthly goal has been updated.');
@@ -65,7 +68,7 @@ function saveMonthlyGoal() {
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
-        alert("You are logged out. Please login to access this page.");
+        alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
     }
     else {
@@ -77,8 +80,8 @@ function redirectToLogin(data) {
 // sends request to server to check if user is logged in
 function verifyLogin() {
     $.ajax({
-        url: "http://localhost:3000/loginStatus",
-        type: "GET",
+        url: 'http://localhost:3000/loginStatus',
+        type: 'GET',
         success: redirectToLogin
     })
 }
@@ -164,8 +167,9 @@ function setup(){
 
     // save form if user presses ENTER while setting their monthly goal
     $('body').on('keypress', '#display-goal-points', (event) => {
-        // keypress works if the cursor is on the monthly goal points textbox.
         var keycode = (event.keyCode ? event.keyCode : event.which);
+
+        // keycode 13 is the ENTER key
         if (keycode == '13') {
             saveMonthlyGoal();
         }

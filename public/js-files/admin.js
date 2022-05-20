@@ -2,12 +2,13 @@
 // ------ All functions and codes that interacts with MYSQL ------ //
 // --------------------------------------------------------------- //
 
+// requests all users' information to populate the users table
 function requestUserData() {
-    console.log("User data requested");
+    console.log('User data requested');
     $.ajax(
         {
-            url: "http://localhost:3000/requestUserData",
-            type: "GET",
+            url: 'http://localhost:3000/requestUserData',
+            type: 'GET',
             success: (data) => {
                 populate_table(data)
                 populate_table(data, true)
@@ -26,17 +27,19 @@ function getUserEmailByUserId(data) {
     })
 }
 
+// inform user that deletion was successful
 function processDeleteUser(data) {
     alert(`User ${data} has been deleted.`);
     location.reload();
 }
 
+// request server to delete a specific user
 function requestUserDeletion() {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
-        type: "POST",
+        type: 'POST',
         data: {
-            userIdToDelete: $(this).attr("id")
+            userIdToDelete: $(this).attr('id')
         },
         success: processDeleteUser
     })
@@ -44,8 +47,8 @@ function requestUserDeletion() {
 
 function requestReceiptData() {
     $.ajax({
-        url: "http://localhost:3000/getReceiptData",
-        type: "GET",
+        url: 'http://localhost:3000/getAllReceiptData',
+        type: 'GET',
         success: (data) => {
             receipts_populate_table(data);
             receipts_populate_table(data, true);
@@ -56,7 +59,7 @@ function requestReceiptData() {
 // redirects the user to main if they are not logged in or not an admin
 function redirectToMain(data) {
     if (data[0] == undefined || !data[0].is_admin) {
-        alert("You do not have permission to access this page.");
+        alert('You do not have permission to access this page.');
         window.location.href = './main.html';
     }
     else {
@@ -68,36 +71,39 @@ function redirectToMain(data) {
 // sends request to server to get user's details
 function verifyAdmin() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: redirectToMain
     })
 }
 
+// inform user receipt deletion was successful
 function processReceiptDeletion(data) {
     if (data) {
-        alert("Receipt was deleted.");
+        alert('Receipt was deleted.');
     }
 }
 
+// request server to delete a specific receipt
 function requestReceiptDeletion() {
     $.ajax({
-        url: "http://localhost:3000/deleteReceipt",
-        type: "POST",
+        url: 'http://localhost:3000/deleteReceipt',
+        type: 'POST',
         data: {
-            receipt_id: $(this).attr("id")
+            receipt_id: $(this).attr('id')
         },
         success: processReceiptDeletion
     })
 }
 
+// request all rewards to populate rewards table
 function requestRewards() {
     $.ajax({
         url: 'http://localhost:3000/requestAllRewards',
         type: 'POST',
         data: {
-            criteria: "company",
-            order: "ASC"
+            criteria: 'company',
+            order: 'ASC'
         },
         success: (data) => {
             rewards_populate_table(data);
@@ -106,12 +112,20 @@ function requestRewards() {
     })
 }
 
+// inform user reward deletion was successful
+function processRewardDeletion(data) {
+    if (data) {
+        alert('Reward was deleted.');
+    }
+}
+
+// request a specific reward to be deleted
 function requestRewardDeletion() {
     $.ajax({
-        url: "http://localhost:3000/deleteReward",
-        type: "POST",
+        url: 'http://localhost:3000/deleteReward',
+        type: 'POST',
         data: {
-            reward_id: $(this).attr("id")
+            reward_id: $(this).attr('id')
         },
         success: processRewardDeletion
     })
