@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'My$3qu@l',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -198,8 +198,8 @@ function addNewUserToDatabase(req, hashedPassword) {
 }
 
 // Retrieves all the rewards for rewards.html and sends it as a JSON object
-app.get('/requestAllRewards', (req, res) => {
-    connection.query('SELECT * FROM rewards', (err, results, fields) => {
+app.post('/requestAllRewards', (req, res) => {
+    connection.query(`SELECT * FROM rewards ORDER BY ${req.body.criteria} ${req.body.order}`, (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
