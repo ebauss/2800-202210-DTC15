@@ -30,6 +30,7 @@ file.addEventListener("change", (e) => {
     }
 });
 
+// inform user their reward was successfully created
 function processCreation(data) {
     if (data) {
         alert("Successfully created new reward.");
@@ -37,6 +38,7 @@ function processCreation(data) {
     }
 }
 
+// request a new reward to be created
 function requestCreation() {
     // reject value or reward points if they aren't a number
     if (isNaN($('#value').val()) || isNaN(parseInt($('#points').val()))) {

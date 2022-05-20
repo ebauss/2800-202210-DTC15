@@ -71,7 +71,7 @@ function processUserRewardsInfo(data) {
     $('#display-goal-points').html(monthlyGoalPoints);
 }
 
-// tell user their receipt was successfully uploaded
+// inform user their receipt was successfully uploaded
 function uploadComplete(data) {
     if (data) {
         alert("Upload complete");
