@@ -79,11 +79,16 @@ function uploadComplete(data) {
 
 // sends a request to server for uploading a receipt
 function uploadReceipt() {
-    console.log("Should be uploading");
-
     today = new Date();
 
-    rewardPoints = parseInt($('#receipt-total').val()) * 100;
+    rewardPointsInput = $('#receipt-total').val();
+
+    if (isNaN(rewardPointsInput)) {
+        alert("You must enter a number for your receipt's value.")
+        return;
+    }
+
+    rewardPoints = parseInt(rewardPointsInput) * 100;
 
     $.ajax({
         url: "http://localhost:3000/uploadReceipt",

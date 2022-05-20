@@ -38,6 +38,18 @@ function processCreation(data) {
 }
 
 function requestCreation() {
+    // reject value or reward points if they aren't a number
+    if (isNaN($('#value').val()) || isNaN(parseInt($('#points').val()))) {
+        alert("You must enter numbers for reward value and cost.");
+        return;
+    }
+
+    // reject if company or description are blank
+    if ($('#company').val() == "" || $('#description').val() == "") {
+        alert("You must provide the company name and description.");
+        return;
+    }
+
     $.ajax({
         url: 'http://localhost:3000/createReward',
         type: 'POST',

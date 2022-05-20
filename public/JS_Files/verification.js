@@ -21,7 +21,12 @@ function processSingleReceiptData(data) {
     if (data[0].admin_id == null) {
         $('#admin').html('Not verified yet.')
     } else {
+        // disable fields if receipt has already been verified
         $('#admin').html(data[0].admin_email);
+        $('#company').prop('disabled', true);
+        $('#value').prop('disabled', true);
+        $('#points').prop('disabled', true);
+        $('#message').prop('disabled', true);
         $('#verify').prop('disabled', true);
         $('#verify').html('Already verified');
     }
