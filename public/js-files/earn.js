@@ -38,6 +38,30 @@ function uploadReceipt() {
     })
 }
 
+function processGoalUpdate(data) {
+    if (data) {
+        alert('Your monthly goal has been updated.');
+        getUserRewardsInfo();
+    }
+}
+
+// saves user's monthly goal to database
+function saveMonthlyGoal() {
+    if (isNaN($('#display-goal-points').val()) || $('#display-goal-points').val() < 0) {
+        alert('You must enter a positive number for your monthly goal.');
+        return;
+    }
+
+    $.ajax({
+        url: 'http://localhost:3000/updateGoal',
+        type: 'POST',
+        data: {
+            goal: parseInt($('#display-goal-points').val())
+        },
+        success: processGoalUpdate
+    })
+}
+
 // redirects the user to authentication.html if user is not logged in
 function redirectToLogin(data) {
     if (!data.loggedIn) {
@@ -135,6 +159,15 @@ function uploadComplete(data) {
 function setup(){
     verifyLogin();
     $('#closing-btn').click(uploadReceipt);
+
+    // save form if user presses ENTER while setting their monthly goal
+    $('body').on('keypress', '#display-goal-points', (event) => {
+        // keypress works if the cursor is on the monthly goal points textbox.
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            saveMonthlyGoal();
+        }
+    })
 }
 
 $(document).ready(setup);

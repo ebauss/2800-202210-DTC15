@@ -60,11 +60,11 @@ news = [
 
 game = [
     {
-        photo: "./Image_Files/round up of sustainable brands.avif",
+        photo: "./images/roundup-of-sustainable-brands.avif",
         title: "Triva This"
     },
     {
-        photo: "./Image_Files/round up of sustainable brands.avif",
+        photo: "./images/roundup-of-sustainable-brands.avif",
         title: 'this is the title that see how long of a title',
     },
 

@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'JDCYelwe@0115',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -379,6 +379,18 @@ app.get('/getUserRewards', (req, res) => {
         }
         else {
             res.send(results);
+        }
+    })
+})
+
+// updates signed in user's monthly goal points
+app.post('/updateGoal', (req, res) => {
+    connection.query('UPDATE users SET monthly_goal_points = ? WHERE user_id = ?', [req.body.goal, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
         }
     })
 })
