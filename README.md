@@ -146,18 +146,17 @@ Database Design & Server-side Programming
 * Evon Bausa
 
 ## References and Licenses
-* The logo-only.png is created from Canva by Alexie Narcissco
-* The template.html is from COMP-1800 with these adaptations made 
-    * Removing the bootstrap import link
-    * Changing the meta name and the scripts
-    * Removing the firebase links and imports
-    
-* The icons used in the floatingbar are from 8icons
-    * https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
-* The functionality and design of the collapsible card on admin is from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
-
-* The Easter Egg at globe.html uses CSS from https://www.youtube.com/watch?v=BY4uU6CNtTg
-* The Easter Egg at globe.html uses animations from https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
+logo-only.png
+* Created by Alexie Narciso from Canva
+template.html
+* From COMP-1800 with modifications
+Floating bar icons
+* From 8icons https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+Collapsible user cards
+* From W3Schools https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
+Easter Egg
+* CSS from tutorial https://www.youtube.com/watch?v=BY4uU6CNtTg
+* Animation from tutorial https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
 
 ## Contact Information
 Joushua Dela Cruz
