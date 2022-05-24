@@ -74,6 +74,10 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                     console.log("You entered the correct password");
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
+
+                    updateLogin(req);
+                    resetMonthlyPoints(req);
+
                     res.send({
                         isPasswordCorrect: true,
                         isAdmin: isUserAdmin
@@ -92,6 +96,19 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
         }
     });
 })
+
+// update user's last login
+function updateLogin(req) {
+    connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
+    [req.session.uid, req.session.uid], (err, results, fields) => {
+
+    })
+}
+
+// reset user's monthly total points 
+function resetMonthlyPoints(req) {
+
+}
 
 // DEBUGGING: for quickly logging in as admin
 app.get('/quickLoginAdmin', (req, res) => {
