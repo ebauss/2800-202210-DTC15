@@ -158,3 +158,13 @@ Database Design & Server-side Programming
 
 * The Easter Egg at globe.html uses CSS from https://www.youtube.com/watch?v=BY4uU6CNtTg
 * The Easter Egg at globe.html uses animations from https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
+
+## Contact Information
+Joushua Dela Cruz
+* Email: jdelacruz48@my.bcit.ca
+Alexie Narciso
+* Email: anarciso1@my.bcit.ca
+Nathan Ng
+* Email: nng32@my.bcit.ca
+Evon Bausa
+* Email: ebausa1@my.bcit.ca
