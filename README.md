@@ -11,7 +11,7 @@
 * Nathan - Back-end developer
 * Evon - Back-end developer
 
-### Sustainably Project Pitch:
+### Sustainably Project Pitch
 J.A.N.E. Group is developing a web application to help adults transition to a healthy and environmental lifestyle by rewarding them with redeemable points.
 
 ## Technologies Used
@@ -110,7 +110,7 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 
 ```
 
-## Getting Started:
+## Getting Started
 1. Install Git, Node.js, and Visual Studio Code.
 2. Install MySQL Community Server and MySQL Workbench.
 3. Start the MYSQL80 Service if it is not running already.
@@ -125,7 +125,17 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
     * If the port is already used, please restart your computer.
 10. If you see the landing page, your project setup was successful!
 
-## Credits:
+## Features
+* Check up on the latest news on the environment
+* Quiz yourself on environment trivia
+* Track the world's carbon emissions
+* Create an account to earn rewards
+* Upload a receipt to your account after purchasing environmentally friendly goods
+* Receive points for your purchases
+* Redeem your points for gift cards from sponsored companies
+* Set monthly goals to maintain a sustainable lifestyle
+
+## Credits
 Product Owner
 * Evon Bausa
 Web Design & Client-side Programming
@@ -135,7 +145,7 @@ Database Design & Server-side Programming
 * Nathan Ng
 * Evon Bausa
 
-## References and Licenses:
+## References and Licenses
 * The logo-only.png is created from Canva by Alexie Narcissco
 * The template.html is from COMP-1800 with these adaptations made 
     * Removing the bootstrap import link
