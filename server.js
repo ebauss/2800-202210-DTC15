@@ -396,3 +396,8 @@ app.post('/updateGoal', (req, res) => {
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
+
+// sends the 404 page for routes that don't exist
+app.all('*', (req, res) => {
+    res.sendFile(`${__dirname}/public/not-found.html`);
+})
