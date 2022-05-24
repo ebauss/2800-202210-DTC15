@@ -29,17 +29,16 @@ function getUserEmailByUserId(data) {
 
 // inform user that deletion was successful
 function processDeleteUser(data) {
-    alert(`User ${data} has been deleted.`);
     location.reload();
 }
 
 // request server to delete a specific user
-function requestUserDeletion() {
+function requestUserDeletion(currentId) {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
         type: 'POST',
         data: {
-            userIdToDelete: $(this).attr('id')
+            userIdToDelete: currentId
         },
         success: processDeleteUser
     })
@@ -79,18 +78,16 @@ function verifyAdmin() {
 
 // inform user receipt deletion was successful
 function processReceiptDeletion(data) {
-    if (data) {
-        alert('Receipt was deleted.');
-    }
+    location.reload();
 }
 
 // request server to delete a specific receipt
-function requestReceiptDeletion() {
+function requestReceiptDeletion(currentId) {
     $.ajax({
         url: 'http://localhost:3000/deleteReceipt',
         type: 'POST',
         data: {
-            receipt_id: $(this).attr('id')
+            receipt_id: currentId
         },
         success: processReceiptDeletion
     })
@@ -115,7 +112,7 @@ function requestRewards() {
 // inform user reward deletion was successful
 function processRewardDeletion(data) {
     if (data) {
-        alert('Reward was deleted.');
+        console.log('Reward was deleted.');
     }
 }
 
@@ -130,7 +127,7 @@ function requestRewardDeletion() {
         url: 'http://localhost:3000/deleteReward',
         type: 'POST',
         data: {
-            reward_id: $(this).attr('id')
+            reward_id: currentId
         },
         success: processRewardDeletion
     })
@@ -385,21 +382,36 @@ const no = document.getElementById('no')
 const yes = document.getElementById('yes')
 
 
-// this function takes the excution and prompt the admin to confirm the action before excutin
-function choice(executeThis) {
-    alert("im called choice")
-    overlay.classList.add('dim')
-    popup.classList.add('active')
+// next 3 functions display confirmation before deletion action.
+function showConfirmationPopupUserDeletion() {
+    overlay.classList.add('dim');
+    popup.classList.add('active');
 
     no.addEventListener('click', () => {
-        overlay.classList.remove('dim')
-        popup.classList.remove('active')
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
     })
 
     yes.addEventListener('click', () => {
-        overlay.classList.remove('dim')
-        popup.classList.remove('active')
-        executeThis()
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+        requestUserDeletion($(this).attr('id'));
+    })
+}
+
+function showConfirmationPopupReceiptDeletion() {
+    overlay.classList.add('dim');
+    popup.classList.add('active');
+
+    no.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+    })
+
+    yes.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+        requestReceiptDeletion($(this).attr('id'));
     })
 }
 
@@ -407,8 +419,8 @@ function setup() {
     verifyAdmin();
     requestReceiptData();
     requestRewards();
-    $('body').on('click', '.user-delete-btn', requestUserDeletion);
-    $('body').on('click', '.receipt-delete-btn', requestReceiptDeletion);
+    $('body').on('click', '.user-delete-btn', showConfirmationPopupUserDeletion);
+    $('body').on('click', '.receipt-delete-btn', showConfirmationPopupReceiptDeletion);
     $('body').on('click', '.reward-delete-btn', requestRewardDeletion);
 }
 

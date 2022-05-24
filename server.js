@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'My$3qu@l',
+    password: 'K}{=2-D^Pwp5bgr&',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -256,6 +256,10 @@ app.get('/getUserPoints', (req, res) => {
 
 // deletes a user from database. Used by admin.html
 app.post('/deleteUser', (req, res) => {
+    if (req.body.userIdToDelete == req.session.uid) {
+        res.send(false);
+    }
+
     connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
             console.log(err);
