@@ -1,14 +1,4 @@
-## J.A.N.E. Group Presents SUSTAINABLY
-
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [File Contents](#content)
-* [Getting Started](#)
-* [Features](#)
-* [Credits](#)
-* [References and Licenses](#)
-* [Contact Information](#)
-* [Getting Started](#)
+# J.A.N.E. Group Presents SUSTAINABLY
 
 ## Sustainably Project Pitch
 J.A.N.E. Group is developing a web application to help adults transition to a healthy and environmental lifestyle by rewarding them with redeemable points.
