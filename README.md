@@ -124,6 +124,7 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 9. Open your internet browser and visit `localhost:3000` using the address bar.
     * If the port is already used, please restart your computer.
 10. If you see the landing page, your project setup was successful!
+11. Please document bug fixes at https://docs.google.com/spreadsheets/d/1S-Fg1cWmJ_IvTZUHAttkUw-SyBPHy4zaaU_qljtJ_Wk/edit?usp=sharing
 
 ## Features
 * Check up on the latest news on the environment
