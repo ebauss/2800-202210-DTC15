@@ -171,13 +171,13 @@ headerBtns.forEach((btn) => {
                     // if user is accessing the app through mobile
                     // displays the collapsible cards
                     document.getElementById(clickedBtnKey + "-collapsible-body").style.display = "block"
-                } 
+                }
                 // If the  button clicked is rewards section 
                 // then the css will display a tag where users can submit new rewards
-                if (clickedBtnKey == "rewards"){
+                if (clickedBtnKey == "rewards") {
                     document.getElementById("new-rewards").style.display = "block"
                 }
-            // if button is not clicked or other button is clicked
+                // if button is not clicked or other button is clicked
             } else {
                 // It will remove the class: activated-button on the previously clicked button
                 otherBtnKey = otherBtn.id.split("-")[0]
@@ -379,6 +379,28 @@ function receipts_populate_table(data, mobile = false) {
             })
         })
     }
+}
+
+const no = document.getElementById('no')
+const yes = document.getElementById('yes')
+
+
+// this function takes the excution and prompt the admin to confirm the action before excutin
+function choice(executeThis) {
+    alert("im called choice")
+    overlay.classList.add('dim')
+    popup.classList.add('active')
+
+    no.addEventListener('click', () => {
+        overlay.classList.remove('dim')
+        popup.classList.remove('active')
+    })
+
+    yes.addEventListener('click', () => {
+        overlay.classList.remove('dim')
+        popup.classList.remove('active')
+        executeThis()
+    })
 }
 
 function setup() {
