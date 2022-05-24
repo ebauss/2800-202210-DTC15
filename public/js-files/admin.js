@@ -29,17 +29,16 @@ function getUserEmailByUserId(data) {
 
 // inform user that deletion was successful
 function processDeleteUser(data) {
-    alert(`User ${data} has been deleted.`);
     location.reload();
 }
 
 // request server to delete a specific user
-function requestUserDeletion() {
+function requestUserDeletion(currentId) {
     $.ajax({
         url: 'http://localhost:3000/deleteUser',
         type: 'POST',
         data: {
-            userIdToDelete: $(this).attr('id')
+            userIdToDelete: currentId
         },
         success: processDeleteUser
     })
@@ -79,18 +78,16 @@ function verifyAdmin() {
 
 // inform user receipt deletion was successful
 function processReceiptDeletion(data) {
-    if (data) {
-        alert('Receipt was deleted.');
-    }
+    location.reload();
 }
 
 // request server to delete a specific receipt
-function requestReceiptDeletion() {
+function requestReceiptDeletion(currentId) {
     $.ajax({
         url: 'http://localhost:3000/deleteReceipt',
         type: 'POST',
         data: {
-            receipt_id: $(this).attr('id')
+            receipt_id: currentId
         },
         success: processReceiptDeletion
     })
@@ -115,7 +112,7 @@ function requestRewards() {
 // inform user reward deletion was successful
 function processRewardDeletion(data) {
     if (data) {
-        alert('Reward was deleted.');
+        console.log('Reward was deleted.');
     }
 }
 
@@ -130,7 +127,7 @@ function requestRewardDeletion() {
         url: 'http://localhost:3000/deleteReward',
         type: 'POST',
         data: {
-            reward_id: $(this).attr('id')
+            reward_id: currentId
         },
         success: processRewardDeletion
     })
@@ -171,13 +168,13 @@ headerBtns.forEach((btn) => {
                     // if user is accessing the app through mobile
                     // displays the collapsible cards
                     document.getElementById(clickedBtnKey + "-collapsible-body").style.display = "block"
-                } 
+                }
                 // If the  button clicked is rewards section 
                 // then the css will display a tag where users can submit new rewards
-                if (clickedBtnKey == "rewards"){
+                if (clickedBtnKey == "rewards") {
                     document.getElementById("new-rewards").style.display = "block"
                 }
-            // if button is not clicked or other button is clicked
+                // if button is not clicked or other button is clicked
             } else {
                 // It will remove the class: activated-button on the previously clicked button
                 otherBtnKey = otherBtn.id.split("-")[0]
@@ -381,12 +378,49 @@ function receipts_populate_table(data, mobile = false) {
     }
 }
 
+const no = document.getElementById('no')
+const yes = document.getElementById('yes')
+
+
+// next 3 functions display confirmation before deletion action.
+function showConfirmationPopupUserDeletion() {
+    overlay.classList.add('dim');
+    popup.classList.add('active');
+
+    no.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+    })
+
+    yes.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+        requestUserDeletion($(this).attr('id'));
+    })
+}
+
+function showConfirmationPopupReceiptDeletion() {
+    overlay.classList.add('dim');
+    popup.classList.add('active');
+
+    no.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+    })
+
+    yes.addEventListener('click', () => {
+        overlay.classList.remove('dim');
+        popup.classList.remove('active');
+        requestReceiptDeletion($(this).attr('id'));
+    })
+}
+
 function setup() {
     verifyAdmin();
     requestReceiptData();
     requestRewards();
-    $('body').on('click', '.user-delete-btn', requestUserDeletion);
-    $('body').on('click', '.receipt-delete-btn', requestReceiptDeletion);
+    $('body').on('click', '.user-delete-btn', showConfirmationPopupUserDeletion);
+    $('body').on('click', '.receipt-delete-btn', showConfirmationPopupReceiptDeletion);
     $('body').on('click', '.reward-delete-btn', requestRewardDeletion);
 }
 
