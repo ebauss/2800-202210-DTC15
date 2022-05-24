@@ -13,7 +13,7 @@ html {
     --gold: #e7ab29;
 }
 
-/* NavBar CSS */
+/* Nav-bar CSS */
 * {
     padding: 0px;
     margin: 0px;
@@ -38,7 +38,7 @@ a,
     text-decoration: none;
 }
 
-.navBar {
+.nav-bar {
     min-height: 70px;
     display: flex;
     justify-content: space-between;
@@ -92,9 +92,9 @@ a,
 
 /* Footer CSS */
 footer {
-    /* position: absolute; */
+    /* position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 0; */
     width: 100%;
     background-color: #2f9379;
     color: white;
@@ -108,7 +108,7 @@ a {
     padding: 10px;
 }
 
-.floatingBar{
+.floating-bar{
     width: 300px;
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
@@ -124,11 +124,11 @@ a {
     position: fixed;
 }
 
-.floatingBar img {
+.floating-bar img {
     height: 50px;
 }
 
-.floatingBar button {
+.floating-bar button {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 50%;
     border: none;
@@ -174,7 +174,11 @@ a {
         left: 0
     }
 
-    .floatingBar img {
+    .floating-bar img {
         height: 5vh;
     }
+    /* footer {
+        margin-top: 10px;
+        position: relative;
+    } */
 }

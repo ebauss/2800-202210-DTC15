@@ -140,14 +140,18 @@ function LoadNews() {
     })
 }
 
+// changes the page's greeting to welcome the user by name
 function displayUsername(data) {
-    $('.Greetings').html(`Welcome, ${data[0].first_name}!`);
+    if (data[0] != undefined) {
+        $('.greetings').html(`Welcome, ${data[0].first_name}!`);
+    }
 }
 
+// requests the signed-in user's details (only interested in the first name)
 function requestUsername() {
     $.ajax({
-        url: "http://localhost:3000/checkProfile",
-        type: "GET",
+        url: 'http://localhost:3000/checkProfile',
+        type: 'GET',
         success: displayUsername
     })
 }

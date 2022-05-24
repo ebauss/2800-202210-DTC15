@@ -6,11 +6,12 @@ currentDate = nowDate.toISOString().split("T")[0];
 // Gets the first day of the month
 firstDay = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1).toISOString().split("T")[0]
 
-// ----- A customise the JSON data from Emission API chronological orgeer -----
+// ----- A customise the JSON data from Emission API chronological order ----- //
 function custom_sort(dataX, dataY) {
     return new Date(dataX.start).getTime() - new Date(dataY.start).getTime()
 }
 
+// Creates the chart the desgin is from https://emissions-api.org/examples/chart.js
 function createChart() {
     let apiUrl = `https://api.v2.emissions-api.org/api/v2/methane/average.json?country=CA&begin=${firstDay}&end=${currentDate}`
     fetch(apiUrl)
@@ -57,40 +58,47 @@ function createChart() {
             })
         })
 }
-
+// ---------------------------------------------- //
 // -------- All functions for Easter Egg -------- //
+// ---------------------------------------------- //
+
+// ----- Important variables ----- //
 const easterEggInitiator = document.getElementById("easter-egg");
 const overlay = document.getElementById("overly");
 const globe = document.getElementById("globe")
 const globeContainer = document.querySelector(".globe-container")
 const easterEggExit = document.getElementById("exit")
 
+// A function that adds the final classlist and shows the pulsating Earth
 function finale(){
-    globeContainer.classList.remove("keep-things-hidden")
     easterEggExit.classList.add("fade-in")
     
 }
 
+// A function that  adds the white-out animation
 function whiteOut() {
     overlay.classList.add("white-out")
     globeContainer.classList.remove("keep-things-hidden")
     whiteOutAnimation = document.querySelector(".white-out")
     
+    // Checks when the white-out animation ended
     whiteOutAnimation.addEventListener("animationend", () => {
         finale()
     })
 }
 
+// A function that adds the black-out animation
 function blackOut() {
     overlay.classList.add("black-out")
     blackOutAnimation = document.querySelector(".black-out")
 
+    // Listens when the black-out animation has ended
     blackOutAnimation.addEventListener("animationend", () => {
         setTimeout(whiteOut, 1000)
     })
 }
 
-// Adds the animation of shrinking the OurVision
+// Adds the animation of shrinking the hope
 function hideOurVision() {
     easterEggInitiator.classList.add("remove-our-vision")
     removeOurVision = document.querySelector(".remove-our-vision")
@@ -126,8 +134,12 @@ async function easterEgg() {
 }
 
 
-
+// ---------------------------------------- //
 // -------- closing overlay button -------- //
+// ---------------------------------------- //
+
+// A function that removes all the animation classes
+// Brings the tag into their original state - before the clicked happened
 function crackTheEasterEgg() {
     overlay.classList.remove('dim')
     easterEggInitiator.classList.remove("move-texts")
@@ -143,7 +155,7 @@ overlay.addEventListener("click", () => {
     crackTheEasterEgg()
 })
 
-// Keeps track of the clicking of OUR VISION
+// Keeps track of the clicking of HOPE
 easterEggInitiator.addEventListener("click", (event) => {
     element = event.currentTarget;
     element.clicks = (element.clicks || 0) + 1;

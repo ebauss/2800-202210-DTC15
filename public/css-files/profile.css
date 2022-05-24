@@ -7,12 +7,12 @@
 
 #body {
     display: grid;
-    grid-template-rows: 1fr 10fr 0.1fr;
     gap: 1%;
 }
 
 
 main {
+    position: static;
     display: grid;
     grid-template-columns: 50fr 50fr;
     grid-template-areas: 
@@ -20,8 +20,9 @@ main {
     "profile-pic rewards"
     "info info";
     justify-content: center;
-    row-gap: 3%;
+    row-gap: 5%;
     margin: 10px;
+    height: 100%;
 }
 
 label[for="user-profile"]{
@@ -254,6 +255,9 @@ div.notification-box{
 }
 
 @media(max-width: 700px) {
+    main {
+        row-gap: 1.5%;
+    }
     .user-profile{
         display: flex;
         flex-direction: column;

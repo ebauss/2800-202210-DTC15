@@ -35,52 +35,47 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <div id="body-content">
-        <header>
-            <nav class="navBar">
-                <div class="navBar-container">
-                    <div class="logo-container">
-                        <a href="./index.html" class="nav-branding">
-                            <img src="./images/logo-only.png" alt="Sustainably" height="50">
-                            <span class="brand"> Sustainably </span>
-                        </a>
-                    </div>
+    <header>
+        <nav class="navBar">
+            <div class="navBar-container">
+                <div class="logo-container">
+                    <a href="./index.html" class="nav-branding">
+                        <img src="./images/logo-only.png" alt="Sustainably" height="50">
+                        <span class="brand"> Sustainably </span>
+                    </a>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
-        <!-- the body of your page goes here -->
-        <main>
-            <div class="content-authentication">
-                <div class="form-header-container">
-                    <h3 class="form-header" id="authentication-header"> Let's Sign In </h3>
-                </div>
-                <!-- TEMP FIX: Changed to div from form to prevent user from pressing ENTER -->
-                <div>
-                    <div id="form-main-content">
-                        <div class="input-container">
-                            <input class="user_input" type="text" name="email" id="email" autocomplete="email" required>
-                            <span></span>
-                            <label for="email" class="input-labels" id="email-label"> Email </label>
-                        </div>
+    <!-- the body of your page goes here -->
+    <main>
+        <div class="content-authentication">
+            <div class="form-header-container">
+                <h3 class="form-header" id="authentication-header"> Let's Sign In </h3>
+            </div>
+            <!-- TEMP FIX: Changed to div from form to prevent user from pressing ENTER -->
+            <div>
+                <div id="form-main-content">
+                    <div class="input-container">
+                        <input class="user_input" type="text" name="email" id="email" autocomplete="email" required>
+                        <span></span>
+                        <label for="email" class="input-labels" id="email-label"> Email </label>
                     </div>
-                    <div id="form-action-container">
-                        <div class="form-action">
-                            <input type="button" value="Next" id="authenticate-user">
-                        </div>
+                </div>
+                <div id="form-action-container">
+                    <div class="form-action">
+                        <input type="button" value="Next" id="authenticate-user">
                     </div>
                 </div>
             </div>
-        </main>
-
-        <!-- our own footer goes here-->
-        <nav id="footerPlaceholder"></nav>
-    </div>
+        </div>
+    </main>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./js-files/skeleton.js"> </script>
-    <script src="./js-files/reactive_auth.js"> </script>
+    <script src="./js-files/authentication.js"> </script>
 
 </body>
 
