@@ -2,16 +2,15 @@
 
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Contents](#content)
-* [Citation](#citation)
+* [File Contents](#content)
+* [Getting Started](#)
+* [Features](#)
+* [Credits](#)
+* [References and Licenses](#)
+* [Contact Information](#)
+* [Getting Started](#)
 
-## The J.A.N.E. Group
-* Joushua - UI designers
-* Alexie - UI designers
-* Nathan - Back-end developer
-* Evon - Back-end developer
-
-### Sustainably Project Pitch
+## Sustainably Project Pitch
 J.A.N.E. Group is developing a web application to help adults transition to a healthy and environmental lifestyle by rewarding them with redeemable points.
 
 ## Technologies Used
@@ -137,34 +136,34 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 * Set monthly goals to maintain a sustainable lifestyle
 
 ## Credits
-Product Owner
-* Evon Bausa
-Web Design & Client-side Programming
-* Joushua Dela Cruz
-* Alexie Narciso
-Database Design & Server-side Programming
-* Nathan Ng
-* Evon Bausa
+* Product Owner
+    * Evon Bausa
+* Web Design & Client-side Programming
+    * Joushua Dela Cruz
+    * Alexie Narciso
+* Database Design & Server-side Programming
+    * Nathan Ng
+    * Evon Bausa
 
 ## References and Licenses
-logo-only.png
-* Created by Alexie Narciso from Canva
-template.html
-* From COMP-1800 with modifications
-Floating bar icons
-* From 8icons https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
-Collapsible user cards
-* From W3Schools https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
-Easter Egg
-* CSS from tutorial https://www.youtube.com/watch?v=BY4uU6CNtTg
-* Animation from tutorial https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
+* logo-only.png
+    * By Alexie Narciso from Canva
+* template.html
+    * From COMP-1800 with modifications
+* Floating bar icons
+    * From 8icons https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+* Collapsible user cards
+    * From W3Schools https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
+* Easter Egg
+    * CSS from tutorial https://www.youtube.com/watch?v=BY4uU6CNtTg
+    * Animation from tutorial https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
 
 ## Contact Information
-Joushua Dela Cruz
-* Email: jdelacruz48@my.bcit.ca
-Alexie Narciso
-* Email: anarciso1@my.bcit.ca
-Nathan Ng
-* Email: nng32@my.bcit.ca
-Evon Bausa
-* Email: ebausa1@my.bcit.ca
+* Joushua Dela Cruz
+    * Email: jdelacruz48@my.bcit.ca
+* Alexie Narciso
+    * Email: anarciso1@my.bcit.ca
+* Nathan Ng
+    * Email: nng32@my.bcit.ca
+* Evon Bausa
+    * Email: ebausa1@my.bcit.ca
