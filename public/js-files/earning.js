@@ -70,8 +70,7 @@ function redirectToLogin(data) {
     if (!data.loggedIn) {
         alert('You are logged out. Please login to access this page.');
         window.location.href = './authentication.html';
-    }
-    else {
+    } else {
         currentMonth();
         getUserRewardsInfo();
     }
@@ -95,7 +94,20 @@ function verifyLogin() {
 let popup = document.getElementById("popup")
 $("#receipt-btn").on("change", (event) => {
     receipt = event.target.files;
-    
+
+    const formdata = new FormData()
+    formdata.append("image", event.target.files[0])
+    fetch("https://api.imgur.com/3/image/", {
+        method: "post",
+        headers: {
+            Authorization: "Client-ID d977396699cd42a"
+        },
+        body: formdata
+    }).then(data => data.json()).then(data => {
+        img.src = data.data.link //This is the url of the uploaded image.
+        console.log(img.src);
+    })
+
     popup.classList.add("open-popup")
 })
 
@@ -104,11 +116,12 @@ $("#closing-btn").on("click", () => {
 })
 
 // Function that gets the current month
-function currentMonth(){
+function currentMonth() {
     const month = new Date().toLocaleString("default", {
-        month: "long"})
+        month: "long"
+    })
 
-        document.getElementById("display-month").innerHTML = month
+    document.getElementById("display-month").innerHTML = month
 }
 
 
@@ -161,7 +174,7 @@ function uploadComplete(data) {
     }
 }
 
-function setup(){
+function setup() {
     verifyLogin();
     $('#closing-btn').click(uploadReceipt);
 
