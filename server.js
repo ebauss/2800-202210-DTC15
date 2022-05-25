@@ -445,6 +445,24 @@ app.post('/updateGoal', (req, res) => {
     })
 })
 
+// gets the user's highscore for the quiz
+app.get('/getHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results[0].quiz_highscore);
+        }
+    })
+})
+
 // gets the user's highscore for the quiz, and replaces it if the current score is greater
 app.post('/compareHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
