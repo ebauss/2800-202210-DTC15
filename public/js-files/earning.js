@@ -44,7 +44,7 @@ function uploadReceipt() {
 function processGoalUpdate(data) {
     if (data) {
         alert('Your monthly goal has been updated.');
-        getUserRewardsInfo();
+        location.reload();
     }
 }
 
