@@ -156,8 +156,13 @@ canvas {
     display: none;
 }
 
+/* --------------- */
+/* -- Popup CSS -- */
+/* --------------- */
+
 .popup {
-    width: 400px;
+    width: min(100% - 2rem, 400px);
+    margin: auto;
     background-color: burlywood;
     border-radius: 6px;
     position: absolute;
@@ -186,15 +191,24 @@ canvas {
 }
 
 .popup h2 {
-    font-size: 38px;
+    font-size: 45px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
 
 .popup h3 {
+    font-size: 40px;
     font-weight: 500;
     margin-bottom: 25px;
     text-align: right;
+}
+
+#receipt-total{
+    font-size: large;
+}
+
+p{
+    font-size: x-large;
 }
 
 .popup button {

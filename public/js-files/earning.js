@@ -92,15 +92,21 @@ function verifyLogin() {
 
 // Function that checks if receipt is successfully submitted
 // It is also a function that shows the popup
-let popup = document.getElementById("popup")
+let Amountpopup = document.getElementById("amount-popup")
+let closingpopup = document.getElementById("closing-popup")
 $("#receipt-btn").on("change", (event) => {
     receipt = event.target.files;
     
-    popup.classList.add("open-popup")
+    Amountpopup.classList.add("open-popup")
+})
+
+$("#amount-closing-btn").on("click", () => {
+    Amountpopup.classList.remove("open-popup")
+    closingpopup.classList.add("open-popup")
 })
 
 $("#closing-btn").on("click", () => {
-    popup.classList.remove("open-popup")
+    closingpopup.classList.remove("open-popup")
 })
 
 // Function that gets the current month
