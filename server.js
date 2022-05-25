@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'My$3qu@l',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -449,18 +449,18 @@ app.post('/updateGoal', (req, res) => {
 app.get('/getHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
         res.send('signed out');
-        return;
     }
-
-    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+    else {
+        connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.send(results);
+            }
+        })        
+    }
 })
 
 // gets the user's highscore for the quiz, and replaces it if the current score is greater

@@ -65,7 +65,7 @@ function updateStats(){
 
 function startQuiz (){
     console.log("START IS FIRST")
-    displayHighscore()
+    // displayHighscore()
     document.querySelector('.last-score').innerHTML = last
     document.querySelector('.best-score').innerHTML = best
    
@@ -80,9 +80,9 @@ async function sendApiRequest() {
     console.log("API IS FIRST")
     let response = await fetch('https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple');
     // console.log(response)
-    let data = await response.json()
+    let quizData = await response.json()
     // console.log(data)
-    useApiData(data)
+    useApiData(quizData)
 }
 
 function useApiData(data) {
@@ -196,6 +196,7 @@ function requestHighscoreUpdate() {
 
 // processes the user's highscore
 function displayHighscore(data) {
+    console.log(data);
     let highscore = data[0].quiz_highscore
     if (highscore == 'signed out') {
         console.log('Signed in to save your highscore.'); // replace this line with a dialog box or something
@@ -210,15 +211,11 @@ function displayHighscore(data) {
     }
 }
 
-/// give me the hight score field
-
 // request user's highscore from the server
 function requestHighscore() {
     $.ajax({
         url: 'http://localhost:3000/getHighscore',
         type: 'GET',
-        success: displayHighscore
+        success: anotherFunction
     })
 }
-
-// show me the highscore
