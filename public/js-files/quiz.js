@@ -6,10 +6,10 @@ var best = ''
 var last = ''
 let score = 0
 let quizNumber = 0
-var maxQuestions = 10
+var maxQuestions = 3
 var correct = ''
-document.querySelector('.last-score').innerHTML = last
-document.querySelector('.best-score').innerHTML = best
+// document.querySelector('.last-score').innerHTML = last
+// document.querySelector('.best-score').innerHTML = best
 
 // allows to run this application automatially on open window
 window.onload = sendApiRequest
@@ -53,7 +53,8 @@ function nextQuestion(){
 // update stats and return to main
 function updateStats(){
     if (score > best){
-        best = score
+        // best = score
+        requestHighscoreUpdate()
     }
     last = score
     score = 0
@@ -63,8 +64,11 @@ function updateStats(){
 }
 
 function startQuiz (){
+    console.log("START IS FIRST")
+    displayHighscore()
     document.querySelector('.last-score').innerHTML = last
     document.querySelector('.best-score').innerHTML = best
+   
     sendApiRequest()
 }
 
@@ -73,16 +77,17 @@ function startQuiz (){
 // ------------- The API ------------- //
 // fetching data from Open Trivia API.
 async function sendApiRequest() {
+    console.log("API IS FIRST")
     let response = await fetch('https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple');
     // console.log(response)
     let data = await response.json()
-    console.log(data)
+    // console.log(data)
     useApiData(data)
 }
 
 function useApiData(data) {
     correct = data.results[0].correct_answer
-    console.log(correct)
+    // console.log(correct)
     // $(".answer").removeAttr('disabled')
     document.querySelector(".answer").enable
     // document.querySelector('.best-score').innerHTML = (score * 10)
@@ -178,6 +183,7 @@ function processHighscoreUpdate(data) {
 
 // request server to update user's highscore if neccessary
 function requestHighscoreUpdate() {
+    console.log("uPDATING HIGhSCORE")
     $.ajax({
         url: 'http://localhost:3000/compareHighscore',
         type: 'POST',
@@ -190,13 +196,21 @@ function requestHighscoreUpdate() {
 
 // processes the user's highscore
 function displayHighscore(data) {
-    if (data == 'signed out') {
+    let highscore = data[0].quiz_highscore
+    if (highscore == 'signed out') {
         console.log('Signed in to save your highscore.'); // replace this line with a dialog box or something
     }
     else {
-        console.log(data); // the value of data is the user's highscore
+        
+        console.log(highscore); // the value of data is the user's highscore
+        best = highscore
+        console.log(highscore)
+        sendApiRequest()
+        
     }
 }
+
+/// give me the hight score field
 
 // request user's highscore from the server
 function requestHighscore() {
@@ -206,3 +220,5 @@ function requestHighscore() {
         success: displayHighscore
     })
 }
+
+// show me the highscore
