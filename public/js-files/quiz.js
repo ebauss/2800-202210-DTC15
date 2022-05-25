@@ -179,8 +179,27 @@ function requestHighscoreUpdate() {
         url: 'http://localhost:3000/compareHighscore',
         type: 'POST',
         data: {
-            'score': score // replace 0 with the variable for the user's score
+            'score': score
         },
         success: processHighscoreUpdate
+    })
+}
+
+// processes the user's highscore
+function displayHighscore(data) {
+    if (data == 'signed out') {
+        console.log('Signed in to save your highscore.'); // replace this line with a dialog box or something
+    }
+    else {
+        console.log(data); // the value of data is the user's highscore
+    }
+}
+
+// request user's highscore from the server
+function requestHighscore() {
+    $.ajax({
+        url: 'http://localhost:3000/getHighscore',
+        type: 'GET',
+        success: displayHighscore
     })
 }
