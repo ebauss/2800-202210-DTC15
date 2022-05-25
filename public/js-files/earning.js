@@ -24,7 +24,12 @@ function uploadReceipt() {
     if (isNaN(rewardPointsInput)) {
         alert("You must enter a number for your receipt's value.")
         return;
-    }
+    } else if (rewardPointsInput == "") {
+        alert("You must enter the receipt's value")
+        return;
+    } 
+
+    amountBtncloser()
 
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
@@ -100,10 +105,10 @@ $("#receipt-btn").on("change", (event) => {
     Amountpopup.classList.add("open-popup")
 })
 
-$("#amount-closing-btn").on("click", () => {
+function amountBtncloser (){
     Amountpopup.classList.remove("open-popup")
     closingpopup.classList.add("open-popup")
-})
+}
 
 $("#closing-btn").on("click", () => {
     closingpopup.classList.remove("open-popup")
@@ -169,7 +174,7 @@ function uploadComplete(data) {
 
 function setup(){
     verifyLogin();
-    $('#closing-btn').click(uploadReceipt);
+    $('#amount-closing-btn').click(uploadReceipt);
 
     // save form if user presses ENTER while setting their monthly goal
     $('body').on('keypress', '#display-goal-points', (event) => {
