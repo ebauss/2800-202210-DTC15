@@ -151,7 +151,7 @@ section.quiz-container{
     width: 60%;
     max-width: 60%;
     padding: 1em;
-    height: 10em;
+    height: auto;
     
 
     /* transform scale 0 is to hide the popup and wait for event*/

@@ -32,12 +32,12 @@ function isCorrect(playerAnswer) {
 
     setTimeout(function() {
         $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
-        quizNumber += 1;
-    },1500)
+        quizNumber += 1; 
+    },100)
 
     setTimeout(function(){
         nextQuestion()
-    },1550)
+    },125)
 }
 
 // wether the game is over or not
@@ -46,18 +46,15 @@ function nextQuestion(){
         sendApiRequest()
     }else{
         prompt()
-    }
-   
-    
+    } 
 }
 
 // update stats and return to main
 function updateStats(){
     if (score > best){
         best = score
-    }else{
-        last = score
     }
+    last = score
     score = 0
     quizNumber = 0
     startQuiz()
@@ -67,6 +64,7 @@ function updateStats(){
 function startQuiz (){
     document.querySelector('.last-score').innerHTML = last
     document.querySelector('.best-score').innerHTML = best
+    sendApiRequest()
 }
 
 
@@ -84,7 +82,7 @@ async function sendApiRequest() {
 function useApiData(data) {
     correct = data.results[0].correct_answer
     console.log(correct)
-
+    $(".answer").removeAttr('disabled')
     // document.querySelector('.best-score').innerHTML = (score * 10)
     document.querySelector('.quiz-number').innerHTML = 'Question ' + (quizNumber + 1)
 
@@ -124,6 +122,7 @@ endButton.addEventListener('click', () => {
 quizChoice.forEach(choice => {
     choice.addEventListener('click', () => {
         playerAnswer = choice.lastChild.innerHTML
+        $(".answer").attr('disabled','disabled')
         isCorrect(playerAnswer)
     })
 })
@@ -144,12 +143,13 @@ function prompt (id) {
 }
 
 function choice(){
-    no.addEventListener('click', () => {
+    yes.addEventListener('click', () => {
         overlay.classList.remove('dim')
         popup.classList.remove('active')
+        updateStats()
     })
     
-    yes.addEventListener('click', () => {
+    no.addEventListener('click', () => {
         updateStats()
         mainMenuSection.style.display = 'block';
         quizContainerSection.style.display = 'none';

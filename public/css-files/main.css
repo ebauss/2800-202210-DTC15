@@ -81,8 +81,9 @@ a {
     bottom: 0;
     cursor: pointer;
     background-color: rgb(255, 255, 255, 0.5);
-    font-size: 60%;
-    width: 80%;
+    font-size: 100%;
+    text-overflow: ellipsis;
+    width: 95%;
 }
 
 .card-context>button {
@@ -90,12 +91,13 @@ a {
     border: none;
     outline: none;
     background: none;
-    font-size: 1.5em;
+    font-size: 60%;
     font-weight: bold;
     text-align: left;
     overflow-wrap: break-word;
+    text-overflow: ellipsis;
     margin-top: 1em; 
-    margin-right: 1em;
+    margin-right: 0.5em;
 }
 
 /* ----- for scrolling function--- */
