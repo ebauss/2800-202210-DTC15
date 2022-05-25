@@ -452,7 +452,8 @@ app.post('/compareHighscore', (req, res) => {
         return;
     }
 
-    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
@@ -461,10 +462,24 @@ app.post('/compareHighscore', (req, res) => {
 
             if (highscore == null || req.body.score > highscore) {
                 replaceHighscore(req, req.body.score);
+                res.send('ok');
             }
         }
     })
 })
+
+// replaces user's highscore with their current score
+function replaceHighscore(req, replacementScore) {
+    connection.query('UPDATE users SET quiz_highscore = ? WHERE user_id = ?',
+    [replacementScore, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(`Highscore is now ${replacementScore}`);
+        }
+    })
+}
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
