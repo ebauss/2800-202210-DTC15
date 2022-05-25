@@ -52,10 +52,7 @@ function nextQuestion(){
 
 // update stats and return to main
 function updateStats(){
-    if (score > best){
-        // best = score
-        requestHighscoreUpdate()
-    }
+    requestHighscoreUpdate();
     last = score
     score = 0
     quizNumber = 0
@@ -64,8 +61,8 @@ function updateStats(){
 }
 
 function startQuiz (){
-    console.log("START IS FIRST")
-    // displayHighscore()
+    requestHighscore();
+    console.log('3. Filled in score details on the start screen');
     document.querySelector('.last-score').innerHTML = last
     document.querySelector('.best-score').innerHTML = best
    
@@ -77,7 +74,6 @@ function startQuiz (){
 // ------------- The API ------------- //
 // fetching data from Open Trivia API.
 async function sendApiRequest() {
-    console.log("API IS FIRST")
     let response = await fetch('https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=multiple');
     // console.log(response)
     let quizData = await response.json()
@@ -168,6 +164,7 @@ function choice(){
 
 // log a console message depending on whether highscore was updated
 function processHighscoreUpdate(data) {
+    console.log('1. Your highscore has been updated serverside')
     switch (data) {
         case 'signed out':
             console.log('Sign in to save your highscore.');
@@ -183,7 +180,6 @@ function processHighscoreUpdate(data) {
 
 // request server to update user's highscore if neccessary
 function requestHighscoreUpdate() {
-    console.log("uPDATING HIGhSCORE")
     $.ajax({
         url: 'http://localhost:3000/compareHighscore',
         type: 'POST',
@@ -196,18 +192,13 @@ function requestHighscoreUpdate() {
 
 // processes the user's highscore
 function displayHighscore(data) {
-    console.log(data);
-    let highscore = data[0].quiz_highscore
-    if (highscore == 'signed out') {
-        console.log('Signed in to save your highscore.'); // replace this line with a dialog box or something
+    if (data == 'signed out') {
+        console.log('Sign in to save your highscore.'); // replace this line with a dialog box or something
     }
     else {
-        
-        console.log(highscore); // the value of data is the user's highscore
-        best = highscore
-        console.log(highscore)
+        console.log('2. Your highscore has been retrieved clientside');
+        best = data[0].quiz_highscore
         sendApiRequest()
-        
     }
 }
 
@@ -216,6 +207,6 @@ function requestHighscore() {
     $.ajax({
         url: 'http://localhost:3000/getHighscore',
         type: 'GET',
-        success: anotherFunction
+        success: displayHighscore
     })
 }
