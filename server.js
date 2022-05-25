@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'My$3qu@l',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -146,13 +146,6 @@ function resetMonthlyPoints(req) {
         }
     })
 }
-
-// DEBUGGING: for quickly logging in as admin
-app.get('/quickLoginAdmin', (req, res) => {
-    req.session.authenticated = true;
-    req.session.uid = 1;
-    res.send('ac130');
-})
 
 // retrieves all the users' data for admin.html and sends it as a JSON object
 app.get('/requestUserData', (req, res) => {
@@ -452,10 +445,72 @@ app.post('/updateGoal', (req, res) => {
     })
 })
 
+// gets the user's highscore for the quiz
+app.get('/getHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results[0].quiz_highscore);
+        }
+    })
+})
+
+// gets the user's highscore for the quiz, and replaces it if the current score is greater
+app.post('/compareHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            let highscore = results[0].quiz_highscore;
+
+            if (highscore == null || req.body.score > highscore) {
+                replaceHighscore(req, req.body.score);
+                res.send('replaced');
+            }
+            else {
+                res.send('not replaced');
+            }
+        }
+    })
+})
+
+// replaces user's highscore with their current score
+function replaceHighscore(req, replacementScore) {
+    connection.query('UPDATE users SET quiz_highscore = ? WHERE user_id = ?',
+    [replacementScore, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(`Highscore is now ${replacementScore}`);
+        }
+    })
+}
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
 
-// sends the 404 page for routes that don't exist
-app.all('*', (req, res) => {
+// sends the 404 page, used by the function below
+app.get('/pageNotFound', (req, res) => {
     res.sendFile(`${__dirname}/public/not-found.html`);
+})
+
+// redirects to the 404 page for routes that don't exist
+app.all('*', (req, res) => {
+    res.redirect('/pageNotFound');
 })
