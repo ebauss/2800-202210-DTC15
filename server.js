@@ -12,6 +12,9 @@ const fileUpload = require('express-fileupload')
 // Initiate express
 const app = express();
 
+// Use fileUpload middleware
+app.use(fileUpload());
+
 // Use the session middleware
 app.use(session({
     secret: "hey shikikan",
@@ -395,6 +398,28 @@ app.post('/updateGoal', (req, res) => {
             res.send(true);
         }
     })
+})
+
+// Found this online. Used for uploading imgaes to imgur using the imgur package via npm.
+// Link is here: https://github.com/hemeshch/imgur-upload
+app.post('/upload', (req, res) => {
+	if (!req.files) {
+		return res.status(400).send('No files were uploaded.')
+	}
+
+	let sampleFile = req.files.sampleFile
+	let uploadPath = __dirname + '/uploads/' + sampleFile.name
+
+	sampleFile.mv(uploadPath, function (err) {
+		if (err) {
+			return res.status(500).send(err)
+		}
+
+		imgur.uploadFile(uploadPath).then((urlObject) => {
+			fs.unlinkSync(uploadPath)
+			res.render('uploaded.ejs', { link: urlObject.link })
+		})
+	})
 })
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
