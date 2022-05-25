@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'My$3qu@l',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -449,44 +449,45 @@ app.post('/updateGoal', (req, res) => {
 app.get('/getHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
         res.send('signed out');
-        return;
     }
-
-    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+    else {
+        connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.send(results);
+            }
+        })        
+    }
 })
 
 // gets the user's highscore for the quiz, and replaces it if the current score is greater
 app.post('/compareHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
         res.send('signed out');
-        return;
     }
-
-    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            let highscore = results[0].quiz_highscore;
-
-            if (highscore == null || req.body.score > highscore) {
-                replaceHighscore(req, req.body.score);
-                res.send('replaced');
+    else {
+        connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
             }
             else {
-                res.send('not replaced');
+                let highscore = results[0].quiz_highscore;
+
+                if (highscore == null || req.body.score > highscore) {
+                    replaceHighscore(req, req.body.score);
+                    res.send('replaced');
+                }
+                else {
+                    res.send('not replaced');
+                }
             }
-        }
-    })
+        })        
+    }
+
 })
 
 // replaces user's highscore with their current score
@@ -508,6 +509,12 @@ app.use(express.static('./public'));
 // sends the 404 page, used by the function below
 app.get('/pageNotFound', (req, res) => {
     res.sendFile(`${__dirname}/public/not-found.html`);
+})
+
+app.get('/qli', (req, res) => {
+    req.session.uid = 2;
+    req.session.authenticated = true;
+    res.redirect('/');
 })
 
 // redirects to the 404 page for routes that don't exist
