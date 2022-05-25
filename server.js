@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
 var session = require('express-session');
 const req = require('express/lib/request');
+const imgur = require('imgur')
+const fs = require('fs')
+const fileUpload = require('express-fileupload')
 
 // Initiate express
 const app = express();
