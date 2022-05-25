@@ -44,7 +44,7 @@ function uploadReceipt() {
 function processGoalUpdate(data) {
     if (data) {
         alert('Your monthly goal has been updated.');
-        getUserRewardsInfo();
+        location.reload();
     }
 }
 
@@ -132,8 +132,6 @@ function createChart(currentPoints, goalPoints) {
     })
 }
 
-createChart(monthlyTotalPoints, monthlyGoalPoints)
-
 //populates the goal and current points container
 function processUserRewardsInfo(data) {
     console.log(data);
@@ -148,10 +146,11 @@ function processUserRewardsInfo(data) {
         totalPoints = 0
     };
 
+
     createChart(currentPoints, totalPoints);
 
     $('#display-current-points').html(monthlyTotalPoints);
-    $('#display-goal-points').html(monthlyGoalPoints);
+    $('#display-goal-points').val(monthlyGoalPoints);
 }
 
 // A function that alerts when upload is completed
