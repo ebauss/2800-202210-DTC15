@@ -20,7 +20,7 @@ app.use(session({
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'JDCYelwe@0115',
+    password: 'fUt4b4$4kur4',
     database: 'sustainably',
     multipleStatements: false
 })
@@ -146,13 +146,6 @@ function resetMonthlyPoints(req) {
         }
     })
 }
-
-// DEBUGGING: for quickly logging in as admin
-app.get('/quickLoginAdmin', (req, res) => {
-    req.session.authenticated = true;
-    req.session.uid = 1;
-    res.send('ac130');
-})
 
 // retrieves all the users' data for admin.html and sends it as a JSON object
 app.get('/requestUserData', (req, res) => {
@@ -455,7 +448,12 @@ app.post('/updateGoal', (req, res) => {
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
 
-// sends the 404 page for routes that don't exist
-app.all('*', (req, res) => {
+// sends the 404 page, used by the function below
+app.get('/pageNotFound', (req, res) => {
     res.sendFile(`${__dirname}/public/not-found.html`);
+})
+
+// redirects to the 404 page for routes that don't exist
+app.all('*', (req, res) => {
+    res.redirect('/pageNotFound');
 })
