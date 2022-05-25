@@ -65,12 +65,15 @@ a {
     text-align: center;
     color: black;
     font-size: 90%;
+    overflow: hidden;
 }
 
 .card-information>img {
-    width: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
     height: 100%;
     border-radius: 3px;
+    
 }
 
 
