@@ -445,6 +445,27 @@ app.post('/updateGoal', (req, res) => {
     })
 })
 
+// gets the user's highscore for the quiz, and replaces it if the current score is greater
+app.post('/compareHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            let highscore = results[0].quiz_highscore;
+
+            if (highscore == null || req.body.score > highscore) {
+                replaceHighscore(req, req.body.score);
+            }
+        }
+    })
+})
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
 
