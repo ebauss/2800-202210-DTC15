@@ -73,7 +73,7 @@ canvas {
 }
 
 
-#submit-btn{
+#save-btn{
     grid-area: btn-save;
     display: none;
     width: max-content;
