@@ -75,8 +75,8 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
 
+                    checkNewMonthLogin(req);
                     updateLogin(req);
-                    resetMonthlyPoints(req);
 
                     res.send({
                         isPasswordCorrect: true,
@@ -97,17 +97,54 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
     });
 })
 
-// update user's last login
-function updateLogin(req) {
-    connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
-    [req.session.uid, req.session.uid], (err, results, fields) => {
+// converts today's date into format 'YYYYMM'
+function dateToMonth() {
+    let today = new Date();
 
-    })
+    // converts today's date into format YYYYMM
+    return today.toISOString().split('-')[0] + today.toISOString().split('-')[1];
 }
 
-// reset user's monthly total points 
-function resetMonthlyPoints(req) {
+// update user's last login
+function updateLogin(req) {
+    let todayYearMonth = dateToMonth();
 
+    connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
+    [todayYearMonth, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    return;
+}
+
+// check if user logs in on a new month
+function checkNewMonthLogin(req) {
+    let todayYearMonth = dateToMonth();
+
+    connection.query('SELECT last_login FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (todayYearMonth != results[0].last_login) {
+                console.log('Logged in on a new month. Resetting monthly goal.');
+                resetMonthlyPoints(req);
+            }
+        }
+    })    
+}
+
+// reset user's monthly total points if they login on a new month
+function resetMonthlyPoints(req) {
+    connection.query('UPDATE users SET monthly_total_points = 0 WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
 }
 
 // DEBUGGING: for quickly logging in as admin

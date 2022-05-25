@@ -128,7 +128,7 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 ## Credits
 * Product Owner
     * Evon Bausa
-* Web Design & Client-side Programming
+* UI Design & Client-side Programming
     * Joushua Dela Cruz
     * Alexie Narciso
 * Database Design & Server-side Programming
