@@ -16,12 +16,13 @@ window.onload = sendApiRequest
 
 
 // this checks if the player gave the right answer and add it if true
-function isCorrect(playerAnswer) {
+function isCorrect(playerAnswer,choice) {
+    
     console.log('made to correct')
-    console.log(correct)
+    console.log(choice)
     if (playerAnswer == correct) {
         console.log(true)
-        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'green';
+        document.querySelector('.correct').style.backgroundColor = 'green';
         score += 1;
 
         console.log(score)
@@ -31,8 +32,8 @@ function isCorrect(playerAnswer) {
     }
 
     setTimeout(function() {
-        $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
         quizNumber += 1; 
+        playerAnswer.prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
     },100)
 
     setTimeout(function(){
@@ -82,7 +83,8 @@ async function sendApiRequest() {
 function useApiData(data) {
     correct = data.results[0].correct_answer
     console.log(correct)
-    $(".answer").removeAttr('disabled')
+    // $(".answer").removeAttr('disabled')
+    document.querySelector(".answer").enable
     // document.querySelector('.best-score').innerHTML = (score * 10)
     document.querySelector('.quiz-number').innerHTML = 'Question ' + (quizNumber + 1)
 
@@ -122,8 +124,9 @@ endButton.addEventListener('click', () => {
 quizChoice.forEach(choice => {
     choice.addEventListener('click', () => {
         playerAnswer = choice.lastChild.innerHTML
-        $(".answer").attr('disabled','disabled')
-        isCorrect(playerAnswer)
+        document.querySelector(".answer").disable
+        // $(".answer").attr('disabled','disabled')
+        isCorrect(playerAnswer,choice)
     })
 })
 
@@ -137,19 +140,19 @@ function prompt (id) {
     } else{
         overlay.classList.add('dim')
         popup.classList.add('active')
-        document.querySelector('.promter').innerHTML= "You've completed the quiz! Your score:" + score + ' Do you want to play again?'
+        document.querySelector('.promter').innerHTML= "You've completed the quiz! Your score:" + score + ' Do you want to go back to the main menu?'
         choice()
     }
 }
 
 function choice(){
-    yes.addEventListener('click', () => {
+    no.addEventListener('click', () => {
         overlay.classList.remove('dim')
         popup.classList.remove('active')
         updateStats()
     })
     
-    no.addEventListener('click', () => {
+    yes.addEventListener('click', () => {
         updateStats()
         mainMenuSection.style.display = 'block';
         quizContainerSection.style.display = 'none';
