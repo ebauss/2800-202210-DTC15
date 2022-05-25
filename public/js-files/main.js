@@ -147,7 +147,7 @@ function LoadNews(news) {
     console.log(news)
     maxNews = 12
     for (i = 0; i <= maxNews; i++) {
-
+        if (news.articles[i].urlToImage != null){
         cardTag =
             `<div class="card-information" >
             <img src = "${news.articles[i].urlToImage}">
@@ -155,6 +155,7 @@ function LoadNews(news) {
                    <button data-modal-target="#modal"><a href="${news.articles[i].url}">${news.articles[i].title}</a></button>                   
             </div>
         </div>`
+        }
 
        $("#news").append(cardTag)
     }
