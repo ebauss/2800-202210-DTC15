@@ -117,7 +117,7 @@ a {
     margin-bottom: 20px;
     padding: 10px 15px;
     border-radius: 100px;
-    bottom: 10%;
+    bottom: 5%;
     left: 0;
     right: 0;
     overflow: hidden;
@@ -136,7 +136,7 @@ a {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 975px) {
     .hamburger {
         display: block;
     }
@@ -154,7 +154,7 @@ a {
     }
 
     .nav-menu {
-        position: fixed;
+        position: absolute;
         left: -100%;
         top: 70px;
         gap: 0;
