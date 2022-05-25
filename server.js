@@ -445,6 +445,63 @@ app.post('/updateGoal', (req, res) => {
     })
 })
 
+// gets the user's highscore for the quiz
+app.get('/getHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(results[0].quiz_highscore);
+        }
+    })
+})
+
+// gets the user's highscore for the quiz, and replaces it if the current score is greater
+app.post('/compareHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+        return;
+    }
+
+    connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            let highscore = results[0].quiz_highscore;
+
+            if (highscore == null || req.body.score > highscore) {
+                replaceHighscore(req, req.body.score);
+                res.send('replaced');
+            }
+            else {
+                res.send('not replaced');
+            }
+        }
+    })
+})
+
+// replaces user's highscore with their current score
+function replaceHighscore(req, replacementScore) {
+    connection.query('UPDATE users SET quiz_highscore = ? WHERE user_id = ?',
+    [replacementScore, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(`Highscore is now ${replacementScore}`);
+        }
+    })
+}
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
 
