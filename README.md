@@ -43,3 +43,5 @@ Content of the project folder:
 
 * The Easter Egg at globe.html uses CSS from https://www.youtube.com/watch?v=BY4uU6CNtTg
 * The Easter Egg at globe.html uses animations from https://www.youtube.com/watch?v=eJoS5ezur1E&t=126s
+
+* Walkthrough data are from UN sustainable development project https://www.un.org/sustainabledevelopment/
