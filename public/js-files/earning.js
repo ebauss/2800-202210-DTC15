@@ -146,10 +146,11 @@ function processUserRewardsInfo(data) {
         totalPoints = 0
     };
 
+
     createChart(currentPoints, totalPoints);
 
     $('#display-current-points').html(monthlyTotalPoints);
-    $('#display-goal-points').html(monthlyGoalPoints);
+    $('#display-goal-points').val(monthlyGoalPoints);
 }
 
 // A function that alerts when upload is completed
