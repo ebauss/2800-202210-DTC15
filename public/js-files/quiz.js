@@ -157,3 +157,30 @@ function choice(){
         popup.classList.remove('active')
     })
 }
+
+// log a console message depending on whether highscore was updated
+function processHighscoreUpdate(data) {
+    switch (data) {
+        case 'signed out':
+            console.log('Sign in to save your highscore.');
+            break;
+        case 'replaced':
+            console.log('Your highscore was replaced with a new best.');
+            break;
+        case 'not replaced':
+            console.log('Your highscore was not replaced.');
+            break;
+    }
+}
+
+// request server to update user's highscore if neccessary
+function requestHighscoreUpdate() {
+    $.ajax({
+        url: 'http://localhost:3000/compareHighscore',
+        type: 'POST',
+        data: {
+            'score': score // replace 0 with the variable for the user's score
+        },
+        success: processHighscoreUpdate
+    })
+}

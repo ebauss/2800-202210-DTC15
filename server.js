@@ -462,7 +462,10 @@ app.post('/compareHighscore', (req, res) => {
 
             if (highscore == null || req.body.score > highscore) {
                 replaceHighscore(req, req.body.score);
-                res.send('ok');
+                res.send('replaced');
+            }
+            else {
+                res.send('not replaced');
             }
         }
     })
