@@ -74,6 +74,10 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                     console.log("You entered the correct password");
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
+
+                    checkNewMonthLogin(req);
+                    updateLogin(req);
+
                     res.send({
                         isPasswordCorrect: true,
                         isAdmin: isUserAdmin
@@ -92,6 +96,56 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
         }
     });
 })
+
+// converts today's date into format 'YYYYMM'
+function dateToMonth() {
+    let today = new Date();
+
+    // converts today's date into format YYYYMM
+    return today.toISOString().split('-')[0] + today.toISOString().split('-')[1];
+}
+
+// update user's last login
+function updateLogin(req) {
+    let todayYearMonth = dateToMonth();
+
+    connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
+    [todayYearMonth, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    return;
+}
+
+// check if user logs in on a new month
+function checkNewMonthLogin(req) {
+    let todayYearMonth = dateToMonth();
+
+    connection.query('SELECT last_login FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (todayYearMonth != results[0].last_login) {
+                console.log('Logged in on a new month. Resetting monthly goal.');
+                resetMonthlyPoints(req);
+            }
+        }
+    })    
+}
+
+// reset user's monthly total points if they login on a new month
+function resetMonthlyPoints(req) {
+    connection.query('UPDATE users SET monthly_total_points = 0 WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
 
 // DEBUGGING: for quickly logging in as admin
 app.get('/quickLoginAdmin', (req, res) => {
@@ -400,3 +454,8 @@ app.post('/updateGoal', (req, res) => {
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
+
+// sends the 404 page for routes that don't exist
+app.all('*', (req, res) => {
+    res.sendFile(`${__dirname}/public/not-found.html`);
+})
