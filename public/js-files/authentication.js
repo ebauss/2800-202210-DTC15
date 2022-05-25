@@ -2,6 +2,11 @@
 function isEmailInDB() {
     console.log('Button pressed');
 
+    if (!$('#email').val().includes('@')) {
+        alert('Your email must contain the @ symbol.');
+        return;
+    }
+
     $.ajax({
         url: 'http://localhost:3000/checkEmailExists',
         type: 'POST',
