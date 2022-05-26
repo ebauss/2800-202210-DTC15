@@ -16,7 +16,7 @@ window.onload = sendApiRequest
 function isCorrect(playerAnswer,choice) {
     
     console.log('made to correct')
-    console.log(choice)
+    console.log(quizChoice)
     if (playerAnswer == correct) {
         // console.log(true)
         document.querySelector('.correct').style.backgroundColor = 'green';
@@ -24,13 +24,25 @@ function isCorrect(playerAnswer,choice) {
 
         // console.log(score)
     } else {
+        // console.log(document.querySelector('.answer'))
+        // document.getElementsByClassName('incorrect').forEach(btn => {
+        //     btn.addEventListener("click", () => {
+        //         $(this).style.backgroundColor = 'red';
+        //     })
+        // })
         $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'red'
         // console.log(false)
     }
 
     setTimeout(function() {
         quizNumber += 1; 
-        playerAnswer.prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
+        // quizChoice.style.background = 'rgba(44, 169, 226, 0.568)';
+        // playerAnswer.prevObject[0].activeElement.style.backgroundColor = 'rgba(44, 169, 226, 0.568)';
+
+        var elements = document.getElementsByClassName('answer'); // get all elements
+	    for(var i = 0; i < elements.length; i++){
+		elements[i].style.backgroundColor = "rgba(44, 169, 226, 0.568)";
+	}
     },100)
 
     setTimeout(function(){
@@ -147,14 +159,14 @@ function choice(){
         overlay.classList.remove('dim')
         popup.classList.remove('active')
     })
-    
+
     yes.addEventListener('click', () => {
         mainMenuSection.style.display = 'block';
         quizContainerSection.style.display = 'none';
         overlay.classList.remove('dim')
-        popup.classList.remove('active')
+        popup.classList.remove('active')    
     })
-
+    
     requestHighscoreUpdate()
     requestHighscore()
 }
