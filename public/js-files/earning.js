@@ -165,13 +165,6 @@ function processUserRewardsInfo(data) {
     $('#display-goal-points').html(monthlyGoalPoints);
 }
 
-// A function that alerts when upload is completed
-function uploadComplete(data) {
-    if (data) {
-        alert("Upload complete");
-    }
-}
-
 function setup(){
     verifyLogin();
     $('#amount-closing-btn').click(uploadReceipt);
