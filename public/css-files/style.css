@@ -100,6 +100,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    margin-top: 5%;
 }
 
 a {
@@ -113,15 +114,15 @@ a {
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
     margin: auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    /* margin-top: 30px; */
+    /* margin-bottom: 20px; */
     padding: 10px 15px;
     border-radius: 100px;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    position: fixed;
+    /* bottom: 10%; */
+    /* left: 0;
+    right: 0; */
+    /* overflow: hidden; */
+    /* position: fixed; */
 }
 
 .floating-bar img {
@@ -134,6 +135,16 @@ a {
     border: none;
     margin: 2px;
 }
+
+.floating-container{
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    background-color: transparent;
+    width: 100%;
+    margin: 10px;
+}
+
 
 
 @media screen and (max-width: 768px) {
