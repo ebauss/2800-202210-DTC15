@@ -9,7 +9,7 @@ function processRewardsList(data) {
             `<br>
         <div class="rewards-container" id="${reward.reward_id}">      
             <div class="image-container">
-                <img src="${reward.photo}">
+                <img src="${reward.photo}" id="reward-photo">
             </div>
             <div class="rewards-title">
                 <h2>${reward.company} - $${reward.value.toLocaleString('en-CA')}</h2>
