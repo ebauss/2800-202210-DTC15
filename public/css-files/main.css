@@ -12,7 +12,7 @@ h1 {
     margin: 10px;
 }
 
-a {
+.card-context > button > a {
     color: black;
 }
 
