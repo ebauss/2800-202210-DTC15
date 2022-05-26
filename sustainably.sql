@@ -81,10 +81,9 @@ INSERT INTO users_rewards (user_id, reward_id, redeemed_date, expiry_date) VALUE
 (2, 1, '2022-02-28', '2024-12-25'),
 (4, 3, '2022-03-01', '2024-12-26');
 
-ALTER TABLE users ADD COLUMN last_login DATE;
-ALTER TABLE users MODIFY COLUMN last_login VARCHAR(6);
+ALTER TABLE users ADD COLUMN last_login VARCHAR(6);
 ALTER TABLE users ADD COLUMN quiz_highscore INT unsigned;
 
 INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, monthly_total_points, monthly_goal_points, compass_id, is_admin, last_login, quiz_highscore) VALUES
-        ('$2b$10$j8cuXkJ9w3SAVSeGA1sZGeHgA6.jVWKbtdqFmx13MxXtUS0Nmd90a', 'Chris', 'Yukine', 'yukine@song.jp', 'Japan', 18, 0, 0, 0, null, TRUE, '197001', 0),
-        ('$2b$10$j8cuXkJ9w3SAVSeGA1sZGeHgA6.jVWKbtdqFmx13MxXtUS0Nmd90a', 'John', 'MacTavish', 'soap@sas.uk', 'UK', 30, 20000, 1500, 3000, null, FALSE, '202205', 0);
+('$2b$10$j8cuXkJ9w3SAVSeGA1sZGeHgA6.jVWKbtdqFmx13MxXtUS0Nmd90a', 'Chris', 'Yukine', 'yukine@song.jp', 'Japan', 18, 0, 0, 0, null, TRUE, '197001', 0),
+('$2b$10$j8cuXkJ9w3SAVSeGA1sZGeHgA6.jVWKbtdqFmx13MxXtUS0Nmd90a', 'John', 'MacTavish', 'soap@sas.uk', 'UK', 30, 20000, 1500, 3000, null, FALSE, '202205', 0);
