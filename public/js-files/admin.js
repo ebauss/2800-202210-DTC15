@@ -10,8 +10,8 @@ function requestUserData() {
             url: 'http://localhost:3000/requestUserData',
             type: 'GET',
             success: (data) => {
-                populate_table(data)
-                populate_table(data, true)
+                usersPopulateTable(data)
+                usersPopulateTable(data, true)
             }
         }
     )
@@ -49,8 +49,8 @@ function requestReceiptData() {
         url: 'http://localhost:3000/getAllReceiptData',
         type: 'GET',
         success: (data) => {
-            receipts_populate_table(data);
-            receipts_populate_table(data, true);
+            receiptsPopulateTable(data);
+            receiptsPopulateTable(data, true);
         }
     })
 }
@@ -103,8 +103,8 @@ function requestRewards() {
             order: 'ASC'
         },
         success: (data) => {
-            rewards_populate_table(data);
-            rewards_populate_table(data, true);
+            rewardsPopulateTable(data);
+            rewardsPopulateTable(data, true);
         }
     })
 }
@@ -200,7 +200,7 @@ headerBtns.forEach((btn) => {
 // --------------------------------------------------------------------------------- //
 
 // Function that populates the user's table
-function populate_table(data, mobile = false) {
+function usersPopulateTable(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-users")
     } else {
@@ -278,7 +278,7 @@ function populate_table(data, mobile = false) {
 }
 
 // Function that populates the reward table/collapsible-body
-function rewards_populate_table(data, mobile = false) {
+function rewardsPopulateTable(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-rewards")
     } else {
@@ -325,7 +325,7 @@ function rewards_populate_table(data, mobile = false) {
 }
 
 // Function that populates the receipt table. This function only runs once. Once it is run, it populates all the receipt data into the table.
-function receipts_populate_table(data, mobile = false) {
+function receiptsPopulateTable(data, mobile = false) {
     if (mobile) {
         var tableTemplate = document.getElementById("collapsible-template-receipts")
     } else {

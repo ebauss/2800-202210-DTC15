@@ -10,7 +10,7 @@ const earningsButton = document.getElementById('earnings-btn')
 // ------- All Functions for populating the card ------- //
 
 // ------- A function that populates the rewards container -------- //
-function populate_rewards(rewards) {
+function populateRewards(rewards) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById('rewards-template')
@@ -44,7 +44,7 @@ function populate_rewards(rewards) {
 }
 
 // ------- A function that populates the rewards container -------- //
-function populate_earnings(earnings) {
+function populateEarnings(earnings) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById('earnings-template')
@@ -196,7 +196,7 @@ function requestOwnedRewards() {
     $.ajax({
         url: 'http://localhost:3000/getUserRewards',
         type: 'GET',
-        success: populate_rewards
+        success: populateRewards
     })
 }
 
@@ -205,7 +205,7 @@ function requestOwnedReceipts() {
     $.ajax({
         url: 'http://localhost:3000/getUserReceipts',
         type: 'GET',
-        success: populate_earnings
+        success: populateEarnings
     })
 }
 

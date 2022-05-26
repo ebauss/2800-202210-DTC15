@@ -19,13 +19,13 @@ function isEmailInDB() {
 
 // process the result of the user via email query on MySQL
 function processUserResult(data) {
-    // if email exists, proceed to user_signIn()
+    // if email exists, proceed to userSignin()
     if (data.length != 0) {
-        user_signIn();
+        userSignin();
     }
-    // if email does not exist, proceed to user_signUP()
+    // if email does not exist, proceed to userSignup()
     else {
-        user_signUp();
+        userSignup();
     }
 }
 
@@ -127,7 +127,7 @@ signUpTags = document.querySelectorAll(".sign-up")
 clickedBtn = ""
 
 // Show this if user exists
-function user_signIn() {
+function userSignin() {
     // Disables email field
     $('#email').prop('disabled', true);
     $('#email-label').hide();
@@ -144,7 +144,7 @@ function user_signIn() {
 }
 
 // If user is a new user
-function user_signUp() {
+function userSignup() {
     // Changes the Header into "Sign Up"
     $("#authentication-header").html("Sign Up")
 

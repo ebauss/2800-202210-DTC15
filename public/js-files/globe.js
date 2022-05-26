@@ -7,7 +7,7 @@ currentDate = nowDate.toISOString().split("T")[0];
 firstDay = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1).toISOString().split("T")[0]
 console.log()
 // ----- A customise the JSON data from Emission API chronological order ----- //
-function custom_sort(dataX, dataY) {
+function customSort(dataX, dataY) {
     return new Date(dataX.start).getTime() - new Date(dataY.start).getTime()
 }
 
@@ -25,7 +25,7 @@ function createChart() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            data = data.sort(custom_sort)
+            data = data.sort(customSort)
 
             let plotChart = document.getElementById("plot-chart").getContext("2d");
             new Chart(plotChart, {
