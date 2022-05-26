@@ -54,7 +54,6 @@ label[for="greetings"]{
     width: 95%;
     padding: .5em;
     margin: .5em;
-    cursor: pointer;
     display: grid;
     grid-template-areas:
     'rewards-title rewards-title  image-container'
