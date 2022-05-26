@@ -525,12 +525,6 @@ app.get('/pageNotFound', (req, res) => {
     res.sendFile(`${__dirname}/public/not-found.html`);
 })
 
-app.get('/qli', (req, res) => {
-    req.session.uid = 2;
-    req.session.authenticated = true;
-    res.redirect('/');
-})
-
 // redirects to the 404 page for routes that don't exist
 app.all('*', (req, res) => {
     res.redirect('/pageNotFound');
