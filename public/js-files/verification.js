@@ -50,7 +50,7 @@ function processVerification(data) {
 function requestVerification() {
     today = new Date();
 
-    if (isNaN($('#value').val())) {
+    if (isNaN($('#value').val().trim())) {
         alert('You must enter a number for the receipt value.');
         return;
     }
@@ -59,8 +59,8 @@ function requestVerification() {
         url: 'http://localhost:3000/verifyReceipt',
         type: 'POST',
         data: {
-            value: parseInt($('#value').val()),
-            notes: $('#message').val(),
+            value: parseInt($('#value').val().trim()),
+            notes: $('#message').val().trim(),
             verified_date: today.toISOString().split('T')[0],
             receipt_id: parseInt(location.href.split('=')[1]),
             user_id: userId

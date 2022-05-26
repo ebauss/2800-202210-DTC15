@@ -41,13 +41,13 @@ function processCreation(data) {
 // request a new reward to be created
 function requestCreation() {
     // reject value or reward points if they aren't a number
-    if (isNaN($('#value').val()) || isNaN(parseInt($('#points').val()))) {
+    if (isNaN($('#value').val().trim()) || isNaN(parseInt($('#points').val().trim()))) {
         alert('You must enter numbers for reward value and cost.');
         return;
     }
 
     // reject if company or description are blank
-    if ($('#company').val() == '' || $('#description').val() == '') {
+    if ($('#company').val().trim() == '' || $('#description').val().trim() == '') {
         alert('You must provide the company name and description.');
         return;
     }
@@ -56,11 +56,11 @@ function requestCreation() {
         url: 'http://localhost:3000/createReward',
         type: 'POST',
         data: {
-            company: $('#company').val(),
-            description: $('#description').val(),
+            company: $('#company').val().trim(),
+            description: $('#description').val().trim(),
             photo: 'https://picsum.photos/id/237/200',
-            value: parseInt($('#value').val()),
-            cost: parseInt($('#points').val())
+            value: parseInt($('#value').val().trim()),
+            cost: parseInt($('#points').val().trim())
         },
         success: processCreation
     })

@@ -2,7 +2,7 @@
 function isEmailInDB() {
     console.log('Button pressed');
 
-    if (!$('#email').val().includes('@')) {
+    if (!$('#email').val().trim().includes('@')) {
         alert('Your email must contain the @ symbol.');
         return;
     }
@@ -11,7 +11,7 @@ function isEmailInDB() {
         url: 'http://localhost:3000/checkEmailExists',
         type: 'POST',
         data: {
-            'email': $('#email').val()
+            'email': $('#email').val().trim()
         },
         success: processUserResult
     })
@@ -36,7 +36,7 @@ function isPasswordCorrect() {
         url: 'http://localhost:3000/checkIfPasswordCorrect',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#password').val()
         },
         success: processLogin
@@ -50,13 +50,13 @@ function addNewUserToDatabase() {
         url: 'http://localhost:3000/createNewUser',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#new-password').val(),
             'confirm_password': $('#confirm-password').val(),
-            'first_name': $('#first-name').val(),
-            'last_name': $('#last-name').val(),
-            'age': $('#age').val(),
-            'country': $('#country').val()
+            'first_name': $('#first-name').val().trim(),
+            'last_name': $('#last-name').val().trim(),
+            'age': $('#age').val().trim(),
+            'country': $('#country').val().trim()
         },
         success: processSignup
     })
@@ -109,7 +109,7 @@ function loginSignedUpUser() {
         url: 'http://localhost:3000/checkIfPasswordCorrect',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#new-password').val()
         },
         success: processLogin
@@ -178,7 +178,7 @@ function cancelToEmail() {
     }
 
     // save email to be filled out again
-    enteredEmail = $('#email').val();
+    enteredEmail = $('#email').val().trim();
     $('#email').prop('disabled', false);
     nextBtn.style.display = "block"
     cancellButton.classList.add("cancel-btn")
