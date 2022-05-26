@@ -85,10 +85,13 @@ function populateEarnings(earnings) {
 
         if (earningsStatus == 'Declined') {
             newMail.querySelector('.earnings-status').classList.add('end')
+            newMail.querySelector('.earnings-status-popup').classList.add('end')
         } else if (earningsStatus == "Pending") {
             newMail.querySelector(".earnings-status").classList.add("pending")
+            newMail.querySelector('.earnings-status-popup').classList.add("pending")
         } else {
             newMail.querySelector(".earnings-status").classList.add("start")
+            newMail.querySelector('.earnings-status-popup').classList.add("start")
         }
 
         document.getElementById('user-earnings-container').append(newMail)
