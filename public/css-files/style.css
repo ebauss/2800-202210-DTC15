@@ -117,7 +117,7 @@ a {
     margin-bottom: 20px;
     padding: 10px 15px;
     border-radius: 100px;
-    bottom: 5%;
+    bottom: 1%;
     left: 0;
     right: 0;
     overflow: hidden;
@@ -133,6 +133,13 @@ a {
     border-radius: 50%;
     border: none;
     margin: 2px;
+}
+
+#empty-footer{
+    width: 100%;
+    min-height: 70px;
+    position: static;
+    bottom: 0%;
 }
 
 
