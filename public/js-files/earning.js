@@ -28,8 +28,6 @@ function uploadReceipt() {
         alert("You must enter the receipt's value")
         return;
     } 
-    // -- Closes the popup for amount and opens the success pop-up -- //
-    amountBtncloser()
 
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
@@ -41,7 +39,7 @@ function uploadReceipt() {
             value: rewardPoints,
             date: today.toISOString().split('T')[0]
         },
-        success: uploadComplete
+        success: amountBtncloser
     })
 }
 
