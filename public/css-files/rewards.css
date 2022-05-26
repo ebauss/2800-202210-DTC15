@@ -23,6 +23,10 @@ label[for="greetings"]{
    justify-content: center;
 }
 
+#reward-photo {
+    width: 200px;
+}
+
 .sort-dropdown{
     padding: 5px;
     border-radius: 10px;
