@@ -37,7 +37,7 @@ function uploadReceipt() {
         url: 'http://localhost:3000/uploadReceipt',
         type: 'POST',
         data: {
-            receipt: 'https://picsum.photos/id/237/200',
+            receipt: 'https://ibb.co/3mhy0Bj',
             value: rewardPoints,
             date: today.toISOString().split('T')[0]
         },
