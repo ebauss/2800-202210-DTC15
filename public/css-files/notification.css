@@ -128,6 +128,10 @@ section#user-earnings-container{
     /* any element that has a class start will get green text */
 }
 
+.pending {
+    color: orange;
+}
+
 .end{
     color:crimson;
         /* any element that has a class end will get red text */
