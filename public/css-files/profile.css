@@ -5,43 +5,49 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#body {
-    display: grid;
-    gap: 1%;
-}
-
-
 main {
-    position: static;
-    display: grid;
-    grid-template-columns: 50fr 50fr;
-    grid-template-areas: 
-    "profile-header profile-header"
-    "profile-pic rewards"
-    "info info";
-    justify-content: center;
-    row-gap: 5%;
-    margin: 10px;
-    height: 100%;
+    width: min(100% - 2rem, 95%);
+    margin-inline: auto;
+    height: fit-content;
+    margin-block: 2%;
+    display: flex;
+    flex-direction: column;
 }
+
+/* ------------------- */
+/* -- main children -- */
+/* ------------------- */
 
 label[for="user-profile"]{
-    grid-area: profile-header;
-    font-size: x-large;
+    font-size: xx-large;
+    font-weight: 700;
+    padding: 0.5%;
     text-align: center;
-    font-weight: 600;
-    width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid gainsboro;
+    justify-content: center;
+    justify-items: center;
 }
 
-.user-editable-data {
-    grid-area: profile-pic;
-    display: grid;
-    grid-template-areas:
-        "picture";
+.header-data{
+    display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-block: 2%;
+    align-content: center;
+    align-items: center;
 }
+
+.rewards-container {
+    padding: 15px 10px;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+}
+
+/* -------------------------- */
+/* -- header-data Children -- */
+/* -------------------------- */
 
 .profile-pic-container {
     grid-area: picture;
@@ -55,9 +61,27 @@ label[for="user-profile"]{
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid grey;
+    justify-content: center;
 }
 
-span{
+.rewards-container{
+    text-align: center;
+}
+
+/* ------------------- */
+/* -- Profile photo -- */
+/* ------------------- */
+
+.user-editable-data {
+    grid-area: profile-pic;
+    display: grid;
+    grid-template-areas:
+        "picture";
+    width: 100%;
+    justify-content: space-around;
+}
+
+.profile-pic-container span{
     grid-area: header-content;
 }
 
@@ -90,179 +114,122 @@ label[for="rewards"]{
     visibility: hidden;
 }
 
-.rewards-container{
-    margin-right: 10px;
-    grid-area: rewards;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 0px;
-}
+/* ------------------------ */
+/* -- body-data Children -- */
+/* ------------------------ */
 
-#display-rewards{
-    /* background-color: rgba(220,220,220); */
-    width: 100%;
-    height: 30px;
-    border: none;
-    border-radius: 20px;
-    text-align: center;
-    font-size: large;
-    font-weight: 600;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-#rewards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-
-.user-profile{
-    margin: 0px 2%;
-    grid-area: info;
-    height: 100%;
+section.body-data{
     display: grid;
-    grid-template-columns: 50% 50%;
-    row-gap: 5%;
-    column-gap: 2%;
+    margin-block: 5%;
+    grid-template-rows: 20fr 20fr 20fr 20fr 20fr;
+    grid-template-columns: 50fr 50fr;
     grid-template-areas: 
     "fname lname"
     "email email"
     "compass compass"
     "country age"
-    ". btn";
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-}
-
-.name{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-content: center;
-    grid-area: name;
+    ". btns";
+    gap: 2%;
 }
 
 #first-name{
     grid-area: fname;
-    width: 100%;
 }
 
 #last-name{
     grid-area: lname;
-    width: 100%;
 }
 
 #email{
     grid-area: email;
-    width: 100%;
 }
 
 #compass{
     grid-area: compass;
-    width: 100%;
 }
 
 #country{
     grid-area: country;
-    width: 100%;
 }
 
 #age{
     grid-area: age;
-    width: 100%;
 }
 
 .button-container{
-    grid-area: btn;
-    width: 100%;
+    grid-area: btns;
+    display: flex;
+    justify-content: flex-end;
 }
+
+/* ------------------------------- */
+/* -- button-container Children -- */
+/* ------------------------------- */
+.info-btn {
+    padding: 10px 15px;
+    margin: 10px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#edit-btn {
+    background-color: rgb(128,128,128);
+}
+
+#save-btn {
+    background-color: crimson;
+    display: none;
+}
+
+/* ----------------------------- */
+/* -- info-container Children -- */
+/* ----------------------------- */
 
 .info-container{
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 5%;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: space-around;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
-.info-container label{
-    font-size: large;
+.info-container label {
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-.info{
-    width: 100%;
-    height: 2em;
-    border: 1px solid gray;
+.info-container input {
+    font-size: larger;
+    padding: 5px;
     border-radius: 10px;
-    background: rgba(220,220,220);
-    padding-left: 10px;
-    font-size: large;
+    background-color: rgba(220,220,220, 0.5);
+    border: 1px solid rgb(119,136,153);
 }
 
-.button-container{
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
+/* ------------------ */
+/* -- Empty Footer -- */
+/* ------------------ */
+#empty-footer {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
 }
 
-.info-btn{
-    padding: 10px 15px;
-    font-size: medium;
-    border-radius: 10px;
-}
-
-#edit-btn{
-    color: white;
-    background-color:rgb(119,136,153);
-    border: none;
-}
-
-#save-btn{
-    background-color: #e46565;
-    color: wheat;
-    border: none;
-    display: none;
-}
-
-.notification-container{
-    grid-area: noti;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 100%;
-}
-
-label[for="notification"]{
-    font-size: xx-large;
-    padding: 5px 10px;
-    font-weight: 800;
-}
-
-div.notification-box{
-    background-color: antiquewhite;
+#empty-footer{
     width: 100%;
-    height: 100%;
-    overflow: scroll;
+    min-height: 70px;
+    position: static;
+    left: 0%;
+    bottom: 0%;
+    background-color: #2f9379;
 }
 
-@media(max-width: 700px) {
-    main {
-        row-gap: 1.5%;
-    }
-    .user-profile{
+@media screen and (max-width: 650px) {
+    section.body-data{
         display: flex;
         flex-direction: column;
     }
-    .info-container{
-        margin-bottom: 10px;
+    .header-data {
+        margin-top: 25px;
     }
 }

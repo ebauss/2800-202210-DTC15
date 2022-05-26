@@ -11,10 +11,6 @@ body {
     width: 100%;
 }
 
-header {
-    
-}
-
 #navbarPlaceholder {
     grid-area: header;
 }
@@ -24,13 +20,13 @@ header {
 }
 
 main {
-    display: grid;
-    justify-content: space-around;
-    align-content: space-around;
+    position: relative;
+    width: min(100% - 2rem, 350px);
     padding: 0;
-    height: 100%;
+    top: 20%;
+    justify-content: center;
     overflow: hidden;
-    width: 100%;
+    margin-inline: auto;
 }
 
 h3 {
@@ -91,7 +87,7 @@ input:valid~span::before {
 
 .content-authentication {
     /* display: table-cell; */
-    width: 400px;
+    width: 100%;
     height: 100%;
     padding: 15px;
     background-color: rgb(255,245,238);
@@ -104,18 +100,35 @@ input:valid~span::before {
     margin: 30px 0;
 }
 
+#form-action-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.pass-miscellaneous{
+    font-weight: 600;
+    font-size: small;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.required {
+    color: red;
+}
+
 input[type="button"] {
-    width: 100%;
+    width: 100px;
     height: 50px;
     border: 1px solid;
     background: rgb(139,69,19);
-    border-radius: 25px;
+    border-radius: 10px;
     font-size: 18px;
     color: #e9f4fb;
     font-weight: 700;
     cursor: pointer;
     outline: none;
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 input[type="button"]:hover {
@@ -123,8 +136,19 @@ input[type="button"]:hover {
     transition: .3s;
 }
 
+.sign-in,
+.sign-up,
+.cancel-btn {
+    display: none;
+}
+
 @media screen and (max-width: 550px) {
     .content-authentication{
         margin: 0px auto;
+    }
+    main {
+        display: block;
+        top: 8%;
+        margin-bottom: 10px;
     }
 }

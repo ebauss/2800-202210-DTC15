@@ -5,10 +5,18 @@ nowDate = new Date()
 currentDate = nowDate.toISOString().split("T")[0];
 // Gets the first day of the month
 firstDay = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1).toISOString().split("T")[0]
-
+console.log()
 // ----- A customise the JSON data from Emission API chronological order ----- //
 function custom_sort(dataX, dataY) {
     return new Date(dataX.start).getTime() - new Date(dataY.start).getTime()
+}
+
+// Function that gets the current month
+function currentMonth(){
+    const month = new Date().toLocaleString("default", {
+        month: "long"})
+
+        document.getElementById("month").innerHTML = month
 }
 
 // Creates the chart the desgin is from https://emissions-api.org/examples/chart.js
@@ -168,6 +176,7 @@ easterEggInitiator.addEventListener("click", (event) => {
 
 function setup() {
     createChart()
+    currentMonth()
 }
 
 $(document).ready(setup)

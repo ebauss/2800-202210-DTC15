@@ -24,7 +24,12 @@ function uploadReceipt() {
     if (isNaN(rewardPointsInput)) {
         alert("You must enter a number for your receipt's value.")
         return;
-    }
+    } else if (rewardPointsInput == "") {
+        alert("You must enter the receipt's value")
+        return;
+    } 
+    // -- Closes the popup for amount and opens the success pop-up -- //
+    amountBtncloser()
 
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
@@ -32,7 +37,7 @@ function uploadReceipt() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/uploadReceipt',
         type: 'POST',
         data: {
-            receipt: 'https://picsum.photos/id/237/200',
+            receipt: 'https://ibb.co/3mhy0Bj',
             value: rewardPoints,
             date: today.toISOString().split('T')[0]
         },
@@ -44,7 +49,7 @@ function uploadReceipt() {
 function processGoalUpdate(data) {
     if (data) {
         alert('Your monthly goal has been updated.');
-        getUserRewardsInfo();
+        location.reload();
     }
 }
 
@@ -92,15 +97,21 @@ function verifyLogin() {
 
 // Function that checks if receipt is successfully submitted
 // It is also a function that shows the popup
-let popup = document.getElementById("popup")
+let Amountpopup = document.getElementById("amount-popup")
+let closingpopup = document.getElementById("closing-popup")
 $("#receipt-btn").on("change", (event) => {
     receipt = event.target.files;
     
-    popup.classList.add("open-popup")
+    Amountpopup.classList.add("open-popup")
 })
 
+function amountBtncloser (){
+    Amountpopup.classList.remove("open-popup")
+    closingpopup.classList.add("open-popup")
+}
+
 $("#closing-btn").on("click", () => {
-    popup.classList.remove("open-popup")
+    closingpopup.classList.remove("open-popup")
 })
 
 // Function that gets the current month
@@ -132,8 +143,6 @@ function createChart(currentPoints, goalPoints) {
     })
 }
 
-createChart(monthlyTotalPoints, monthlyGoalPoints)
-
 //populates the goal and current points container
 function processUserRewardsInfo(data) {
     console.log(data);
@@ -148,22 +157,16 @@ function processUserRewardsInfo(data) {
         totalPoints = 0
     };
 
+
     createChart(currentPoints, totalPoints);
 
     $('#display-current-points').html(monthlyTotalPoints);
-    $('#display-goal-points').html(monthlyGoalPoints);
-}
-
-// A function that alerts when upload is completed
-function uploadComplete(data) {
-    if (data) {
-        alert("Upload complete");
-    }
+    $('#display-goal-points').val(monthlyGoalPoints);
 }
 
 function setup(){
     verifyLogin();
-    $('#closing-btn').click(uploadReceipt);
+    $('#amount-closing-btn').click(uploadReceipt);
 
     // save form if user presses ENTER while setting their monthly goal
     $('body').on('keypress', '#display-goal-points', (event) => {

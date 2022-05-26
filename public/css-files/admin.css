@@ -264,3 +264,88 @@ td {
         height: 20vh;
     }
 }
+
+
+/* -------- for the over lay ------- */
+/* overlay is to dim the background and prevent clicking other cards */
+#overlay{
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+
+    /* transition creates the action for overlay entrance */
+}
+
+#overlay.dim{
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+
+    /* when a class dim is added to id overlay, the overlay will cover the entire page */
+    /* z-index covers the cards and floating bar prevents accidental clicking */
+}
+
+
+
+/* ---------for the popup---------- */
+.popup-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 11;
+    background-color: aliceblue;
+    width: 60%;
+    max-width: 60%;
+    padding: 1em;
+    height: 10em;
+    
+
+    /* transform scale 0 is to hide the popup and wait for event*/
+    /* translate positions popup to center screen */
+    /* z-index ensure popup is on top of overlay */
+    /* transition creates the action for popup entrance */
+}
+
+.popup-container.active{
+    transform: translate(-50%, -50%) scale(1);
+
+    /* when a class active is added to class popup-container, the popup will show at the center of the page */
+}
+
+.popup-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.popup-body{
+    padding: 1.5em;
+    width:100%;
+    display: grid;
+    justify-content: space-between;
+    row-gap: 0.5em;
+    column-gap: 1em;
+    grid-template-columns: 50fr 50fr;
+}
+
+button#yes{
+    background-color: rgb(105, 221, 105);
+    padding: .5em;
+    border-radius: 5px;
+}
+
+button#no{
+    background-color: rgb(248, 63, 31);
+    padding: .5em;
+    border-radius: 5px;
+}

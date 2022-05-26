@@ -22,6 +22,7 @@ html {
 
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    min-height: 100vh;
 }
 
 li {
@@ -92,14 +93,14 @@ a,
 
 /* Footer CSS */
 footer {
-    /* position: fixed;
-    left: 0;
-    bottom: 0; */
+    position: absolute;
+    bottom: 0;
     width: 100%;
     background-color: #2f9379;
     color: white;
     text-align: center;
     padding: 10px;
+    margin-top: 5%;
 }
 
 a {
@@ -113,15 +114,15 @@ a {
     background-color: rgba(222,184,135, 0.4);
     text-align: center;
     margin: auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    /* margin-top: 30px; */
+    /* margin-bottom: 20px; */
     padding: 10px 15px;
     border-radius: 100px;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    position: fixed;
+    /* bottom: 10%; */
+    /* left: 0;
+    right: 0; */
+    /* overflow: hidden; */
+    /* position: fixed; */
 }
 
 .floating-bar img {
@@ -135,8 +136,91 @@ a {
     margin: 2px;
 }
 
+.floating-container{
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    background-color: transparent;
+    width: 100%;
+    margin-block: 10px;
+}
 
-@media screen and (max-width: 768px) {
+
+
+/* --------------- */
+/* -- Popup CSS -- */
+/* --------------- */
+
+.popup {
+    width: min(100% - 2rem, 400px);
+    margin: auto;
+    background-color: burlywood;
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 40%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 10;
+}
+
+.popup img {
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: powderblue;
+}
+
+#logout-popup img {
+    background-color: transparent;
+}
+
+.popup h2 {
+    font-size: 45px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.popup h3 {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.popup p{
+    font-size: large;
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: rgba(176, 224, 230, 9);
+    color: black;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+
+
+@media screen and (max-width: 975px) {
     .hamburger {
         display: block;
     }
@@ -154,7 +238,7 @@ a {
     }
 
     .nav-menu {
-        position: fixed;
+        position: absolute;
         left: -100%;
         top: 70px;
         gap: 0;

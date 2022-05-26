@@ -68,6 +68,10 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
                     console.log("You entered the correct password");
                     req.session.authenticated = true;
                     req.session.uid = results[0].user_id;
+
+                    checkNewMonthLogin(req);
+                    updateLogin(req);
+
                     res.send({
                         isPasswordCorrect: true,
                         isAdmin: isUserAdmin
@@ -87,12 +91,55 @@ app.post('/checkIfPasswordCorrect', (req, res) => {
     });
 })
 
-// DEBUGGING: for quickly logging in as admin
-app.get('/quickLoginAdmin', (req, res) => {
-    req.session.authenticated = true;
-    req.session.uid = 1;
-    res.send('ac130');
-})
+// converts today's date into format 'YYYYMM'
+function dateToMonth() {
+    let today = new Date();
+
+    // converts today's date into format YYYYMM
+    return today.toISOString().split('-')[0] + today.toISOString().split('-')[1];
+}
+
+// update user's last login
+function updateLogin(req) {
+    let todayYearMonth = dateToMonth();
+
+    connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
+    [todayYearMonth, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+
+    return;
+}
+
+// check if user logs in on a new month
+function checkNewMonthLogin(req) {
+    let todayYearMonth = dateToMonth();
+
+    connection.query('SELECT last_login FROM users WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (todayYearMonth != results[0].last_login) {
+                console.log('Logged in on a new month. Resetting monthly goal.');
+                resetMonthlyPoints(req);
+            }
+        }
+    })    
+}
+
+// reset user's monthly total points if they login on a new month
+function resetMonthlyPoints(req) {
+    connection.query('UPDATE users SET monthly_total_points = 0 WHERE user_id = ?',
+    [req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
 
 // retrieves all the users' data for admin.html and sends it as a JSON object
 app.get('/requestUserData', (req, res) => {
@@ -248,8 +295,26 @@ app.get('/getUserPoints', (req, res) => {
     })
 })
 
+// gives user reward points
+app.post('/addUserPoints', (req, res) => {
+    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`,
+    [req.body.points, req.body.points, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+
 // deletes a user from database. Used by admin.html
 app.post('/deleteUser', (req, res) => {
+    if (req.body.userIdToDelete == req.session.uid) {
+        res.send(false);
+    }
+
     connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
             console.log(err);
@@ -388,5 +453,73 @@ app.post('/updateGoal', (req, res) => {
     })
 })
 
+// gets the user's highscore for the quiz
+app.get('/getHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+    }
+    else {
+        connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.send(results);
+            }
+        })        
+    }
+})
+
+// gets the user's highscore for the quiz, and replaces it if the current score is greater
+app.post('/compareHighscore', (req, res) => {
+    if (req.session.uid == '' || req.session.uid == null) {
+        res.send('signed out');
+    }
+    else {
+        connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                let highscore = results[0].quiz_highscore;
+
+                if (highscore == null || req.body.score > highscore) {
+                    replaceHighscore(req, req.body.score);
+                    res.send('replaced');
+                }
+                else {
+                    res.send('not replaced');
+                }
+            }
+        })        
+    }
+
+})
+
+// replaces user's highscore with their current score
+function replaceHighscore(req, replacementScore) {
+    connection.query('UPDATE users SET quiz_highscore = ? WHERE user_id = ?',
+    [replacementScore, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(`Highscore is now ${replacementScore}`);
+        }
+    })
+}
+
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
 app.use(express.static('./public'));
+
+// sends the 404 page, used by the function below
+app.get('/pageNotFound', (req, res) => {
+    res.sendFile(`${__dirname}/public/not-found.html`);
+})
+
+// redirects to the 404 page for routes that don't exist
+app.all('*', (req, res) => {
+    res.redirect('/pageNotFound');
+})

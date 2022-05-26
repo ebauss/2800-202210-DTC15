@@ -23,6 +23,10 @@ label[for="greetings"]{
    justify-content: center;
 }
 
+#reward-photo {
+    width: 200px;
+}
+
 .sort-dropdown{
     padding: 5px;
     border-radius: 10px;
@@ -54,7 +58,6 @@ label[for="greetings"]{
     width: 95%;
     padding: .5em;
     margin: .5em;
-    cursor: pointer;
     display: grid;
     grid-template-areas:
     'rewards-title rewards-title  image-container'

@@ -37,21 +37,21 @@
     <nav id="navbar-placeholder"></nav>
     <main>
         <label for="user-profile">Profile</label>
-        <section class="user-editable-data left-column">
+        <div class="header-data">
             <div class="profile-pic-container">
                 <img src="./images/logo-only.png" id="pic">
                 <input type="file" id="pic-file">
                 <span></span>
                 <label for="pic-file" id="upload-pic-btn">Change Avatar</label>
             </div>
-        </section>
-        <div class="rewards-container">
-            <span id="rewards">
-                <h3 for="rewards"> Current Rewards </h3>
-                <h1 id="display-rewards" class="rewards">123</h1>
-            </span>
+            <div class="rewards-container">
+                <span id="rewards">
+                    <h3 for="rewards"> Current Rewards </h3>
+                    <h1 id="display-rewards" class="rewards">123</h1>
+                </span>
+            </div>
         </div>
-        <section class="user-profile">
+        <section class="body-data">
             <span class="info-container" id="first-name">
                 <label for="first-name"> First Name </label>
                 <input type="text" id="display-first-name" class="info" disabled>
@@ -86,8 +86,7 @@
     <!-- our own floating bar goes here-->
     <nav id="floating-bar-placeholder"></nav>
 
-    <!-- our own footer goes here-->
-    <nav id="footer-placeholder"></nav>
+   <nav id="empty-footer"></nav>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
