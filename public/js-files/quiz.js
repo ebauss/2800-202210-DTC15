@@ -6,7 +6,7 @@ var best = ''
 var last = ''
 let score = null
 let quizNumber = 0
-var maxQuestions = 3
+var maxQuestions = 10
 var correct = ''
 
 // allows to run this application automatially on open window
