@@ -167,6 +167,7 @@ function choice(){
         popup.classList.remove('active')    
     })
     
+    requestRewardPointsUpdate();
     requestHighscoreUpdate()
     requestHighscore()
 }
@@ -197,6 +198,18 @@ function requestHighscoreUpdate() {
             'score': score
         },
         success: processHighscoreUpdate
+    })
+}
+
+// request server to give the user points
+function requestRewardPointsUpdate() {
+    $.ajax({
+        url: 'http://localhost:3000/addUserPoints',
+        type: 'POST',
+        data: {
+            'points': score * 10
+        },
+        success: () => {}
     })
 }
 
