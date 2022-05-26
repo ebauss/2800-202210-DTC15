@@ -141,7 +141,9 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 * template.html
     * From COMP-1800 with modifications
 * Floating bar icons
-    * From 8icons https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+    * From icons8 https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+* Log-Out Icon
+    * From Icon8 https://icons8.com/icons/set/cry
 * Collapsible user cards
     * From W3Schools https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
 * Easter Egg

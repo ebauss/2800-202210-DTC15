@@ -42,14 +42,19 @@ async function logoutUser() {
 
 function processLogout(data) {
     if (data) {
-        alert('You have successfully logged out!');
-        window.location.href = './main.html';
+        let logOutPopUp = document.getElementById("logout-popup")
+        logOutPopUp.classList.add("open-popup")
     }
+}
+
+function redirectToMain(){
+    window.location.href = './main.html';
 }
 
 function setup() {
     isUserLoggedIn();
     $('body').on('click', '#logout-button', logoutUser);
+    $('body').on('click', '#farewell-btn', redirectToMain);
 };
 
 $(document).ready(setup);
