@@ -301,6 +301,20 @@ app.get('/getUserPoints', (req, res) => {
     })
 })
 
+// gives user reward points
+app.post('/addUserPoints', (req, res) => {
+    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`,
+    [req.body.points, req.body.points, req.session.uid], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(true);
+        }
+    })
+})
+
+
 // deletes a user from database. Used by admin.html
 app.post('/deleteUser', (req, res) => {
     if (req.body.userIdToDelete == req.session.uid) {
