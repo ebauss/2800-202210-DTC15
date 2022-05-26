@@ -19,7 +19,7 @@ function getUserRewardsInfo() {
 function uploadReceipt() {
     today = new Date();
 
-    rewardPointsInput = $('#receipt-total').val();
+    rewardPointsInput = $('#receipt-total').val().trim();
 
     if (isNaN(rewardPointsInput)) {
         alert("You must enter a number for your receipt's value.")
@@ -28,8 +28,6 @@ function uploadReceipt() {
         alert("You must enter the receipt's value")
         return;
     } 
-    // -- Closes the popup for amount and opens the success pop-up -- //
-    amountBtncloser()
 
     rewardPoints = parseInt(rewardPointsInput) * 100;
 
@@ -41,7 +39,7 @@ function uploadReceipt() {
             value: rewardPoints,
             date: today.toISOString().split('T')[0]
         },
-        success: uploadComplete
+        success: amountBtncloser
     })
 }
 
@@ -55,7 +53,7 @@ function processGoalUpdate(data) {
 
 // saves user's monthly goal to database
 function saveMonthlyGoal() {
-    if (isNaN($('#display-goal-points').val()) || $('#display-goal-points').val() < 0) {
+    if (isNaN($('#display-goal-points').val().trim()) || $('#display-goal-points').val().trim() < 0) {
         alert('You must enter a positive number for your monthly goal.');
         return;
     }
@@ -64,7 +62,7 @@ function saveMonthlyGoal() {
         url: 'http://localhost:3000/updateGoal',
         type: 'POST',
         data: {
-            goal: parseInt($('#display-goal-points').val())
+            goal: parseInt($('#display-goal-points').val().trim())
         },
         success: processGoalUpdate
     })
