@@ -119,17 +119,11 @@ a {
     /* margin-bottom: 20px; */
     padding: 10px 15px;
     border-radius: 100px;
-<<<<<<< HEAD
-    bottom: 0;
-    overflow: hidden;
-    position: -webkit-sticky;
-=======
     /* bottom: 10%; */
     /* left: 0;
     right: 0; */
     /* overflow: hidden; */
     /* position: fixed; */
->>>>>>> 160ada5f51af7369529e3ff8921b9e2c4b6988c2
 }
 
 .floating-bar img {
