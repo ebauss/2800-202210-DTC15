@@ -18,10 +18,10 @@ app.use(session({
 
 // Connect client to database
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'fUt4b4$4kur4',
-    database: 'sustainably',
+    host: 'x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'wnaxoodaw136f3ln',
+    password: 'l9a9drrzski0utvl',
+    database: 'ztqdakl3na8kx6b2',
     multipleStatements: false
 })
 
@@ -300,20 +300,6 @@ app.get('/getUserPoints', (req, res) => {
         }
     })
 })
-
-// gives user reward points
-app.post('/addUserPoints', (req, res) => {
-    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`,
-    [req.body.points, req.body.points, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(true);
-        }
-    })
-})
-
 
 // deletes a user from database. Used by admin.html
 app.post('/deleteUser', (req, res) => {
