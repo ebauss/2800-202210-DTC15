@@ -81,8 +81,12 @@ function processSignup(data) {
     switch (data) {
         case 'success':
             // sign up was successful. Log in the user.
-            alert('You have been signed up.');
-            loginSignedUpUser();
+            signUpPopup = document.getElementById("signup-popup") 
+            signUpPopup.classList.add("open-popup")
+            $("body").on("click", "#signup-btn", () => {
+                signUpPopup.classList.remove("open-popup")
+                loginSignedUpUser();    
+            })
             break;
         case 'unmatching password':
             // confirm password does not match password field
