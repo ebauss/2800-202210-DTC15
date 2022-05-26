@@ -138,7 +138,7 @@ a {
 
 .floating-container{
     position: -webkit-sticky;
-    position: sticky;
+    position: relative;
     bottom: 0;
     background-color: transparent;
     width: 100%;
