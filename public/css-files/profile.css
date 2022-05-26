@@ -213,6 +213,14 @@ section.body-data{
     position: relative;
     bottom: 0%;
     left: 0%;
+}
+
+#empty-footer{
+    width: 100%;
+    min-height: 70px;
+    position: static;
+    left: 0%;
+    bottom: 0%;
     background-color: #2f9379;
 }
 
