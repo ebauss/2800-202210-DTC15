@@ -17,7 +17,13 @@ app.use(session({
 }));
 
 // Connect client to database
-const connection = mysql.createConnection(process.env.JAWSDB_URL);
+const connection = mysql.createConnection({
+    host: 'x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'wnaxoodaw136f3ln',
+    password: 'l9a9drrzski0utvl',
+    database: 'ztqdakl3na8kx6b2',
+    multipleStatements: false
+});
 
 // Parse the body of the post request
 app.use(bodyparser.urlencoded({
