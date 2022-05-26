@@ -4,16 +4,13 @@ const scoreText = document.getElementById('user-score')
 let quizChoice = document.querySelectorAll('.answer')
 var best = ''
 var last = ''
-let score = 0
+let score = null
 let quizNumber = 0
 var maxQuestions = 3
 var correct = ''
-// document.querySelector('.last-score').innerHTML = last
-// document.querySelector('.best-score').innerHTML = best
 
 // allows to run this application automatially on open window
 window.onload = sendApiRequest
-
 
 // this checks if the player gave the right answer and add it if true
 function isCorrect(playerAnswer,choice) {
@@ -21,14 +18,14 @@ function isCorrect(playerAnswer,choice) {
     console.log('made to correct')
     console.log(choice)
     if (playerAnswer == correct) {
-        console.log(true)
+        // console.log(true)
         document.querySelector('.correct').style.backgroundColor = 'green';
         score += 1;
 
-        console.log(score)
+        // console.log(score)
     } else {
         $(playerAnswer).prevObject[0].activeElement.style.backgroundColor = 'red'
-        console.log(false)
+        // console.log(false)
     }
 
     setTimeout(function() {
@@ -51,20 +48,19 @@ function nextQuestion(){
 }
 
 // update stats and return to main
-function updateStats(){
-    requestHighscoreUpdate();
-    last = score
-    score = 0
-    quizNumber = 0
-    startQuiz()
-    // window.location.replace('http://localhost:3000/main.html');
-}
+// function updateStats(){
+//     last = score
+//     score = 0
+//     quizNumber = 0
+//     startQuiz()
+//     // window.location.replace('http://localhost:3000/main.html');
+// }
 
 function startQuiz (){
-    requestHighscore();
     console.log('3. Filled in score details on the start screen');
     document.querySelector('.last-score').innerHTML = last
     document.querySelector('.best-score').innerHTML = best
+    score = 0
    
     sendApiRequest()
 }
@@ -150,16 +146,17 @@ function choice(){
     no.addEventListener('click', () => {
         overlay.classList.remove('dim')
         popup.classList.remove('active')
-        updateStats()
     })
     
     yes.addEventListener('click', () => {
-        updateStats()
         mainMenuSection.style.display = 'block';
         quizContainerSection.style.display = 'none';
         overlay.classList.remove('dim')
         popup.classList.remove('active')
     })
+
+    requestHighscoreUpdate()
+    requestHighscore()
 }
 
 // log a console message depending on whether highscore was updated
@@ -176,6 +173,7 @@ function processHighscoreUpdate(data) {
             console.log('Your highscore was not replaced.');
             break;
     }
+
 }
 
 // request server to update user's highscore if neccessary
@@ -198,7 +196,9 @@ function displayHighscore(data) {
     else {
         console.log('2. Your highscore has been retrieved clientside');
         best = data[0].quiz_highscore
-        sendApiRequest()
+        last = score
+        quizNumber = 0
+        startQuiz()
     }
 }
 
@@ -210,3 +210,12 @@ function requestHighscore() {
         success: displayHighscore
     })
 }
+
+function setup(){
+    requestHighscoreUpdate()
+    requestHighscore()
+
+}
+
+
+$(document).ready(setup)
