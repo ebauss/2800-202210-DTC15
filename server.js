@@ -379,11 +379,19 @@ app.post('/deleteReceipt', (req, res) => {
 
 // delete reward from database. Used by admin.html
 app.post('/deleteReward', (req, res) => {
-    connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+    // First delete any user_rewards belonging to the reward.
+    connection.query(`DELETE FROM users_rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
-            res.send(true);
+            // Then delete the reward itself.
+            connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(true);
+                }
+            })
         }
     })
 })
