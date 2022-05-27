@@ -152,7 +152,7 @@ function LoadNews(news) {
             `<div class="card-information" >
             <img src = "${news.articles[i].urlToImage}">
             <div class="card-context">
-                   <button data-modal-target="#modal"><a href="./news.html?title=${news.articles[i].title}">${news.articles[i].title}</a></button>                   
+                   <button data-modal-target="#modal"><a href="${news.articles[i].url}">${news.articles[i].title}</a></button>                   
             </div>
         </div>`
         }

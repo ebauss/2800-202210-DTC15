@@ -110,11 +110,11 @@ function updateLogin(req) {
     let todayYearMonth = dateToMonth();
 
     connection.query('UPDATE users SET last_login = ? WHERE user_id = ?',
-    [todayYearMonth, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-    })
+        [todayYearMonth, req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+        })
 
     return;
 }
@@ -124,27 +124,26 @@ function checkNewMonthLogin(req) {
     let todayYearMonth = dateToMonth();
 
     connection.query('SELECT last_login FROM users WHERE user_id = ?',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            if (todayYearMonth != results[0].last_login) {
-                console.log('Logged in on a new month. Resetting monthly goal.');
-                resetMonthlyPoints(req);
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (todayYearMonth != results[0].last_login) {
+                    console.log('Logged in on a new month. Resetting monthly goal.');
+                    resetMonthlyPoints(req);
+                }
             }
-        }
-    })    
+        })
 }
 
 // reset user's monthly total points if they login on a new month
 function resetMonthlyPoints(req) {
     connection.query('UPDATE users SET monthly_total_points = 0 WHERE user_id = ?',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-    })
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+        })
 }
 
 // retrieves all the users' data for admin.html and sends it as a JSON object
@@ -165,20 +164,16 @@ app.post('/createNewUser', (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
         if (err) {
             console.log(err);
-        } 
-        else
-        {
+        } else {
             console.log(`Your password is: ${hash}`);
 
             if (req.body.password != req.body.confirm_password) {
                 // confirm password does not match the password field
                 res.send("unmatching password");
-            }
-            else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
+            } else if (!req.body.password || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.country || !req.body.age) {
                 // one or more required fields are blank
                 res.send("blank");
-            }
-            else {
+            } else {
                 // user creation successful. Add new user to database
                 addNewUserToDatabase(req, hash);
                 res.send("success");
@@ -208,8 +203,7 @@ app.get('/checkProfile', (req, res) => {
     connection.query(`SELECT * FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             res.send(results)
         }
     })
@@ -218,13 +212,13 @@ app.get('/checkProfile', (req, res) => {
 // updates signed-in user's profile. Used by profile.html
 app.post('/updateProfile', (req, res) => {
     connection.query(`UPDATE users SET first_name = ?, last_name = ?, email = ?, age = ?, country = ?, compass_id = ? WHERE user_id = ?;`,
-    [req.body.userFirstName, req.body.userLastName, req.body.userEmail, req.body.userAge, req.body.userCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(results);
-        }
-    })
+        [req.body.userFirstName, req.body.userLastName, req.body.userEmail, req.body.userAge, req.body.userCountry, req.body.userCompassId, req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(results);
+            }
+        })
 })
 
 // creates a new profile, used by createNewUser route
@@ -232,11 +226,11 @@ function addNewUserToDatabase(req, hashedPassword) {
     connection.query(`INSERT INTO users (password, first_name, last_name, email, country, age, reward_points, monthly_total_points, monthly_goal_points, is_admin) 
     VALUES
     (?, ?, ?, ?, ?, ?, 0, 0, 10000, FALSE);`, [hashedPassword, req.body.first_name, req.body.last_name, req.body.email, req.body.country, req.body.age],
-    (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-    })
+        (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+        })
 }
 
 // retrieves all rewards for rewards.html and sends it as a JSON object
@@ -253,39 +247,36 @@ app.post('/requestAllRewards', (req, res) => {
 // gets a list of all receipts and joins it with the matching owner id and email, admin id and email. Used by admin.html
 app.get('/getAllReceiptData', (req, res) => {
     connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN (SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id ORDER BY receipts.receipt_id DESC;',
-    (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+        (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(results);
+            }
+        })
 });
 
 app.get('/getUserReceipts', (req, res) => {
     connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN (SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipts.owner_id = ? ORDER BY receipts.receipt_id DESC;',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(results);
+            }
+        })
 })
 
 // gets a single receipt and joins it with the matching owner id and email, admin id and email. Used by verification.html
 app.post('/getSingleReceiptData', (req, res) => {
     connection.query('SELECT * FROM receipts LEFT JOIN (SELECT user_id, email FROM users) AS user_emails ON receipts.owner_id = user_emails.user_id LEFT JOIN (SELECT user_id AS admin_id, email AS admin_email FROM users) AS admin_emails ON receipts.admin_id = admin_emails.admin_id WHERE receipt_id = ?;',
-    [req.body.receipt_id], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+        [req.body.receipt_id], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(results);
+            }
+        })
 });
 
 // retrieves the number of points the user holds. Used by profile.html
@@ -293,8 +284,7 @@ app.get('/getUserPoints', (req, res) => {
     connection.query(`SELECT reward_points, monthly_total_points, monthly_goal_points FROM users WHERE user_id = ?`, [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             res.send(results);
         }
     })
@@ -303,14 +293,13 @@ app.get('/getUserPoints', (req, res) => {
 // gives user reward points
 app.post('/addUserPoints', (req, res) => {
     connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`,
-    [req.body.points, req.body.points, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(true);
-        }
-    })
+        [req.body.points, req.body.points, req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(true);
+            }
+        })
 })
 
 
@@ -320,11 +309,26 @@ app.post('/deleteUser', (req, res) => {
         res.send(false);
     }
 
-    connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
+    // First delete all users rewards.
+    connection.query(`DELETE FROM users_rewards WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
         if (err) {
             console.log(err);
         } else {
-            res.send(req.body.userIdToDelete);
+            // Then delete all of the users receipts.
+            connection.query(`DELETE FROM receipts WHERE owner_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // Then delete the user itself.
+                    connection.query(`DELETE FROM users WHERE user_id = ?`, [req.body.userIdToDelete], (err, results, fields) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.send(req.body.userIdToDelete);
+                        }
+                    })
+                }
+            })
         }
     })
 })
@@ -332,29 +336,28 @@ app.post('/deleteUser', (req, res) => {
 // uploads receipt image, owner, and value to database. Used by earning.html
 app.post('/uploadReceipt', (req, res) => {
     connection.query(`INSERT INTO receipts (picture, owner_id, reward_points, verified_date) VALUES (?, ?, ?, ?)`, [req.body.receipt, req.session.uid, req.body.value, req.body.date],
-    (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(true);
-        }
-    })
+        (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(true);
+            }
+        })
 })
 
 // sets receipt in database as verified by an admin. Used by verification.html
 app.post('/verifyReceipt', (req, res) => {
     // fill out the receipt with the logged in user's ID, updated reward points, and notes
     connection.query(`UPDATE receipts SET admin_id = ?, reward_points = ?, notes = ?, verified_date = ? WHERE receipt_id = ?`,
-    [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
-    (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-    })
+        [req.session.uid, req.body.value * 100, req.body.notes, req.body.verified_date, req.body.receipt_id],
+        (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            }
+        })
 
     // give the receipt's owner the specified reward points
-    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`, [req.body.value * 100, req.body.value * 100, req.body.user_id] , (err, results, fields) => {
+    connection.query(`UPDATE users SET reward_points = reward_points + ?, monthly_total_points = monthly_total_points + ? WHERE user_id = ?`, [req.body.value * 100, req.body.value * 100, req.body.user_id], (err, results, fields) => {
         if (err) {
             console.log(err);
         }
@@ -368,8 +371,7 @@ app.post('/deleteReceipt', (req, res) => {
     connection.query(`DELETE FROM receipts WHERE receipt_id = ?`, [req.body.receipt_id], (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             res.send(true);
         }
     })
@@ -377,12 +379,19 @@ app.post('/deleteReceipt', (req, res) => {
 
 // delete reward from database. Used by admin.html
 app.post('/deleteReward', (req, res) => {
-    connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+    // First delete any user_rewards belonging to the reward.
+    connection.query(`DELETE FROM users_rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
-            res.send(true);
+        } else {
+            // Then delete the reward itself.
+            connection.query(`DELETE FROM rewards WHERE reward_id = ?`, [req.body.reward_id], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(true);
+                }
+            })
         }
     })
 })
@@ -393,29 +402,26 @@ app.post('/redeemReward', (req, res) => {
     connection.query('SELECT reward_points FROM users WHERE user_id = ?', [req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err)
-        }
-        else if (results[0].reward_points < req.body.cost) {
+        } else if (results[0].reward_points < req.body.cost) {
             // failed redemption if user's reward points are insufficient
             res.send(false);
-        }
-        else {
+        } else {
             // add reward to user's inventory
             connection.query('INSERT INTO users_rewards (user_id, reward_id, redeemed_date) VALUES (?, ?, ?)',
-            [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
-                if (err) {
-                    console.log(err);
-                }
-            })
+                [req.session.uid, req.body.reward_id, req.body.redeemed_date], (err, results, fields) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
 
             // subtract points from user's total reward points
             connection.query('UPDATE users SET reward_points = reward_points - ? WHERE user_id = ?', [req.body.cost, req.session.uid], (err, results, fields) => {
                 if (err) {
                     console.log(err);
-                }
-                else {
+                } else {
                     res.send(true);
                 }
-            })            
+            })
         }
     })
 })
@@ -423,27 +429,25 @@ app.post('/redeemReward', (req, res) => {
 // create a new reward as an admin. Used by new-reward.html
 app.post('/createReward', (req, res) => {
     connection.query('INSERT INTO rewards (company, description, photo, value, points_cost) VALUES (?, ?, ?, ?, ?)',
-    [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(true);
-        }
-    })
+        [req.body.company, req.body.description, req.body.photo, req.body.value, req.body.cost], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(true);
+            }
+        })
 })
 
 // gets all rewards a user owns as well as the rewards' details. Used by notification.html
 app.get('/getUserRewards', (req, res) => {
     connection.query('SELECT * FROM users_rewards LEFT JOIN rewards ON users_rewards.reward_id = rewards.reward_id WHERE user_id = ? ORDER BY redeemed_date DESC;',
-    [req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.send(results);
-        }
-    })
+        [req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(results);
+            }
+        })
 })
 
 // updates signed in user's monthly goal points. Used by profile.html
@@ -451,8 +455,7 @@ app.post('/updateGoal', (req, res) => {
     connection.query('UPDATE users SET monthly_goal_points = ? WHERE user_id = ?', [req.body.goal, req.session.uid], (err, results, fields) => {
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             res.send(true);
         } 
     })
@@ -462,17 +465,15 @@ app.post('/updateGoal', (req, res) => {
 app.get('/getHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
         res.send('signed out');
-    }
-    else {
+    } else {
         connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
-        [req.session.uid], (err, results, fields) => {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.send(results);
-            }
-        })        
+            [req.session.uid], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(results);
+                }
+            })
     }
 })
 
@@ -480,25 +481,22 @@ app.get('/getHighscore', (req, res) => {
 app.post('/compareHighscore', (req, res) => {
     if (req.session.uid == '' || req.session.uid == null) {
         res.send('signed out');
-    }
-    else {
+    } else {
         connection.query('SELECT quiz_highscore FROM users WHERE user_id = ?',
-        [req.session.uid], (err, results, fields) => {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                let highscore = results[0].quiz_highscore;
+            [req.session.uid], (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    let highscore = results[0].quiz_highscore;
 
-                if (highscore == null || req.body.score > highscore) {
-                    replaceHighscore(req, req.body.score);
-                    res.send('replaced');
+                    if (highscore == null || req.body.score > highscore) {
+                        replaceHighscore(req, req.body.score);
+                        res.send('replaced');
+                    } else {
+                        res.send('not replaced');
+                    }
                 }
-                else {
-                    res.send('not replaced');
-                }
-            }
-        })        
+            })
     }
 
 })
@@ -506,14 +504,13 @@ app.post('/compareHighscore', (req, res) => {
 // replaces user's highscore with their current score
 function replaceHighscore(req, replacementScore) {
     connection.query('UPDATE users SET quiz_highscore = ? WHERE user_id = ?',
-    [replacementScore, req.session.uid], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(`Highscore is now ${replacementScore}`);
-        }
-    })
+        [replacementScore, req.session.uid], (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(`Highscore is now ${replacementScore}`);
+            }
+        })
 }
 
 // Instead of using app.get() for every file, just use express.static middleware and it serves all required files to client for you.
