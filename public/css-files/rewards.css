@@ -140,6 +140,6 @@ button:hover{
     }
 
     #reward-photo {
-        max-width: 30px;
+        width: initial;
     }
 }
