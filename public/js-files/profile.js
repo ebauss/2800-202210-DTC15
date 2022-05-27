@@ -77,21 +77,21 @@ saveBtn.addEventListener('click', () => {
 
 // checks if email contains the @ symbol
 function isValidEmail() {
-    let userEmail = $('#display-email').val();
+    let userEmail = $('#display-email').val().trim();
 
     return (userEmail.includes('@'));
 }
 
 // checks if Compass ID is 20 numerical characters or empty string
 function isValidCompassIdInput() {
-    let userCompassId = $('#display-compass').val();
+    let userCompassId = $('#display-compass').val().trim();
 
     return ((!isNaN(userCompassId) && userCompassId.length == 20) || userCompassId == '');
 }
 
 // checks if age is numerical and between 0 and 255
 function isValidAgeInput() {
-    let userAge = $('#display-age').val();
+    let userAge = $('#display-age').val().trim();
 
     return !(userAge == '' || isNaN(userAge) || userAge < 0 || userAge > 255);
 }
@@ -125,11 +125,11 @@ function makeReadRequest() {
 
 // edits user's profile with new information
 function makeWriteRequest() {
-    if ($('#display-compass').val() == '') {
+    if ($('#display-compass').val().trim() == '') {
         compassIdToInsert = null;
     }
     else {
-        compassIdToInsert = $('#display-compass').val();
+        compassIdToInsert = $('#display-compass').val().trim();
     }
 
 
@@ -137,11 +137,11 @@ function makeWriteRequest() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/updateProfile',
         type: 'POST',
         data: {
-            userFirstName: $('#display-first-name').val(),
-            userLastName: $('#display-last-name').val(),
-            userEmail: $('#display-email').val(),
-            userAge: $('#display-age').val(),
-            userCountry: $('#display-country').val(),
+            userFirstName: $('#display-first-name').val().trim(),
+            userLastName: $('#display-last-name').val().trim(),
+            userEmail: $('#display-email').val().trim(),
+            userAge: $('#display-age').val().trim(),
+            userCountry: $('#display-country').val().trim(),
             userCompassId: compassIdToInsert
         },
         success: updateProfile

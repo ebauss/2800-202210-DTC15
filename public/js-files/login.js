@@ -9,8 +9,8 @@ function postUserCredentials() {
         url: "https://sustainably-2800-202210-dtc15.herokuapp.com/loginWithUserCredentials",
         type: "POST",
         data: {
-            "email": $('#email').val(),
-            "password": $('#password').val()
+            "email": $('#email').val().trim(),
+            "password": $('#password').val().trim()
         },
         success: processLogin
     })

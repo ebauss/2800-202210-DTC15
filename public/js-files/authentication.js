@@ -2,7 +2,7 @@
 function isEmailInDB() {
     console.log('Button pressed');
 
-    if (!$('#email').val().includes('@')) {
+    if (!$('#email').val().trim().includes('@')) {
         alert('Your email must contain the @ symbol.');
         return;
     }
@@ -11,7 +11,7 @@ function isEmailInDB() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkEmailExists',
         type: 'POST',
         data: {
-            'email': $('#email').val()
+            'email': $('#email').val().trim()
         },
         success: processUserResult
     })
@@ -19,13 +19,13 @@ function isEmailInDB() {
 
 // process the result of the user via email query on MySQL
 function processUserResult(data) {
-    // if email exists, proceed to user_signIn()
+    // if email exists, proceed to userSignin()
     if (data.length != 0) {
-        user_signIn();
+        userSignin();
     }
-    // if email does not exist, proceed to user_signUP()
+    // if email does not exist, proceed to userSignup()
     else {
-        user_signUp();
+        userSignup();
     }
 }
 
@@ -36,7 +36,7 @@ function isPasswordCorrect() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkIfPasswordCorrect',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#password').val()
         },
         success: processLogin
@@ -50,13 +50,13 @@ function addNewUserToDatabase() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/createNewUser',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#new-password').val(),
             'confirm_password': $('#confirm-password').val(),
-            'first_name': $('#first-name').val(),
-            'last_name': $('#last-name').val(),
-            'age': $('#age').val(),
-            'country': $('#country').val()
+            'first_name': $('#first-name').val().trim(),
+            'last_name': $('#last-name').val().trim(),
+            'age': $('#age').val().trim(),
+            'country': $('#country').val().trim()
         },
         success: processSignup
     })
@@ -109,7 +109,7 @@ function loginSignedUpUser() {
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/checkIfPasswordCorrect',
         type: 'POST',
         data: {
-            'email': $('#email').val(),
+            'email': $('#email').val().trim(),
             'password': $('#new-password').val()
         },
         success: processLogin
@@ -127,7 +127,7 @@ signUpTags = document.querySelectorAll(".sign-up")
 clickedBtn = ""
 
 // Show this if user exists
-function user_signIn() {
+function userSignin() {
     // Disables email field
     $('#email').prop('disabled', true);
     $('#email-label').hide();
@@ -144,7 +144,7 @@ function user_signIn() {
 }
 
 // If user is a new user
-function user_signUp() {
+function userSignup() {
     // Changes the Header into "Sign Up"
     $("#authentication-header").html("Sign Up")
 
@@ -178,7 +178,7 @@ function cancelToEmail() {
     }
 
     // save email to be filled out again
-    enteredEmail = $('#email').val();
+    enteredEmail = $('#email').val().trim();
     $('#email').prop('disabled', false);
     nextBtn.style.display = "block"
     cancellButton.classList.add("cancel-btn")

@@ -10,7 +10,7 @@ const earningsButton = document.getElementById('earnings-btn')
 // ------- All Functions for populating the card ------- //
 
 // ------- A function that populates the rewards container -------- //
-function populate_rewards(rewards) {
+function populateRewards(rewards) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById('rewards-template')
@@ -44,7 +44,7 @@ function populate_rewards(rewards) {
 }
 
 // ------- A function that populates the rewards container -------- //
-function populate_earnings(earnings) {
+function populateEarnings(earnings) {
 
     // ------ Takes the template from the HTML file ------ //
     const earningsTemplate = document.getElementById('earnings-template')
@@ -85,10 +85,13 @@ function populate_earnings(earnings) {
 
         if (earningsStatus == 'Declined') {
             newMail.querySelector('.earnings-status').classList.add('end')
+            newMail.querySelector('.earnings-status-popup').classList.add('end')
         } else if (earningsStatus == "Pending") {
             newMail.querySelector(".earnings-status").classList.add("pending")
+            newMail.querySelector('.earnings-status-popup').classList.add("pending")
         } else {
             newMail.querySelector(".earnings-status").classList.add("start")
+            newMail.querySelector('.earnings-status-popup').classList.add("start")
         }
 
         document.getElementById('user-earnings-container').append(newMail)
@@ -196,7 +199,7 @@ function requestOwnedRewards() {
     $.ajax({
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserRewards',
         type: 'GET',
-        success: populate_rewards
+        success: populateRewards
     })
 }
 
@@ -205,7 +208,7 @@ function requestOwnedReceipts() {
     $.ajax({
         url: 'https://sustainably-2800-202210-dtc15.herokuapp.com/getUserReceipts',
         type: 'GET',
-        success: populate_earnings
+        success: populateEarnings
     })
 }
 

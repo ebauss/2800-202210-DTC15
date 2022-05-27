@@ -141,7 +141,7 @@ J.A.N.E. Group is developing a web application to help adults transition to a he
 * template.html
     * From COMP-1800 with modifications
 * Floating bar icons
-    * From icons8 https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
+    * From Icons8 https://icons8.com/?msclkid=e4238e95d0a311ec923acc92a9f01d52
 * Log-Out Icon
     * From Icons8 https://icons8.com/icons/set/cry
 * Sign-Up Icon
