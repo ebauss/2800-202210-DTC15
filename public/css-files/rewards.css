@@ -24,7 +24,7 @@ label[for="greetings"]{
 }
 
 #reward-photo {
-    width: 200px;
+    max-width: 200px;
 }
 
 .sort-dropdown{
